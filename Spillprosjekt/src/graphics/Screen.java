@@ -2,8 +2,6 @@ package graphics;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
-import java.io.File;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -29,7 +27,7 @@ public class Screen extends JPanel implements Runnable {
 	
 //	Kontrollerer alle bevegelser og timere
 	private void physics(){
-		board.physics();
+//		board.physics();
 	}
 	
 //	Tegner alt som skal tegnes
@@ -39,7 +37,7 @@ public class Screen extends JPanel implements Runnable {
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
 //		Tegner brettet
-		board.draw(g);
+//		board.draw(g);
 	}	
 
 //	Kaller metodene som kontrollerer tegning og bevegelser
@@ -47,8 +45,9 @@ public class Screen extends JPanel implements Runnable {
 		while(true) {
 			repaint();
 			physics();
+			System.out.println("Hei");
 			try {
-				Thread.sleep(2);
+				Thread.sleep(3);
 			} catch (Exception e) {}
 		}
 	}

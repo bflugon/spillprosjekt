@@ -1,4 +1,5 @@
 package components;
+//Hei
 
 public class TowerComponent {
 	protected String 	name,

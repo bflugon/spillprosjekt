@@ -1,20 +1,29 @@
 package components;
 
 public class TowerComponent {
+	private String name;
+	
 	private int damage,
 				firerate,
+				splashdamage,
 				range;
 	
 	private boolean splashDamage,
 					slow;
 	
-	public TowerComponent(int damage, int range, int firerate, boolean splashDamage, boolean slow){
+	public TowerComponent(String name, int damage, int range, int firerate){
+		
+		
+		this.name = name;
 		this.damage = damage;
 		this.firerate = firerate;
 		this.range = range;
 		
-		this.splashDamage = splashDamage;
-		this.slow = slow;
+
+	}
+	
+	public String getName(){
+		return name;
 	}
 	
 	public int getDamage(){

@@ -5,10 +5,18 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import components.*;
+
 // Maa Extende Rectangle for aa gjore det lettere aa tegne i "draw"
 public class Tower extends Rectangle{
 	
 	private ArrayList<Component> components;
+	
+	//I f¿rste omgang kan vi holde oss til kun en del av hver type.
+	Turret turret;
+	Base base;
+	
+	
 	
 //	Skyter naar timeren i "physics" kaller metoden
 	private void shoot(){

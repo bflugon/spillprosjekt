@@ -45,7 +45,6 @@ public class Screen extends JPanel implements Runnable {
 		while(true) {
 			repaint();
 			physics();
-			System.out.println("Hei");
 			try {
 				Thread.sleep(3);
 			} catch (Exception e) {}

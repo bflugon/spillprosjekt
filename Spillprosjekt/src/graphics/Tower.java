@@ -6,11 +6,7 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-<<<<<<< HEAD
-import components.*;
-=======
 import components.TowerComponent;
->>>>>>> Noen eksempler på hvor enkelt det ville være å lage komponenter
 
 // Maa Extende Rectangle for aa gjore det lettere aa tegne i "draw"
 public class Tower extends Rectangle{
@@ -20,20 +16,9 @@ public class Tower extends Rectangle{
 					range,
 					rate;
 	
-<<<<<<< HEAD
-	//I f�rste omgang kan vi holde oss til kun en del av hver type.
-	Turret turret;
-	Base base;
-	
-	
-	
-//	Skyter naar timeren i "physics" kaller metoden
-	private void shoot(){
-=======
 	private boolean	radar,
 					splashDamage,
 					glue;
->>>>>>> Noen eksempler på hvor enkelt det ville være å lage komponenter
 		
 	private Image texture;
 	

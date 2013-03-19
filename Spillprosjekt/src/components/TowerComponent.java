@@ -1,40 +1,60 @@
 package components;
 
 public class TowerComponent {
+<<<<<<< HEAD
 	private String name;
 	
 	private int damage,
 				firerate,
 				splashdamage,
 				range;
+=======
+	protected String 	name,
+						type;
+	
+	private double 	damage,
+					firerate,
+					range;
+>>>>>>> Noen eksempler på hvor enkelt det ville være å lage komponenter
 	
 	private boolean splashDamage,
-					slow;
+					slow, 
+					radar;
 	
+<<<<<<< HEAD
 	public TowerComponent(String name, int damage, int range, int firerate){
 		
 		
 		this.name = name;
+=======
+	public TowerComponent(double damage, double range, double firerate, boolean splashDamage, boolean slow, boolean radar){
+>>>>>>> Noen eksempler på hvor enkelt det ville være å lage komponenter
 		this.damage = damage;
 		this.firerate = firerate;
 		this.range = range;
 		
+<<<<<<< HEAD
 
 	}
 	
 	public String getName(){
 		return name;
+=======
+		this.splashDamage = splashDamage;
+		this.slow = slow;
+		this.radar = radar;
+>>>>>>> Noen eksempler på hvor enkelt det ville være å lage komponenter
 	}
 	
-	public int getDamage(){
+	public double getDamage(){
 		return damage;
 	}
 	
-	public int getFirerate(){
+	public double getFirerate(){
 		return firerate;
 	}
 	
-	public int getRange(){
+	public double getRange(){
 		return range;
 	}
 	
@@ -44,5 +64,13 @@ public class TowerComponent {
 
 	public boolean getSlow(){
 		return slow;
+	}
+	
+	public boolean getRadar(){
+		return radar;
+	}
+	
+	public String getName(){
+		return name;
 	}
 }

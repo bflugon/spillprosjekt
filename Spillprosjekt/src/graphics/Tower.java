@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.util.ArrayList;
 
 import components.TowerComponent;
 
@@ -14,7 +13,7 @@ public class Tower extends Rectangle{
 //	Multipelen oker basert paa komponentene
 	private double 	damage,
 					range,
-					rate;
+					firerate;
 	
 	private boolean	radar,
 					splashDamage,
@@ -22,22 +21,18 @@ public class Tower extends Rectangle{
 		
 	private Image texture;
 	
-	private ArrayList<TowerComponent> components;
-	
+	private TowerComponent 	base,
+							barrel,
+							aim;
 //	Antar du mener naar det plasseres? :) Vi maa vaere flinke til aa kommentere hvis de andre skal forstaa
-//	public void create(){}
 	public Tower(){
-		
-		components = new ArrayList<TowerComponent>();
-		
 		damage = 2;
 		range = 150;
-		rate = 500;
+		firerate = 500;
 		
 		radar = false;
 		splashDamage = false;
 		glue = false;
-
 	}
 
 //	Skyter naar timeren i "physics" kaller metoden
@@ -45,24 +40,30 @@ public class Tower extends Rectangle{
 		
 	}
 	
-//	Legge til en komponent?
-	public void addComponent(TowerComponent component){
-		components.add(component);
+	private void updateProperties(){
+		getBarrelBonuses();
+		getAimBonuses();
+		
+		
+//		getBaseBonuses();
 	}
 	
-//	Oppdaterer multiplene basert paa komponentene
-	private void updateFields(){
-		for(TowerComponent towerComp: components){
-			damage += towerComp.getDamage();
-			range += towerComp.getRange();
-			rate += towerComp.getFirerate();
-			
-			if(towerComp.getSplashDamage()) splashDamage = true;
-			if(towerComp.getRadar()) radar = true;
-			if(towerComp.getSlow()) glue = true;
-		}
+	private void getBarrelBonuses(){
+		damage += barrel.getDamage();
+		firerate += barrel.getFirerate();
+		range += barrel.getRange();
 	}
 	
+	private void getAimBonuses(){
+		if(aim.getRadar()) radar = true;
+		if(aim.getSplashDamage()) splashDamage = true;
+		if(aim.getSlow()) glue = true;
+	}
+	
+	private void getBaseBonuses(){
+		
+	}
+		
 //	Tar imot et grafikkobjekt og tegner taarnet
 	public void draw(Graphics g){
 		g.setColor(Color.BLUE);

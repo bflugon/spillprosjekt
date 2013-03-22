@@ -1,6 +1,6 @@
 package graphics;
 
-import gui.BoardKeyListener;
+import gui.BoardMouseListener;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -24,19 +24,23 @@ public class Screen extends JPanel implements Runnable {
 	private JFrame frame;
 	
 //	Lyttere
-	private BoardKeyListener boardMouseListener;
+	private BoardMouseListener boardMouseListener;
 	
 //	Starter threaden
 	public Screen(JFrame frame) {
 		this.frame = frame;
+		
+//		Setter storrelsen til skjermen lik storrelsen til rammen
 		setSize(frame.getSize());
 		
 		board = new Board();
 		
-		boardMouseListener = new BoardKeyListener(this);
+//		Legger til lyttere på rammen
+		boardMouseListener = new BoardMouseListener(this);
 		frame.addMouseListener(boardMouseListener);
 		frame.addMouseMotionListener(boardMouseListener);
 		
+//		Starter gameloopen
 		thread.start();
 	}
 	

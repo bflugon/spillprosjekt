@@ -7,10 +7,10 @@ import java.awt.event.MouseMotionListener;
 
 import graphics.Screen;
 
-public class BoardKeyListener implements MouseListener, MouseMotionListener {
+public class BoardMouseListener implements MouseListener, MouseMotionListener {
 	private Screen screen;
 
-	public BoardKeyListener(Screen screen){
+	public BoardMouseListener(Screen screen){
 		this.screen = screen;
 	}
 	

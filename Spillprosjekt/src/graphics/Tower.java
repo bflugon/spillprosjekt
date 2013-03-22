@@ -28,13 +28,16 @@ public class Tower extends Rectangle{
 							barrel,
 							aim;
 	
-//	Antar du mener naar det plasseres? :) Vi maa vaere flinke til aa kommentere hvis de andre skal forstaa
+//	Taarn som skal plasseres paa kartet trenger bare en possisjon(blokk)
+//	Resten blir oppdatert i en copy-metoden som henter data fra et mal-taarn
 	public Tower(Block block){		
 		this.block = block;
 		
 		setBounds((int) block.getX(),(int) block.getY(),60,60);
 	}
 
+//	En mal trenger ikke possisjon, bare egenskaper og verdier
+//	Disse blir oppdatert avhengig av hvilke komponenter man legger til
 	public Tower(){
 		damage = 2;
 		range = 150;
@@ -50,6 +53,7 @@ public class Tower extends Rectangle{
 		
 	}
 	
+//	Gir taarnet som mates inn i metoden samme egenskaper som taarnet
 	public void copyTower(Tower tower){
 		tower.setDamage(damage);
 		tower.setRange(range);
@@ -62,6 +66,7 @@ public class Tower extends Rectangle{
 		tower.setTexture(texture);
 	}
 	
+//	Oppdaterer egenskapene avhenging av komponenetene
 	private void updateProperties(){
 		getBarrelBonuses();
 		getAimBonuses();

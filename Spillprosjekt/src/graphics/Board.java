@@ -10,17 +10,20 @@ public class Board {
 						worldWidth = 13,
 						blockSize = 60;
 	
+//	Brettet vart
 	private Block[][] grid;
+//	Start og slutt for fiendene
 	private Block 	start,
 					goal;
 	
+//	Liste med alle taarnene
 	private ArrayList<Tower> towers;
 	
-	public Board(){
-		
-		//Lager brettet
+	public Board(){	
+//		Lager brettet
 		grid = new Block[worldHeight][worldWidth];
 		
+//		Legger til blokker i arrayet
 		for(int y = 0; y < grid.length; y++){
 			for(int x = 0; x < grid[0].length; x++){
 				grid[y][x] = new Block(20+blockSize*x, 20+blockSize*y, x, y, blockSize);
@@ -45,11 +48,9 @@ public class Board {
 	public Block[][] getGrid(){
 		return grid;
 	}
-	
 	public Block getStart(){
 		return start;
 	}
-	
 	public Block getGoal(){
 		return goal;
 	}
@@ -57,7 +58,6 @@ public class Board {
 	public void physics() {
 		
 	}
-
 	public void draw(Graphics g) {
 //		Tegner blokkene
 		for(Block[] row: grid){

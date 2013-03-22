@@ -10,7 +10,11 @@ public class Block extends Rectangle{
 //	indeksen til blokken i gridet og hva slags blokk det er
 	private int indX,
 				indY,
-				blockID;
+				blockID,
+				g,
+				f;
+	
+	private Block prev;
 	
 	private Image texture;
 	
@@ -50,5 +54,29 @@ public class Block extends Rectangle{
 		
 		if (texture != null)g.drawImage(texture, x, y, width, height, null);
 		else g.fillRect(x,y,width,height);
+	}
+
+	public void setF(int f) {
+		this.f = f;
+	}
+	
+	public int getG(){
+		return g;
+	}
+	
+	public int getF(){
+		return f;
+	}
+	
+	public void setG(int g){
+		this.g = g;
+	}
+
+	public void setPrev(Block prev) {
+		this.prev = prev;
+	}
+	
+	public int getBlockID(){
+		return blockID;
 	}
 }

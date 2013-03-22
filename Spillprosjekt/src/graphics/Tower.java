@@ -106,14 +106,8 @@ public class Tower extends Rectangle{
 	//	Tar imot et grafikkobjekt og tegner taarnet
 	public void draw(Graphics g){
 		g.setColor(Color.BLUE);
-		if(texture != null) {
-			System.out.println("Tower.draw()");
-			g.drawImage(texture, x, y, width, height, null);
-		}
-		else {
-			System.out.println("Tower.draw()");
-			g.fillRect(x, y, width, height);
-		}
+		if(texture != null) g.drawImage(texture, x, y, width, height, null);
+		else g.fillRect(x, y, width, height);
 	}
 	
 //	Alt av timere ol skal kjores fra denne (vil kalles av gameloopen)

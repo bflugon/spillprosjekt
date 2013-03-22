@@ -9,6 +9,8 @@ import java.awt.Point;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import backend.Colors;
+
 public class Screen extends JPanel implements Runnable {
 	
 //	Possisjonen til musen
@@ -52,7 +54,7 @@ public class Screen extends JPanel implements Runnable {
 //	Tegner alt som skal tegnes
 	protected void paintComponent(Graphics g) {
 //		Nullstiller bildet
-		g.setColor(Color.WHITE);
+		g.setColor(Colors.background);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
 //		Tegner brettet
@@ -61,6 +63,7 @@ public class Screen extends JPanel implements Runnable {
 
 //	Kaller metodene som kontrollerer tegning og bevegelser
 	public void run() {
+		//Gameloop
 		while(true) {
 			repaint();
 			physics();
@@ -72,5 +75,9 @@ public class Screen extends JPanel implements Runnable {
 
 	public void placeTower() {
 		board.placeTower();
+	}
+
+	public void addFoundation() {
+		board.addFoundation();
 	}
 }

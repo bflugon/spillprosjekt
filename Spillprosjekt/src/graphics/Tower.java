@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 
+import backend.Colors;
+
 import components.TowerComponent;
 
 // Maa Extende Rectangle for aa gjore det lettere aa tegne i "draw"
@@ -110,7 +112,7 @@ public class Tower extends Rectangle{
 
 	//	Tar imot et grafikkobjekt og tegner taarnet
 	public void draw(Graphics g){
-		g.setColor(Color.BLUE);
+		g.setColor(Colors.tower);
 		if(texture != null) g.drawImage(texture, x, y, width, height, null);
 		else g.fillRect(x, y, width, height);
 	}

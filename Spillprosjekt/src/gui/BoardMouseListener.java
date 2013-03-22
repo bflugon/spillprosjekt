@@ -19,6 +19,7 @@ public class BoardMouseListener implements MouseListener, MouseMotionListener {
 	}
 	public void mouseReleased(MouseEvent e) {
 		screen.placeTower();
+		screen.addFoundation();
 	}
 	
 	public void mouseDragged(MouseEvent e) {}

@@ -9,8 +9,8 @@ import javax.swing.JFrame;
 public class SpillprosjektTD extends JFrame {
 	
 	private String title = "Spillprosjekt";
-	private int width = 800,
-				height = 600;
+	private int width = 820,
+				height = 680;
 	
 	public SpillprosjektTD(){
 		

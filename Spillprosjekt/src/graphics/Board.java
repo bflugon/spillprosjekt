@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import backend.GameData;
 import backend.Pathfinder;
+import backend.Tilesets;
 
 public class Board {
 	
@@ -24,6 +25,9 @@ public class Board {
 	
 //	Liste med alle taarnene
 	private ArrayList<Tower> towers;
+	
+//	Array med alle fiender
+	private Enemy[] enemies;
 	
 	public Board(){	
 //		Lager brettet
@@ -46,6 +50,12 @@ public class Board {
 		
 //		Lager listen som inneholder taarnene
 		towers = new ArrayList<Tower>();
+		
+//		Fyller arrayet med fiender
+		enemies = new Enemy[60];
+		for(int i = 0; i<enemies.length; i++){
+			enemies[i] = new Enemy(this);
+		}
 	}
 	
 	public void placeTower(){
@@ -53,7 +63,7 @@ public class Board {
 		for(Block[] row: grid){
 			for(Block block: row){
 				if(block.contains(Screen.CURSOR)){
-					if(block.getBlockID() == GameData.foundation && block.isOpen()) towers.add(new Tower(block));	
+					if(block.getBlockID() == GameData.foundation && block.isOpen()) towers.add(new Tower(block, this));	
 				}
 			}
 		}
@@ -63,7 +73,13 @@ public class Board {
 		for(Block[] row: grid){
 			for(Block block: row){
 				if(block.contains(Screen.CURSOR)){
-					if(block.getBlockID() == GameData.grass) block.setID(GameData.foundation);
+					if(block.getBlockID() == GameData.grass){
+						block.setBlockID(GameData.foundation);
+						if(!pathfinder.findPath()) {
+							block.setBlockID(GameData.grass);
+							pathfinder.findPath();
+						}
+					}
 				}
 			}
 		}
@@ -79,8 +95,41 @@ public class Board {
 		return goal;
 	}
 	
-	public void physics() {
+	public int getBlockSize() {
+		return blockSize;
+	}
+	
+	private int enemiesSpawned = 0, spawnFrame = 0, spawnRate = 400;
+	private void spawnTimer() {
 		
+		if(spawnFrame >= spawnRate) {
+			for(int i = 0; i < enemies.length;i++) {
+				if(!enemies[i].inGame()) {
+					enemies[i].spawnEnemy(10, 4, start);
+					enemiesSpawned++;
+					break;
+				}
+			}
+			spawnFrame = 0;
+		} else {
+			spawnFrame ++;
+		}
+	}
+	
+	public Enemy[] getEnemies(){
+		return enemies;
+	}
+	
+	public void physics() {
+		spawnTimer();
+		
+		for(Enemy enemy: enemies){
+			if(enemy.inGame()) enemy.physics();
+		}
+		
+		for(Tower tower: towers){
+			tower.physics();
+		}
 	}
 	public void draw(Graphics g) {
 //		Tegner blokkene
@@ -94,7 +143,10 @@ public class Board {
 		for(Tower tower: towers){
 			tower.draw(g);
 		}
+		
+//		Draw enemies
+		for(Enemy enemy: enemies){
+			if(enemy.inGame()) enemy.draw(g);
+		}
 	}
-
-
 }

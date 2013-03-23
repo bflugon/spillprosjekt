@@ -4,17 +4,23 @@ import gui.BoardMouseListener;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import backend.Colors;
+import backend.Tilesets;
 
 public class Screen extends JPanel implements Runnable {
 	
 //	Possisjonen til musen
 	public static Point CURSOR;
+	
+//	Holder all grafikk som static-variabler
+//	Maa initialiseres for aa lage tilesetene i konstruktoren, men kan senere reffereres til som "Tilesets"
+	Tilesets ts = new Tilesets();
 	
 //	Threaden som kjorer gameloopen
 	public Thread thread = new Thread(this);
@@ -31,7 +37,7 @@ public class Screen extends JPanel implements Runnable {
 //	Starter threaden
 	public Screen(JFrame frame) {
 		this.frame = frame;
-		
+
 //		Setter storrelsen til skjermen lik storrelsen til rammen
 		setSize(frame.getSize());
 		

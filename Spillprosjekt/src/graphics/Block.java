@@ -5,8 +5,11 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
+
 import backend.Colors;
 import backend.GameData;
+import backend.Tilesets;
 
 public class Block extends Rectangle{
 	
@@ -30,6 +33,8 @@ public class Block extends Rectangle{
 		
 		open = true;
 		
+		setBlockID(0);
+		
 //		Setter posisjonen til blokken og storelsen
 		setBounds(x, y, blockSize, blockSize);
 	}
@@ -48,9 +53,9 @@ public class Block extends Rectangle{
 	}
 	
 //	Endre id-en og oppdater teksturen
-	public void setID(int blockID){
+	public void setBlockID(int blockID){
 		this.blockID = blockID;
-//		texture = Tilesets.block_tileset[blockID];
+		texture = Tilesets.block_tileset[blockID];
 	}
 
 	public void setF(int f) {
@@ -79,9 +84,13 @@ public class Block extends Rectangle{
 	
 //	Tegner blokken
 	public void draw(Graphics g){
-		g.setColor(Colors.blocks[blockID]);
+//		g.setColor(Colors.blocks[blockID]);
 		
-		if (texture != null)g.drawImage(texture, x, y, width, height, null);
-		else g.fillRect(x,y,width,height);
+		g.drawImage(texture, x, y, width, height, null);
+//		g.fillRect(x,y,width,height);
+	}
+
+	public Block getPrev() {
+		return prev;
 	}
 }

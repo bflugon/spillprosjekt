@@ -11,6 +11,18 @@ public class GameData {
 						totEnemiesKilled = 0,
 						lives = 50;
 	
+//	index til "base"-ene i tilesetet
+	public static int	basicBase = 0;
+	
+//	index til barrel i tilesettet
+	public static int	basicBarrel = 0,
+						littlefinger = 1,
+						bigMama = 2;
+	
+//	index til siktet i tilesettet
+	public static int noe;
+	
+	
 	public static final int grass = 0,
 							foundation = 1,
 							water = 2,

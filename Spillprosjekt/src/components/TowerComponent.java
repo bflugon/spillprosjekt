@@ -9,6 +9,8 @@ public class TowerComponent {
 					firerate,
 					range;
 	
+	protected int id;
+	
 	private boolean splashDamage,
 					slow, 
 					radar;
@@ -49,5 +51,9 @@ public class TowerComponent {
 	
 	public String getName(){
 		return name;
+	}
+	
+	public int getID(){
+		return id;
 	}
 }

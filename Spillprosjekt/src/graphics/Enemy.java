@@ -62,7 +62,6 @@ public class Enemy extends Rectangle{
 	}
 	
 	public void setLives(double damage) {
-		System.out.println(damage + "  " + lives);
 		lives -= damage;
 		GameData.money += (int)damage;
 		

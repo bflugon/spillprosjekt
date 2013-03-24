@@ -17,7 +17,7 @@ public class Block extends Rectangle{
 	private int indX,
 				indY,
 				blockID,
-				g,
+				g = 1,
 				f;
 	
 	private Block prev;
@@ -84,13 +84,14 @@ public class Block extends Rectangle{
 	
 //	Tegner blokken
 	public void draw(Graphics g){
-//		g.setColor(Colors.blocks[blockID]);
-		
 		g.drawImage(texture, x, y, width, height, null);
-//		g.fillRect(x,y,width,height);
 	}
 
 	public Block getPrev() {
 		return prev;
+	}
+
+	public void setOpen(boolean open) {
+		this.open = open;
 	}
 }

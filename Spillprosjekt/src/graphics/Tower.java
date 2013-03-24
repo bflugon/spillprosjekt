@@ -169,10 +169,9 @@ public class Tower extends Rectangle{
 	}
 	
 //	Alt av timere ol skal kjores fra denne (vil kalles av gameloopen)
-	private int fireFrame = 0;
+	private int fireFrame = (int) firerate;
 	public void physics(){
 		if(fireFrame == firerate) {
-			System.out.println("Tower.physics()");
 			shoot();
 			fireFrame = 0;
 		} else {

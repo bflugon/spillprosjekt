@@ -63,7 +63,10 @@ public class Board {
 		for(Block[] row: grid){
 			for(Block block: row){
 				if(block.contains(Screen.CURSOR)){
-					if(block.getBlockID() == GameData.foundation && block.isOpen()) towers.add(new Tower(block, this));	
+					if(block.getBlockID() == GameData.foundation && block.isOpen()) {
+						towers.add(new Tower(block, this));	
+						block.setOpen(false);
+					}
 				}
 			}
 		}
@@ -139,14 +142,15 @@ public class Board {
 			}
 		}
 		
-//		Tegner taarnene
-		for(Tower tower: towers){
-			tower.draw(g);
-		}
 		
 //		Draw enemies
 		for(Enemy enemy: enemies){
 			if(enemy.inGame()) enemy.draw(g);
+		}
+
+		//		Tegner taarnene
+		for(Tower tower: towers){
+			tower.draw(g);
 		}
 	}
 }

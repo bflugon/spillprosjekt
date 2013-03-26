@@ -148,9 +148,14 @@ public class Board {
 			if(enemy.inGame()) enemy.draw(g);
 		}
 
-		//		Tegner taarnene
+//		Tegner taarnene og rekkevidden hvis musen er over et av dem
+		Tower mouseOver = null;
 		for(Tower tower: towers){
 			tower.draw(g);
+			if(tower.contains(Screen.CURSOR)) mouseOver = tower;
 		}
+		if(mouseOver!=null)mouseOver.drawRange(g);
+		
+		
 	}
 }

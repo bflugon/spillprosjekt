@@ -26,7 +26,7 @@ public class Tower extends Rectangle{
 	
 //	Multipelen oker basert paa komponentene
 	private double 	damage = 2,
-					range = 200,
+					range = 150,
 					firerate = 400;
 	
 	private boolean	radar,
@@ -144,18 +144,36 @@ public class Tower extends Rectangle{
 		
 		Image barrelTexture = Tilesets.barrel_tileset[barrel.getID()];
 		
-		
-		AffineTransform identity = new AffineTransform();
 		Graphics2D g2d = (Graphics2D)g;
+		
+		AffineTransform oldtrans = new AffineTransform();
 		AffineTransform trans = new AffineTransform();
 		
-//		Plasser lopet midt i taarnet
+		updateRotation();
+		
 		int barrelX = x+width/2;
 		int barrelY = y+height/2;
-		identity.setToTranslation(barrelX, barrelY);
-		trans.setTransform(identity);
-
-//		Roter lopet mot maalet hvis det eksisterer
+		int barrelWidth = 10;
+		
+//		Roter lop rundt midten av taarnet
+	    trans.rotate(rotation,barrelX,barrelY);
+//	    Flytt barrel over rotasjonspunktet
+	    trans.translate(width/2-barrelWidth/2,height/2-barrelWidth/2);
+	    
+//	    Oppdater grafikkobjektet med den nye transformasjonen
+	    g2d.setTransform(trans);
+	    
+//	    Tegn barrel
+	    g2d.drawImage(barrelTexture, x, y, width, barrelWidth, null);
+	    
+//	    Reset transfomasjonene (kommenter ut denne for aa se hva som skjer uten naar du plasserer flere taarn)
+	    g2d.setTransform(oldtrans);
+	}
+	
+	private void updateRotation(){
+		int barrelX = x+width/2;
+		int barrelY = y+height/2;
+		
 		if(target != null){
 			double distX = target.getX()-x;
 			double distY = target.getY()-y;
@@ -164,11 +182,13 @@ public class Tower extends Rectangle{
 				if(target.getX() <= barrelX) rotation += Math.PI;
 			}
 		}
-		
-		
-		trans.rotate(rotation);
-		g2d.drawImage(barrelTexture, trans, null);
+	}
 	
+	public void drawRange(Graphics g){
+		g.setColor(Colors.range);
+//		Tegner rekkevidden rundt midten av taarnet
+		g.fillOval((int)(x+30-range), (int)(y+30-range), (int)range*2, (int)range*2);
+		
 	}
 	
 //	Alt av timere ol skal kjores fra denne (vil kalles av gameloopen)

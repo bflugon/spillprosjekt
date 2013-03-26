@@ -111,9 +111,9 @@ public class Tower extends Rectangle{
 		range += barrel.getRange();
 	}
 	private void getAimBonuses(){
-		if(aim.getRadar()) radar = true;
-		if(aim.getSplashDamage()) splashDamage = true;
-		if(aim.getSlow()) glue = true;
+		radar = aim.getRadar();
+		splashDamage = aim.getSplashDamage();
+		glue = aim.getSlow();
 	}
 	private void getBaseBonuses(){
 		
@@ -148,12 +148,14 @@ public class Tower extends Rectangle{
 		AffineTransform identity = new AffineTransform();
 		Graphics2D g2d = (Graphics2D)g;
 		AffineTransform trans = new AffineTransform();
-			
+		
+//		Plasser lopet midt i taarnet
 		int barrelX = x+width/2;
 		int barrelY = y+height/2;
 		identity.setToTranslation(barrelX, barrelY);
 		trans.setTransform(identity);
 
+//		Roter lopet mot maalet hvis det eksisterer
 		if(target != null){
 			double distX = target.getX()-x;
 			double distY = target.getY()-y;
@@ -162,6 +164,7 @@ public class Tower extends Rectangle{
 				if(target.getX() <= barrelX) rotation += Math.PI;
 			}
 		}
+		
 		
 		trans.rotate(rotation);
 		g2d.drawImage(barrelTexture, trans, null);

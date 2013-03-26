@@ -36,6 +36,7 @@ public class Enemy extends Rectangle{
 		this.board =board;
 	}
 	
+//	Spawner fiende naar timeren kaller metoden fra board
 	public void spawnEnemy(int lives, int walkSpeed, Block currentBlock) {
 		this.lives = lives;
 		value = (int) 1;
@@ -61,6 +62,7 @@ public class Enemy extends Rectangle{
 		}
 	}
 	
+//	reduserer livene naar den blir skutt
 	public void setLives(double damage) {
 		lives -= damage;
 		GameData.money += (int)damage;
@@ -72,6 +74,7 @@ public class Enemy extends Rectangle{
 		}
 	}
 	
+//	Sett current og flytt objektet paa skjermen
 	private void setCurrentBlock(Block currentBlock) {
 		this.currentBlock = currentBlock;
 		xc = currentBlock.getIndX();
@@ -80,10 +83,12 @@ public class Enemy extends Rectangle{
 		y = (int) currentBlock.getY();
 	}
 	
+//	Er fienden spawnet
 	public boolean inGame(){
 		return inGame;
 	}
 
+//	Avstanden de har reist blir lagret for aa kunne skyte paa den fienden som ligger forst
 	public int getDistanceTraveled() {
 		return distanceTraveled;
 	}

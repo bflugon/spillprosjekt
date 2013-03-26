@@ -13,6 +13,8 @@ public class Tilesets extends Component{
 							barrel_tileset,
 							aim_tileset;
 	
+	public static Image componentsTexture;
+	
 	public Tilesets(){
 		block_tileset = new Image[5];
 		for(int i = 0; i < block_tileset.length; i++){
@@ -31,5 +33,7 @@ public class Tilesets extends Component{
 			barrel_tileset[i] = new ImageIcon("resources/barrel_tileset.png").getImage();
 			barrel_tileset[i] = createImage(new FilteredImageSource(barrel_tileset[i].getSource(), new CropImageFilter(0, 3*i, 60, 3)));
 		}
+		
+		componentsTexture = new ImageIcon("resources/componentsTexture.png").getImage();
 	}
 }

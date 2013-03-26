@@ -2,7 +2,6 @@ package backend;
 
 import graphics.Block;
 import graphics.Board;
-import graphics.Screen;
 
 import java.util.HashSet;
 import java.util.Set;

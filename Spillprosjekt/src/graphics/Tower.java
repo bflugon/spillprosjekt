@@ -51,6 +51,7 @@ public class Tower extends Rectangle{
 		
 		base = new BasicBase();
 		barrel = new BasicBarrel();
+		fireFrame = (int)firerate;
 	}
 
 //	En mal trenger ikke possisjon, bare egenskaper og verdier
@@ -85,6 +86,7 @@ public class Tower extends Rectangle{
 		if(target != null){
 			target.setLives(1);
 			if(!target.inGame()) target = null;
+			fireFrame = 0;
 		}
 	}
 
@@ -153,18 +155,21 @@ public class Tower extends Rectangle{
 		
 		int barrelX = x+width/2;
 		int barrelY = y+height/2;
-		int barrelWidth = 10;
+		int barrelWidth = 60;
 		
 //		Roter lop rundt midten av taarnet
 	    trans.rotate(rotation,barrelX,barrelY);
 //	    Flytt barrel over rotasjonspunktet
-	    trans.translate(width/2-barrelWidth/2,height/2-barrelWidth/2);
+	    trans.translate(width/2-13,height/2-barrelWidth/2);
 	    
 //	    Oppdater grafikkobjektet med den nye transformasjonen
 	    g2d.setTransform(trans);
 	    
 //	    Tegn barrel
 	    g2d.drawImage(barrelTexture, x, y, width, barrelWidth, null);
+	    
+	    g.setColor(Color.ORANGE);
+	    if(fireFrame <= 10) g2d.fillRect(x+barrelWidth, y+height/2-3, 10, 6);
 	    
 //	    Reset transfomasjonene (kommenter ut denne for aa se hva som skjer uten naar du plasserer flere taarn)
 	    g2d.setTransform(oldtrans);
@@ -174,12 +179,15 @@ public class Tower extends Rectangle{
 		int barrelX = x+width/2;
 		int barrelY = y+height/2;
 		
+//		Hvis det finnes et maal og det er innenfor rekkevidden
 		if(target != null){
 			double distX = target.getX()-x;
 			double distY = target.getY()-y;
 			if(Math.sqrt(distY*distY+distX*distX) <= range){
-				rotation = Math.atan(((barrelY-target.getY()) / (barrelX-target.getX()) ));
-				if(target.getX() <= barrelX) rotation += Math.PI;
+//				Pytttthugaros
+				rotation = Math.atan(((barrelY-target.getY()-30) / (barrelX-target.getX()-30) ));
+//				Legg til en pi for aa rotere i 2. og 3. kvadrant hvis fienden er til venste for taarnet
+				if(target.getX()+30 <= barrelX) rotation += Math.PI;
 			}
 		}
 	}
@@ -196,7 +204,6 @@ public class Tower extends Rectangle{
 	public void physics(){
 		if(fireFrame == firerate) {
 			shoot();
-			fireFrame = 0;
 		} else {
 			fireFrame++;
 		}

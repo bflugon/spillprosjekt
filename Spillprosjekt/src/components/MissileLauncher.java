@@ -4,7 +4,6 @@ import graphics.Enemy;
 import graphics.Tower;
 
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.AffineTransform;
@@ -12,21 +11,18 @@ import java.awt.geom.AffineTransform;
 import backend.GameData;
 import backend.Tilesets;
 
-public class BasicBarrel extends Barrel {
-	
-	public BasicBarrel() {
-		super(0,0,0);
-		name = "Nothing much";
-		this.id = GameData.basicBarrel;
+public class MissileLauncher extends Barrel {
+
+	public MissileLauncher(){
+//		Damage, range, firerate
+		super(2,100,300);
+		
+		this.name = "Big Mama";
+		this.id = GameData.bigMama;
 	}
 
-	
-	public void draw(Graphics2D g2d, Tower tower){
-		
-		Image barrelTexture = Tilesets.barrel_tileset[this.id];
-		
-		
-		AffineTransform trans = new AffineTransform();
+	public void draw(Graphics2D g2d, Tower tower) {
+		Image barrelTexture = Tilesets.barrel_tileset[this.id];		
 		
 		double barrelX = tower.getX()+tower.getWidth()/2;
 		double barrelY = tower.getY()+tower.getHeight()/2;
@@ -34,22 +30,23 @@ public class BasicBarrel extends Barrel {
 
 		Enemy target =tower.getTarget();
 		
-//		Hvis det finnes et maal og det er innenfor rekkevidden
+//		Hvis det finnes et maal og det er innenfor rekkevidden, roter lopet mot det
 		if(target != null){
 			double distX = target.getX()-tower.getX();
 			double distY = target.getY()-tower.getY();
 			if(Math.sqrt(distY*distY+distX*distX) <= tower.getRange()){
 //				Pytttthugaros
-				rotation = Math.atan(((barrelY-target.getY()-30) / (barrelX-target.getX()-30) ));
+				this.rotation = Math.atan(((barrelY-target.getY()-30) / (barrelX-target.getX()-30) ));
 //				Legg til en pi for aa rotere i 2. og 3. kvadrant hvis fienden er til venste for taarnet
-				if(target.getX()+30 <= barrelX) rotation += Math.PI;
+				if(target.getX()+30 <= barrelX) this.rotation += Math.PI;
 			}
 		}
 		
+		AffineTransform trans = new AffineTransform();
 //		Roter lop rundt midten av taarnet
-	    trans.rotate(rotation,barrelX,barrelY);
+	    trans.rotate(this.rotation,barrelX,barrelY);
 //	    Flytt barrel over rotasjonspunktet
-	    trans.translate(tower.getWidth()/2-13,tower.getHeight()/2-barrelWidth/2);
+	    trans.translate(tower.getWidth()/2-barrelWidth/2,tower.getHeight()/2-barrelWidth/2);
 	    
 //	    Oppdater grafikkobjektet med den nye transformasjonen
 	    g2d.setTransform(trans);
@@ -57,9 +54,13 @@ public class BasicBarrel extends Barrel {
 //	    Tegn barrel
 	    g2d.drawImage(barrelTexture, (int)tower.getX(), (int)tower.getY(), (int)tower.getWidth(), barrelWidth, null);
 	}
-	
-	public void drawShot(Graphics2D g2d, Tower tower){
+
+	@Override
+	public void drawShot(Graphics2D g2d, Tower tower) {
+		
 		g2d.setColor(Color.ORANGE);
-	    g2d.fillRect((int)tower.getX()+60, (int) (tower.getY()+30-3), 10, 6);
+	    g2d.fillRect((int)tower.getX()+55, (int) (tower.getY()+10), 17, 10);
+	    g2d.fillRect((int)tower.getX()+55, (int) (tower.getY()+45), 17, 10);	
 	}
+	
 }

@@ -2,7 +2,14 @@ package backend;
 
 import graphics.Tower;
 
+import java.awt.Font;
 import java.util.ArrayList;
+
+import components.BasicBarrel;
+import components.BasicBase;
+import components.Littlefinger;
+import components.MissileLauncher;
+import components.TowerComponent;
 
 public class GameData {
 	
@@ -12,15 +19,14 @@ public class GameData {
 						lives = 50;
 	
 //	index til "base"-ene i tilesetet
-	public static int	basicBase = 0;
+	public static final int	basicBase = 0;
 	
 //	index til barrel i tilesettet
-	public static int	basicBarrel = 0,
-						littlefinger = 1,
-						bigMama = 2;
+	public static final int	basicBarrel = 0,
+							littlefinger = 2,
+							bigMama = 1;
 	
-//	index til siktet i tilesettet
-	public static int noe;
+	public static final int basicAmmo = 0;
 	
 	
 	public static final int grass = 0,
@@ -29,7 +35,18 @@ public class GameData {
 							start = 3,
 							goal = 4;
 	
+	public static Font 	header = new Font("Arial", Font.PLAIN, 30),
+						normal = new Font("Arial", Font.PLAIN, 20);
+	
 //	Denne listen inneholder taarnene man har komponert selv. Nye taarn vil kopiere det 
 //	onskede taarnet i copy-metoden
-	public static ArrayList<Tower> modelTower = modelTower = new ArrayList<Tower>();;
+	public static ArrayList<Tower> modelTower = modelTower = new ArrayList<Tower>();
+	
+	public static TowerComponent[] components = {new BasicBarrel(),
+												new Littlefinger(),
+												new BasicBase(),
+												new MissileLauncher()};
+
+	public static Tower[] modelTowers = {new Tower(), new Tower(), new Tower(), new Tower(), new Tower()};
+
 }

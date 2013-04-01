@@ -1,6 +1,7 @@
 package graphics;
 
 import gui.BoardMouseListener;
+import gui.MenuMouseListener;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -28,11 +29,21 @@ public class Screen extends JPanel implements Runnable {
 //	Brettet som holder et grid med blokker
 	private Board board;
 	
+//	Menyen der taarnene oppgraderes
+	private Menu menu;
+	
 //	Tar vare på rammen saa vi kan legge lyttere paa den
 	private JFrame frame;
 	
 //	Lyttere
 	private BoardMouseListener boardMouseListener;
+	private MenuMouseListener menuMouseListener;
+//	Lavere gir raskere loop
+	private int gameSpeed = 3;
+	
+//	Skal brettet eller menyen tegnes?
+	private boolean inGame;
+	
 	
 //	Starter threaden
 	public Screen(JFrame frame) {
@@ -42,19 +53,43 @@ public class Screen extends JPanel implements Runnable {
 		setSize(frame.getSize());
 		
 		board = new Board();
+		menu = new Menu();
 		
 //		Legger til lyttere på rammen
 		boardMouseListener = new BoardMouseListener(this);
-		frame.addMouseListener(boardMouseListener);
-		frame.addMouseMotionListener(boardMouseListener);
+		menuMouseListener = new MenuMouseListener(this);
+		
+		goToBoard();
+		goToMenu();
 		
 //		Starter gameloopen
 		thread.start();
 	}
 	
+//	Tegner brettet og legger til lyttere
+	public void goToBoard(){
+		frame.removeMouseListener(menuMouseListener);
+		frame.removeMouseMotionListener(menuMouseListener);
+		
+		frame.addMouseListener(boardMouseListener);
+		frame.addMouseMotionListener(boardMouseListener);
+		
+		inGame = true;
+	}
+	
+	public void goToMenu(){
+		frame.removeMouseListener(boardMouseListener);
+		frame.removeMouseMotionListener(boardMouseListener);
+		
+		frame.addMouseListener(menuMouseListener);
+		frame.addMouseMotionListener(menuMouseListener);
+		
+		inGame = false;
+	}
+	
 //	Kontrollerer alle bevegelser og timere
 	private void physics(){
-		board.physics();
+		if(inGame)board.physics();
 	}
 	
 //	Tegner alt som skal tegnes
@@ -63,8 +98,9 @@ public class Screen extends JPanel implements Runnable {
 		g.setColor(Colors.background);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
-//		Tegner brettet
-		board.draw(g);
+//		Tegner brettet eller menyen
+		if(inGame)board.draw(g);
+		else menu.draw(g);
 	}	
 
 //	Kaller metodene som kontrollerer tegning og bevegelser
@@ -74,7 +110,7 @@ public class Screen extends JPanel implements Runnable {
 			repaint();
 			physics();
 			try {
-				Thread.sleep(3);
+				Thread.sleep(gameSpeed);
 			} catch (Exception e) {}
 		}
 	}
@@ -85,5 +121,13 @@ public class Screen extends JPanel implements Runnable {
 
 	public void addFoundation() {
 		board.addFoundation();
+	}
+
+	public void changeComponent() {
+		menu.changeComponent();
+	}
+
+	public void changeActiveTower() {
+		menu.changeActiveTower();
 	}
 }

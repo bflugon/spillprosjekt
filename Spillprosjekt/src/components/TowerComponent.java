@@ -9,7 +9,8 @@ public class TowerComponent {
 					firerate,
 					range;
 	
-	protected int id;
+	protected int 	id,
+					price;
 	
 	private boolean splashDamage,
 					slow, 

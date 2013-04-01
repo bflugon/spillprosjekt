@@ -11,8 +11,13 @@ import backend.Colors;
 import backend.GameData;
 import backend.Tilesets;
 
+import components.Ammo;
+import components.Barrel;
+import components.BasicAmmo;
 import components.BasicBarrel;
 import components.BasicBase;
+import components.Littlefinger;
+import components.MissileLauncher;
 import components.TowerComponent;
 
 // Maa Extende Rectangle for aa gjore det lettere aa tegne i "draw"
@@ -33,13 +38,13 @@ public class Tower extends Rectangle{
 					splashDamage,
 					glue;
 		
-	private TowerComponent 	base,
-							barrel,
-							aim;
+	private TowerComponent 	base;
+	
+	private Ammo ammo;
+							
+	private Barrel barrel;
 
 	private Board board;
-	
-	private double rotation = 0;
 	
 //	Taarn som skal plasseres paa kartet trenger bare en possisjon(blokk)
 //	Resten blir oppdatert i en copy-metoden som henter data fra et mal-taarn
@@ -50,8 +55,10 @@ public class Tower extends Rectangle{
 		setBounds((int) block.getX(),(int) block.getY(),60,60);
 		
 		base = new BasicBase();
-		barrel = new BasicBarrel();
+		barrel = new MissileLauncher();
 		fireFrame = (int)firerate;
+		
+		updateProperties();
 	}
 
 //	En mal trenger ikke possisjon, bare egenskaper og verdier
@@ -64,18 +71,38 @@ public class Tower extends Rectangle{
 		radar = false;
 		splashDamage = false;
 		glue = false;
+		
+		barrel = new BasicBarrel();
+		ammo = new BasicAmmo();
+		base = new BasicBase();
 	}
 	
 //	Skyter naar timeren i "physics" kaller metoden
 	private void shoot(){
 		Enemy[] enemies = board.getEnemies();
+		
+		double distX = 1000;
+		double distY = 1000;
+		
+		if(target != null){
+			distX = target.getX()-x;
+			distY = target.getY()-y;
+		
+			if(Math.sqrt(distY*distY+distX*distX) <= range){
+				target.setLives(1);
+				if(!target.inGame()) target = null;
+				fireFrame = 0;
+				return;
+			}
+		}
+		
 		target = null;
 		for(int i = 0; i < enemies.length; i++){
 			Enemy enemy = enemies[i];
-			double distX = enemy.getX()-x;
-			double distY = enemy.getY()-y;
+			distX = enemy.getX()-x;
+			distY = enemy.getY()-y;
 			
-			if(Math.sqrt(distY*distY+distX*distX) <= range){
+			if(Math.sqrt(distY*distY+distX*distX) <= range && enemy.inGame()){
 				if(target == null) {
 					target = enemy;
 				} else if(enemy.getDistanceTraveled() > target.getDistanceTraveled()){
@@ -99,23 +126,40 @@ public class Tower extends Rectangle{
 		tower.setSplash(splashDamage);
 		tower.setRadar(radar);
 		tower.setGlue(glue);
+		
+		tower.setBarrel(barrel);
+		tower.setAmmo(ammo);
+		tower.setBase(base);
 	}
 	
-//	Oppdaterer egenskapene avhenging av komponenetene
+	private void setBase(TowerComponent base) {
+		this.base = base;
+	}
+
+	private void setAmmo(Ammo ammo) {
+		this.ammo = ammo;
+	}
+
+	private void setBarrel(Barrel barrel) {
+		this.barrel = barrel;
+	}
+
+	//	Oppdaterer egenskapene avhenging av komponenetene
 	private void updateProperties(){
 		getBarrelBonuses();
-		getAimBonuses();
+//		getAmmoBonuses();
 //		getBaseBonuses();
 	}
 	private void getBarrelBonuses(){
 		damage += barrel.getDamage();
 		firerate += barrel.getFirerate();
+		System.out.println(firerate);
 		range += barrel.getRange();
 	}
-	private void getAimBonuses(){
-		radar = aim.getRadar();
-		splashDamage = aim.getSplashDamage();
-		glue = aim.getSlow();
+	private void getAmmoBonuses(){
+		splashDamage = ammo.getSplashDamage();
+		glue = ammo.getSlow();
+		damage += ammo.getDamage();
 	}
 	private void getBaseBonuses(){
 		
@@ -144,52 +188,14 @@ public class Tower extends Rectangle{
 	public void draw(Graphics g){
 		g.drawImage(Tilesets.base_tileset[base.getID()], x, y, width, height, null);
 		
-		Image barrelTexture = Tilesets.barrel_tileset[barrel.getID()];
-		
 		Graphics2D g2d = (Graphics2D)g;
-		
 		AffineTransform oldtrans = new AffineTransform();
-		AffineTransform trans = new AffineTransform();
 		
-		updateRotation();
-		
-		int barrelX = x+width/2;
-		int barrelY = y+height/2;
-		int barrelWidth = 60;
-		
-//		Roter lop rundt midten av taarnet
-	    trans.rotate(rotation,barrelX,barrelY);
-//	    Flytt barrel over rotasjonspunktet
-	    trans.translate(width/2-13,height/2-barrelWidth/2);
-	    
-//	    Oppdater grafikkobjektet med den nye transformasjonen
-	    g2d.setTransform(trans);
-	    
-//	    Tegn barrel
-	    g2d.drawImage(barrelTexture, x, y, width, barrelWidth, null);
-	    
-	    g.setColor(Color.ORANGE);
-	    if(fireFrame <= 10) g2d.fillRect(x+barrelWidth, y+height/2-3, 10, 6);
+		barrel.draw(g2d, this);
+	    if(fireFrame <= 10) barrel.drawShot(g2d, this); 
 	    
 //	    Reset transfomasjonene (kommenter ut denne for aa se hva som skjer uten naar du plasserer flere taarn)
 	    g2d.setTransform(oldtrans);
-	}
-	
-	private void updateRotation(){
-		int barrelX = x+width/2;
-		int barrelY = y+height/2;
-		
-//		Hvis det finnes et maal og det er innenfor rekkevidden
-		if(target != null){
-			double distX = target.getX()-x;
-			double distY = target.getY()-y;
-			if(Math.sqrt(distY*distY+distX*distX) <= range){
-//				Pytttthugaros
-				rotation = Math.atan(((barrelY-target.getY()-30) / (barrelX-target.getX()-30) ));
-//				Legg til en pi for aa rotere i 2. og 3. kvadrant hvis fienden er til venste for taarnet
-				if(target.getX()+30 <= barrelX) rotation += Math.PI;
-			}
-		}
 	}
 	
 	public void drawRange(Graphics g){
@@ -202,12 +208,31 @@ public class Tower extends Rectangle{
 //	Alt av timere ol skal kjores fra denne (vil kalles av gameloopen)
 	private int fireFrame = (int) firerate;
 	public void physics(){
-		if(fireFrame == firerate) {
+		if(fireFrame >= firerate) {
 			shoot();
 		} else {
 			fireFrame++;
 		}
 		
 		
+	}
+
+	public Enemy getTarget() {
+		return target;
+	}
+
+	public double getRange() {
+		return range;
+	}
+
+	public void updateComponents(Barrel barrel) {
+		this.barrel = barrel;
+		System.out.println(this.barrel);
+		updateProperties();
+		System.out.println(this.damage + " " + this.firerate);
+	}
+
+	public Barrel getBarrel() {
+		return barrel;
 	}
 }

@@ -14,7 +14,7 @@ import backend.Tilesets;
 public class Littlefinger extends Barrel {
 	public Littlefinger(){
 //		Damage, range, firerate
-		super(0,0,-350);
+		super(-1,-50,-300);
 		
 		this.name = "Littlefinger";
 		this.id = GameData.littlefinger;

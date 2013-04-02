@@ -16,7 +16,7 @@ public class BasicBarrel extends Barrel {
 	
 	public BasicBarrel() {
 		super(0,0,0);
-		name = "Nothing much";
+		name = "Basic Barrel";
 		this.id = GameData.basicBarrel;
 	}
 

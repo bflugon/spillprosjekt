@@ -13,6 +13,7 @@ import backend.Tilesets;
 
 import components.Ammo;
 import components.Barrel;
+import components.Base;
 import components.TowerComponent;
 
 public class ComponentMenu extends Rectangle{
@@ -32,14 +33,14 @@ public class ComponentMenu extends Rectangle{
 				if(towerComp instanceof Barrel) components.add(towerComp);
 			}
 		} else if(type == "ammo"){
-			textures = Tilesets.barrelMenu_tileset;
+			textures = Tilesets.ammoMenu_tileset;
 			for(TowerComponent towerComp: GameData.components){
-				if(towerComp instanceof Barrel) components.add(towerComp);
+				if(towerComp instanceof Ammo) components.add(towerComp);
 			}
 		} else if(type == "base"){
-			textures = Tilesets.barrelMenu_tileset;
+			textures = Tilesets.baseMenu_tileset;
 			for(TowerComponent towerComp: GameData.components){
-				if(towerComp instanceof Barrel) components.add(towerComp);
+				if(towerComp instanceof Base) components.add(towerComp);
 			}
 		}
 		

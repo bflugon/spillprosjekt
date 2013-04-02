@@ -59,7 +59,8 @@ public class Screen extends JPanel implements Runnable {
 		boardMouseListener = new BoardMouseListener(this);
 		menuMouseListener = new MenuMouseListener(this);
 		
-		goToBoard();
+//		Kommenter ut den du ikke vil til
+//		goToBoard();
 		goToMenu();
 		
 //		Starter gameloopen

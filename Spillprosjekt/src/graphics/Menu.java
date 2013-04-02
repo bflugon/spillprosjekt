@@ -2,6 +2,7 @@ package graphics;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 import components.Barrel;
 
@@ -13,13 +14,13 @@ public class Menu {
 	private ComponentMenu[] compMenus;
 	
 //	Taarnene som kan oppgraderes
-	private Tower[] modelTowers;
+	private ArrayList<Tower> modelTowers;
 	
 //	The tower beeing updated
 	private Tower activeTower;
 	
 //	Knappene som representerer taarnene
-	private Rectangle[] towerButtons;
+	private ArrayList<Rectangle> towerButtons;
 	private String[] compType = {"barrel", "ammo", "base"};
 	
 	public Menu(){
@@ -28,13 +29,14 @@ public class Menu {
 			compMenus[i] = new ComponentMenu(200, 20+210*i, 600, 200, compType[i]);
 		}
 		
-		towerButtons = new Rectangle[5];
-		for(int i = 0; i < towerButtons.length; i++){
-			towerButtons[i] = new Rectangle(20, 20+130*i, 100, 100);
+		modelTowers = GameData.modelTowers;
+		towerButtons = new ArrayList<Rectangle>();
+		for(int i = 0; i < modelTowers.size(); i++){
+			towerButtons.add(new Rectangle(20, 20+130*i, 100, 100));
 		}
 		
-		modelTowers = GameData.modelTowers;
-		activeTower = modelTowers[0];
+		modelTowers.add(new Tower());
+		activeTower = modelTowers.get(0);
 	}
 
 	public void draw(Graphics g) {
@@ -57,10 +59,10 @@ public class Menu {
 	}
 
 	public void changeActiveTower() {
-		for(int i = 0; i < towerButtons.length; i++){
-			if(towerButtons[i].contains(Screen.CURSOR)){
+		for(int i = 0; i < towerButtons.size(); i++){
+			if(towerButtons.get(i).contains(Screen.CURSOR)){
 				activeTower.updateComponents((Barrel)compMenus[0].getCurrentComponent());
-				activeTower = modelTowers[i];
+				activeTower = modelTowers.get(i);
 				
 				compMenus[0].updateComponent(activeTower.getBarrel());
 			}

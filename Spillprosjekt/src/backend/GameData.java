@@ -5,6 +5,7 @@ import graphics.Tower;
 import java.awt.Font;
 import java.util.ArrayList;
 
+import components.BasicAmmo;
 import components.BasicBarrel;
 import components.BasicBase;
 import components.Littlefinger;
@@ -23,8 +24,8 @@ public class GameData {
 	
 //	index til barrel i tilesettet
 	public static final int	basicBarrel = 0,
-							littlefinger = 2,
-							bigMama = 1;
+							littlefinger = 1,
+							bigMama = 2;
 	
 	public static final int basicAmmo = 0;
 	
@@ -40,13 +41,13 @@ public class GameData {
 	
 //	Denne listen inneholder taarnene man har komponert selv. Nye taarn vil kopiere det 
 //	onskede taarnet i copy-metoden
-	public static ArrayList<Tower> modelTower = modelTower = new ArrayList<Tower>();
+	public static ArrayList<Tower> modelTowers = new ArrayList<Tower>();
 	
 	public static TowerComponent[] components = {new BasicBarrel(),
 												new Littlefinger(),
+												new MissileLauncher(),
+//												Base
 												new BasicBase(),
-												new MissileLauncher()};
-
-	public static Tower[] modelTowers = {new Tower(), new Tower(), new Tower(), new Tower(), new Tower()};
-
+//												Ammo
+												new BasicAmmo()};
 }

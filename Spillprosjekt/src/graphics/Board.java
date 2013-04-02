@@ -1,6 +1,7 @@
 package graphics;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.lang.annotation.Target;
 import java.util.ArrayList;
 
@@ -17,6 +18,11 @@ public class Board {
 //	Finner korsteste vei for fiendene og hindrer deg fra aa blokke dem
 	private Pathfinder pathfinder;
 	
+//	Taarnet som plasseres
+	private Tower activeTower;
+//	Knapper som representerer taarnene
+	private ArrayList<Rectangle> towerButtons;
+	
 //	Brettet vart
 	private Block[][] grid;
 //	Start og slutt for fiendene
@@ -29,7 +35,29 @@ public class Board {
 //	Array med alle fiender
 	private Enemy[] enemies;
 	
-	public Board(){	
+	public Board(){
+		createBoard();
+		
+//		Finner korsteste vei on request
+		pathfinder = new Pathfinder(this);
+		pathfinder.findPath();
+		
+//		Lager listen som inneholder taarnene
+		towers = new ArrayList<Tower>();
+		
+//		Fyller arrayet med fiender
+		enemies = new Enemy[80];
+		for(int i = 0; i<enemies.length; i++){
+			enemies[i] = new Enemy(this);
+		}
+		
+//		Lager like mange knapper som taarn man kan plassere
+		for(int i = 0; i < GameData.modelTowers.size();i++){
+			towerButtons.add(new Rectangle(50+i*90,600, 80, 80));
+		}
+	}
+	
+	private void createBoard(){
 //		Lager brettet
 		grid = new Block[worldHeight][worldWidth];
 		
@@ -43,19 +71,6 @@ public class Board {
 //		Bor hentes fra kartet senere
 		start = grid[0][0];
 		goal = grid[8][12];
-		
-//		Finner korsteste vei on request
-		pathfinder = new Pathfinder(this);
-		pathfinder.findPath();
-		
-//		Lager listen som inneholder taarnene
-		towers = new ArrayList<Tower>();
-		
-//		Fyller arrayet med fiender
-		enemies = new Enemy[60];
-		for(int i = 0; i<enemies.length; i++){
-			enemies[i] = new Enemy(this);
-		}
 	}
 	
 	public void placeTower(){

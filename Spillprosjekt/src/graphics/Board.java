@@ -5,34 +5,28 @@ import java.awt.Rectangle;
 import java.lang.annotation.Target;
 import java.util.ArrayList;
 
+import backend.Colors;
 import backend.GameData;
 import backend.Pathfinder;
 import backend.Tilesets;
 
 public class Board {
 	
+	private int activeTower;
 	private final int 	worldHeight = 9,
 						worldWidth = 13,
 						blockSize = 60;
 	
-//	Finner korsteste vei for fiendene og hindrer deg fra aa blokke dem
+	
 	private Pathfinder pathfinder;
+
 	
-//	Taarnet som plasseres
-	private Tower activeTower;
-//	Knapper som representerer taarnene
-	private ArrayList<Rectangle> towerButtons;
-	
-//	Brettet vart
 	private Block[][] grid;
-//	Start og slutt for fiendene
 	private Block 	start,
 					goal;
 	
-//	Liste med alle taarnene
+	private ArrayList<Rectangle> towerButtons;
 	private ArrayList<Tower> towers;
-	
-//	Array med alle fiender
 	private Enemy[] enemies;
 	
 	public Board(){
@@ -45,15 +39,18 @@ public class Board {
 //		Lager listen som inneholder taarnene
 		towers = new ArrayList<Tower>();
 		
+		activeTower = 0;
+		
 //		Fyller arrayet med fiender
 		enemies = new Enemy[80];
 		for(int i = 0; i<enemies.length; i++){
 			enemies[i] = new Enemy(this);
 		}
 		
+		towerButtons = new ArrayList<Rectangle>();
 //		Lager like mange knapper som taarn man kan plassere
 		for(int i = 0; i < GameData.modelTowers.size();i++){
-			towerButtons.add(new Rectangle(50+i*90,600, 80, 80));
+			towerButtons.add(new Rectangle(20+i*90,570, 80, 80));
 		}
 	}
 	
@@ -79,7 +76,10 @@ public class Board {
 			for(Block block: row){
 				if(block.contains(Screen.CURSOR)){
 					if(block.getBlockID() == GameData.foundation && block.isOpen()) {
-						towers.add(new Tower(block, this));	
+						Tower newTower = new Tower(block, this);
+						GameData.modelTowers.get(activeTower).copyTower(newTower);
+						newTower.updateProperties();
+						towers.add(newTower);	
 						block.setOpen(false);
 					}
 				}
@@ -123,7 +123,7 @@ public class Board {
 		if(spawnFrame >= spawnRate) {
 			for(int i = 0; i < enemies.length;i++) {
 				if(!enemies[i].inGame()) {
-					enemies[i].spawnEnemy(10, 4, start);
+					enemies[i].spawnEnemy(12, 4, start);
 					enemiesSpawned++;
 					break;
 				}
@@ -157,6 +157,12 @@ public class Board {
 			}
 		}
 		
+//		Tegner knappene
+		for(int i = 0; i < towerButtons.size(); i++){
+			g.setColor(Colors.range);
+			g.fillRect(towerButtons.get(i).x, towerButtons.get(i).y, towerButtons.get(i).width, towerButtons.get(i).height);
+			GameData.modelTowers.get(i).drawButton(g, towerButtons.get(i));
+		}
 		
 //		Draw enemies
 		for(Enemy enemy: enemies){
@@ -172,5 +178,14 @@ public class Board {
 		if(mouseOver!=null)mouseOver.drawRange(g);
 		
 		
+	}
+
+	public void changeActiveTower() {
+		for(int i = 0; i < towerButtons.size(); i++){
+			if(towerButtons.get(i).contains(Screen.CURSOR)){
+				System.out.println(true);
+				activeTower = i;
+			}
+		}
 	}
 }

@@ -60,8 +60,8 @@ public class Screen extends JPanel implements Runnable {
 		menuMouseListener = new MenuMouseListener(this);
 		
 //		Kommenter ut den du ikke vil til
-//		goToBoard();
-		goToMenu();
+		goToBoard();
+//		goToMenu();
 		
 //		Starter gameloopen
 		thread.start();
@@ -69,6 +69,8 @@ public class Screen extends JPanel implements Runnable {
 	
 //	Tegner brettet og legger til lyttere
 	public void goToBoard(){
+		menu.updateTower();
+		
 		frame.removeMouseListener(menuMouseListener);
 		frame.removeMouseMotionListener(menuMouseListener);
 		
@@ -108,9 +110,9 @@ public class Screen extends JPanel implements Runnable {
 	public void run() {
 		//Gameloop
 		while(true) {
-			repaint();
-			physics();
 			try {
+				repaint();
+				physics();
 				Thread.sleep(gameSpeed);
 			} catch (Exception e) {}
 		}
@@ -128,7 +130,11 @@ public class Screen extends JPanel implements Runnable {
 		menu.changeComponent();
 	}
 
-	public void changeActiveTower() {
+	public void changeActiveTowerMenu() {
 		menu.changeActiveTower();
+	}
+
+	public void changeActiveTowerBoard() {
+		board.changeActiveTower();
 	}
 }

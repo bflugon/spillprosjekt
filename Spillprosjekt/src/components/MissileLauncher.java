@@ -4,8 +4,10 @@ import graphics.Enemy;
 import graphics.Tower;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 
 import backend.GameData;
@@ -19,10 +21,10 @@ public class MissileLauncher extends Barrel {
 		
 		this.name = "Big Mama";
 		this.id = GameData.bigMama;
+		barrelTexture = Tilesets.barrel_tileset[this.id];	
 	}
 
 	public void draw(Graphics2D g2d, Tower tower) {
-		Image barrelTexture = Tilesets.barrel_tileset[this.id];		
 		
 		double barrelX = tower.getX()+tower.getWidth()/2;
 		double barrelY = tower.getY()+tower.getHeight()/2;
@@ -61,6 +63,11 @@ public class MissileLauncher extends Barrel {
 		g2d.setColor(Color.ORANGE);
 	    g2d.fillRect((int)tower.getX()+55, (int) (tower.getY()+10), 17, 10);
 	    g2d.fillRect((int)tower.getX()+55, (int) (tower.getY()+45), 17, 10);	
+	}
+
+	@Override
+	public void drawButton(Graphics g, Rectangle rect) {
+		g.drawImage(barrelTexture, (int)rect.getX(), (int)rect.getY()+10, 60, 60, null);
 	}
 	
 }

@@ -20,7 +20,7 @@ public class MenuMouseListener implements MouseListener, MouseMotionListener {
 
 	public void mouseReleased(MouseEvent e) {
 		screen.changeComponent();
-		screen.changeActiveTower();
+		screen.changeActiveTowerMenu();
 	}
 
 	public void mouseDragged(MouseEvent e) {
@@ -33,6 +33,7 @@ public class MenuMouseListener implements MouseListener, MouseMotionListener {
 	}
 
 	public void mouseExited(MouseEvent e) {
+		screen.goToBoard();
 	}
 
 	public void mousePressed(MouseEvent e) {

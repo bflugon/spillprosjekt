@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 
 import backend.GameData;
@@ -18,13 +19,11 @@ public class BasicBarrel extends Barrel {
 		super(0,0,0);
 		name = "Basic Barrel";
 		this.id = GameData.basicBarrel;
+		barrelTexture = Tilesets.barrel_tileset[this.id];
 	}
 
 	
 	public void draw(Graphics2D g2d, Tower tower){
-		
-		Image barrelTexture = Tilesets.barrel_tileset[this.id];
-		
 		
 		AffineTransform trans = new AffineTransform();
 		
@@ -32,7 +31,7 @@ public class BasicBarrel extends Barrel {
 		double barrelY = tower.getY()+tower.getHeight()/2;
 		int barrelWidth = 60;
 
-		Enemy target =tower.getTarget();
+		Enemy target = tower.getTarget();
 		
 //		Hvis det finnes et maal og det er innenfor rekkevidden
 		if(target != null){
@@ -56,6 +55,10 @@ public class BasicBarrel extends Barrel {
 	    
 //	    Tegn barrel
 	    g2d.drawImage(barrelTexture, (int)tower.getX(), (int)tower.getY(), (int)tower.getWidth(), barrelWidth, null);
+	}
+	
+	public void drawButton(Graphics g, Rectangle rect){
+		g.drawImage(barrelTexture, (int)rect.getX()+15, (int)rect.getY()+10, 60, 60, null);
 	}
 	
 	public void drawShot(Graphics2D g2d, Tower tower){

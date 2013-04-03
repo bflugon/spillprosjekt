@@ -11,6 +11,7 @@ public class Tilesets extends Component{
 	public static Image[] 	block_tileset,
 							base_tileset,
 							barrel_tileset,
+							button_tileset,
 							ammoMenu_tileset,
 							barrelMenu_tileset,
 							baseMenu_tileset;
@@ -34,6 +35,12 @@ public class Tilesets extends Component{
 		for(int i = 0; i < block_tileset.length; i++){
 			barrel_tileset[i] = new ImageIcon("resources/barrel_tileset.png").getImage();
 			barrel_tileset[i] = createImage(new FilteredImageSource(barrel_tileset[i].getSource(), new CropImageFilter(0, 60*i, 60, 60)));
+		}
+		
+		button_tileset = new Image[5];
+		for(int i = 0; i < button_tileset.length; i++){
+			button_tileset[i] = new ImageIcon("resources/button_tileset.png").getImage();
+			button_tileset[i] = createImage(new FilteredImageSource(button_tileset[i].getSource(), new CropImageFilter(0, 80*i, 80, 80)));
 		}
 		
 		

@@ -52,16 +52,19 @@ public class Screen extends JPanel implements Runnable {
 //		Setter storrelsen til skjermen lik storrelsen til rammen
 		setSize(frame.getSize());
 		
-		board = new Board();
 		menu = new Menu();
+		board = new Board();
 		
 //		Legger til lyttere på rammen
 		boardMouseListener = new BoardMouseListener(this);
 		menuMouseListener = new MenuMouseListener(this);
 		
+		CURSOR = new Point(10, 10);
+		
 //		Kommenter ut den du ikke vil til
-		goToBoard();
-//		goToMenu();
+		frame.addMouseListener(boardMouseListener);
+		frame.addMouseMotionListener(boardMouseListener);
+		inGame = true;
 		
 //		Starter gameloopen
 		thread.start();
@@ -69,7 +72,9 @@ public class Screen extends JPanel implements Runnable {
 	
 //	Tegner brettet og legger til lyttere
 	public void goToBoard(){
+		if(!menu.boardClicked()) return;
 		menu.updateTower();
+		board.updateButtons();
 		
 		frame.removeMouseListener(menuMouseListener);
 		frame.removeMouseMotionListener(menuMouseListener);
@@ -77,10 +82,12 @@ public class Screen extends JPanel implements Runnable {
 		frame.addMouseListener(boardMouseListener);
 		frame.addMouseMotionListener(boardMouseListener);
 		
+		
 		inGame = true;
 	}
 	
 	public void goToMenu(){
+		if(!board.menuClicked()) return;
 		frame.removeMouseListener(boardMouseListener);
 		frame.removeMouseMotionListener(boardMouseListener);
 		
@@ -136,5 +143,13 @@ public class Screen extends JPanel implements Runnable {
 
 	public void changeActiveTowerBoard() {
 		board.changeActiveTower();
+	}
+
+	public void nextWave() {
+		board.nextWave();
+	}
+
+	public void addTower() {
+		menu.addTower();
 	}
 }

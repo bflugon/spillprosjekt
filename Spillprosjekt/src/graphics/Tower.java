@@ -80,7 +80,7 @@ public class Tower extends Rectangle{
 			} else {
 				target = null;
 			}
-		} else if (target == null){
+		} else {
 			for(int i = 0; i < enemies.length; i++){
 				Enemy enemy = enemies[i];
 				distX = enemy.getX()-x;
@@ -97,7 +97,6 @@ public class Tower extends Rectangle{
 		}
 		if(target != null){
 			target.setLives(damage);
-			System.out.println(damage);
 			if(!target.inGame()) target = null;
 			fireFrame = 0;
 		}

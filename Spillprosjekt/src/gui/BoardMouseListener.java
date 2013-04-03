@@ -21,13 +21,13 @@ public class BoardMouseListener implements MouseListener, MouseMotionListener {
 		screen.placeTower();
 		screen.addFoundation();
 		screen.changeActiveTowerBoard();
+		screen.nextWave();
+		screen.goToMenu();
 	}
 	
 	public void mouseDragged(MouseEvent e) {}
 	public void mouseClicked(MouseEvent e) {}
 	public void mouseEntered(MouseEvent e) {}
-	public void mouseExited(MouseEvent e) {
-		screen.goToMenu();
-	}
+	public void mouseExited(MouseEvent e) {}
 	public void mousePressed(MouseEvent e) {}
 }

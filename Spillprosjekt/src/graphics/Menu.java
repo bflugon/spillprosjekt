@@ -9,6 +9,7 @@ import components.Base;
 
 import backend.Colors;
 import backend.GameData;
+import backend.Tilesets;
 
 public class Menu {
 
@@ -24,19 +25,28 @@ public class Menu {
 	private ArrayList<Rectangle> towerButtons;
 	private String[] compType = {"barrel", "ammo", "base"};
 	
+	private Rectangle 	goToBoard,
+						newTower;
+	
 	public Menu(){
-		compMenus = new ComponentMenu[3];
-		for(int i = 0; i < compMenus.length; i++){
-			compMenus[i] = new ComponentMenu(200, 20+210*i, 600, 200, compType[i]);
-		}
 		
 		modelTowers = GameData.modelTowers;
-		towerButtons = new ArrayList<Rectangle>();
-		for(int i = 0; i < modelTowers.size(); i++){
-			towerButtons.add(new Rectangle(20, 20+110*i, 80, 80));
+		modelTowers.add(new Tower());
+		
+		compMenus = new ComponentMenu[3];
+		for(int i = 0; i < compMenus.length; i++){
+			compMenus[i] = new ComponentMenu(20, 20+210*i, 680, 200, compType[i]);
 		}
 		
-		modelTowers.add(new Tower());
+
+		towerButtons = new ArrayList<Rectangle>();
+		for(int i = 0; i < modelTowers.size(); i++){
+			towerButtons.add(new Rectangle(720, 20+90*i, 80, 80));
+		}
+		
+		newTower = new Rectangle(720, 20+90*towerButtons.size(), 80, 80);
+		goToBoard = new Rectangle(720,560,80,80);
+		
 		activeTower = modelTowers.get(0);
 	}
 
@@ -52,6 +62,11 @@ public class Menu {
 			GameData.modelTowers.get(i).drawButton(g, towerButton);
 
 		}
+		
+		g.fillRect(goToBoard.x, goToBoard.y, goToBoard.width, goToBoard.height);
+		g.drawImage(Tilesets.button_tileset[GameData.goToBoard], goToBoard.x, goToBoard.y, goToBoard.width, goToBoard.height, null);
+		
+		if(newTower != null)g.fillRect(newTower.x, newTower.y, newTower.width, newTower.height);
 	}
 
 	public void changeComponent() {
@@ -76,6 +91,21 @@ public class Menu {
 	
 	public void updateTower(){
 		activeTower.updateComponents((Barrel)compMenus[0].getCurrentComponent(),(Base)compMenus[2].getCurrentComponent());
+	}
+
+	public boolean boardClicked() {
+		return goToBoard.contains(Screen.CURSOR);
+	}
+	
+	public void addTower(){
+		if(newTower == null)return;
+		if(!newTower.contains(Screen.CURSOR)) return;
+
+		GameData.modelTowers.add(new Tower());
+		towerButtons.add(new Rectangle(720, 20+90*towerButtons.size(), 80, 80));
+		
+		if(GameData.modelTowers.size() == 6) newTower = null;
+		else newTower = new Rectangle(720, 20+90*towerButtons.size(), 80, 80);
 	}
 	
 }

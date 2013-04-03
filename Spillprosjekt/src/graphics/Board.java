@@ -12,7 +12,8 @@ import backend.Tilesets;
 
 public class Board {
 	
-	private int activeTower;
+	private int activeTower,
+				enemyLives;
 	private final int 	worldHeight = 9,
 						worldWidth = 13,
 						blockSize = 60;
@@ -24,6 +25,9 @@ public class Board {
 	private Block[][] grid;
 	private Block 	start,
 					goal;
+	
+	private Rectangle nextWave;
+	private Rectangle goToShop;
 	
 	private ArrayList<Rectangle> towerButtons;
 	private ArrayList<Tower> towers;
@@ -39,8 +43,11 @@ public class Board {
 //		Lager listen som inneholder taarnene
 		towers = new ArrayList<Tower>();
 		
-		activeTower = 0;
+		nextWave = new Rectangle(730,570,80,80);
+		goToShop = new Rectangle(640,570,80,80);
 		
+		activeTower = 0;
+		enemyLives = 3;
 //		Fyller arrayet med fiender
 		enemies = new Enemy[80];
 		for(int i = 0; i<enemies.length; i++){
@@ -117,13 +124,13 @@ public class Board {
 		return blockSize;
 	}
 	
-	private int enemiesSpawned = 0, spawnFrame = 0, spawnRate = 400;
+	private int enemiesSpawned = 20, spawnFrame = 0, spawnRate = 400;
 	private void spawnTimer() {
-		
+		if(enemiesSpawned == 20) return;
 		if(spawnFrame >= spawnRate) {
 			for(int i = 0; i < enemies.length;i++) {
 				if(!enemies[i].inGame()) {
-					enemies[i].spawnEnemy(12, 4, start);
+					enemies[i].spawnEnemy(enemyLives, 4, start);
 					enemiesSpawned++;
 					break;
 				}
@@ -177,15 +184,39 @@ public class Board {
 		}
 		if(mouseOver!=null)mouseOver.drawRange(g);
 		
+//		Tegn knapper for meny og neste bolge
+		g.setColor(Colors.range);
+		g.fillRect(nextWave.x, nextWave.y, nextWave.width, nextWave.height);
+		g.drawImage(Tilesets.button_tileset[GameData.nextWave], nextWave.x, nextWave.y, nextWave.width, nextWave.height, null);
+		g.fillRect(goToShop.x, goToShop.y, goToShop.width, goToShop.height);
+		g.drawImage(Tilesets.button_tileset[GameData.goToShop], goToShop.x, goToShop.y, goToShop.width, goToShop.height, null);
 		
 	}
 
+	public void nextWave(){
+		if(nextWave.contains(Screen.CURSOR) && enemiesSpawned == 20){
+			enemyLives++;
+			enemiesSpawned = 0;
+		}
+	}
+	
 	public void changeActiveTower() {
 		for(int i = 0; i < towerButtons.size(); i++){
 			if(towerButtons.get(i).contains(Screen.CURSOR)){
-				System.out.println(true);
 				activeTower = i;
 			}
 		}
+	}
+
+	public void updateButtons(){
+		towerButtons = new ArrayList<Rectangle>();
+//		Lager like mange knapper som taarn man kan plassere
+		for(int i = 0; i < GameData.modelTowers.size();i++){
+			towerButtons.add(new Rectangle(20+i*90,570, 80, 80));
+		}
+	}
+	
+	public boolean menuClicked() {
+		return goToShop.contains(Screen.CURSOR);
 	}
 }

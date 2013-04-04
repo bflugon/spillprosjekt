@@ -43,8 +43,8 @@ public class Board {
 //		Lager listen som inneholder taarnene
 		towers = new ArrayList<Tower>();
 		
-		nextWave = new Rectangle(730,570,80,80);
-		goToShop = new Rectangle(640,570,80,80);
+		nextWave = new Rectangle(720,570,80,80);
+		goToShop = new Rectangle(630,570,80,80);
 		
 		activeTower = 0;
 		enemyLives = 3;

@@ -66,7 +66,10 @@ public class Menu {
 		g.fillRect(goToBoard.x, goToBoard.y, goToBoard.width, goToBoard.height);
 		g.drawImage(Tilesets.button_tileset[GameData.goToBoard], goToBoard.x, goToBoard.y, goToBoard.width, goToBoard.height, null);
 		
-		if(newTower != null)g.fillRect(newTower.x, newTower.y, newTower.width, newTower.height);
+		if(newTower != null){
+			g.fillRect(newTower.x, newTower.y, newTower.width, newTower.height);
+			g.drawImage(Tilesets.button_tileset[GameData.newTower], newTower.x, newTower.y, newTower.width, newTower.height, null);
+		}
 	}
 
 	public void changeComponent() {

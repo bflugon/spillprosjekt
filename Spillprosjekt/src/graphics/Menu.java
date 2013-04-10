@@ -118,6 +118,28 @@ public class Menu {
 			ammo.draw(g);
 			//activeTower.getBarrel().drawButton(g, new Rectangle(15, 420, 300, 300));
 			
+			String abilits = "Abilities: ";
+			
+			if(!activeTower.getAmmo().getSplashDamage()){
+				abilits += "Splash damage "; 
+			}
+			
+			if(!activeTower.getAmmo().getSlow()){
+				abilits += " Slows down enemies "; 
+			}
+			
+			if(!activeTower.getAmmo().getRadar()){
+				abilits += " Can spot hidden baloon "; 
+			}
+				
+			if(abilits.equals("Abilities: ")){
+				abilits += " None ";
+			}
+			g.drawString(abilits, 100 + 5, 500);
+			
+			
+			
+			
 			
 		}
 		

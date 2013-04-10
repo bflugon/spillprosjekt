@@ -38,36 +38,12 @@ public class ComponentList extends Rectangle{
 		
 		g.setFont(GameData.normal);
 
-		
-		
-		if(towercomp.getType().equals("ammo")){
-			
-			String abilits = "Abilities: ";
-			
-			if(!towercomp.getSplashDamage()){
-				abilits += "Splash damage "; 
-			}
-			
-			if(!towercomp.getSlow()){
-				abilits += " Slows down enemies "; 
-			}
-			
-			if(!towercomp.getRadar()){
-				abilits += " Can spot hidden baloon "; 
-			}
-				
-			if(abilits.equals("Abilities: ")){
-				abilits += " None ";
-			}
-			g.drawString(abilits, x+150+55 + 5, y+25);
-		}
-		
-		else{
+	
 			g.drawString("Damage: "+towercomp.getDamage(), x+150+55 + 5, y+25);
 			g.drawString("Range: "+towercomp.getRange(), x+275 + 65 + 20, y+25);
 			g.drawString("Firerate: "+towercomp.getFirerate(), x+400 + 15 + 70, y+25);
 			
-		}
+		
 		
 		//g.drawImage(textures[compIndex], x, y, 400, 200, null);
 	}

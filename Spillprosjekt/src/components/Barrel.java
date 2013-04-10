@@ -60,6 +60,10 @@ public class Barrel extends TowerComponent{
 		g.drawImage(barrelTexture, (int)rect.getX()+15, (int)rect.getY()+10, 60, 60, null);
 	}
 	
+	public void drawLargeImage(Graphics g, Rectangle rect){
+		g.drawImage(barrelTexture, (int)rect.getX()+30, (int)rect.getY()+10, 120, 120, null);
+	}
+	
 	public void drawShot(Graphics2D g2d, Tower tower){
 		g2d.setColor(Color.ORANGE);
 	    g2d.fillRect((int)tower.getX()+60, (int) (tower.getY()+30-3), 10, 6);

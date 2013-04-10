@@ -1,5 +1,6 @@
 package graphics;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class Menu {
 	
 	public Menu(){
 		
-		Barrel barrel_1 = new Barrel("Yor", 999, 999, 999, 999);
+		Barrel barrel_1 = new Barrel("Yor", 999, 999, 999, 34);
 		Barrel barrel_2 = new Barrel("Short round", 20, 14, 45, 34);
 		Barrel barrel_3 = new Barrel("Indy", 20, 14, 45, 34);
 		Barrel barrel_4 = new Barrel("TB", 20, 14, 45, 34);
@@ -62,24 +63,41 @@ public class Menu {
 		
 		activeTower = modelTowers.get(0);
 	}
+	
+	public void drawTower(Tower tower){
+		
+	}
+	
 
 	public void draw(Graphics g) {
 		for (ComponentMenu compMenu : compMenus) {
 			//compMenu.draw(g);
 		}
 		
+
+		
 		
 		int teller = 0;
 		for (TowerComponent towercomp : GameData.components_list) {
 			if(towercomp instanceof Barrel){
 				ComponentList new_item = new ComponentList(20, 10+60 * teller, 680, 40,towercomp );
-				new_item.draw(g);
+				//new_item.draw(g);
 				teller ++;
 			}
 		}
 		
 		
-		
+		if(true){
+			Rectangle towerButton = new Rectangle(50, 50, 300, 300);
+			activeTower.drawLargeImage(g, towerButton);
+			
+
+			g.setColor(Color.WHITE);
+			g.setFont(GameData.header);
+			g.drawString(String.valueOf(activeTower.getName()),20,30);
+			
+			
+		}
 		
 		
 		g.setColor(Colors.range);

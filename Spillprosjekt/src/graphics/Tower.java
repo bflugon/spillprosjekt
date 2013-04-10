@@ -35,6 +35,8 @@ public class Tower extends Rectangle{
 	private boolean	radar,
 					splashDamage,
 					glue;
+	
+	private String name;
 		
 	private Base base;
 	private Ammo ammo;
@@ -65,6 +67,7 @@ public class Tower extends Rectangle{
 		ammo = new BasicAmmo();
 		base = new BasicBase();
 		updateProperties();
+		this.name = "Hodor";
 	}
 	
 //	Skyter naar timeren i "physics" kaller metoden
@@ -201,6 +204,11 @@ public class Tower extends Rectangle{
 		barrel.drawButton(g, rect);
 	}
 	
+	public void drawLargeImage(Graphics g, Rectangle rect){
+		base.drawLargeImage(g, rect);
+		barrel.drawLargeImage(g, rect);
+	}
+	
 	public void drawRange(Graphics g){
 		g.setColor(Colors.range);
 //		Tegner rekkevidden rundt midten av taarnet
@@ -210,5 +218,13 @@ public class Tower extends Rectangle{
 
 	public Base getBase() {
 		return base;
+	}
+	
+	public void setName(String name){
+		this.name = name;
+	}
+	
+	public String getName(){
+		return name;
 	}
 }

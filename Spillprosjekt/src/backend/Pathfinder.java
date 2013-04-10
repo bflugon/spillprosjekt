@@ -93,7 +93,7 @@ public class Pathfinder {
 //				Hvis blokken grenser til current
 				if(distX <= 1 && distY <= 1 && block != current) {
 //					Hvis blokken ikke er diagonal eller en blokk som sperrer
-					if( (distX != 1 || distY != 1)  && (block.getBlockID() == 0 || block.getBlockID() == 4)) {
+					if( (distX != 1 || distY != 1)  && (block.getBlockID() == 0 || block.getBlockID() == 3)) {
 //						Hvis kostnaden for aa naa blokken er lavere enn den var fra for...
 						if (block.getG() + current.getF() < block.getF()) {
 //							Oppdater kostnaden, legg til i openSet og sett current som prev(previous)

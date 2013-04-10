@@ -2,12 +2,14 @@ package graphics;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.io.File;
 import java.lang.annotation.Target;
 import java.util.ArrayList;
 
 import backend.Colors;
 import backend.GameData;
 import backend.Pathfinder;
+import backend.Save;
 import backend.Tilesets;
 
 public class Board {
@@ -32,6 +34,8 @@ public class Board {
 	private ArrayList<Tower> towers;
 	private Enemy[] enemies;
 	
+	private Save loader = new Save();
+
 	public Board(){
 		createBoard();
 		
@@ -71,6 +75,8 @@ public class Board {
 			}
 		}
 		
+		loader.loadSave(new File("resources/maps/1.txt"), this);
+
 //		Bor hentes fra kartet senere
 		setStart(grid[0][0]);
 		setGoal(grid[8][12]);
@@ -100,6 +106,7 @@ public class Board {
 					if(block.getBlockID() == GameData.grass){
 						block.setBlockID(GameData.foundation);
 						if(!pathfinder.findPath()) {
+							System.out.println("Screen.addFoundation()");
 							block.setBlockID(GameData.grass);
 							pathfinder.findPath();
 						}

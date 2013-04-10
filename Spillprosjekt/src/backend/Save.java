@@ -2,14 +2,12 @@ package backend;
 
 import graphics.Block;
 import graphics.Board;
-import graphics.Screen;
 
 import java.io.File;
 import java.util.Scanner;
 
 public class Save {
-	public void loadSave(File loadPath, Screen screen) {
-		Board board = screen.getBoard();
+	public void loadSave(File loadPath, Board board) {
 		try {
 			Scanner loadScanner = new Scanner(loadPath);
 			Block[][] grid = board.getGrid();

@@ -34,16 +34,16 @@ public class ComponentList extends Rectangle{
 		g.setColor(Color.WHITE);
 
 		g.setFont(GameData.header);
-		g.drawString(String.valueOf(barrel.getName()), x, y+30);
+		g.drawString(String.valueOf(barrel.getName()), x+20, y+30);
 		
 		g.setFont(GameData.normal);
-		g.drawString("Damage bonus: "+barrel.getDamage(), x+400, y+60);
-		g.drawString("Range bonus: "+barrel.getRange(), x+400, y+80);
-		g.drawString("Rate bonus: "+barrel.getFirerate(), x+400, y+100);
+		g.drawString("Damage: "+barrel.getDamage(), x+150+75 + 35, y+25);
+		g.drawString("Range: "+barrel.getRange(), x+275 + 85 + 50, y+25);
+		g.drawString("Firerate: "+barrel.getFirerate(), x+400 + 75 + 70, y+25);
 		
-		g.drawString("Splash Damage: "+barrel.getSplashDamage(), x+400, y+120);
-		g.drawString("Slow: "+barrel.getSlow(), x+400, y+140);
-		g.drawString("Radar: "+barrel.getRadar(), x+400, y+160);
+		//g.drawString("Splash Damage: "+barrel.getSplashDamage(), x+400, y+120);
+		//g.drawString("Slow: "+barrel.getSlow(), x+400, y+140);
+		//g.drawString("Radar: "+barrel.getRadar(), x+400, y+160);
 		
 		//g.drawImage(textures[compIndex], x, y, 400, 200, null);
 	}

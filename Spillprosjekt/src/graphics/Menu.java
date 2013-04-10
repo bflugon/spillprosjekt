@@ -31,7 +31,7 @@ public class Menu {
 	
 	public Menu(){
 		
-		Barrel barrel_1 = new Barrel("Yor", 20, 14, 45, 34);
+		Barrel barrel_1 = new Barrel("Yor", 999, 999, 999, 999);
 		Barrel barrel_2 = new Barrel("Short round", 20, 14, 45, 34);
 		Barrel barrel_3 = new Barrel("Indy", 20, 14, 45, 34);
 		Barrel barrel_4 = new Barrel("TB", 20, 14, 45, 34);
@@ -72,7 +72,7 @@ public class Menu {
 		int teller = 0;
 		for (TowerComponent towercomp : GameData.components_list) {
 			if(towercomp instanceof Barrel){
-				ComponentList new_item = new ComponentList(20, 10+60 * teller, 680, 50,towercomp );
+				ComponentList new_item = new ComponentList(20, 10+60 * teller, 680, 40,towercomp );
 				new_item.draw(g);
 				teller ++;
 			}

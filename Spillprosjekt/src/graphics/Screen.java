@@ -82,11 +82,12 @@ public class Screen extends JPanel implements Runnable {
 	}
 	
 	public void goToMenu(){
+		if(!board.menuClicked()) return;
+		
+		System.out.println("Screen.goToMenu()");
 		if(GameData.muted) GameData.muted = false;
 		else GameData.muted = true;
 		System.out.println(GameData.muted);
-		
-		if(!board.menuClicked()) return;
 		frame.removeMouseListener(boardMouseListener);
 		frame.removeMouseMotionListener(boardMouseListener);
 		

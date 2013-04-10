@@ -30,6 +30,7 @@ public class Tower extends Rectangle{
 //	Multipelen oker basert paa komponentene
 	private double 	damage = 1,
 					range = 150,
+					price = 10,
 					firerate = 400;
 	
 	private boolean	radar,
@@ -67,7 +68,7 @@ public class Tower extends Rectangle{
 		ammo = new BasicAmmo();
 		base = new BasicBase();
 		updateProperties();
-		this.name = "Hodor";
+		this.name ="Mongo bollefjes";
 	}
 	
 //	Skyter naar timeren i "physics" kaller metoden
@@ -218,6 +219,14 @@ public class Tower extends Rectangle{
 
 	public Base getBase() {
 		return base;
+	}
+	
+	public double getPrice() {
+		return price;
+	}
+	
+	public Ammo getAmmo(){
+		return this.ammo;
 	}
 	
 	public void setName(String name){

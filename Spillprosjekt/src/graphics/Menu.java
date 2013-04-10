@@ -86,15 +86,37 @@ public class Menu {
 			}
 		}
 		
-		
+		//Viser det aktive tower
 		if(true){
-			Rectangle towerButton = new Rectangle(50, 50, 300, 300);
+			Rectangle towerButton = new Rectangle(50, 25, 300, 300);
 			activeTower.drawLargeImage(g, towerButton);
 			
 
 			g.setColor(Color.WHITE);
-			g.setFont(GameData.header);
-			g.drawString(String.valueOf(activeTower.getName()),20,30);
+			g.setFont(GameData.large_header);
+			g.drawString(String.valueOf(activeTower.getName()),250,115);
+			
+			
+			g.setFont(GameData.normal_large);
+			g.drawString("Price: " + String.valueOf(activeTower.getPrice()) + "0 $",100,250);
+			
+			g.setFont(GameData.normal);
+			
+			
+			g.drawString("Barrel",120,298);
+			ComponentList barrel = new ComponentList(100, 300, 600, 40, activeTower.getBarrel() );
+			barrel.draw(g);
+			activeTower.getBarrel().drawButton(g, new Rectangle(15, 280, 300, 300));
+			
+			g.drawString("Base",120,368);
+			ComponentList base = new ComponentList(100, 370, 600, 40, activeTower.getBase() );
+			base.draw(g);
+			activeTower.getBase().drawButton(g, new Rectangle(15, 350, 300, 300));
+			
+			g.drawString("Ammo",120,438);
+			ComponentList ammo = new ComponentList(100, 440, 600, 40, activeTower.getAmmo() );
+			ammo.draw(g);
+			//activeTower.getBarrel().drawButton(g, new Rectangle(15, 420, 300, 300));
 			
 			
 		}

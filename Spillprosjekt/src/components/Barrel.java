@@ -22,6 +22,7 @@ public class Barrel extends TowerComponent{
 		super(damage, range, firerate, false,false,false);
 		this.name = name;
 		this.price = price;
+		type = "barrel";
 	}
 	
 	public void draw(Graphics2D g2d, Tower tower){

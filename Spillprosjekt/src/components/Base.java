@@ -12,6 +12,7 @@ public class Base extends TowerComponent{
 	
 	public Base(int damage,boolean radar) {
 		super(damage,0,0,false,false,radar);
+		type = "base";
 	}
 
 	public void drawButton(Graphics g, Rectangle rect){

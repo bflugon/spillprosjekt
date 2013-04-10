@@ -12,12 +12,12 @@ import components.TowerComponent;
 
 public class ComponentList extends Rectangle{
 	
-	private TowerComponent barrel;
+	private TowerComponent towercomp;
 
-	public ComponentList(int x, int y, int width, int height, TowerComponent barrel) {
+	public ComponentList(int x, int y, int width, int height, TowerComponent towercomp) {
 		setBounds(x,y,width,height);
 		
-		this.barrel =  barrel;
+		this.towercomp =  towercomp;
 
 		//new ComponentMenu(20, 20+210*i, 200, 200, compType[i]);
 	}
@@ -34,16 +34,40 @@ public class ComponentList extends Rectangle{
 		g.setColor(Color.WHITE);
 
 		g.setFont(GameData.header);
-		g.drawString(String.valueOf(barrel.getName()), x+20, y+30);
+		g.drawString(String.valueOf(towercomp.getName()), x+20, y+30);
 		
 		g.setFont(GameData.normal);
-		g.drawString("Damage: "+barrel.getDamage(), x+150+75 + 35, y+25);
-		g.drawString("Range: "+barrel.getRange(), x+275 + 85 + 50, y+25);
-		g.drawString("Firerate: "+barrel.getFirerate(), x+400 + 75 + 70, y+25);
+
 		
-		//g.drawString("Splash Damage: "+barrel.getSplashDamage(), x+400, y+120);
-		//g.drawString("Slow: "+barrel.getSlow(), x+400, y+140);
-		//g.drawString("Radar: "+barrel.getRadar(), x+400, y+160);
+		
+		if(towercomp.getType().equals("ammo")){
+			
+			String abilits = "Abilities: ";
+			
+			if(!towercomp.getSplashDamage()){
+				abilits += "Splash damage "; 
+			}
+			
+			if(!towercomp.getSlow()){
+				abilits += " Slows down enemies "; 
+			}
+			
+			if(!towercomp.getRadar()){
+				abilits += " Can spot hidden baloon "; 
+			}
+				
+			if(abilits.equals("Abilities: ")){
+				abilits += " None ";
+			}
+			g.drawString(abilits, x+150+55 + 5, y+25);
+		}
+		
+		else{
+			g.drawString("Damage: "+towercomp.getDamage(), x+150+55 + 5, y+25);
+			g.drawString("Range: "+towercomp.getRange(), x+275 + 65 + 20, y+25);
+			g.drawString("Firerate: "+towercomp.getFirerate(), x+400 + 15 + 70, y+25);
+			
+		}
 		
 		//g.drawImage(textures[compIndex], x, y, 400, 200, null);
 	}

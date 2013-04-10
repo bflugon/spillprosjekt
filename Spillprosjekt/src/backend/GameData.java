@@ -51,7 +51,9 @@ public class GameData {
 	public static final int basicEnemy = 0;
 	
 	public static Font 	header = new Font("Arial", Font.PLAIN, 30),
+						large_header = new Font("Arial", Font.PLAIN, 60),
 						normal = new Font("Arial", Font.PLAIN, 20),
+						normal_large = new Font("Arial", Font.PLAIN, 40),
 						list_stats = new Font("Arial", Font.PLAIN, 10);
 	
 //	Denne listen inneholder taarnene man har komponert selv. Nye taarn vil kopiere det 

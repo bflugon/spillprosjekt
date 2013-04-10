@@ -31,6 +31,7 @@ public class GameData {
 							littlefinger = 1,
 							bigMama = 2;
 	
+	
 	public static final int nextWave = 0,
 							goToShop = 1,
 							goToBoard = 2,

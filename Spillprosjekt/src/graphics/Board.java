@@ -21,7 +21,6 @@ public class Board {
 	
 	private Pathfinder pathfinder;
 
-	
 	private Block[][] grid;
 	private Block 	start,
 					goal;

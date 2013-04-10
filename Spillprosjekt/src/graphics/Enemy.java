@@ -1,8 +1,9 @@
 package graphics;
 
-import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.geom.AffineTransform;
 
 import backend.GameData;
 import backend.Tilesets;
@@ -14,7 +15,7 @@ public class Enemy extends Rectangle{
 						right = 2,
 						left = 3;
 	
-	public int 	xc = 0,
+	private int	xc = 0,
 				yc = 0, 
 				mobWalk = 0, 
 				mobSize = 50,
@@ -94,7 +95,28 @@ public class Enemy extends Rectangle{
 	}
 	
 	public void draw(Graphics g) {
-		g.drawImage(Tilesets.enemy_tileset[GameData.basicEnemy], x, y, width, height, null);
+		Graphics2D g2d = (Graphics2D) g;
+		
+		AffineTransform old = new AffineTransform();
+		AffineTransform trans = new AffineTransform();
+
+		switch (direction){
+		case upward:
+			trans.rotate(-3.14/2, x+30, y+30);
+			break;
+		case left:
+			trans.rotate(3.14, x+30, y+30);
+			break;
+		case downward:
+			trans.rotate(3.14/2, x+30, y+30);
+			break;
+		}
+		
+		g2d.setTransform(trans);
+		
+		g2d.drawImage(Tilesets.enemy_tileset[GameData.basicEnemy], x, y, width, height, null);
+
+		g2d.setTransform(old);
 	}
 	
 	public int walkFrame = 0;

@@ -97,7 +97,8 @@ public class Menu {
 			
 			g.setFont(GameData.normal);
 			
-			
+			g.setColor(Color.WHITE);
+			g.fillRect(0, 290, 600,80);
 			g.drawString("Barrel",120,298);
 			ComponentList barrel = new ComponentList(100, 300, 600, 40, activeTower.getBarrel() );
 			barrel.draw(g);
@@ -113,7 +114,11 @@ public class Menu {
 			ammo.draw(g);
 			//activeTower.getBarrel().drawButton(g, new Rectangle(15, 420, 300, 300));
 			
-			String abilits = "Abilities: ";
+			g.drawString("Abilities",120,578);
+			g.setColor(Colors.range);
+			g.fillRect(100, 580, 600,40);
+			g.setColor(Color.WHITE);
+			String abilits = "";
 			
 			if(!activeTower.getAmmo().getSplashDamage()){
 				abilits += "Splash damage "; 
@@ -127,10 +132,10 @@ public class Menu {
 				abilits += " Can spot hidden baloon "; 
 			}
 				
-			if(abilits.equals("Abilities: ")){
+			if(abilits.equals("")){
 				abilits += " None ";
 			}
-			g.drawString(abilits, 100 + 5, 500);
+			g.drawString(abilits, 120, 605);
 			
 			
 			

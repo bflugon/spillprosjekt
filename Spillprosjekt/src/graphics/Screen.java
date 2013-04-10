@@ -57,7 +57,7 @@ public class Screen extends JPanel implements Runnable {
 		inGame = true;
 				
 		try {
-			new BigSound(new File("resources/sounds/backgroundMusic.wav")).start();
+			new BigSound(new File("resources/sounds/"+GameData.songs[GameData.songNum])).start();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -84,10 +84,10 @@ public class Screen extends JPanel implements Runnable {
 	public void goToMenu(){
 		if(!board.menuClicked()) return;
 		
-		System.out.println("Screen.goToMenu()");
+//		Mute sound
 		if(GameData.muted) GameData.muted = false;
 		else GameData.muted = true;
-		System.out.println(GameData.muted);
+
 		frame.removeMouseListener(boardMouseListener);
 		frame.removeMouseMotionListener(boardMouseListener);
 		

@@ -84,11 +84,11 @@ public class BigSound implements Runnable {
 			ioe.printStackTrace();
 		} finally {
 			
-			
+			GameData.songNum++;
 //			HUFF HUFF HUFF
 //			TODO Auto-generated catch block
 			try {
-				new BigSound(file).start();
+				new BigSound(new File("resources/sounds/"+GameData.songs[GameData.songNum])).start();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

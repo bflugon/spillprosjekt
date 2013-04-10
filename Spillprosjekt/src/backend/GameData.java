@@ -46,6 +46,7 @@ public class GameData {
 							water = 2,
 							start = 3,
 							goal = 4;
+	
 	public static ArrayList<TowerComponent> components_list = new ArrayList<TowerComponent>();
 	
 	public static final int basicEnemy = 0;
@@ -70,5 +71,7 @@ public class GameData {
 												new BasicAmmo(),
 												new Missile()};
 
-	public static boolean muted = true;
+	public static boolean muted = false;
+	public static String[] songs = {"backgroundMusic1.wav","backgroundMusic.wav"};
+	public static int songNum = 0;
 }

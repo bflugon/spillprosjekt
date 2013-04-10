@@ -75,8 +75,12 @@ public class ComponentMenu extends Rectangle{
 		
 		g.setFont(GameData.normal);
 		g.drawString("Damage bonus: "+components.get(compIndex).getDamage(), x+400, y+60);
-		g.drawString("Range bonus: "+components.get(compIndex).getRange(), x+400, y+90);
-		g.drawString("Rate bonus: "+components.get(compIndex).getFirerate(), x+400, y+120);
+		g.drawString("Range bonus: "+components.get(compIndex).getRange(), x+400, y+80);
+		g.drawString("Rate bonus: "+components.get(compIndex).getFirerate(), x+400, y+100);
+		
+		g.drawString("Splash Damage: "+components.get(compIndex).getSplashDamage(), x+400, y+120);
+		g.drawString("Slow: "+components.get(compIndex).getSlow(), x+400, y+140);
+		g.drawString("Radar: "+components.get(compIndex).getRadar(), x+400, y+160);
 		
 		g.drawImage(textures[compIndex], x, y, 400, 200, null);
 	}

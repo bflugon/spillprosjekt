@@ -11,6 +11,7 @@ import components.BasicBarrel;
 import components.BasicBase;
 import components.Doomsday;
 import components.Littlefinger;
+import components.Missile;
 import components.MissileLauncher;
 import components.TowerComponent;
 
@@ -35,7 +36,8 @@ public class GameData {
 							goToBoard = 2,
 							newTower = 3;
 	
-	public static final int basicAmmo = 0;
+	public static final int basicAmmo = 0,
+							missile = 1;
 	
 	
 	public static final int grass = 0,
@@ -58,5 +60,6 @@ public class GameData {
 												new BasicBase(),
 												new Doomsday(),
 //												Ammo
-												new BasicAmmo()};
+												new BasicAmmo(),
+												new Missile()};
 }

@@ -50,7 +50,7 @@ public class Littlefinger extends Barrel {
 //		Roter lop rundt midten av taarnet
 	    trans.rotate(this.rotation,barrelX,barrelY);
 //	    Flytt barrel over rotasjonspunktet
-	    trans.translate(tower.getWidth()/2-13,tower.getHeight()/2-barrelWidth/2);
+	    trans.translate(tower.getWidth()/2-15,tower.getHeight()/2-barrelWidth/2);
 	    
 //	    Oppdater grafikkobjektet med den nye transformasjonen
 	    g2d.setTransform(trans);

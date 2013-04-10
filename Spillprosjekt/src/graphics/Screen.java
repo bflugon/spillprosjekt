@@ -152,4 +152,8 @@ public class Screen extends JPanel implements Runnable {
 	public void addTower() {
 		menu.addTower();
 	}
+
+	public Board getBoard() {
+		return board;
+	}
 }

@@ -72,8 +72,8 @@ public class Board {
 		}
 		
 //		Bor hentes fra kartet senere
-		start = grid[0][0];
-		goal = grid[8][12];
+		setStart(grid[0][0]);
+		setGoal(grid[8][12]);
 	}
 	
 	public void placeTower(){
@@ -129,7 +129,7 @@ public class Board {
 		if(spawnFrame >= spawnRate) {
 			for(int i = 0; i < enemies.length;i++) {
 				if(!enemies[i].inGame()) {
-					enemies[i].spawnEnemy(enemyLives, 4, start);
+					enemies[i].spawnEnemy(enemyLives, 4, getStart());
 					enemiesSpawned++;
 					break;
 				}
@@ -217,5 +217,13 @@ public class Board {
 	
 	public boolean menuClicked() {
 		return goToShop.contains(Screen.CURSOR);
+	}
+
+	public void setStart(Block start) {
+		this.start = start;
+	}
+
+	public void setGoal(Block goal) {
+		this.goal = goal;
 	}
 }

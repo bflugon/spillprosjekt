@@ -101,7 +101,7 @@ public class Tower extends Rectangle{
 
 		if(target != null){
 			target.setLives(damage);
-			Sound.playSound("test.wav");
+			Sound.playSound("shot.wav");
 			if(!target.inGame()) target = null;
 			fireFrame = 0;
 		}

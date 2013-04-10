@@ -13,10 +13,9 @@ public class Sound {
 			@Override
 			public void run() {
 				try {
-					System.out.println(new File(".").getAbsolutePath());
 					AudioInputStream inputStream;
 					Clip clip = AudioSystem.getClip();
-					inputStream = AudioSystem.getAudioInputStream(new File("resources/"+sound));
+					inputStream = AudioSystem.getAudioInputStream(new File("resources/sounds/"+sound));
 					clip.open(inputStream);
 					clip.start();
 				} catch (Exception e) {

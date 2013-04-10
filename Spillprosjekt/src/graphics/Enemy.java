@@ -5,6 +5,8 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 
+import sound.Sound;
+
 import backend.GameData;
 import backend.Tilesets;
 
@@ -70,6 +72,7 @@ public class Enemy extends Rectangle{
 		if (lives <= 0) {
 			inGame = false;
 			mobWalk = 0;
+			Sound.playSound("explosion.wav");
 			GameData.money += value;
 		}
 	}

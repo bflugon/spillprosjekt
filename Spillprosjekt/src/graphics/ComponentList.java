@@ -31,10 +31,12 @@ public class ComponentList extends Rectangle{
 		g.setColor(Colors.range);
 		g.fillRect(x, y, width, height);
 		
-		g.setColor(Color.WHITE);
+		g.setColor(Colors.pink);
 
 		g.setFont(GameData.header);
 		g.drawString(String.valueOf(towercomp.getName()), x+20, y+30);
+		
+		g.setColor(Color.WHITE);
 		
 		g.setFont(GameData.normal);
 

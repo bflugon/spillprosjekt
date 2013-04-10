@@ -236,4 +236,14 @@ public class Tower extends Rectangle{
 	public String getName(){
 		return name;
 	}
+	
+	public double getDamage(){
+		return damage;
+	}
+	
+	public double getFireRate(){
+		return firerate;
+	}
+	
+	
 }

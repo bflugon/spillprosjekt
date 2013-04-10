@@ -38,8 +38,6 @@ public class Menu {
 		Barrel barrel_4 = new Barrel("TB", 20, 14, 45, 34);
 		Barrel barrel_5 = new Barrel("Mongo bollefjes", 20, 14, 45, 34);	
 		
-		System.out.println(GameData.components_list);
-		
 
 			
 		
@@ -89,16 +87,23 @@ public class Menu {
 
 			g.setColor(Color.WHITE);
 			g.setFont(GameData.large_header);
-			g.drawString(String.valueOf(activeTower.getName()),250,115);
+			g.drawString(String.valueOf(activeTower.getName()),250,100);
 			
 			
 			g.setFont(GameData.normal_large);
-			g.drawString("Price: " + String.valueOf(activeTower.getPrice()) + "0 $",100,250);
+			g.drawString("Price: " + String.valueOf(activeTower.getPrice()) + "0 $",250,150);
+			
+			g.setColor(Colors.pink);
+			g.setFont(GameData.header);
+			g.drawString("Damage: " + String.valueOf(activeTower.getDamage()),30,230);
+			g.drawString("Range: " + String.valueOf(activeTower.getRange()),260,230);
+			g.drawString("Firerate: " + String.valueOf(activeTower.getFireRate()),500,230);
 			
 			g.setFont(GameData.normal);
 			
+			
+			//g.fillRect(15, 280, 700,70);
 			g.setColor(Color.WHITE);
-			g.fillRect(0, 290, 600,80);
 			g.drawString("Barrel",120,298);
 			ComponentList barrel = new ComponentList(100, 300, 600, 40, activeTower.getBarrel() );
 			barrel.draw(g);
@@ -114,6 +119,8 @@ public class Menu {
 			ammo.draw(g);
 			//activeTower.getBarrel().drawButton(g, new Rectangle(15, 420, 300, 300));
 			
+			
+			//Egenskaper
 			g.drawString("Abilities",120,578);
 			g.setColor(Colors.range);
 			g.fillRect(100, 580, 600,40);

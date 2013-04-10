@@ -6,8 +6,13 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
+import backend.GameData;
+
 public class Sound {
 	public static void playSound(final String sound){
+		if(GameData.muted) return;
+		System.out.println(GameData.muted);
+		
 		new Thread(new Runnable() {
 			
 			@Override

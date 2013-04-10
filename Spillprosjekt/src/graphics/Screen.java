@@ -14,6 +14,7 @@ import sound.BigSound;
 import sound.Sound;
 
 import backend.Colors;
+import backend.GameData;
 import backend.Tilesets;
 
 public class Screen extends JPanel implements Runnable {
@@ -81,6 +82,10 @@ public class Screen extends JPanel implements Runnable {
 	}
 	
 	public void goToMenu(){
+		if(GameData.muted) GameData.muted = false;
+		else GameData.muted = true;
+		System.out.println(GameData.muted);
+		
 		if(!board.menuClicked()) return;
 		frame.removeMouseListener(boardMouseListener);
 		frame.removeMouseMotionListener(boardMouseListener);

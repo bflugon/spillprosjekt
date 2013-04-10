@@ -10,6 +10,8 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import backend.GameData;
+
 public class BigSound implements Runnable { 
 	File file;
 	AudioInputStream in;
@@ -48,6 +50,8 @@ public class BigSound implements Runnable {
 
 		try {
 			while (notYetEOF) {
+				if(GameData.muted)stop();
+				else start();
 				if (playing) {
 					bytesRead = in.read (buffer, 
 								readPoint, 

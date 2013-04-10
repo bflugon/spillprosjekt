@@ -63,11 +63,6 @@ public class Menu {
 		
 		activeTower = modelTowers.get(0);
 	}
-	
-	public void drawTower(Tower tower){
-		
-	}
-	
 
 	public void draw(Graphics g) {
 		for (ComponentMenu compMenu : compMenus) {

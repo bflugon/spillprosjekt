@@ -69,4 +69,6 @@ public class GameData {
 //												Ammo
 												new BasicAmmo(),
 												new Missile()};
+
+	public static boolean muted = true;
 }

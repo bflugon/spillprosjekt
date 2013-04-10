@@ -94,8 +94,7 @@ public class Enemy extends Rectangle{
 	}
 	
 	public void draw(Graphics g) {
-		g.setColor(Color.RED);
-		g.fillRect(x, y, width, height);
+		g.drawImage(Tilesets.enemy_tileset[GameData.basicEnemy], x, y, width, height, null);
 	}
 	
 	public int walkFrame = 0;

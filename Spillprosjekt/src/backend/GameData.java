@@ -46,6 +46,8 @@ public class GameData {
 							start = 3,
 							goal = 4;
 	
+	public static final int basicEnemy = 0;
+	
 	public static Font 	header = new Font("Arial", Font.PLAIN, 30),
 						normal = new Font("Arial", Font.PLAIN, 20);
 	

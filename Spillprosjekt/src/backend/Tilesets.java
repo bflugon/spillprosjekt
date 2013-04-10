@@ -8,7 +8,8 @@ import java.awt.image.FilteredImageSource;
 import javax.swing.ImageIcon;
 
 public class Tilesets extends Component{
-	public static Image[] 	block_tileset,
+	public static Image[] 	enemy_tileset,
+							block_tileset,
 							base_tileset,
 							barrel_tileset,
 							button_tileset,
@@ -19,6 +20,13 @@ public class Tilesets extends Component{
 	public static Image componentsTexture;
 	
 	public Tilesets(){
+		
+		enemy_tileset = new Image[5];
+		for(int i = 0; i < enemy_tileset.length; i++){
+			enemy_tileset[i] = new ImageIcon("resources/enemy_tileset.png").getImage();
+			enemy_tileset[i] = createImage(new FilteredImageSource(enemy_tileset[i].getSource(), new CropImageFilter(0, 60*i, 60, 60)));
+		}
+		
 		block_tileset = new Image[5];
 		for(int i = 0; i < block_tileset.length; i++){
 			block_tileset[i] = new ImageIcon("resources/block_tileset.png").getImage();

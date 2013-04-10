@@ -67,7 +67,6 @@ public class Enemy extends Rectangle{
 	public void setLives(double damage) {
 		lives -= damage;
 		GameData.money += (int)damage;
-
 		if (lives <= 0) {
 			inGame = false;
 			mobWalk = 0;

@@ -12,6 +12,8 @@ import java.io.File;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import sound.Sound;
+
 import backend.Colors;
 import backend.Save;
 import backend.Tilesets;

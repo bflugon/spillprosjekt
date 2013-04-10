@@ -103,10 +103,15 @@ public class Board {
 		for(Block[] row: grid){
 			for(Block block: row){
 				if(block.contains(Screen.CURSOR)){
+					
+//					Pass paa at ingen fiende staar på blokken
+					for(Enemy enemy : enemies){
+						if(block.intersects(enemy)) return;
+					}
+					
 					if(block.getBlockID() == GameData.grass){
 						block.setBlockID(GameData.foundation);
 						if(!pathfinder.findPath()) {
-							System.out.println("Screen.addFoundation()");
 							block.setBlockID(GameData.grass);
 							pathfinder.findPath();
 						}

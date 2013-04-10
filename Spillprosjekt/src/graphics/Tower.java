@@ -3,7 +3,10 @@ package graphics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.event.MouseWheelListener;
 import java.awt.geom.AffineTransform;
+
+import sound.Sound;
 
 import backend.Colors;
 import backend.Tilesets;
@@ -95,8 +98,10 @@ public class Tower extends Rectangle{
 				}
 			}
 		}
+
 		if(target != null){
 			target.setLives(damage);
+			Sound.playSound("test.wav");
 			if(!target.inGame()) target = null;
 			fireFrame = 0;
 		}

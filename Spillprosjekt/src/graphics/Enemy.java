@@ -99,26 +99,26 @@ public class Enemy extends Rectangle{
 	public void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		
-		AffineTransform old = new AffineTransform();
-		AffineTransform trans = new AffineTransform();
-
-		switch (direction){
-		case upward:
-			trans.rotate(-3.14/2, x+30, y+30);
-			break;
-		case left:
-			trans.rotate(3.14, x+30, y+30);
-			break;
-		case downward:
-			trans.rotate(3.14/2, x+30, y+30);
-			break;
-		}
-		
-		g2d.setTransform(trans);
+//		AffineTransform old = new AffineTransform();
+//		AffineTransform trans = new AffineTransform();
+//
+//		switch (direction){
+//		case upward:
+//			trans.rotate(-3.14/2, x+30, y+30);
+//			break;
+//		case left:
+//			trans.rotate(3.14, x+30, y+30);
+//			break;
+//		case downward:
+//			trans.rotate(3.14/2, x+30, y+30);
+//			break;
+//		}
+//		
+//		g2d.setTransform(trans);
 		
 		g2d.drawImage(Tilesets.enemy_tileset[GameData.basicEnemy], x, y, width, height, null);
 
-		g2d.setTransform(old);
+//		g2d.setTransform(old);
 	}
 	
 	public int walkFrame = 0;

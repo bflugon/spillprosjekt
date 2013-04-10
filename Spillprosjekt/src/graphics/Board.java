@@ -106,7 +106,7 @@ public class Board {
 					
 //					Pass paa at ingen fiende staar pŒ blokken
 					for(Enemy enemy : enemies){
-						if(block.intersects(enemy)) return;
+						if(enemy.inGame() && block.intersects(enemy)) return;
 					}
 					
 					if(block.getBlockID() == GameData.grass){

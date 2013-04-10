@@ -116,7 +116,7 @@ public class Enemy extends Rectangle{
 //		
 //		g2d.setTransform(trans);
 		
-		g2d.drawImage(Tilesets.enemy_tileset[GameData.basicEnemy], x, y, width, height, null);
+		g2d.drawImage(Tilesets.enemy_tileset[GameData.pacGhost], x, y, width, height, null);
 
 //		g2d.setTransform(old);
 	}

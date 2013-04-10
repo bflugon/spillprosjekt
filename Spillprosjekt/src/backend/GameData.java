@@ -5,6 +5,7 @@ import graphics.Tower;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 import components.BasicAmmo;
 import components.BasicBarrel;
@@ -49,7 +50,8 @@ public class GameData {
 	
 	public static ArrayList<TowerComponent> components_list = new ArrayList<TowerComponent>();
 	
-	public static final int basicEnemy = 0;
+	public static final int spaceInvader = 0,
+							pacGhost = 1;
 	
 	public static Font 	header = new Font("Arial", Font.PLAIN, 30),
 						large_header = new Font("Arial", Font.PLAIN, 60),
@@ -73,5 +75,5 @@ public class GameData {
 
 	public static boolean muted = false;
 	public static String[] songs = {"backgroundMusic1.wav","backgroundMusic.wav"};
-	public static int songNum = 0;
+	public static int songNum = new Random().nextInt(2);
 }

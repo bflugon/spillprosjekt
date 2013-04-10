@@ -18,7 +18,7 @@ public class BasicBarrel extends Barrel {
 	
 	
 	public BasicBarrel() {
-		super(0,0,0);
+		super("Basic barrel",10,0,0,0);
 		name = "Basic Barrel";
 		this.id = GameData.basicBarrel;
 		barrelTexture = Tilesets.barrel_tileset[this.id];

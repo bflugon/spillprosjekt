@@ -46,6 +46,7 @@ public class GameData {
 							water = 2,
 							start = 3,
 							goal = 4;
+	public static ArrayList<TowerComponent> components_list = new ArrayList<TowerComponent>();
 	
 	public static final int basicEnemy = 0;
 	

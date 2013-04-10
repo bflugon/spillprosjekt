@@ -1,4 +1,6 @@
 package components;
+
+import backend.GameData;
 //Hei
 
 public class TowerComponent {
@@ -24,6 +26,7 @@ public class TowerComponent {
 		this.splashDamage = splashDamage;
 		this.slow = slow;
 		this.radar = radar;
+		GameData.components_list.add(this);
 	}
 	
 	public double getDamage(){
@@ -56,5 +59,9 @@ public class TowerComponent {
 	
 	public int getID(){
 		return id;
+	}
+	
+	public String getType(){
+		return type;
 	}
 }

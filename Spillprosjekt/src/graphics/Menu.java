@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import components.Barrel;
 import components.Base;
+import components.TowerComponent;
 
 import backend.Colors;
 import backend.GameData;
@@ -30,6 +31,18 @@ public class Menu {
 	
 	public Menu(){
 		
+		Barrel barrel_1 = new Barrel("Yor", 20, 14, 45, 34);
+		Barrel barrel_2 = new Barrel("Short round", 20, 14, 45, 34);
+		Barrel barrel_3 = new Barrel("Indy", 20, 14, 45, 34);
+		Barrel barrel_4 = new Barrel("TB", 20, 14, 45, 34);
+		Barrel barrel_5 = new Barrel("Mongo bollefjes", 20, 14, 45, 34);	
+		
+		System.out.println(GameData.components_list);
+		
+
+			
+		
+		
 		modelTowers = GameData.modelTowers;
 		modelTowers.add(new Tower());
 		
@@ -52,8 +65,22 @@ public class Menu {
 
 	public void draw(Graphics g) {
 		for (ComponentMenu compMenu : compMenus) {
-			compMenu.draw(g);
+			//compMenu.draw(g);
 		}
+		
+		
+		int teller = 0;
+		for (TowerComponent towercomp : GameData.components_list) {
+			if(towercomp instanceof Barrel){
+				ComponentList new_item = new ComponentList(20, 10+60 * teller, 680, 50,towercomp );
+				new_item.draw(g);
+				teller ++;
+			}
+		}
+		
+		
+		
+		
 		
 		g.setColor(Colors.range);
 		for(int i = 0; i < towerButtons.size(); i++){

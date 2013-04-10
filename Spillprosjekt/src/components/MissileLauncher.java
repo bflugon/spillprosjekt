@@ -17,7 +17,7 @@ public class MissileLauncher extends Barrel {
 
 	public MissileLauncher(){
 //		Damage, range, firerate
-		super(10,100,300);
+		super("Big Mama",10,10,100,300);
 		
 		this.name = "Big Mama";
 		this.id = GameData.bigMama;

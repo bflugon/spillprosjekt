@@ -206,5 +206,9 @@ public class Menu {
 		if(GameData.modelTowers.size() == 6) newTower = null;
 		else newTower = new Rectangle(720, 20+90*towerButtons.size(), 80, 80);
 	}
+
+	public boolean goToBoard() {
+		return goToBoard.contains(Screen.CURSOR);
+	}
 	
 }

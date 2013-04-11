@@ -1,28 +1,35 @@
 package gui;
 
+import graphics.Board;
+import graphics.Screen;
+
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import graphics.Screen;
-
 public class BoardMouseListener implements MouseListener, MouseMotionListener {
+	private Board board;
 	private Screen screen;
-
+	
 	public BoardMouseListener(Screen screen){
 		this.screen = screen;
+		this.board = screen.getBoard();
 	}
 	
 	public void mouseMoved(MouseEvent e) {
 		Screen.CURSOR = new Point(e.getX(), e.getY()-25);
 	}
 	public void mouseReleased(MouseEvent e) {
-		screen.placeTower();
-		screen.addFoundation();
-		screen.changeActiveTowerBoard();
-		screen.nextWave();
-		screen.goToMenu();
+		if(!screen.inGame())return;
+		board.placeTower();
+		board.addFoundation();
+		board.changeActiveTower();
+		board.nextWave();
+		
+		if(board.goToStore()){
+			screen.goToStore();
+		}
 	}
 	
 	public void mouseDragged(MouseEvent e) {}

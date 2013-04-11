@@ -1,5 +1,6 @@
 package gui;
 
+import graphics.Menu;
 import graphics.Screen;
 
 import java.awt.Point;
@@ -9,9 +10,11 @@ import java.awt.event.MouseMotionListener;
 
 public class MenuMouseListener implements MouseListener, MouseMotionListener {
 	private Screen screen;
-
+	private Menu menu;
+	
 	public MenuMouseListener(Screen screen) {
 		this.screen = screen;
+		menu = screen.getStore();
 	}
 
 	public void mouseMoved(MouseEvent e) {
@@ -19,24 +22,17 @@ public class MenuMouseListener implements MouseListener, MouseMotionListener {
 	}
 
 	public void mouseReleased(MouseEvent e) {
-		screen.changeComponent();
-		screen.changeActiveTowerMenu();
-		screen.goToBoard();
-		screen.addTower();
+		if(!screen.inStore()) return;
+		menu.changeActiveTower();
+		menu.addTower();
+		if(menu.goToBoard()){
+			screen.goToBoard();
+		}
 	}
 
-	public void mouseDragged(MouseEvent e) {
-	}
-
-	public void mouseClicked(MouseEvent e) {
-	}
-
-	public void mouseEntered(MouseEvent e) {
-	}
-
-	public void mouseExited(MouseEvent e) {
-	}
-
-	public void mousePressed(MouseEvent e) {
-	}
+	public void mouseDragged(MouseEvent e) {}
+	public void mouseClicked(MouseEvent e) {}
+	public void mouseEntered(MouseEvent e) {}
+	public void mouseExited(MouseEvent e) {}
+	public void mousePressed(MouseEvent e) {}
 }

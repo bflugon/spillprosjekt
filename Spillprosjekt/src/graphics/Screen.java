@@ -1,6 +1,7 @@
 package graphics;
 
 import gui.BoardMouseListener;
+import gui.MainMenuMouseListener;
 import gui.MenuMouseListener;
 
 import java.awt.Graphics;
@@ -26,35 +27,44 @@ public class Screen extends JPanel implements Runnable {
 	public Thread thread = new Thread(this);
 	
 	private Board board;
-	
 	private Menu menu;
+	private MainMenu mainMenu;
 	
 	private JFrame frame;
 	
 	private BoardMouseListener boardMouseListener;
 	private MenuMouseListener menuMouseListener;
+	private MainMenuMouseListener mainMenuMouseListener;
 
 	private int gameSpeed = 4;
 	
-	private boolean inGame;
+	private boolean inGame,
+					inStore;
 	
 	
 	public Screen(JFrame frame) {
-		this.frame = frame;
 
 		setSize(frame.getSize());
 		
 		menu = new Menu();
 		board = new Board();
+		mainMenu = new MainMenu(this);
 		
 		boardMouseListener = new BoardMouseListener(this);
 		menuMouseListener = new MenuMouseListener(this);
+		mainMenuMouseListener = new MainMenuMouseListener(this);
+		
+		addMouseListener(boardMouseListener);
+		addMouseListener(menuMouseListener);
+		addMouseListener(mainMenuMouseListener);
+		addMouseMotionListener(mainMenuMouseListener);
+		addMouseMotionListener(boardMouseListener);
+		addMouseMotionListener(menuMouseListener);
 		
 		CURSOR = new Point(10, 10);
 		
-		frame.addMouseListener(boardMouseListener);
-		frame.addMouseMotionListener(boardMouseListener);
-		inGame = true;
+		inGame = false;
+		inStore = false;
 				
 		try {
 			new BigSound(new File("resources/sounds/"+GameData.songs[GameData.songNum])).start();
@@ -62,39 +72,21 @@ public class Screen extends JPanel implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		GameData.muted = true;
 		thread.start();
 	}
 	
-	public void goToBoard(){
-		if(!menu.boardClicked()) return;
+	public void goToBoard(){		
 		menu.updateTower();
 		board.updateButtons();
 		
-		frame.removeMouseListener(menuMouseListener);
-		frame.removeMouseMotionListener(menuMouseListener);
-		
-		frame.addMouseListener(boardMouseListener);
-		frame.addMouseMotionListener(boardMouseListener);
-		
-		
+		inStore = false;
 		inGame = true;
 	}
 	
-	public void goToMenu(){
-		if(!board.menuClicked()) return;
-		
-//		Mute sound
-		if(GameData.muted) GameData.muted = false;
-		else GameData.muted = true;
-
-		frame.removeMouseListener(boardMouseListener);
-		frame.removeMouseMotionListener(boardMouseListener);
-		
-		frame.addMouseListener(menuMouseListener);
-		frame.addMouseMotionListener(menuMouseListener);
-		
+	public void goToStore(){		
 		inGame = false;
+		inStore = true;
 	}
 	
 	private void physics(){
@@ -105,8 +97,10 @@ public class Screen extends JPanel implements Runnable {
 		g.setColor(Colors.background);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
+		
 		if(inGame)board.draw(g);
-		else menu.draw(g);
+		else if(inStore)menu.draw(g);
+		else mainMenu.draw(g);
 	}	
 
 	public void run() {
@@ -119,14 +113,6 @@ public class Screen extends JPanel implements Runnable {
 		}
 	}
 
-	public void placeTower() {
-		board.placeTower();
-	}
-
-	public void addFoundation() {
-		board.addFoundation();
-	}
-
 	public void changeComponent() {
 		menu.changeComponent();
 	}
@@ -135,19 +121,31 @@ public class Screen extends JPanel implements Runnable {
 		menu.changeActiveTower();
 	}
 
-	public void changeActiveTowerBoard() {
-		board.changeActiveTower();
-	}
-
-	public void nextWave() {
-		board.nextWave();
-	}
-
 	public void addTower() {
 		menu.addTower();
 	}
 
 	public Board getBoard() {
 		return board;
+	}
+
+	public boolean inGame() {
+		return inGame;
+	}
+	
+	public boolean inStore() {
+		return inStore;
+	}
+
+	public Menu getStore() {
+		return menu;
+	}
+
+	public MainMenu getMainMenu() {
+		return mainMenu;
+	}
+
+	public boolean inMenu() {
+		return !inGame && !inStore;
 	}
 }

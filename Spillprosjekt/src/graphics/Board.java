@@ -28,7 +28,7 @@ public class Board {
 					goal;
 	
 	private Rectangle nextWave;
-	private Rectangle goToShop;
+	private Rectangle goToStore;
 	
 	private ArrayList<Rectangle> towerButtons;
 	private ArrayList<Tower> towers;
@@ -47,7 +47,7 @@ public class Board {
 		towers = new ArrayList<Tower>();
 		
 		nextWave = new Rectangle(720,570,80,80);
-		goToShop = new Rectangle(630,570,80,80);
+		goToStore = new Rectangle(630,570,80,80);
 		
 		activeTower = 0;
 		enemyLives = 3;
@@ -199,8 +199,8 @@ public class Board {
 		g.setColor(Colors.range);
 		g.fillRect(nextWave.x, nextWave.y, nextWave.width, nextWave.height);
 		g.drawImage(Tilesets.button_tileset[GameData.nextWave], nextWave.x, nextWave.y, nextWave.width, nextWave.height, null);
-		g.fillRect(goToShop.x, goToShop.y, goToShop.width, goToShop.height);
-		g.drawImage(Tilesets.button_tileset[GameData.goToShop], goToShop.x, goToShop.y, goToShop.width, goToShop.height, null);
+		g.fillRect(goToStore.x, goToStore.y, goToStore.width, goToStore.height);
+		g.drawImage(Tilesets.button_tileset[GameData.goToShop], goToStore.x, goToStore.y, goToStore.width, goToStore.height, null);
 		
 	}
 
@@ -228,7 +228,7 @@ public class Board {
 	}
 	
 	public boolean menuClicked() {
-		return goToShop.contains(Screen.CURSOR);
+		return goToStore.contains(Screen.CURSOR);
 	}
 
 	public void setStart(Block start) {
@@ -237,5 +237,9 @@ public class Board {
 
 	public void setGoal(Block goal) {
 		this.goal = goal;
+	}
+
+	public boolean goToStore() {
+		return goToStore.contains(Screen.CURSOR);
 	}
 }

@@ -69,7 +69,6 @@ public class Screen extends JPanel implements Runnable {
 		try {
 			new BigSound(new File("resources/sounds/"+GameData.songs[GameData.songNum])).start();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		GameData.muted = true;
@@ -79,6 +78,13 @@ public class Screen extends JPanel implements Runnable {
 	public void goToBoard(){		
 		menu.updateTower();
 		board.updateButtons();
+		
+		inStore = false;
+		inGame = true;
+	}
+	
+	public void goToBoard(int mapNum){		
+		board.createBoard(mapNum);
 		
 		inStore = false;
 		inGame = true;

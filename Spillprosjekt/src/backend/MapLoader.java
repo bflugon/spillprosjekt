@@ -6,7 +6,7 @@ import graphics.Board;
 import java.io.File;
 import java.util.Scanner;
 
-public class Save {
+public class MapLoader {
 	public void loadSave(File loadPath, Board board) {
 		try {
 			Scanner loadScanner = new Scanner(loadPath);

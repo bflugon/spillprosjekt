@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import backend.Colors;
 import backend.GameData;
 import backend.Pathfinder;
-import backend.Save;
+import backend.MapLoader;
 import backend.Tilesets;
 
 public class Board {
@@ -34,15 +34,9 @@ public class Board {
 	private ArrayList<Tower> towers;
 	private Enemy[] enemies;
 	
-	private Save loader = new Save();
+	private MapLoader loader = new MapLoader();
 
 	public Board(){
-		createBoard();
-		
-//		Finner korsteste vei on request
-		pathfinder = new Pathfinder(this);
-		pathfinder.findPath();
-		
 //		Lager listen som inneholder taarnene
 		towers = new ArrayList<Tower>();
 		
@@ -64,7 +58,7 @@ public class Board {
 		}
 	}
 	
-	private void createBoard(){
+	public void createBoard(int mapNum){
 //		Lager brettet
 		grid = new Block[worldHeight][worldWidth];
 		
@@ -75,11 +69,11 @@ public class Board {
 			}
 		}
 		
-		loader.loadSave(new File("resources/maps/1.txt"), this);
-
-//		Bor hentes fra kartet senere
-		setStart(grid[0][0]);
-		setGoal(grid[8][12]);
+		loader.loadSave(new File("resources/maps/"+mapNum+".map"), this);
+		
+//		Finner korsteste vei on request
+		pathfinder = new Pathfinder(this);
+		pathfinder.findPath();
 	}
 	
 	public void placeTower(){

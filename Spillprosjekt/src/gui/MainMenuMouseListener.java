@@ -1,5 +1,6 @@
 package gui;
 
+import graphics.BoardButton;
 import graphics.MainMenu;
 import graphics.Screen;
 
@@ -22,6 +23,8 @@ public class MainMenuMouseListener implements MouseListener, MouseMotionListener
 		if(!screen.inMenu()) return;
 		
 		menu.clickButton();
+		
+		menu.getBoardSelect().clickButton();
 	}
 
 	public void mouseMoved(MouseEvent e) {

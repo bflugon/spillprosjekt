@@ -18,7 +18,7 @@ public class BoardMouseListener implements MouseListener, MouseMotionListener {
 	}
 	
 	public void mouseMoved(MouseEvent e) {
-		Screen.CURSOR = new Point(e.getX(), e.getY()-25);
+		Screen.CURSOR = new Point(e.getX(), e.getY());
 	}
 	public void mouseReleased(MouseEvent e) {
 		if(!screen.inGame())return;

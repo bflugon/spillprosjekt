@@ -1,5 +1,6 @@
 package graphics;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -13,7 +14,7 @@ public class MainMenu extends Rectangle {
 	
 	private Rectangle[] buttons;
 	
-	private String[] buttonText = {"Start Game", "Credits", "Quit"};
+	private String[] buttonText = {"Start Game", "Credits", "Exit"};
 			
 	public MainMenu(Screen screen){
 		this.screen = screen;
@@ -29,7 +30,7 @@ public class MainMenu extends Rectangle {
 	public void draw(Graphics g){
 		
 		g.drawImage(Tilesets.openingImage, x, y, width, height, null);
-		
+
 		g.setFont(GameData.header);
 		for(int i = 0; i < buttons.length; i++) {
 			g.setColor(Colors.button);
@@ -37,11 +38,12 @@ public class MainMenu extends Rectangle {
 			g.setColor(Colors.pink);
 			g.drawString(buttonText[i], buttons[i].x+30, buttons[i].y+40);
 		}
-		
 	}
 
-	public boolean startGame() {
-		return buttons[0].contains(Screen.CURSOR);
+	public void clickButton() {
+		if(buttons[0].contains(Screen.CURSOR)) screen.goToBoard();
+//		else if(buttons[1].contains(Screen.CURSOR)) noe;
+		else if(buttons[2].contains(Screen.CURSOR)) System.exit(0);
 	}
 	
 }

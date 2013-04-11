@@ -17,8 +17,6 @@ public class SpillprosjektTD extends JFrame {
 //		Close when closed
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		
-		
 //		Sets the size of the window
 		setSize(width, height);
 		

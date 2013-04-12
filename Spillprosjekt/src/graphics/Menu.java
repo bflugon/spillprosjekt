@@ -73,7 +73,7 @@ public class Menu {
 		int teller = 0;
 		for (TowerComponent towercomp : GameData.components_list) {
 			if(towercomp instanceof Barrel){
-				ComponentList new_item = new ComponentList(20, 10+60 * teller, 680, 40,towercomp );
+				ComponentList new_item = new ComponentList(20, 10+60 * teller,towercomp, false );
 				//new_item.draw(g);
 				teller ++;
 			}
@@ -104,20 +104,16 @@ public class Menu {
 			
 			//g.fillRect(15, 280, 700,70);
 			g.setColor(Color.WHITE);
-			g.drawString("Barrel",120,298);
-			ComponentList barrel = new ComponentList(100, 300, 600, 40, activeTower.getBarrel() );
+			
+			ComponentList barrel = new ComponentList(100, 300, activeTower.getBarrel(), true );
 			barrel.draw(g);
-			activeTower.getBarrel().drawButton(g, new Rectangle(15, 280, 300, 300));
 			
-			g.drawString("Base",120,368);
-			ComponentList base = new ComponentList(100, 370, 600, 40, activeTower.getBase() );
+			
+			ComponentList base = new ComponentList(100, 370, activeTower.getBase(), true );
 			base.draw(g);
-			activeTower.getBase().drawButton(g, new Rectangle(15, 350, 300, 300));
 			
-			g.drawString("Ammo",120,438);
-			ComponentList ammo = new ComponentList(100, 440, 600, 40, activeTower.getAmmo() );
+			ComponentList ammo = new ComponentList(100, 440, activeTower.getAmmo(), true );
 			ammo.draw(g);
-			//activeTower.getBarrel().drawButton(g, new Rectangle(15, 420, 300, 300));
 			
 			
 			//Egenskaper

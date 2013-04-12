@@ -1,9 +1,15 @@
 package components;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Rectangle;
+
 import backend.GameData;
 //Hei
 
 public class TowerComponent {
+	protected Image texture;
+	
 	protected String 	name,
 						type;
 	
@@ -27,6 +33,11 @@ public class TowerComponent {
 		this.slow = slow;
 		this.radar = radar;
 		GameData.components_list.add(this);
+	}
+	
+	public void drawButton(Graphics g, Rectangle rect){
+		System.out.println("Drawing!!!!");
+		g.drawImage(texture, rect.x, rect.y+10, 60, 60, null);
 	}
 	
 	public double getDamage(){

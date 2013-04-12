@@ -65,6 +65,9 @@ public class Screen extends JPanel implements Runnable {
 		
 		inGame = false;
 		inStore = false;
+		
+		//La til denne for å gå rett til menyen
+		//goToStore();
 				
 		try {
 			new BigSound(new File("resources/sounds/"+GameData.songs[GameData.songNum])).start();

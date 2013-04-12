@@ -21,11 +21,11 @@ public class BasicBarrel extends Barrel {
 		super("Basic barrel",10,0,0,0);
 		name = "Basic Barrel";
 		this.id = GameData.basicBarrel;
-		barrelTexture = Tilesets.barrel_tileset[this.id];
+		texture = Tilesets.barrel_tileset[this.id];
 	}
 	
 	public void drawButton(Graphics g, Rectangle rect){
-		g.drawImage(barrelTexture, (int)rect.getX()+15, (int)rect.getY()+10, 60, 60, null);
+		g.drawImage(texture, (int)rect.getX()+15, (int)rect.getY()+10, 60, 60, null);
 	}
 	
 	public void drawShot(Graphics2D g2d, Tower tower){

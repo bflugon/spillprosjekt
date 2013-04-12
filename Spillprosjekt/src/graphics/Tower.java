@@ -122,15 +122,15 @@ public class Tower extends Rectangle{
 		}
 	}
 	
-	private void setBase(Base base) {
+	public void setBase(Base base) {
 		this.base = base;
 	}
 
-	private void setAmmo(Ammo ammo) {
+	public void setAmmo(Ammo ammo) {
 		this.ammo = ammo;
 	}
 
-	private void setBarrel(Barrel barrel) {
+	public void setBarrel(Barrel barrel) {
 		this.barrel = barrel;
 	}
 

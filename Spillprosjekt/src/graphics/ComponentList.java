@@ -16,36 +16,60 @@ public class ComponentList extends Rectangle{
 	private TowerComponent towercomp;
 	private boolean more_info;
 	
+	private TowerComponent compareCompo;
+	
 	private int width = 600;
+	private int imageX = 75;
 	private int height = 50;
 				
 
 	public ComponentList(int x, int y, TowerComponent towercomp, boolean more_info) {
-		setBounds(x,y,width,height);
+		setBounds(15,y,width  + imageX,height);
 		
 		this.towercomp =  towercomp;
 		this.more_info = more_info;
+		
+		this.compareCompo = towercomp;
 
 		//new ComponentMenu(20, 20+210*i, 200, 200, compType[i]);
 	}
 	
 	
 	
-	
+	public void setcompareCompo(TowerComponent compareCompo){
+		this.compareCompo = compareCompo;
+	}
 	
 	public void draw(Graphics g){
 		
+		
+		if(contains(Screen.CURSOR)){
+			g.setColor(Colors.transe_pink);
+			if(true){
+				
+				g.fillRect(x + imageX, y, width,height);
+			}
+			
+			
+		}
+		
+		
+		
+		
 		g.setColor(Colors.range);
-		g.fillRect(x, y, width, height);
+		g.fillRect(x + imageX, y, width, height);
+		
+		imageX -= 15;
 		
 		g.setColor(Colors.pink);
 
 		g.setFont(GameData.header);
-		g.drawString(String.valueOf(towercomp.getName()), x+20, y+35);
+		g.drawString(String.valueOf(towercomp.getName()), x+20 + imageX, y+35);
 		
 		g.setColor(Color.WHITE);
 		
-		g.setFont(GameData.normal);
+		imageX += 30;
+		g.setFont(GameData.list_stats);
 		
 	//Gjelder kun Barrel
 		if(towercomp.getType().equals("barrel")){
@@ -56,30 +80,74 @@ public class ComponentList extends Rectangle{
 				typeString += ", ";
 			}
 			typeString = typeString.substring(0,typeString.length()-2);
-			g.drawString(typeString, x+150+60 , y+45);
+			g.drawString(typeString, x+150+60 + imageX , y+45);
 		}
 		
 	//Gjelder kun Ammo
 		if(towercomp.getType().equals("ammo")){
 			String typeString = ((Ammo) towercomp).getAmmoType();
-			g.drawString("Type: " + typeString, x+150+60 , y+45);
+			g.drawString("Type: " + typeString, x+150+60  + imageX, y+45);
 		}
 
-	
-			g.drawString("Damage: "+towercomp.getDamage(), x+150+55 + 5, y+20);
-			g.drawString("Range: "+towercomp.getRange(), x+275 + 65 + 20, y+20);
-			g.drawString("Firerate: "+towercomp.getFirerate(), x+400 + 15 + 70, y+20);
+			g.setColor(comPareDamage());
+			g.drawString("Damage: "+towercomp.getDamage(), x+150+55 + 5 + imageX, y+20);
+			g.setColor(comPareRange());
+			g.drawString("Range: "+towercomp.getRange(), x+275 + 65 + 20 + imageX, y+20);
+			g.setColor(comPareRange());
+			g.drawString("Firerate: "+towercomp.getFirerate(), x+400 + 15 + 70 + imageX, y+20);
 			
 			
-			towercomp.drawButton(g, new Rectangle(15, y-20, 300, 300));
+			towercomp.drawButton(g, new Rectangle(x, y-20, 300, 300));
 		
 			//Viser flere ting: litt tekst
 		if(more_info){
-			g.drawString("Selected " + towercomp.getType(),x+20,y-2);
+			g.setFont(GameData.normal);
+			g.setColor(Color.WHITE);
+			g.drawString("Selected " + towercomp.getType(),x+20 + imageX,y-2);
 			
 		}
 	}
 	
+	public Color comPareDamage(){
+		
+		if(towercomp.getDamage() > compareCompo.getDamage()){
+			return Color.GREEN;
+		} 
+		else if(towercomp.getDamage() < compareCompo.getDamage()){
+			return Color.RED;
+		} 
+		
+		return Color.WHITE;
+	}
 	
+	
+	public Color comPareRange(){
+		
+		if(towercomp.getRange() > compareCompo.getRange()){
+			return Color.GREEN;
+		} 
+		else if(towercomp.getRange() < compareCompo.getRange()){
+			return Color.RED;
+		} 
+		
+		return Color.WHITE;
+	}
+	
+	
+	public Color comPareFireRAte(){
+		
+		if(towercomp.getFirerate() > compareCompo.getFirerate()){
+			return Color.GREEN;
+		} 
+		else if(towercomp.getFirerate() < compareCompo.getFirerate()){
+			return Color.RED;
+		} 
+		
+		return Color.WHITE;
+	}
+	
+	public boolean checkIfClicked(){
+		return this.contains(Screen.CURSOR);
+	}
 	
 }

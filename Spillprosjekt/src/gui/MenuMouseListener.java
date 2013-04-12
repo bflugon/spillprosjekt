@@ -25,6 +25,8 @@ public class MenuMouseListener implements MouseListener, MouseMotionListener {
 		if(!screen.inStore()) return;
 		menu.changeActiveTower();
 		menu.addTower();
+		menu.closeComponentMenu();
+		menu.openComponentMenu();
 		if(menu.goToBoard()){
 			screen.goToBoard();
 		}

@@ -16,7 +16,7 @@ public class MainMenu extends Rectangle {
 	
 	private int selectedBoard = 0;
 	
-	private String[] buttonText = {"Start Game", "Credits", "Exit"};
+	private String[] buttonText = {"Start Game","Credits", "Exit"};
 			
 	public MainMenu(Screen screen){
 		this.screen = screen;

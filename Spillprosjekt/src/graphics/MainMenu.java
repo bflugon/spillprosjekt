@@ -3,6 +3,7 @@ package graphics;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.io.File;
 
 import backend.Colors;
 import backend.GameData;
@@ -11,8 +12,9 @@ import backend.Tilesets;
 public class MainMenu extends Rectangle {
 
 	private Screen screen;
-	private BoardSelect boardSelect;
 	private Rectangle[] buttons;
+	
+	private BoardButton[] boards;
 	
 	private int selectedBoard = 0;
 	
@@ -22,11 +24,17 @@ public class MainMenu extends Rectangle {
 		this.screen = screen;
 		setBounds(screen.getBounds());
 		
-		boardSelect = new BoardSelect(this);
 		buttons = new Rectangle[3];
 		
 		for(int i = 0; i < buttons.length; i++){
 			buttons[i] = new Rectangle(40,370+75*i, 250,60);
+		}
+		
+		String[] files = new File("./resources/maps").list();
+		boards = new BoardButton[files.length];
+
+		for(int i = 0; i < boards.length; i++){
+			boards[i] = new BoardButton(40 + 130*i,225, 120, 120, new File("resources/maps/"+files[i]));
 		}
 	}
 	
@@ -42,23 +50,26 @@ public class MainMenu extends Rectangle {
 			g.drawString(buttonText[i], buttons[i].x+30, buttons[i].y+40);
 		}
 		
-		boardSelect.draw(g);
+		for(int i = 0; i < boards.length; i++){
+			if(selectedBoard == i) boards[i].draw(g, true);
+			else boards[i].draw(g, false);
+		}
 	}
 
 	public void clickButton() {
 		if(buttons[0].contains(Screen.CURSOR)) screen.goToBoard(selectedBoard);
 //		else if(buttons[1].contains(Screen.CURSOR)) noe;
 		else if(buttons[2].contains(Screen.CURSOR)) System.exit(0);
-	}
 
+		for(int i = 0; i < boards.length; i++){
+			if(boards[i].contains(Screen.CURSOR)) selectedBoard = i;
+		}
+	}
+	
 	public int getSelectedBoard() {
 		return selectedBoard;
 	}
 	
-	public BoardSelect getBoardSelect(){
-		return boardSelect;
-	}
-
 	public void setSelectedBoard(int i) {
 		selectedBoard = i;
 	}

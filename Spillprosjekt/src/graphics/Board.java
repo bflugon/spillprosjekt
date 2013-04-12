@@ -29,6 +29,7 @@ public class Board {
 	
 	private Rectangle nextWave;
 	private Rectangle goToStore;
+	private Rectangle mute;
 	
 	private ArrayList<Rectangle> towerButtons;
 	private ArrayList<Tower> towers;
@@ -42,6 +43,7 @@ public class Board {
 		
 		nextWave = new Rectangle(720,570,80,80);
 		goToStore = new Rectangle(630,570,80,80);
+		mute = new Rectangle(540,570,80,80);
 		
 		activeTower = 0;
 		enemyLives = 3;
@@ -195,7 +197,9 @@ public class Board {
 		g.drawImage(Tilesets.button_tileset[GameData.nextWave], nextWave.x, nextWave.y, nextWave.width, nextWave.height, null);
 		g.fillRect(goToStore.x, goToStore.y, goToStore.width, goToStore.height);
 		g.drawImage(Tilesets.button_tileset[GameData.goToShop], goToStore.x, goToStore.y, goToStore.width, goToStore.height, null);
-		
+
+		g.fillRect(mute.x, mute.y, mute.width, mute.height);
+
 	}
 
 	public void nextWave(){
@@ -225,6 +229,13 @@ public class Board {
 		return goToStore.contains(Screen.CURSOR);
 	}
 
+	public void mute(){
+		if(mute.contains(Screen.CURSOR)){
+			if(GameData.muted)GameData.muted = false;
+			else GameData.muted = true;
+		}
+	}
+	
 	public void setStart(Block start) {
 		this.start = start;
 	}

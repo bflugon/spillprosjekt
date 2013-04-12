@@ -226,7 +226,7 @@ public class Menu {
 		GameData.modelTowers.add(new Tower());
 		towerButtons.add(new Rectangle(720, 20+90*towerButtons.size(), 80, 80));
 		
-		if(GameData.modelTowers.size() == 6) newTower = null;
+		if(GameData.modelTowers.size() == 5) newTower = null;
 		else newTower = new Rectangle(720, 20+90*towerButtons.size(), 80, 80);
 	}
 

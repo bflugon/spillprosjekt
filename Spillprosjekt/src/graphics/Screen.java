@@ -74,7 +74,7 @@ public class Screen extends JPanel implements Runnable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		GameData.muted = true;
+
 		thread.start();
 	}
 	

@@ -14,8 +14,6 @@ import components.TowerComponent;
 
 public class Menu {
 
-	private ComponentMenu[] compMenus;
-	
 //	Taarnene som kan oppgraderes
 	private ArrayList<Tower> modelTowers;
 	
@@ -48,11 +46,6 @@ public class Menu {
 		modelTowers = GameData.modelTowers;
 		modelTowers.add(new Tower());
 		
-		compMenus = new ComponentMenu[3];
-		for(int i = 0; i < compMenus.length; i++){
-			compMenus[i] = new ComponentMenu(20, 20+210*i, 680, 200, compType[i]);
-		}
-		
 
 		towerButtons = new ArrayList<Rectangle>();
 		for(int i = 0; i < modelTowers.size(); i++){
@@ -78,9 +71,6 @@ public class Menu {
 	}
 
 	public void draw(Graphics g) {
-		for (ComponentMenu compMenu : compMenus) {
-			//compMenu.draw(g);
-		}
 		
 		if(openComponentList != null){
 			openComponentList.draw(g);
@@ -190,23 +180,12 @@ public class Menu {
 		}
 	}
 
-	public void changeComponent() {
-		for(ComponentMenu compMenu: compMenus){
-			if(compMenu.contains(Screen.CURSOR)){
-				compMenu.changeCurrentComponent();
-			}
-		}
-	}
-
 	public void changeActiveTower() {
 		for(int i = 0; i < towerButtons.size(); i++){
 			if(towerButtons.get(i).contains(Screen.CURSOR)){
 				updateTower();
 				activeTower = modelTowers.get(i);
 				activeTower_index = i;
-				
-				compMenus[0].updateComponent(activeTower.getBarrel());
-				compMenus[2].updateComponent(activeTower.getBase());
 			}
 		}
 	}

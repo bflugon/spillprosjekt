@@ -1,6 +1,5 @@
 package gui;
 
-import graphics.BoardButton;
 import graphics.MainMenu;
 import graphics.Screen;
 

@@ -30,8 +30,6 @@ public class ComponentList extends Rectangle{
 		this.more_info = more_info;
 		
 		this.compareCompo = towercomp;
-
-		//new ComponentMenu(20, 20+210*i, 200, 200, compType[i]);
 	}
 	
 	

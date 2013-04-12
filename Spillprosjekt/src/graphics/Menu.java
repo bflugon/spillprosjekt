@@ -5,13 +5,12 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import components.Barrel;
-import components.Base;
-import components.TowerComponent;
-
 import backend.Colors;
 import backend.GameData;
 import backend.Tilesets;
+
+import components.Barrel;
+import components.TowerComponent;
 
 public class Menu {
 
@@ -37,7 +36,7 @@ public class Menu {
 	public Menu(){
 		
 		Barrel barrel_1 = new Barrel("Yor", 999, 999, 999, 34);
-		Barrel barrel_2 = new Barrel("Short round", 20, 14, 45, 34);
+		Barrel barrel_2 = new Barrel("Short round", 1, 150, 10, 10);
 		Barrel barrel_3 = new Barrel("Indy", 20, 14, 45, 34);
 		Barrel barrel_4 = new Barrel("TB", 20, 14, 45, 34);
 		Barrel barrel_5 = new Barrel("Mongo bollefjes", 20, 14, 45, 34);	
@@ -255,6 +254,11 @@ public class Menu {
 		else if(ammoList.checkIfClicked()){
 			openComponentList = new ChooseComponent(activeTower.getAmmo(),activeTower_index);
 		} 
+	}
+	
+	
+	public boolean isComponentsOpen(){
+		return openComponentList != null;
 	}
 	
 }

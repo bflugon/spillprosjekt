@@ -46,7 +46,7 @@ public class ChooseComponent {
 		g.drawString("Compatible " + current_type,125,118);
 		int teller = 0;
 		for (TowerComponent towercomp : GameData.components_list) {
-			if(towercomp.getType().equals(current_type) && !towercomp.equals(activeComponent)){
+			if(towercomp.getType().equals(current_type) && !towercomp.equals(activeComponent) ){
 				
 				int y = 70 * teller + 120;
 				
@@ -85,7 +85,7 @@ public class ChooseComponent {
 					GameData.modelTowers.get(activeTowerIndex).setBase(new_barrel);
 				}
 				
-				
+				GameData.modelTowers.get(activeTowerIndex).updateProperties();
 				
 				return true;
 			}

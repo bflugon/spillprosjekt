@@ -12,7 +12,7 @@ public class Base extends TowerComponent{
 	//protected Image texture;
 	
 	public Base(int damage,boolean radar) {
-		super(damage,0,0,false,false,radar);
+		super(damage,10,10,false,false,radar);
 		this.type = "base";
 		this.id = GameData.basicBase;
 		this.texture = Tilesets.base_tileset[id];

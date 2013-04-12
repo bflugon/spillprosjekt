@@ -11,6 +11,7 @@ import backend.Tilesets;
 
 public class MainMenu extends Rectangle {
 
+	private Credits credits;
 	private Screen screen;
 	private Rectangle[] buttons;
 	
@@ -18,11 +19,15 @@ public class MainMenu extends Rectangle {
 	
 	private int selectedBoard = 0;
 	
+	private boolean inCredits = false;
+	
 	private String[] buttonText = {"Start Game","Credits", "Exit"};
 			
 	public MainMenu(Screen screen){
 		this.screen = screen;
 		setBounds(screen.getBounds());
+		
+		credits = new Credits(this.getBounds());
 		
 		buttons = new Rectangle[3];
 		
@@ -54,13 +59,15 @@ public class MainMenu extends Rectangle {
 			if(selectedBoard == i) boards[i].draw(g, true);
 			else boards[i].draw(g, false);
 		}
+		
+		if(inCredits)credits.draw(g);
 	}
 
 	public void clickButton() {
-		if(buttons[0].contains(Screen.CURSOR)) screen.newBoard(selectedBoard);
-//		else if(buttons[1].contains(Screen.CURSOR)) noe;
-		else if(buttons[2].contains(Screen.CURSOR)) System.exit(0);
-
+		if(buttons[0].contains(Screen.CURSOR) && !inCredits) screen.newBoard(selectedBoard);
+		else if(buttons[1].contains(Screen.CURSOR) && !inCredits) inCredits = true;
+		else if(buttons[2].contains(Screen.CURSOR) && !inCredits) System.exit(0);
+		else inCredits = false;
 		for(int i = 0; i < boards.length; i++){
 			if(boards[i].contains(Screen.CURSOR)) selectedBoard = i;
 		}

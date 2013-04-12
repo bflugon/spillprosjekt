@@ -35,9 +35,6 @@ public class EditTower {
 		Barrel barrel_4 = new Barrel("TB", 20, 14, 45, 34);
 		Barrel barrel_5 = new Barrel("Mongo bollefjes", 20, 14, 45, 34);	
 		
-
-		
-		
 		goToBoard = new Rectangle(720,560,80,80);
 		
 		activeTower = GameData.modelTowers.get(0);
@@ -45,10 +42,6 @@ public class EditTower {
 
 	public void draw(Graphics g) {
 
-		
-
-		
-		
 		int teller = 0;
 		for (TowerComponent towercomp : GameData.components_list) {
 			if(towercomp instanceof Barrel){
@@ -97,7 +90,7 @@ public class EditTower {
 			
 			//Egenskaper
 			g.drawString("Abilities",120,578);
-			g.setColor(Colors.range);
+			g.setColor(Colors.transparentBlack);
 			g.fillRect(100, 580, 600,40);
 			g.setColor(Color.WHITE);
 			String abilits = "";

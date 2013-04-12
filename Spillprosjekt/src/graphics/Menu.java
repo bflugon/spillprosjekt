@@ -61,7 +61,6 @@ public class Menu {
 		
 		if(openComponentList != null){
 			openComponentList.draw(g);
-			
 		}
 		
 		else if(openComponentList == null){
@@ -70,73 +69,76 @@ public class Menu {
 			for (TowerComponent towercomp : GameData.components_list) {
 				if(towercomp instanceof Barrel){
 					ComponentList new_item = new ComponentList(20, 10+ 60*teller,towercomp, false );
-					//new_item.draw(g);
+//					new_item.draw(g);
 					teller ++;
 				}
 			}
 			
-			//Viser det aktive tower
-			if(true){
-				Rectangle towerButton = new Rectangle(20, 20, 670, 230);
-				activeTower.drawLargeImage(g, towerButton);
-				g.setColor(Colors.range);
-				g.fillRect(towerButton.x, towerButton.y, towerButton.width, towerButton.height);
-				g.setColor(Color.WHITE);
-				g.setFont(GameData.largeHeader);
-				g.drawString(String.valueOf(activeTower.getName()),250,100);
-				
-				g.setFont(GameData.normalLarge);
-				g.drawString("Price: " + String.valueOf(activeTower.getPrice()) + "0 $",250,150);
-				
-				g.setColor(Colors.pink);
-				g.setFont(GameData.header);
-				g.drawString("Damage: " + String.valueOf(activeTower.getDamage()),30,230);
-				g.drawString("Range: " + String.valueOf(activeTower.getRange()),260,230);
-				g.drawString("Firerate: " + String.valueOf(activeTower.getFireRate()),500,230);
-				
-				ComponentList barrelList = new ComponentList(100, 300, activeTower.getBarrel(), true );
-				barrelList.draw(g);
-				
-				ComponentList baseList = new ComponentList(100, 380, activeTower.getBase(), true );
-				baseList.draw(g);
-				
-				ComponentList ammoList = new ComponentList(100, 460, activeTower.getAmmo(), true );
-				ammoList.draw(g);
-				
-				g.setFont(GameData.normal);
-				g.setColor(Color.WHITE);
-				
-				//Egenskaper
-				g.drawString("Abilities",20,600);
-				g.setColor(Colors.range);
-				g.fillRect(20, 600, 670,40);
-				g.setColor(Color.WHITE);
-				String abilits = "";
-				
-				if(activeTower.getAmmo().getSplashDamage()){
-					abilits += "Splash damage "; 
-				}
-				
-				if(activeTower.getAmmo().getSlow()){
-					abilits += " Slows down enemies "; 
-				}
-				
-				if(activeTower.getAmmo().getRadar()){
-					abilits += " Can spot hidden baloon "; 
-				}
-					
-				if(abilits.equals("")){
-					abilits += " None ";
-				}
-				
-				g.drawString(abilits, 30, 625);
+//			Viser det aktive tower
+			Rectangle towerFrame = new Rectangle(20, 20, 670, 230);
+			activeTower.drawLargeImage(g, towerFrame);
+			
+			g.setColor(Colors.transparentBlack);
+			g.fillRect(towerFrame.x, towerFrame.y, towerFrame.width, towerFrame.height);
+			
+			g.setColor(Color.WHITE);
+			g.setFont(GameData.largeHeader);
+			g.drawString(String.valueOf(activeTower.getName()),250,100);
+			
+			g.setFont(GameData.normalLarge);
+			g.drawString("Price: " + String.valueOf(activeTower.getPrice()) + " $",250,150);
+			
+			g.setColor(Colors.pink);
+			g.setFont(GameData.header);
+			g.drawString("Damage: " + String.valueOf(activeTower.getDamage()),30,230);
+			g.drawString("Range: " + String.valueOf(activeTower.getRange()),260,230);
+			g.drawString("Firerate: " + String.valueOf(activeTower.getFireRate()),500,230);
+			
+			ComponentList barrelList = new ComponentList(100, 300, activeTower.getBarrel(), true );
+			barrelList.draw(g);
+			
+			ComponentList baseList = new ComponentList(100, 380, activeTower.getBase(), true );
+			baseList.draw(g);
+			
+			ComponentList ammoList = new ComponentList(100, 460, activeTower.getAmmo(), true );
+			ammoList.draw(g);
+			
+//			Egenskaper
+			
+			g.setFont(GameData.normal);
+			g.setColor(Color.WHITE);
+			g.drawString("Abilities",20,600);
+			
+			// Firkant
+			g.setColor(Colors.transparentBlack);
+			g.fillRect(20, 600, 670,40);
+			
+			//Tekst
+			g.setColor(Color.WHITE);
+			String abilits = "";
+			
+			if(activeTower.getAmmo().getSplashDamage()){
+				abilits += "Splash damage "; 
 			}
 			
+			if(activeTower.getAmmo().getSlow()){
+				abilits += " Slows down enemies "; 
+			}
+			
+			if(activeTower.getAmmo().getRadar()){
+				abilits += " Can spot hidden baloon "; 
+			}
+				
+			if(abilits.equals("")){
+				abilits += " None ";
+			}
+			
+			g.drawString(abilits, 30, 625);
 			
 			/*************************
 			 *** Taarn og knapper ****
 			 *************************/
-			g.setColor(Colors.range);
+			g.setColor(Colors.transparentBlack);
 			for(int i = 0; i < towerButtons.size(); i++){
 				Rectangle towerButton = towerButtons.get(i);
 				g.fillRect(towerButton.x, towerButton.y, towerButton.width, towerButton.height);
@@ -197,14 +199,14 @@ public class Menu {
 	}
 	
 	public void openComponentMenu(){
-		if(barrelList.checkIfClicked()){
+		if(barrelList.contains(Screen.CURSOR)){
 			openComponentList = new ChooseComponent(activeTower.getBarrel(),activeTowerIndex);
 		} 
-		else if(baseList.checkIfClicked()){
+		else if(baseList.contains(Screen.CURSOR)){
 			openComponentList = new ChooseComponent(activeTower.getBase(),activeTowerIndex);
 		} 
 		
-		else if(ammoList.checkIfClicked()){
+		else if(ammoList.contains(Screen.CURSOR)){
 			openComponentList = new ChooseComponent(activeTower.getAmmo(),activeTowerIndex);
 		} 
 	}

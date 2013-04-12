@@ -173,7 +173,7 @@ public class Board {
 		
 //		Tegner knappene
 		for(int i = 0; i < towerButtons.size(); i++){
-			g.setColor(Colors.range);
+			g.setColor(Colors.transparentBlack);
 			g.fillRect(towerButtons.get(i).x, towerButtons.get(i).y, towerButtons.get(i).width, towerButtons.get(i).height);
 			GameData.modelTowers.get(i).drawButton(g, towerButtons.get(i));
 		}
@@ -192,7 +192,7 @@ public class Board {
 		if(mouseOver!=null)mouseOver.drawRange(g);
 		
 //		Tegn knapper for meny og neste bolge
-		g.setColor(Colors.range);
+		g.setColor(Colors.transparentBlack);
 		g.fillRect(nextWave.x, nextWave.y, nextWave.width, nextWave.height);
 		g.drawImage(Tilesets.button_tileset[GameData.nextWave], nextWave.x, nextWave.y, nextWave.width, nextWave.height, null);
 		g.fillRect(goToStore.x, goToStore.y, goToStore.width, goToStore.height);

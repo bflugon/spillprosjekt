@@ -54,7 +54,7 @@ public class ComponentList extends Rectangle{
 		
 		
 		
-		g.setColor(Colors.range);
+		g.setColor(Colors.transparentBlack);
 		g.fillRect(x + imageX, y, width, height);
 		
 		imageX -= 15;
@@ -74,30 +74,30 @@ public class ComponentList extends Rectangle{
 			String typeString = "Can shoot: ";
 			
 			for(String typer : ((Barrel) towercomp).getAmmoTypes()){
-				typeString += typer;
-				typeString += ", ";
+				typeString += typer+", ";
 			}
+			
 			typeString = typeString.substring(0,typeString.length()-2);
 			g.drawString(typeString, x+150+60 + imageX , y+45);
 		}
 		
 	//Gjelder kun Ammo
-		if(towercomp.getType().equals("ammo")){
+		else if(towercomp.getType().equals("ammo")){
 			String typeString = ((Ammo) towercomp).getAmmoType();
 			g.drawString("Type: " + typeString, x+150+60  + imageX, y+45);
 		}
 
-			g.setColor(comPareDamage());
-			g.drawString("Damage: "+towercomp.getDamage(), x+150+55 + 5 + imageX, y+20);
-			g.setColor(comPareRange());
-			g.drawString("Range: "+towercomp.getRange(), x+275 + 65 + 20 + imageX, y+20);
-			g.setColor(comPareRange());
-			g.drawString("Firerate: "+towercomp.getFirerate(), x+400 + 15 + 70 + imageX, y+20);
-			
-			
-			towercomp.drawButton(g, new Rectangle(x, y-20, 300, 300));
+		g.setColor(compareDamage());
+		g.drawString("Damage: "+towercomp.getDamage(), x+150+55 + 5 + imageX, y+20);
+		g.setColor(compareRange());
+		g.drawString("Range: "+towercomp.getRange(), x+275 + 65 + 20 + imageX, y+20);
+		g.setColor(compareRange());
+		g.drawString("Firerate: "+towercomp.getFirerate(), x+400 + 15 + 70 + imageX, y+20);
 		
-			//Viser flere ting: litt tekst
+		
+		towercomp.drawButton(g, new Rectangle(x, y-20, 300, 300));
+		
+//		Viser flere ting: litt tekst
 		if(more_info){
 			g.setFont(GameData.normal);
 			g.setColor(Color.WHITE);
@@ -106,20 +106,20 @@ public class ComponentList extends Rectangle{
 		}
 	}
 	
-	public Color comPareDamage(){
+	public Color compareDamage(){
 		
 		if(towercomp.getDamage() > compareCompo.getDamage()){
 			return Color.GREEN;
-		} 
+		}
 		else if(towercomp.getDamage() < compareCompo.getDamage()){
 			return Color.RED;
-		} 
+		}
 		
 		return Color.WHITE;
 	}
 	
 	
-	public Color comPareRange(){
+	public Color compareRange(){
 		
 		if(towercomp.getRange() > compareCompo.getRange()){
 			return Color.GREEN;
@@ -132,20 +132,15 @@ public class ComponentList extends Rectangle{
 	}
 	
 	
-	public Color comPareFireRAte(){
+	public Color compareFireRate(){
 		
 		if(towercomp.getFirerate() > compareCompo.getFirerate()){
 			return Color.GREEN;
 		} 
 		else if(towercomp.getFirerate() < compareCompo.getFirerate()){
 			return Color.RED;
-		} 
+		}
 		
 		return Color.WHITE;
 	}
-	
-	public boolean checkIfClicked(){
-		return this.contains(Screen.CURSOR);
-	}
-	
 }

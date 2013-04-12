@@ -113,6 +113,7 @@ public class Tower extends Rectangle{
 
 //	Gir taarnet som mates inn i metoden samme egenskaper som taarnet
 //Fra Simen: Er noe galt med denne
+//	Fra Oyvind: Ikke nå lenger :)
 	public void copyTower(Tower tower){	
 		Barrel newBarrel = new Barrel(barrel.getName(), barrel.getPrice(), barrel.getDamage(), barrel.getRange(), barrel.getFirerate());
 		Ammo newAmmo = new Ammo(ammo.getDamage(), ammo.getSplashDamage(), ammo.getSlow());
@@ -218,7 +219,7 @@ public class Tower extends Rectangle{
 	}
 	
 	public void drawRange(Graphics g){
-		g.setColor(Colors.range);
+		g.setColor(Colors.transparentBlack);
 //		Tegner rekkevidden rundt midten av taarnet
 		g.fillOval((int)(x+30-range), (int)(y+30-range), (int)range*2, (int)range*2);
 		

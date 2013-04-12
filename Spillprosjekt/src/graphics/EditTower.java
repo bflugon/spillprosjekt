@@ -31,7 +31,7 @@ public class EditTower {
 		
 		Barrel barrel_1 = new Barrel("Yor", 999, 999, 999, 34);
 		Barrel barrel_2 = new Barrel("Short round", 20, 14, 45, 34);
-		Barrel barrel_3 = new Barrel("Indy", 20, 14, 45, 34);
+		Barrel barrel_3 = new Barrel("Indy", 20, 14, 100, 34);
 		Barrel barrel_4 = new Barrel("TB", 20, 14, 45, 34);
 		Barrel barrel_5 = new Barrel("Mongo bollefjes", 20, 14, 45, 34);	
 		
@@ -65,11 +65,11 @@ public class EditTower {
 			
 
 			g.setColor(Color.WHITE);
-			g.setFont(GameData.large_header);
+			g.setFont(GameData.largeHeader);
 			g.drawString(String.valueOf(activeTower.getName()),250,100);
 			
 			
-			g.setFont(GameData.normal_large);
+			g.setFont(GameData.normalLarge);
 			g.drawString("Price: " + String.valueOf(activeTower.getPrice()) + "0 $",250,150);
 			
 			g.setColor(Colors.pink);

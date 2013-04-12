@@ -113,22 +113,16 @@ public class Tower extends Rectangle{
 
 //	Gir taarnet som mates inn i metoden samme egenskaper som taarnet
 //Fra Simen: Er noe galt med denne
-	public void copyTower(Tower tower){		
-		try {
-			/*
-			tower.setBarrel(barrel.getClass().newInstance());
-			tower.setAmmo(ammo.getClass().newInstance());
-			tower.setBase(base.getClass().newInstance());
-			*/
-			tower.setBarrel(this.getBarrel());
-			tower.setAmmo(this.getAmmo());
-			tower.setBase(this.getBase());
-			
-			
-		} catch (Exception e) {
-			System.out.println("sdfsdsdfsdf");
-			e.printStackTrace();
-		}
+	public void copyTower(Tower tower){	
+		Barrel newBarrel = new Barrel(barrel.getName(), barrel.getPrice(), barrel.getDamage(), barrel.getRange(), barrel.getFirerate());
+		Ammo newAmmo = new Ammo(ammo.getDamage(), ammo.getSplashDamage(), ammo.getSlow());
+		Base newBase = new Base((int)base.getDamage(), base.getRadar());
+		
+		tower.setBarrel(newBarrel);
+		tower.setAmmo(newAmmo);
+		tower.setBase(newBase);
+		
+		
 	}
 	
 	public void setBase(Base base) {

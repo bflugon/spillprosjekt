@@ -86,7 +86,7 @@ public class Screen extends JPanel implements Runnable {
 		inGame = true;
 	}
 	
-	public void goToBoard(int mapNum){		
+	public void newBoard(int mapNum){		
 		board.createBoard(mapNum);
 		
 		inStore = false;

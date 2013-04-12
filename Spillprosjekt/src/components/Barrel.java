@@ -79,4 +79,5 @@ public class Barrel extends TowerComponent{
 		g2d.setColor(Color.ORANGE);
 	    g2d.fillRect((int)tower.getX()+60, (int) (tower.getY()+30-3), 10, 6);
 	}
+
 }

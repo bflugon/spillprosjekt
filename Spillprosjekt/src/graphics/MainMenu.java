@@ -57,7 +57,7 @@ public class MainMenu extends Rectangle {
 	}
 
 	public void clickButton() {
-		if(buttons[0].contains(Screen.CURSOR)) screen.goToBoard(selectedBoard);
+		if(buttons[0].contains(Screen.CURSOR)) screen.newBoard(selectedBoard);
 //		else if(buttons[1].contains(Screen.CURSOR)) noe;
 		else if(buttons[2].contains(Screen.CURSOR)) System.exit(0);
 

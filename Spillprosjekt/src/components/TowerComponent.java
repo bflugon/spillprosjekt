@@ -40,6 +40,10 @@ public class TowerComponent {
 		g.drawImage(texture, rect.x, rect.y+10, 60, 60, null);
 	}
 	
+	public int getPrice() {
+		return price;
+	}
+	
 	public double getDamage(){
 		return damage;
 	}

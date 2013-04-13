@@ -31,7 +31,8 @@ public class Tower extends Rectangle{
 	private double 	damage = 1,
 					range = 150,
 					price = 10,
-					firerate = 400;
+					firerate = 400,
+					rotation = 0;
 	
 	private boolean	radar,
 					splashDamage,
@@ -131,10 +132,16 @@ public class Tower extends Rectangle{
 				distY = enemy.getY()-y;
 				
 				if(Math.sqrt(distY*distY+distX*distX) <= range && enemy.inGame()){
+					double barrelX = x+width/2;
+					double barrelY = y+height/2;
 					if(target == null) {
 						target = enemy;
+						rotation = Math.atan(((barrelY-target.getY()-30) / (barrelX-target.getX()-30) ));
+						if(target.getX()+30 <= barrelX) rotation += Math.PI;
 					} else if(enemy.getDistanceTraveled() > target.getDistanceTraveled()){
 						target = enemy;
+						rotation = Math.atan(((barrelY-target.getY()-30) / (barrelX-target.getX()-30) ));
+						if(target.getX()+30 <= barrelX) rotation += Math.PI;
 					}
 				}
 			}
@@ -147,6 +154,7 @@ public class Tower extends Rectangle{
 			Sound.playSound("shot.wav");
 			if(!target.inGame()) target = null;
 			fireFrame = 0;
+			double rotation = barrel.getRotation();
 		}
 	}
 
@@ -240,8 +248,12 @@ public class Tower extends Rectangle{
 		
 		Graphics2D g2d = (Graphics2D)g;
 		AffineTransform oldtrans = new AffineTransform();
+<<<<<<< HEAD
 		findTarget();
 		barrel.draw(g2d, this);
+=======
+		barrel.draw(g2d, x, y, rotation);
+>>>>>>> LES BESKRIVELSE!! Fikset rotasjon og lagde en PopupWindow-klasse
 	    if(fireFrame <= 10) barrel.drawShot(g2d, this); 
 	    
 //	    Reset transfomasjonene (kommenter ut denne for aa se hva som skjer uten naar du plasserer flere taarn)

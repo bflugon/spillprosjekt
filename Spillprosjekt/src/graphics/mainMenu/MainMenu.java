@@ -1,4 +1,6 @@
-package graphics;
+package graphics.mainMenu;
+
+import graphics.Screen;
 
 import java.awt.Font;
 import java.awt.Graphics;
@@ -27,7 +29,7 @@ public class MainMenu extends Rectangle {
 		this.screen = screen;
 		setBounds(screen.getBounds());
 		
-		credits = new Credits(this.getBounds());
+		credits = new Credits();
 		
 		buttons = new Rectangle[3];
 		
@@ -68,6 +70,7 @@ public class MainMenu extends Rectangle {
 		else if(buttons[1].contains(Screen.CURSOR) && !inCredits) inCredits = true;
 		else if(buttons[2].contains(Screen.CURSOR) && !inCredits) System.exit(0);
 		else inCredits = false;
+		
 		for(int i = 0; i < boards.length; i++){
 			if(boards[i].contains(Screen.CURSOR)) selectedBoard = i;
 		}

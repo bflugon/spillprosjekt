@@ -33,6 +33,7 @@ public class Board {
 	
 	private ArrayList<Rectangle> towerButtons;
 	private ArrayList<Tower> towers;
+
 	private Enemy[] enemies;
 	
 	private MapLoader loader = new MapLoader();
@@ -163,6 +164,7 @@ public class Board {
 			tower.physics();
 		}
 	}
+	
 	public void draw(Graphics g) {
 //		Tegner blokkene
 		for(Block[] row: grid){

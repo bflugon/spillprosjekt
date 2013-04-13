@@ -42,7 +42,7 @@ public class ComponentList extends Rectangle{
 		
 		
 		if(contains(Screen.CURSOR)){
-			g.setColor(Colors.transe_pink);
+			g.setColor(Colors.transparentPink);
 			if(true){
 				
 				g.fillRect(x + imageX, y, width,height);

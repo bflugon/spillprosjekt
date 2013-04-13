@@ -1,7 +1,7 @@
 package gui;
 
-import graphics.MainMenu;
 import graphics.Screen;
+import graphics.mainMenu.MainMenu;
 
 import java.awt.Point;
 import java.awt.event.MouseEvent;

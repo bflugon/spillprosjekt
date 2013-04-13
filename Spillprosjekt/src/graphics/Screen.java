@@ -1,5 +1,6 @@
 package graphics;
 
+import graphics.mainMenu.MainMenu;
 import gui.BoardMouseListener;
 import gui.MainMenuMouseListener;
 import gui.MenuMouseListener;
@@ -116,8 +117,8 @@ public class Screen extends JPanel implements Runnable {
 		while(true) {
 			try {
 				repaint();
-				physics();
 				Thread.sleep(gameSpeed);
+				physics();
 			} catch (Exception e) {}
 		}
 	}

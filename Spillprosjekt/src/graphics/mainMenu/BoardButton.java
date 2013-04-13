@@ -1,4 +1,6 @@
-package graphics;
+package graphics.mainMenu;
+
+import graphics.Block;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;

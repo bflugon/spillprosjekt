@@ -4,9 +4,9 @@ import graphics.Tower;
 
 import java.awt.Font;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
+import components.Barrel;
 import components.BasicAmmo;
 import components.BasicBarrel;
 import components.BasicBase;
@@ -72,6 +72,8 @@ public class GameData {
 //												Ammo
 												new BasicAmmo(),
 												new Missile()};
+	//Barrel(String name, int price ,int textureIndex, double damage, double range, double firerate) 
+	public static Barrel  barrel_1 = new Barrel("Gauss",100,4,0,250,500);
 
 	public static boolean muted = false;
 	public static String[] songs = {"backgroundMusic1.wav","backgroundMusic.wav"};

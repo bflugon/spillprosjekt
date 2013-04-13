@@ -19,7 +19,7 @@ public class BasicBarrel extends Barrel {
 	
 	public BasicBarrel() {
 		//Barrel(String name, int price ,int textureIndex, double damage, double range, double firerate) 
-		super("Basic barrel",25,0,25,25,25);
+		super("Basic barrel",0,0,0,25,1000);
 		this.id = GameData.basicBarrel;
 	}
 	//Tror ikke vi trenger dette?

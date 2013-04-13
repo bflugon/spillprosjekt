@@ -71,8 +71,8 @@ public class Tower extends Rectangle{
 		this.name ="Mongo bollefjes";
 	}
 	
-//	Skyter naar timeren i "physics" kaller metoden
-	private void shoot(){
+	
+	private void findTarget(){
 		Enemy[] enemies = board.getEnemies();
 		
 		double distX = 1000;
@@ -102,6 +102,45 @@ public class Tower extends Rectangle{
 				}
 			}
 		}
+		
+
+	}
+	
+	
+//	Skyter naar timeren i "physics" kaller metoden
+	private void shoot(){
+		/*
+		Enemy[] enemies = board.getEnemies();
+		
+		double distX = 1000;
+		double distY = 1000;
+		
+		if(target != null){
+			distX = target.getX()-x;
+			distY = target.getY()-y;
+		
+			if(Math.sqrt(distY*distY+distX*distX) <= range){
+				if(!target.inGame()) target = null;
+			} else {
+				target = null;
+			}
+		} else {
+			for(int i = 0; i < enemies.length; i++){
+				Enemy enemy = enemies[i];
+				distX = enemy.getX()-x;
+				distY = enemy.getY()-y;
+				
+				if(Math.sqrt(distY*distY+distX*distX) <= range && enemy.inGame()){
+					if(target == null) {
+						target = enemy;
+					} else if(enemy.getDistanceTraveled() > target.getDistanceTraveled()){
+						target = enemy;
+					}
+				}
+			}
+		}
+		*/
+		//findTarget();
 
 		if(target != null){
 			target.setLives(damage);
@@ -201,6 +240,7 @@ public class Tower extends Rectangle{
 		
 		Graphics2D g2d = (Graphics2D)g;
 		AffineTransform oldtrans = new AffineTransform();
+		findTarget();
 		barrel.draw(g2d, this);
 	    if(fireFrame <= 10) barrel.drawShot(g2d, this); 
 	    

@@ -3,11 +3,10 @@ package graphics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.event.MouseWheelListener;
 import java.awt.geom.AffineTransform;
+import java.util.ArrayList;
 
 import sound.Sound;
-
 import backend.Colors;
 import backend.Tilesets;
 
@@ -43,6 +42,8 @@ public class Tower extends Rectangle{
 	private Base base;
 	private Ammo ammo;
 	private Barrel barrel;
+	
+	private ArrayList<Ammo> firedAmmo; 
 
 	private Board board;
 	
@@ -59,6 +60,8 @@ public class Tower extends Rectangle{
 		ammo = new BasicAmmo();
 		fireFrame = (int)firerate;
 		
+		firedAmmo = new ArrayList<Ammo>();
+		
 		updateProperties();
 	}
 
@@ -72,7 +75,7 @@ public class Tower extends Rectangle{
 		this.name ="Mongo bollefjes";
 	}
 	
-	
+	//Flytta koden over i en egen metode, denne kjøres i draw.
 	private void findTarget(){
 		Enemy[] enemies = board.getEnemies();
 		
@@ -110,6 +113,7 @@ public class Tower extends Rectangle{
 	
 //	Skyter naar timeren i "physics" kaller metoden
 	private void shoot(){
+<<<<<<< HEAD
 		/*
 		Enemy[] enemies = board.getEnemies();
 		
@@ -148,8 +152,21 @@ public class Tower extends Rectangle{
 		}
 		*/
 		//findTarget();
+=======
+
+>>>>>>> hva
 
 		if(target != null){
+			
+			// Laget en ny ammo
+			Ammo new_ammo = new Ammo(ammo.getName(), ammo.getPrice(),ammo.getTextureIndex(), ammo.getDamage(), ammo.getRange(), ammo.getFirerate());
+			
+			//Hvert skudd blir lagret i denne lista. I draw metoden går koden gjennom lista og tegner alle ammoene som er skutt og i spillet
+			firedAmmo.add(new_ammo);
+			// Regner ut rotasjonen til tårnet
+			new_ammo.rotateAmmo(this);
+
+
 			target.setLives(damage);
 			Sound.playSound("shot.wav");
 			if(!target.inGame()) target = null;
@@ -245,11 +262,15 @@ public class Tower extends Rectangle{
 	//	Tar imot et grafikkobjekt og tegner taarnet
 	public void draw(Graphics g){
 		g.drawImage(Tilesets.base_tileset[base.getID()], x, y, width, height, null);
-		
+
 		Graphics2D g2d = (Graphics2D)g;
 		AffineTransform oldtrans = new AffineTransform();
 <<<<<<< HEAD
 		findTarget();
+		for(Ammo firammo : firedAmmo){
+			firammo.drawProjectile(g2d,this);
+		}
+		
 		barrel.draw(g2d, this);
 =======
 		barrel.draw(g2d, x, y, rotation);
@@ -301,8 +322,13 @@ public class Tower extends Rectangle{
 		return damage;
 	}
 	
+	
 	public double getFireRate(){
 		return firerate;
+	}
+	
+	public void removeFiredAmmo(){
+		this.firedAmmo.remove(0);
 	}
 	
 	

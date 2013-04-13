@@ -17,6 +17,8 @@ public class Barrel extends TowerComponent{
 
 	//protected Image barrelTexture;
 	protected double rotation = 0;
+	
+								
 	protected String[] allowed_ammo = {"Missiles", "Tacks", "Bullets"};
 	
 	
@@ -57,6 +59,7 @@ public class Barrel extends TowerComponent{
 //	    Tegn barrel
 	    g2d.drawImage(texture, tx, ty, 60, 60, null);
 	}
+	
 	public void drawButton(Graphics g, Rectangle rect){
 		g.drawImage(texture, (int)rect.getX()+15, (int)rect.getY()+10, 60, 60, null);
 	}

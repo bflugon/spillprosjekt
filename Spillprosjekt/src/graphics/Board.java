@@ -36,6 +36,9 @@ public class Board {
 
 	private Enemy[] enemies;
 	
+	
+	//Alle skuddene blir lagt til her nŒr de skutt
+	
 	private MapLoader loader = new MapLoader();
 
 	public Board(){

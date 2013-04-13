@@ -97,10 +97,10 @@ public class BigSound implements Runnable {
 	} // run
 
 	public void start() {
-		playing = true;
+		playing = false;
 		if (! playThread.isAlive())
 			playThread.start();
-		//line.start();
+		line.start();
 	}
 
 	public void stop() {

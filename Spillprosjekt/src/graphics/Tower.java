@@ -113,7 +113,7 @@ public class Tower extends Rectangle{
 	
 //	Skyter naar timeren i "physics" kaller metoden
 	private void shoot(){
-<<<<<<< HEAD
+
 		/*
 		Enemy[] enemies = board.getEnemies();
 		
@@ -152,9 +152,7 @@ public class Tower extends Rectangle{
 		}
 		*/
 		//findTarget();
-=======
 
->>>>>>> hva
 
 		if(target != null){
 			
@@ -265,16 +263,16 @@ public class Tower extends Rectangle{
 
 		Graphics2D g2d = (Graphics2D)g;
 		AffineTransform oldtrans = new AffineTransform();
-<<<<<<< HEAD
+
 		findTarget();
 		for(Ammo firammo : firedAmmo){
 			firammo.drawProjectile(g2d,this);
 		}
 		
-		barrel.draw(g2d, this);
-=======
+		//barrel.draw(g2d, this);
+
 		barrel.draw(g2d, x, y, rotation);
->>>>>>> LES BESKRIVELSE!! Fikset rotasjon og lagde en PopupWindow-klasse
+
 	    if(fireFrame <= 10) barrel.drawShot(g2d, this); 
 	    
 //	    Reset transfomasjonene (kommenter ut denne for aa se hva som skjer uten naar du plasserer flere taarn)

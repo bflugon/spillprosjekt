@@ -22,18 +22,13 @@ public class Barrel extends TowerComponent{
 	protected String[] allowed_ammo = {"Missiles", "Tacks", "Bullets"};
 	
 	
-<<<<<<< HEAD
+
 	protected Point center;
 	
 	public Barrel(String name, int price ,int textureIndex, double damage, double range, double firerate) {
 		super(damage, range, firerate, price,name,textureIndex);
-=======
-	public Barrel(String name, int price ,double damage, double range, double firerate) {
-		super(damage, range, firerate, false,false,false);
-		this.name = name;
-		this.price = price;
->>>>>>> LES BESKRIVELSE!! Fikset rotasjon og lagde en PopupWindow-klasse
-		this.type = "barrel";
+
+	
 		this.id = GameData.basicBarrel;
 		this.texture = Tilesets.barrel_tileset[textureIndex];
 	}

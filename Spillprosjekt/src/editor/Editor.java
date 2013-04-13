@@ -1,6 +1,6 @@
-package levelEditor;
+package editor;
 
-public class LevelEditor {
+public class Editor {
 	int id = -1;
 	
 	public static void main() {

@@ -21,7 +21,7 @@ public class MissileLauncher extends Barrel {
 		
 		this.name = "Big Mama";
 		this.id = GameData.bigMama;
-		barrelTexture = Tilesets.barrel_tileset[this.id];	
+		texture = Tilesets.barrel_tileset[this.id];	
 	}
 
 	public void draw(Graphics2D g2d, Tower tower) {
@@ -54,7 +54,7 @@ public class MissileLauncher extends Barrel {
 	    g2d.setTransform(trans);
 	    
 //	    Tegn barrel
-	    g2d.drawImage(barrelTexture, (int)tower.getX(), (int)tower.getY(), (int)tower.getWidth(), barrelWidth, null);
+	    g2d.drawImage(texture, (int)tower.getX(), (int)tower.getY(), (int)tower.getWidth(), barrelWidth, null);
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class MissileLauncher extends Barrel {
 
 	@Override
 	public void drawButton(Graphics g, Rectangle rect) {
-		g.drawImage(barrelTexture, (int)rect.getX(), (int)rect.getY()+10, 60, 60, null);
+		g.drawImage(texture, (int)rect.getX(), (int)rect.getY()+10, 60, 60, null);
 	}
 	
 }

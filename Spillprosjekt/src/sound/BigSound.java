@@ -88,7 +88,7 @@ public class BigSound implements Runnable {
 //			HUFF HUFF HUFF
 //			TODO Auto-generated catch block
 			try {
-				new BigSound(new File("resources/sounds/"+GameData.songs[GameData.songNum])).start();
+				new BigSound(new File("resources/sounds/"+GameData.songs[GameData.songNum%2])).start();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -99,7 +99,7 @@ public class BigSound implements Runnable {
 	public void start() {
 		playing = true;
 		if (! playThread.isAlive())
-			//playThread.start();
+			playThread.start();
 		line.start();
 	}
 

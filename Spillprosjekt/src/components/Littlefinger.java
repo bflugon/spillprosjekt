@@ -21,7 +21,7 @@ public class Littlefinger extends Barrel {
 		
 		this.name = "Littlefinger";
 		this.id = GameData.littlefinger;
-		barrelTexture = Tilesets.barrel_tileset[this.id];
+		texture = Tilesets.barrel_tileset[this.id];
 	}
 	
 	
@@ -68,7 +68,7 @@ public class Littlefinger extends Barrel {
 
 	@Override
 	public void drawButton(Graphics g, Rectangle rect) {
-		g.drawImage(barrelTexture, (int)rect.getX()+15, (int)rect.getY()+10, 60, 60, null);
+		g.drawImage(texture, (int)rect.getX()+15, (int)rect.getY()+10, 60, 60, null);
 
 	}
 }

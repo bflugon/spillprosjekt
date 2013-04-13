@@ -6,15 +6,19 @@ import graphics.Tower;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 
+import backend.GameData;
+import backend.Tilesets;
+
 public class Barrel extends TowerComponent{
 
-	protected Image barrelTexture;
+	//protected Image barrelTexture;
 	protected double rotation = 0;
+	protected String[] allowed_ammo = {"Missiles", "Tacks", "Bullets"};
+	
 	
 	protected Point center;
 	
@@ -22,7 +26,13 @@ public class Barrel extends TowerComponent{
 		super(damage, range, firerate, false,false,false);
 		this.name = name;
 		this.price = price;
-		type = "barrel";
+		this.type = "barrel";
+		this.id = GameData.basicBarrel;
+		this.texture = Tilesets.barrel_tileset[this.id];
+	}
+	
+	public String[] getAmmoTypes(){
+		return allowed_ammo;
 	}
 	
 	public void draw(Graphics2D g2d, Tower tower){
@@ -55,18 +65,19 @@ public class Barrel extends TowerComponent{
 	    g2d.setTransform(trans);
 	    
 //	    Tegn barrel
-	    g2d.drawImage(barrelTexture, (int)tower.getX(), (int)tower.getY(), (int)tower.getWidth(), barrelWidth, null);
+	    g2d.drawImage(texture, (int)tower.getX(), (int)tower.getY(), (int)tower.getWidth(), barrelWidth, null);
 	}
 	public void drawButton(Graphics g, Rectangle rect){
-		g.drawImage(barrelTexture, (int)rect.getX()+15, (int)rect.getY()+10, 60, 60, null);
+		g.drawImage(texture, (int)rect.getX()+15, (int)rect.getY()+10, 60, 60, null);
 	}
 	
 	public void drawLargeImage(Graphics g, Rectangle rect){
-		g.drawImage(barrelTexture, (int)rect.getX()+30, (int)rect.getY()+10, 120, 120, null);
+		g.drawImage(texture, (int)rect.getX()+30, (int)rect.getY()+10, 120, 120, null);
 	}
 	
 	public void drawShot(Graphics2D g2d, Tower tower){
 		g2d.setColor(Color.ORANGE);
 	    g2d.fillRect((int)tower.getX()+60, (int) (tower.getY()+30-3), 10, 6);
 	}
+
 }

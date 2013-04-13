@@ -112,30 +112,38 @@ public class Tower extends Rectangle{
 	}
 
 //	Gir taarnet som mates inn i metoden samme egenskaper som taarnet
-	public void copyTower(Tower tower){		
-		try {
-			tower.setBarrel(barrel.getClass().newInstance());
-			tower.setAmmo(ammo.getClass().newInstance());
-			tower.setBase(base.getClass().newInstance());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//Fra Simen: Er noe galt med denne
+//	Fra Oyvind: Ikke nå lenger :)
+	public void copyTower(Tower tower){	
+		Barrel newBarrel = new Barrel(barrel.getName(), barrel.getPrice(), barrel.getDamage(), barrel.getRange(), barrel.getFirerate());
+		Ammo newAmmo = new Ammo(ammo.getDamage(), ammo.getSplashDamage(), ammo.getSlow());
+		Base newBase = new Base((int)base.getDamage(), base.getRadar());
+		
+		tower.setBarrel(newBarrel);
+		tower.setAmmo(newAmmo);
+		tower.setBase(newBase);
+		
+		
 	}
 	
-	private void setBase(Base base) {
+	public void setBase(Base base) {
 		this.base = base;
 	}
 
-	private void setAmmo(Ammo ammo) {
+	public void setAmmo(Ammo ammo) {
 		this.ammo = ammo;
 	}
 
-	private void setBarrel(Barrel barrel) {
+	public void setBarrel(Barrel barrel) {
 		this.barrel = barrel;
 	}
 
 	//	Oppdaterer egenskapene avhenging av komponenetene
 	public void updateProperties(){
+		damage = 0;
+		range = 0;
+		firerate = 0;
+		
 		getBarrelBonuses();
 		getAmmoBonuses();
 		getBaseBonuses();
@@ -211,7 +219,7 @@ public class Tower extends Rectangle{
 	}
 	
 	public void drawRange(Graphics g){
-		g.setColor(Colors.range);
+		g.setColor(Colors.transparentBlack);
 //		Tegner rekkevidden rundt midten av taarnet
 		g.fillOval((int)(x+30-range), (int)(y+30-range), (int)range*2, (int)range*2);
 		

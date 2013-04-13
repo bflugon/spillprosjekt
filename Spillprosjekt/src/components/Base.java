@@ -4,15 +4,18 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 
+import backend.GameData;
 import backend.Tilesets;
 
 public class Base extends TowerComponent{
 	
-	protected Image texture;
+	//protected Image texture;
 	
 	public Base(int damage,boolean radar) {
-		super(damage,0,0,false,false,radar);
-		type = "base";
+		super(damage,10,10,false,false,radar);
+		this.type = "base";
+		this.id = GameData.basicBase;
+		this.texture = Tilesets.base_tileset[id];
 	}
 
 	public void drawButton(Graphics g, Rectangle rect){

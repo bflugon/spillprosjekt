@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import backend.Colors;
 import backend.GameData;
 import backend.Pathfinder;
-import backend.Save;
+import backend.MapLoader;
 import backend.Tilesets;
 
 public class Board {
@@ -28,26 +28,22 @@ public class Board {
 					goal;
 	
 	private Rectangle nextWave;
-	private Rectangle goToShop;
+	private Rectangle goToStore;
+	private Rectangle mute;
 	
 	private ArrayList<Rectangle> towerButtons;
 	private ArrayList<Tower> towers;
 	private Enemy[] enemies;
 	
-	private Save loader = new Save();
+	private MapLoader loader = new MapLoader();
 
 	public Board(){
-		createBoard();
-		
-//		Finner korsteste vei on request
-		pathfinder = new Pathfinder(this);
-		pathfinder.findPath();
-		
 //		Lager listen som inneholder taarnene
 		towers = new ArrayList<Tower>();
 		
 		nextWave = new Rectangle(720,570,80,80);
-		goToShop = new Rectangle(630,570,80,80);
+		goToStore = new Rectangle(630,570,80,80);
+		mute = new Rectangle(540,570,80,80);
 		
 		activeTower = 0;
 		enemyLives = 3;
@@ -64,7 +60,7 @@ public class Board {
 		}
 	}
 	
-	private void createBoard(){
+	public void createBoard(int mapNum){
 //		Lager brettet
 		grid = new Block[worldHeight][worldWidth];
 		
@@ -75,11 +71,11 @@ public class Board {
 			}
 		}
 		
-		loader.loadSave(new File("resources/maps/1.txt"), this);
-
-//		Bor hentes fra kartet senere
-		setStart(grid[0][0]);
-		setGoal(grid[8][12]);
+		loader.loadSave(new File("resources/maps/"+mapNum+".map"), this);
+		
+//		Finner korsteste vei on request
+		pathfinder = new Pathfinder(this);
+		pathfinder.findPath();
 	}
 	
 	public void placeTower(){
@@ -177,7 +173,7 @@ public class Board {
 		
 //		Tegner knappene
 		for(int i = 0; i < towerButtons.size(); i++){
-			g.setColor(Colors.range);
+			g.setColor(Colors.transparentBlack);
 			g.fillRect(towerButtons.get(i).x, towerButtons.get(i).y, towerButtons.get(i).width, towerButtons.get(i).height);
 			GameData.modelTowers.get(i).drawButton(g, towerButtons.get(i));
 		}
@@ -196,12 +192,14 @@ public class Board {
 		if(mouseOver!=null)mouseOver.drawRange(g);
 		
 //		Tegn knapper for meny og neste bolge
-		g.setColor(Colors.range);
+		g.setColor(Colors.transparentBlack);
 		g.fillRect(nextWave.x, nextWave.y, nextWave.width, nextWave.height);
 		g.drawImage(Tilesets.button_tileset[GameData.nextWave], nextWave.x, nextWave.y, nextWave.width, nextWave.height, null);
-		g.fillRect(goToShop.x, goToShop.y, goToShop.width, goToShop.height);
-		g.drawImage(Tilesets.button_tileset[GameData.goToShop], goToShop.x, goToShop.y, goToShop.width, goToShop.height, null);
-		
+		g.fillRect(goToStore.x, goToStore.y, goToStore.width, goToStore.height);
+		g.drawImage(Tilesets.button_tileset[GameData.goToShop], goToStore.x, goToStore.y, goToStore.width, goToStore.height, null);
+
+		g.fillRect(mute.x, mute.y, mute.width, mute.height);
+
 	}
 
 	public void nextWave(){
@@ -228,14 +226,25 @@ public class Board {
 	}
 	
 	public boolean menuClicked() {
-		return goToShop.contains(Screen.CURSOR);
+		return goToStore.contains(Screen.CURSOR);
 	}
 
+	public void mute(){
+		if(mute.contains(Screen.CURSOR)){
+			if(GameData.muted)GameData.muted = false;
+			else GameData.muted = true;
+		}
+	}
+	
 	public void setStart(Block start) {
 		this.start = start;
 	}
 
 	public void setGoal(Block goal) {
 		this.goal = goal;
+	}
+
+	public boolean goToStore() {
+		return goToStore.contains(Screen.CURSOR);
 	}
 }

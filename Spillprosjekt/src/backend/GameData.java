@@ -75,7 +75,13 @@ public class GameData {
 	//Barrel(String name, int price ,int textureIndex, double damage, double range, double firerate) 
 	public static Barrel  barrel_1 = new Barrel("Gauss",100,4,0,250,500);
 
-	public static boolean muted = false;
+	
+	
+	
+	public static boolean muted = true;
+	
+	
+	
 	public static String[] songs = {"backgroundMusic1.wav","backgroundMusic.wav"};
 	public static int songNum = new Random().nextInt(2);
 }

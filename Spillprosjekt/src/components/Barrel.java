@@ -16,19 +16,14 @@ import backend.Tilesets;
 public class Barrel extends TowerComponent{
 
 	//protected Image barrelTexture;
-	protected double rotation = 0;
-	
-								
 	protected String[] allowed_ammo = {"Missiles", "Tacks", "Bullets"};
 	
 	
-
-	protected Point center;
-	
 	public Barrel(String name, int price ,int textureIndex, double damage, double range, double firerate) {
 		super(damage, range, firerate, price,name,textureIndex);
-
-	
+		this.name = name;
+		this.price = price;
+		this.type = "barrel";
 		this.id = GameData.basicBarrel;
 		this.texture = Tilesets.barrel_tileset[textureIndex];
 	}
@@ -54,7 +49,6 @@ public class Barrel extends TowerComponent{
 //	    Tegn barrel
 	    g2d.drawImage(texture, tx, ty, 60, 60, null);
 	}
-	
 	public void drawButton(Graphics g, Rectangle rect){
 		g.drawImage(texture, (int)rect.getX()+15, (int)rect.getY()+10, 60, 60, null);
 	}
@@ -67,9 +61,4 @@ public class Barrel extends TowerComponent{
 		g2d.setColor(Color.ORANGE);
 	    g2d.fillRect((int)tower.getX()+60, (int) (tower.getY()+30-3), 10, 6);
 	}
-
-	public double getRotation() {
-		return rotation;
-	}
-
 }

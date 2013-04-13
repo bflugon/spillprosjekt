@@ -92,7 +92,7 @@ public class BigSound implements Runnable {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			// line.close();
+			line.close();
 		}
 	} // run
 

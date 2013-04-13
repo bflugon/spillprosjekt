@@ -3,10 +3,11 @@ package graphics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.event.MouseWheelListener;
 import java.awt.geom.AffineTransform;
-import java.util.ArrayList;
 
 import sound.Sound;
+
 import backend.Colors;
 import backend.Tilesets;
 
@@ -42,8 +43,6 @@ public class Tower extends Rectangle{
 	private Base base;
 	private Ammo ammo;
 	private Barrel barrel;
-	
-	private ArrayList<Ammo> firedAmmo; 
 
 	private Board board;
 	
@@ -60,8 +59,6 @@ public class Tower extends Rectangle{
 		ammo = new BasicAmmo();
 		fireFrame = (int)firerate;
 		
-		firedAmmo = new ArrayList<Ammo>();
-		
 		updateProperties();
 	}
 
@@ -75,7 +72,7 @@ public class Tower extends Rectangle{
 		this.name ="Mongo bollefjes";
 	}
 	
-	//Flytta koden over i en egen metode, denne kj¿res i draw.
+	
 	private void findTarget(){
 		Enemy[] enemies = board.getEnemies();
 		
@@ -98,10 +95,17 @@ public class Tower extends Rectangle{
 				distY = enemy.getY()-y;
 				
 				if(Math.sqrt(distY*distY+distX*distX) <= range && enemy.inGame()){
+					double barrelX = x+30;
+					double barrelY = y+30;
 					if(target == null) {
 						target = enemy;
+						rotation = Math.atan(((barrelY-target.getY()-30) / (barrelX-target.getX()-30) ));
+						if(target.getX()+30 <= barrelX) rotation += Math.PI;
 					} else if(enemy.getDistanceTraveled() > target.getDistanceTraveled()){
 						target = enemy;
+						rotation = Math.atan(((barrelY-target.getY()-30) / (barrelX-target.getX()-30) ));
+						if(target.getX()+30 <= barrelX) rotation += Math.PI;
+
 					}
 				}
 			}
@@ -113,63 +117,11 @@ public class Tower extends Rectangle{
 	
 //	Skyter naar timeren i "physics" kaller metoden
 	private void shoot(){
-
-		/*
-		Enemy[] enemies = board.getEnemies();
-		
-		double distX = 1000;
-		double distY = 1000;
-		
 		if(target != null){
-			distX = target.getX()-x;
-			distY = target.getY()-y;
-		
-			if(Math.sqrt(distY*distY+distX*distX) <= range){
-				if(!target.inGame()) target = null;
-			} else {
-				target = null;
-			}
-		} else {
-			for(int i = 0; i < enemies.length; i++){
-				Enemy enemy = enemies[i];
-				distX = enemy.getX()-x;
-				distY = enemy.getY()-y;
-				
-				if(Math.sqrt(distY*distY+distX*distX) <= range && enemy.inGame()){
-					double barrelX = x+width/2;
-					double barrelY = y+height/2;
-					if(target == null) {
-						target = enemy;
-						rotation = Math.atan(((barrelY-target.getY()-30) / (barrelX-target.getX()-30) ));
-						if(target.getX()+30 <= barrelX) rotation += Math.PI;
-					} else if(enemy.getDistanceTraveled() > target.getDistanceTraveled()){
-						target = enemy;
-						rotation = Math.atan(((barrelY-target.getY()-30) / (barrelX-target.getX()-30) ));
-						if(target.getX()+30 <= barrelX) rotation += Math.PI;
-					}
-				}
-			}
-		}
-		*/
-		//findTarget();
-
-
-		if(target != null){
-			
-			// Laget en ny ammo
-			Ammo new_ammo = new Ammo(ammo.getName(), ammo.getPrice(),ammo.getTextureIndex(), ammo.getDamage(), ammo.getRange(), ammo.getFirerate());
-			
-			//Hvert skudd blir lagret i denne lista. I draw metoden gŒr koden gjennom lista og tegner alle ammoene som er skutt og i spillet
-			firedAmmo.add(new_ammo);
-			// Regner ut rotasjonen til tŒrnet
-			new_ammo.rotateAmmo(this);
-
-
 			target.setLives(damage);
 			Sound.playSound("shot.wav");
 			if(!target.inGame()) target = null;
 			fireFrame = 0;
-			double rotation = barrel.getRotation();
 		}
 	}
 
@@ -184,8 +136,6 @@ public class Tower extends Rectangle{
 		tower.setBarrel(newBarrel);
 		tower.setAmmo(newAmmo);
 		tower.setBase(newBase);
-		
-		
 	}
 	
 	public void setBase(Base base) {
@@ -235,8 +185,6 @@ public class Tower extends Rectangle{
 		} else {
 			fireFrame++;
 		}
-		
-		
 	}
 
 	public Enemy getTarget() {
@@ -260,20 +208,15 @@ public class Tower extends Rectangle{
 	//	Tar imot et grafikkobjekt og tegner taarnet
 	public void draw(Graphics g){
 		g.drawImage(Tilesets.base_tileset[base.getID()], x, y, width, height, null);
-
+		
 		Graphics2D g2d = (Graphics2D)g;
 		AffineTransform oldtrans = new AffineTransform();
 
 		findTarget();
-		for(Ammo firammo : firedAmmo){
-			firammo.drawProjectile(g2d,this);
-		}
 		
-		//barrel.draw(g2d, this);
-
 		barrel.draw(g2d, x, y, rotation);
 
-	    if(fireFrame <= 10) barrel.drawShot(g2d, this); 
+		if(fireFrame <= 10) barrel.drawShot(g2d, this); 
 	    
 //	    Reset transfomasjonene (kommenter ut denne for aa se hva som skjer uten naar du plasserer flere taarn)
 	    g2d.setTransform(oldtrans);
@@ -320,13 +263,8 @@ public class Tower extends Rectangle{
 		return damage;
 	}
 	
-	
 	public double getFireRate(){
 		return firerate;
-	}
-	
-	public void removeFiredAmmo(){
-		this.firedAmmo.remove(0);
 	}
 	
 	

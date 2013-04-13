@@ -1,5 +1,7 @@
 package gui;
 
+import editor.SelectorBlock;
+import graphics.Block;
 import graphics.Screen;
 
 import java.awt.Point;
@@ -9,6 +11,8 @@ import java.awt.event.MouseMotionListener;
 
 public class EditorMouseListener implements MouseListener, MouseMotionListener {
 
+	int id = -1;
+	
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO Auto-generated method stub
@@ -46,6 +50,12 @@ public class EditorMouseListener implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		//
+		Object source = e.getSource();
+		if (source instanceof SelectorBlock) {
+			id = ((Block) source).getBlockID();
+		}
+		if (source instanceof Block) {
+			((Block) source).setBlockID(id);
+		}
 	}
 }

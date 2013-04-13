@@ -5,9 +5,8 @@ import backend.GameData;
 public class BasicAmmo extends Ammo {
 
 	public BasicAmmo() {
-		//damage, splash, glue
-		super(0, false, false);
-		name = "Basic Ammo";
+		//Ammo(String name,String ammoType, int price ,int textureIndex, double damage, double range, double firerate)
+		super("Basic ammo",25,0,25,25,25);
 		this.id = GameData.basicAmmo;
 	}
 

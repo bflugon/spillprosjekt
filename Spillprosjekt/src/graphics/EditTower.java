@@ -29,11 +29,7 @@ public class EditTower {
 	
 	public EditTower(){
 		
-		Barrel barrel_1 = new Barrel("Yor", 999, 999, 999, 34);
-		Barrel barrel_2 = new Barrel("Short round", 20, 14, 45, 34);
-		Barrel barrel_3 = new Barrel("Indy", 20, 14, 100, 34);
-		Barrel barrel_4 = new Barrel("TB", 20, 14, 45, 34);
-		Barrel barrel_5 = new Barrel("Mongo bollefjes", 20, 14, 45, 34);	
+	
 		
 		goToBoard = new Rectangle(720,560,80,80);
 		

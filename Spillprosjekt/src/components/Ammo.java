@@ -9,12 +9,12 @@ public class Ammo extends TowerComponent {
 	
 	protected String ammoType; 
 
-	public Ammo(double damage, boolean splashDamage, boolean slow) {
-		super(damage, 0, 0, splashDamage, slow, false);
+	public Ammo(String name, int price ,int textureIndex, double damage, double range, double firerate) {
+		super(damage, range, firerate, price,name,textureIndex);
 		this.type = "ammo";
 		
-		this.ammoType = "Bullet";
-		
+		this.ammoType = ammoType;
+		this.textureIndex = textureIndex;
 		this.id = 3;
 		this.texture = Tilesets.block_tileset[id];
 		

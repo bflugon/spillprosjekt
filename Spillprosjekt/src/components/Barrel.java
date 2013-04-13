@@ -22,13 +22,11 @@ public class Barrel extends TowerComponent{
 	
 	protected Point center;
 	
-	public Barrel(String name, int price ,double damage, double range, double firerate) {
-		super(damage, range, firerate, false,false,false);
-		this.name = name;
-		this.price = price;
+	public Barrel(String name, int price ,int textureIndex, double damage, double range, double firerate) {
+		super(damage, range, firerate, price,name,textureIndex);
 		this.type = "barrel";
 		this.id = GameData.basicBarrel;
-		this.texture = Tilesets.barrel_tileset[this.id];
+		this.texture = Tilesets.barrel_tileset[textureIndex];
 	}
 	
 	public String[] getAmmoTypes(){

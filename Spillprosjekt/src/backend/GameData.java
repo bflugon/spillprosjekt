@@ -28,7 +28,7 @@ public class GameData {
 							doomsday = 1;
 	
 //	index til barrel i tilesettet
-	public static final int	basicBarrel = 0,
+	public static final int	basicBarrel = 3,
 							littlefinger = 1,
 							bigMama = 2;
 	

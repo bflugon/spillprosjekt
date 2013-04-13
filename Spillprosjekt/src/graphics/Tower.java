@@ -115,9 +115,9 @@ public class Tower extends Rectangle{
 //Fra Simen: Er noe galt med denne
 //	Fra Oyvind: Ikke nå lenger :)
 	public void copyTower(Tower tower){	
-		Barrel newBarrel = new Barrel(barrel.getName(), barrel.getPrice(), barrel.getDamage(), barrel.getRange(), barrel.getFirerate());
-		Ammo newAmmo = new Ammo(ammo.getDamage(), ammo.getSplashDamage(), ammo.getSlow());
-		Base newBase = new Base((int)base.getDamage(), base.getRadar());
+		Barrel newBarrel = new Barrel(barrel.getName(), barrel.getPrice(),barrel.getTextureIndex(), barrel.getDamage(), barrel.getRange(), barrel.getFirerate());
+		Ammo newAmmo = new Ammo(ammo.getName(), ammo.getPrice(),ammo.getTextureIndex(), ammo.getDamage(), ammo.getRange(), ammo.getFirerate());
+		Base newBase = new Base(base.getName(), base.getPrice(),base.getTextureIndex(), base.getDamage(), base.getRange(), base.getFirerate());
 		
 		tower.setBarrel(newBarrel);
 		tower.setAmmo(newAmmo);

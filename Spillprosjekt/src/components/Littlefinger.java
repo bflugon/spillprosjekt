@@ -16,14 +16,10 @@ import backend.Tilesets;
 public class Littlefinger extends Barrel {
 	public Littlefinger(){
 //		Damage, range, firerate
-		
-		super("Basic barrel",10,-50,0,0);
-		
-		this.name = "Littlefinger";
+		super("Littlefinger",50,1,35,20,5);
 		this.id = GameData.littlefinger;
-		texture = Tilesets.barrel_tileset[this.id];
 	}
-	
+	/*
 	
 	public void draw(Graphics2D g2d, Tower tower){
 		Image barrelTexture = Tilesets.barrel_tileset[this.id];		
@@ -71,4 +67,5 @@ public class Littlefinger extends Barrel {
 		g.drawImage(texture, (int)rect.getX()+15, (int)rect.getY()+10, 60, 60, null);
 
 	}
+	*/
 }

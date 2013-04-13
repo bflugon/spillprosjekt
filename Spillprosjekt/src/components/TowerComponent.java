@@ -18,27 +18,36 @@ public class TowerComponent {
 					range;
 	
 	protected int 	id,
+					textureIndex,
 					price;
 	
 	private boolean splashDamage,
 					slow, 
 					radar;
 	
-	public TowerComponent(double damage, double range, double firerate, boolean splashDamage, boolean slow, boolean radar){
+	public TowerComponent(double damage, double range, double firerate,int price, String name,int textureIndex){
 		this.damage = damage;
 		this.firerate = firerate;
 		this.range = range;
-		
-		this.splashDamage = splashDamage;
-		this.slow = slow;
-		this.radar = radar;
+		this.name = name;
+		this.price = price;
+		this.textureIndex = textureIndex;
+
 		GameData.components_list.add(this);
 	}
 	
 	public void drawButton(Graphics g, Rectangle rect){
-		System.out.println("Drawing!!!!");
 		g.drawImage(texture, rect.x, rect.y+10, 60, 60, null);
 	}
+	
+	public void setSplash(){
+		splashDamage = true;
+	}
+	
+	public boolean getSplash(){
+		return splashDamage;
+	}
+	
 	
 	public int getPrice() {
 		return price;
@@ -54,6 +63,10 @@ public class TowerComponent {
 	
 	public double getRange(){
 		return range;
+	}
+	
+	public int getTextureIndex(){
+		return textureIndex;
 	}
 	
 	public boolean getSplashDamage(){

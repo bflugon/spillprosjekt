@@ -9,9 +9,7 @@ import backend.Tilesets;
 public class Doomsday extends Base {
 
 	public Doomsday() {
-		super(3, false);
-		name = "Doomsday";
+		super("Doomsday", 25,1,25,25,25);
 		id = GameData.doomsday;
-		texture = Tilesets.base_tileset[id];
 	}
 }

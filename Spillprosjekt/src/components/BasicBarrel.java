@@ -18,12 +18,12 @@ public class BasicBarrel extends Barrel {
 	
 	
 	public BasicBarrel() {
-		super("Basic barrel",10,0,0,0);
-		name = "Basic Barrel";
+		//Barrel(String name, int price ,int textureIndex, double damage, double range, double firerate) 
+		super("Basic barrel",25,0,25,25,25);
 		this.id = GameData.basicBarrel;
-		texture = Tilesets.barrel_tileset[this.id];
 	}
-	
+	//Tror ikke vi trenger dette?
+	/*
 	public void drawButton(Graphics g, Rectangle rect){
 		g.drawImage(texture, (int)rect.getX()+15, (int)rect.getY()+10, 60, 60, null);
 	}
@@ -32,4 +32,5 @@ public class BasicBarrel extends Barrel {
 		g2d.setColor(Color.ORANGE);
 	    g2d.fillRect((int)tower.getX()+60, (int) (tower.getY()+30-3), 10, 6);
 	}
+	*/
 }

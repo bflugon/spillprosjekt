@@ -9,9 +9,8 @@ import backend.Tilesets;
 public class BasicBase extends Base {
 
 	public BasicBase() {
-		super(0,false);
-		this.name = "Basic Base";
+		//(String name, int price ,int textureIndex, double damage, double range, double firerate)
+		super("Basic Base", 25,0,25,25,25);
 		this.id = GameData.basicBase;
-		texture = Tilesets.base_tileset[id];
 	}
 }

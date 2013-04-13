@@ -32,12 +32,7 @@ public class Menu {
 						newTower;
 	
 	public Menu(){
-		
-		Barrel barrel_1 = new Barrel("Yor", 999, 999, 999, 34);
-		Barrel barrel_2 = new Barrel("Short round", 1, 150, 10, 10);
-		Barrel barrel_3 = new Barrel("Indy", 20, 14, 80, 34);
-		Barrel barrel_4 = new Barrel("TB", 20, 14, 80, 34);
-		Barrel barrel_5 = new Barrel("Mongo bollefjes", 20, 14, 45, 34);	
+			
 		
 		modelTowers = GameData.modelTowers;
 		modelTowers.add(new Tower());

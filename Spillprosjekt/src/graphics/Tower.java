@@ -3,11 +3,10 @@ package graphics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.event.MouseWheelListener;
 import java.awt.geom.AffineTransform;
+import java.util.ArrayList;
 
 import sound.Sound;
-
 import backend.Colors;
 import backend.Tilesets;
 
@@ -26,6 +25,8 @@ public class Tower extends Rectangle{
 	
 //	Maa ha kontroll paa hvilken fiende det skyter paa for aa rotere mot maalet
 	private Enemy target;
+	
+	private ArrayList<Ammo> firedAmmo; 
 	
 //	Multipelen oker basert paa komponentene
 	private double 	damage = 1,
@@ -59,6 +60,8 @@ public class Tower extends Rectangle{
 		ammo = new BasicAmmo();
 		fireFrame = (int)firerate;
 		
+		firedAmmo = new ArrayList<Ammo>();
+		
 		updateProperties();
 	}
 
@@ -82,7 +85,7 @@ public class Tower extends Rectangle{
 		if(target != null){
 			distX = target.getX()-x;
 			distY = target.getY()-y;
-		
+			
 			if(Math.sqrt(distY*distY+distX*distX) <= range){
 				if(!target.inGame()) target = null;
 			} else {
@@ -95,17 +98,10 @@ public class Tower extends Rectangle{
 				distY = enemy.getY()-y;
 				
 				if(Math.sqrt(distY*distY+distX*distX) <= range && enemy.inGame()){
-					double barrelX = x+30;
-					double barrelY = y+30;
 					if(target == null) {
 						target = enemy;
-						rotation = Math.atan(((barrelY-target.getY()-30) / (barrelX-target.getX()-30) ));
-						if(target.getX()+30 <= barrelX) rotation += Math.PI;
 					} else if(enemy.getDistanceTraveled() > target.getDistanceTraveled()){
 						target = enemy;
-						rotation = Math.atan(((barrelY-target.getY()-30) / (barrelX-target.getX()-30) ));
-						if(target.getX()+30 <= barrelX) rotation += Math.PI;
-
 					}
 				}
 			}
@@ -115,9 +111,20 @@ public class Tower extends Rectangle{
 	}
 	
 	
+	private void rotate(){
+		if(target == null)return;
+		double barrelX = x+30;
+		double barrelY = y+30;
+		rotation = Math.atan(((barrelY-target.getY()-30) / (barrelX-target.getX()-30) ));
+		if(target.getX()+30 <= barrelX) rotation += Math.PI;
+	}
+	
 //	Skyter naar timeren i "physics" kaller metoden
 	private void shoot(){
 		if(target != null){
+			
+			firedAmmo.add(new Ammo(x, y, ammo.getTextureIndex(), rotation));
+			
 			target.setLives(damage);
 			Sound.playSound("shot.wav");
 			if(!target.inGame()) target = null;
@@ -180,11 +187,14 @@ public class Tower extends Rectangle{
 //	Alt av timere ol skal kjores fra denne (vil kalles av gameloopen)
 	private int fireFrame = (int) firerate;
 	public void physics(){
+		rotate();
 		if(fireFrame >= firerate) {
 			shoot();
+			findTarget();
 		} else {
 			fireFrame++;
 		}
+		
 	}
 
 	public Enemy getTarget() {
@@ -211,15 +221,17 @@ public class Tower extends Rectangle{
 		
 		Graphics2D g2d = (Graphics2D)g;
 		AffineTransform oldtrans = new AffineTransform();
-
-		findTarget();
 		
 		barrel.draw(g2d, x, y, rotation);
 
 		if(fireFrame <= 10) barrel.drawShot(g2d, this); 
 	    
+		for(Ammo firammo : firedAmmo){
+			firammo.drawProjectile(g2d,this);
+		}
 //	    Reset transfomasjonene (kommenter ut denne for aa se hva som skjer uten naar du plasserer flere taarn)
 	    g2d.setTransform(oldtrans);
+	    
 	}
 	
 	public void drawButton(Graphics g, Rectangle rect){
@@ -267,5 +279,7 @@ public class Tower extends Rectangle{
 		return firerate;
 	}
 	
-	
+	public void removeFiredAmmo(){
+		this.firedAmmo.remove(0);
+	}
 }

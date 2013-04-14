@@ -43,13 +43,8 @@ public class MapLoader {
 	        	if (i != 0) {
 	        		out.write("\n");
 	        	}
-	        	for (int j = 0; j < grid[i].length; j++) {
-	        		if (j == 0) {
-	        			out.write(grid[i][j].getBlockID());
-	        		}
-	        		else {
-	        			out.write(" " + grid[i][j].getBlockID());
-	        		}
+	        	for (int j = 0; j < grid[i].length; j++) {	
+	        		out.write(grid[i][j].getBlockID() + " ");
 	        	}
 	        }
 	        out.close();

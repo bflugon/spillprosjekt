@@ -8,14 +8,12 @@ import java.util.ArrayList;
 
 import sound.Sound;
 import backend.Colors;
+import backend.GameData;
 import backend.Tilesets;
 
 import components.Ammo;
 import components.Barrel;
 import components.Base;
-import components.BasicAmmo;
-import components.BasicBarrel;
-import components.BasicBase;
 import components.Projectile;
 
 // Maa Extende Rectangle for aa gjore det lettere aa tegne i "draw"
@@ -57,9 +55,9 @@ public class Tower extends Rectangle{
 		
 		setBounds((int) block.getX(),(int) block.getY(),60,60);
 		
-		base = new BasicBase();
-		barrel = new BasicBarrel();
-		ammo = new BasicAmmo();
+		barrel = GameData.barrels.get(0);
+		ammo = GameData.ammo.get(0);
+		base = GameData.bases.get(0);
 		fireFrame = (int)firerate;
 		
 		firedAmmo = new ArrayList<Projectile>();
@@ -70,9 +68,9 @@ public class Tower extends Rectangle{
 //	En mal trenger ikke possisjon, bare egenskaper og verdier
 //	Disse blir oppdatert avhengig av hvilke komponenter man legger til
 	public Tower(){
-		barrel = new BasicBarrel();
-		ammo = new BasicAmmo();
-		base = new BasicBase();
+		barrel = GameData.barrels.get(0);
+		ammo = GameData.ammo.get(0);
+		base = GameData.bases.get(0);
 		updateProperties();
 		this.name ="Mongo bollefjes";
 	}

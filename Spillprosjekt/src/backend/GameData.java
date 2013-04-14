@@ -7,7 +7,10 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Random;
 
+import components.Ammo;
 import components.Barrel;
+import components.Base;
+import components.Inventory;
 import components.TowerComponent;
 
 public class GameData {
@@ -42,7 +45,9 @@ public class GameData {
 							start = 3,
 							goal = 4;
 	
-	public static ArrayList<TowerComponent> components_list = new ArrayList<TowerComponent>();
+	public static ArrayList<Barrel> barrels = new ArrayList<Barrel>();
+	public static ArrayList<Ammo> ammo = new ArrayList<Ammo>();
+	public static ArrayList<Base> bases = new ArrayList<Base>();
 	
 	public static final int spaceInvader = 0,
 							pacGhost = 1;

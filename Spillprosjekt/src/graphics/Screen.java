@@ -1,5 +1,6 @@
 package graphics;
 
+import graphics.componentMenu.ComponentMenu;
 import graphics.mainMenu.MainMenu;
 import gui.BoardMouseListener;
 import gui.MainMenuMouseListener;
@@ -28,7 +29,7 @@ public class Screen extends JPanel implements Runnable {
 	public Thread thread = new Thread(this);
 	
 	private Board board;
-	private Menu menu;
+	private ComponentMenu menu;
 	private MainMenu mainMenu;
 	
 	private JFrame frame;
@@ -47,7 +48,7 @@ public class Screen extends JPanel implements Runnable {
 
 		setSize(frame.getSize());
 		
-		menu = new Menu();
+		menu = new ComponentMenu();
 		board = new Board();
 		mainMenu = new MainMenu(this);
 		
@@ -143,7 +144,7 @@ public class Screen extends JPanel implements Runnable {
 		return inStore;
 	}
 
-	public Menu getStore() {
+	public ComponentMenu getStore() {
 		return menu;
 	}
 

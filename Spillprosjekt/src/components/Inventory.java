@@ -26,18 +26,18 @@ public class Inventory {
 	
 	private void createAmmo(String name,String ammoType, int price ,int textureIndex, double damage, double range, double firerate){
 		Ammo new_ammo = new Ammo( name, ammoType,  price , textureIndex,  damage,  range, firerate);
-		GameData.components_list.add(new_ammo);
+		GameData.ammo.add(new_ammo);
 	}
 	
 	
 	private void createBarrel(String name, int price ,int textureIndex, double damage, double range, double firerate){
 		Barrel new_barrel = new Barrel( name,  price , textureIndex,  damage,  range,  firerate);
-		GameData.components_list.add(new_barrel);
+		GameData.barrels.add(new_barrel);
 	}
 	
 	private void createBase(String name, int price ,int textureIndex, double damage, double range, double firerate){
 		Base new_base = new Base( name,  price , textureIndex,  damage,  range,  firerate);
-		GameData.components_list.add(new_base);
+		GameData.bases.add(new_base);
 	}
 	
 

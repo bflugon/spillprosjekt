@@ -2,6 +2,7 @@ package components;
 
 import graphics.Board;
 import graphics.Enemy;
+import graphics.Tower;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -22,11 +23,13 @@ public class Projectile extends Rectangle{
 	
 	protected String ammoType;
 	
+	private Tower tower;
 	
-	
-	public Projectile(double x, double y, int textureIndex, double rotation, Enemy target, double damage, Board board, String ammoType){
+	public Projectile(Tower tower, double x, double y, int textureIndex, double rotation, Enemy target, double damage, Board board, String ammoType){
 		this.texture = Tilesets.ammo_tileset[textureIndex];
 		this.board = board;
+		
+		this.tower = tower;
 		
 		this.ammoType = ammoType;
 		
@@ -39,9 +42,6 @@ public class Projectile extends Rectangle{
 		this.damage = damage;
 		this.speed = 1;
 		this.target = target;
-		
-		x += Math.cos(rotation) *16;
-    	y += Math.sin(rotation) *16;
 	}
 	
 	private void rotate(){
@@ -52,14 +52,22 @@ public class Projectile extends Rectangle{
 		if(target.getX() <= barrelX) rotation += Math.PI;
 	}
 	
+	public void physics(){
+		if(target != null && ammoType.equals("Missile")){
+    		rotate();
+    	}
+		x += Math.cos(rotation) * speed;
+    	y += Math.sin(rotation) * speed;
+    	checkHit();
+    	
+    	ammoTimeOut ++;
+    	if(ammoTimeOut > 1000 || !target.inGame()){
+    		tower.removeFiredAmmo(this);
+    	}
+	}
 
 	
 	public void drawProjectile(Graphics2D g2d){
-	    if(ammoTimeOut < 1000){
-	    	if(target != null && ammoType.equals("Missile")){
-	    		rotate();
-	    	}
-	    		
 	    	
 	    	AffineTransform trans = new AffineTransform();
 	    	trans.rotate(rotation,x,y);
@@ -67,25 +75,14 @@ public class Projectile extends Rectangle{
 	    	g2d.setTransform(trans);
 	    	
 	    	g2d.drawImage(texture, (int)(x) -10, (int)(y)-10, (int)20, 20, null);
-	    
-	    	x += Math.cos(rotation) * speed;
-	    	y += Math.sin(rotation) * speed;
-	    	ammoTimeOut ++;
-	    	
-	    	setBounds((int)this.x,(int)this.y,20,20);
-	    	checkHit();
-
-	    }
-
-	    
 	}
 	
 	private void checkHit(){
+		setBounds((int)x, (int)y, 20, 20);
 		for(Enemy enemy : board.getEnemies()){
-			if(this.intersects(enemy)){
+			if(this.intersects(enemy) && enemy.inGame()){
 				ammoTimeOut = 100000;
 				enemy.setLives(damage);
-				//System.out.println("Hit");
 			}
 			
 		}

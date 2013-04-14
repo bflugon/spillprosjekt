@@ -123,7 +123,7 @@ public class Tower extends Rectangle{
 	private void shoot(){
 		if(target != null){
 			
-			firedAmmo.add(new Projectile(x, y, ammo.getTextureIndex(), rotation, this.getTarget(),this.getDamage(),this.board, ammo.getAmmoType()));
+			firedAmmo.add(new Projectile(this, x, y, ammo.getTextureIndex(), rotation, this.getTarget(),this.getDamage(),this.board, ammo.getAmmoType()));
 			
 			
 			if(firedAmmo.size() > 10){
@@ -200,6 +200,10 @@ public class Tower extends Rectangle{
 			fireFrame++;
 		}
 		
+		for(Projectile proj : firedAmmo){
+			proj.physics();
+		}
+		
 	}
 
 	public Enemy getTarget() {
@@ -220,7 +224,7 @@ public class Tower extends Rectangle{
 		return barrel;
 	}
 
-	//	Tar imot et grafikkobjekt og tegner taarnet
+//	Tar imot et grafikkobjekt og tegner taarnet
 	public void draw(Graphics g){
 		g.drawImage(Tilesets.base_tileset[base.getID()], x, y, width, height, null);
 		
@@ -234,10 +238,6 @@ public class Tower extends Rectangle{
 		barrel.draw(g2d, x, y, rotation);
 
 		if(fireFrame <= 10) barrel.drawShot(g2d, this); 
-	    
-
-
-		
 		
 //	    Reset transfomasjonene (kommenter ut denne for aa se hva som skjer uten naar du plasserer flere taarn)
 	    g2d.setTransform(oldtrans);
@@ -289,7 +289,7 @@ public class Tower extends Rectangle{
 		return firerate;
 	}
 	
-	public void removeFiredAmmo(){
-		this.firedAmmo.remove(0);
+	public void removeFiredAmmo(Projectile proj){
+		this.firedAmmo.remove(proj);
 	}
 }

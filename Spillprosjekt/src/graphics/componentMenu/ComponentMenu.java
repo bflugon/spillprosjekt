@@ -67,6 +67,8 @@ public class ComponentMenu {
 			g.drawImage(Tilesets.button_tileset[GameData.newTower], newTower.x, newTower.y, newTower.width, newTower.height, null);
 		}
 
+		
+//		Liste, hvis det trengs
 		if(componentList != null)componentList.draw(g);
 		
 	}

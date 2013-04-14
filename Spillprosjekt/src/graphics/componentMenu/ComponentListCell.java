@@ -35,6 +35,12 @@ public class ComponentListCell extends Rectangle{
 	}
 	
 	public void draw(Graphics g){
+		if(component instanceof Barrel) drawBarrel(g);
+		else if(component instanceof Base) drawBarrel(g);
+		else return;
+	}
+	
+	public void drawBarrel(Graphics g){
 
 		if(contains(Screen.CURSOR)) g.setColor(Colors.transparentPink);
 		else g.setColor(Colors.transparentBlack);

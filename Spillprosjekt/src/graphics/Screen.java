@@ -113,7 +113,7 @@ public class Screen extends JPanel implements Runnable {
 		else if(inStore)menu.draw(g);
 		else mainMenu.draw(g);
 	}	
-
+	
 	public void run() {
 		while(true) {
 			try {

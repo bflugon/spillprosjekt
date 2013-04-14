@@ -55,16 +55,6 @@ public class Ammo extends TowerComponent {
 	}
 	
 	
-	// N똱 et t똱n skyter, lager den et nytt ammo-objekt
-	//N똱 ammo-objektet blir laget, kj퓊es rotateAmmo. Da regnes det ut hvilken vinkel ammoen skal f퓄ge
-//	Vi har rotasjonen fra taarnet
-	
-	//Hver gang t똱net kj퓊er draw metoden sin, kj퓊er den drawProjectile metoden her i ammoklassen.
-	//
-	
-	
-	
-	
 	
 	public void rotateAmmo(double rotation){
 		speedX = Math.cos(rotation) * 5;

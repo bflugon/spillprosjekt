@@ -125,6 +125,10 @@ public class Tower extends Rectangle{
 			
 			firedAmmo.add(new Ammo(x, y, ammo.getTextureIndex(), rotation));
 			
+			if(firedAmmo.size() > 10){
+				firedAmmo.remove(0);
+			}
+			
 			target.setLives(damage);
 			Sound.playSound("shot.wav");
 			if(!target.inGame()) target = null;
@@ -226,9 +230,12 @@ public class Tower extends Rectangle{
 
 		if(fireFrame <= 10) barrel.drawShot(g2d, this); 
 	    
-		for(Ammo firammo : firedAmmo){
-			firammo.drawProjectile(g2d,this);
+		
+		for(int i = 0; i<(firedAmmo.size()); i ++){
+			firedAmmo.get(i).drawProjectile(g2d,this);
 		}
+		
+		
 //	    Reset transfomasjonene (kommenter ut denne for aa se hva som skjer uten naar du plasserer flere taarn)
 	    g2d.setTransform(oldtrans);
 	    

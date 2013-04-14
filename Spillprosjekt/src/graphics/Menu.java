@@ -70,7 +70,7 @@ public class Menu {
 			}
 			
 //			Viser det aktive tower
-			Rectangle towerFrame = new Rectangle(20, 20, 670, 230);
+			Rectangle towerFrame = new Rectangle(20, 20, 680, 230);
 			activeTower.drawLargeImage(g, towerFrame);
 			
 			g.setColor(Colors.transparentBlack);
@@ -89,13 +89,13 @@ public class Menu {
 			g.drawString("Range: " + String.valueOf(activeTower.getRange()),260,230);
 			g.drawString("Firerate: " + String.valueOf(activeTower.getFireRate()),500,230);
 			
-			ComponentList barrelList = new ComponentList(100, 300, activeTower.getBarrel(), true );
+			ComponentList barrelList = new ComponentList(20, 300, activeTower.getBarrel(), true );
 			barrelList.draw(g);
 			
-			ComponentList baseList = new ComponentList(100, 380, activeTower.getBase(), true );
+			ComponentList baseList = new ComponentList(20, 380, activeTower.getBase(), true );
 			baseList.draw(g);
 			
-			ComponentList ammoList = new ComponentList(100, 460, activeTower.getAmmo(), true );
+			ComponentList ammoList = new ComponentList(20, 460, activeTower.getAmmo(), true );
 			ammoList.draw(g);
 			
 //			Egenskaper

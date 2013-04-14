@@ -19,12 +19,12 @@ public class ComponentList extends Rectangle{
 	private TowerComponent compareCompo;
 	
 	private int width = 600;
-	private int imageX = 75;
+	private int imageX = 80;
 	private int height = 50;
 				
 
 	public ComponentList(int x, int y, TowerComponent towercomp, boolean more_info) {
-		setBounds(15,y,width  + imageX,height);
+		setBounds(x,y,width  + imageX,height);
 		
 		this.towercomp =  towercomp;
 		this.more_info = more_info;

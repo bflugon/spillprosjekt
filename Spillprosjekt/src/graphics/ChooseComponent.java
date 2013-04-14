@@ -12,7 +12,7 @@ import components.Barrel;
 import components.Base;
 import components.TowerComponent;
 
-public class ChooseComponent {
+public class ChooseComponent extends PopupWindow {
 	
 	private TowerComponent activeComponent;
 	private String current_type;
@@ -33,9 +33,10 @@ public class ChooseComponent {
 	
 	
 	public void draw(Graphics g) {
+		super.draw(g);
 		
-		ComponentList barrel = new ComponentList(100, 30, activeComponent, true );
-		componentButtons.add(new Rectangle(100,30 , 680, 50));
+		ComponentList barrel = new ComponentList(70, 80, activeComponent, true );
+		componentButtons.add(new Rectangle(70,80 , 680, 50));
 		components.add(activeComponent);
 		barrel.draw(g);
 		
@@ -43,15 +44,15 @@ public class ChooseComponent {
 		g.setColor(Color.WHITE);
 		
 
-		g.drawString("Compatible " + current_type,125,118);
+		g.drawString("Compatible " + current_type + "s",70,159);
 		int teller = 0;
 		for (TowerComponent towercomp : GameData.components_list) {
 			if(towercomp.getType().equals(current_type) && !towercomp.equals(activeComponent) ){
 				
-				int y = 70 * teller + 120;
+				int y = 70 * teller + 160;
 				
-				componentButtons.add(new Rectangle(15, y, 680, 50));
-				ComponentList new_item = new ComponentList(15, y,towercomp, false );
+				componentButtons.add(new Rectangle(70, y, 680, 50));
+				ComponentList new_item = new ComponentList(70, y,towercomp, false );
 				new_item.setcompareCompo(activeComponent);
 				
 				components.add(towercomp);

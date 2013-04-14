@@ -18,7 +18,7 @@ public class PopupWindow extends Rectangle {
 		g.fillRect(x, y, width, height);
 		
 		g.setColor(Colors.popupBackground);
-		g.fillRect(x+100, y+50, width-200, height-120);
+		g.fillRect(x+70, y+50, 680, height-120);
 	}
 
 }

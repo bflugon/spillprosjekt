@@ -37,8 +37,8 @@ public class Ammo extends TowerComponent {
 		super(0, 0, 0, 0, "", textureIndex);
 		this.texture = Tilesets.ammo_tileset[textureIndex];
 		
-		ammoX = x;
-		ammoY = y;
+		ammoX = x+30;
+		ammoY = y+30;
 		
 		rotateAmmo(rotation);
 	}

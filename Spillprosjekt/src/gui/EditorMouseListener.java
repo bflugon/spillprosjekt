@@ -1,6 +1,6 @@
 package gui;
 
-import editor.SelectorBlock;
+import editor.Editor;
 import graphics.Block;
 import graphics.Screen;
 
@@ -9,12 +9,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import javax.swing.SwingUtilities;
+
 public class EditorMouseListener implements MouseListener, MouseMotionListener {
 
 	int id = -1;
+	Editor editor = new Editor();
 	
 	@Override
-	public void mouseDragged(MouseEvent arg0) {
+	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -25,37 +28,37 @@ public class EditorMouseListener implements MouseListener, MouseMotionListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
+	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent arg0) {
+	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mouseExited(MouseEvent arg0) {
+	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+	public void mousePressed(MouseEvent e) {
+		
 		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		Object source = e.getSource();
-		if (source instanceof SelectorBlock) {
-			id = ((Block) source).getBlockID();
+		if (SwingUtilities.isRightMouseButton(e)) {
+			editor.setID((Block) source);
 		}
-		if (source instanceof Block) {
-			((Block) source).setBlockID(id);
+		else if (SwingUtilities.isLeftMouseButton(e)) {
+			editor.setBlock((Block) source);
 		}
 	}
 }

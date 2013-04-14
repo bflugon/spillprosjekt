@@ -29,6 +29,10 @@ public class ComponentMenu {
 	
 	private ComponentList componentList;
 	
+	private ComponentCell 	barrelCell,
+							ammoCell,
+							baseCell;
+	
 	public ComponentMenu(){
 		
 		modelTowers = GameData.modelTowers;
@@ -44,10 +48,18 @@ public class ComponentMenu {
 		
 		activeTower = modelTowers.get(activeTowerIndex);
 		
-		componentList = new ComponentList(activeTower.getBarrel());
+		barrelCell = new ComponentCell(activeTower.getBarrel(), activeTower.getBarrel(), 20, 200, 680, 80);
+		ammoCell = new ComponentCell(activeTower.getAmmo(), activeTower.getAmmo(), 20, 290, 680, 80);
+		baseCell = new ComponentCell(activeTower.getBase(), activeTower.getBase(), 20, 380, 680, 80);
+
+//		componentList = new ComponentList(activeTower.getBarrel());
 	}
 
 	public void draw(Graphics g) {
+		
+		barrelCell.draw(g);
+		ammoCell.draw(g);
+		baseCell.draw(g);
 		
 		/*************************
 		 *** Taarn og knapper ****

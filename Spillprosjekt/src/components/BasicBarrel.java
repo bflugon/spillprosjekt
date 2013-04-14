@@ -21,6 +21,7 @@ public class BasicBarrel extends Barrel {
 		//Barrel(String name, int price ,int textureIndex, double damage, double range, double firerate) 
 		super("Basic barrel",0,0,0,400,100);
 		this.id = GameData.basicBarrel;
+		GameData.components_list.add(this);
 	}
 	//Tror ikke vi trenger dette?
 	/*

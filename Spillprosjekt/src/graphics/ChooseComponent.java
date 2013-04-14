@@ -20,6 +20,7 @@ public class ChooseComponent extends PopupWindow {
 	
 	private ArrayList<Rectangle> componentButtons;
 	private ArrayList<TowerComponent> components;
+	private ComponentList selectedItem;
 	
 	public ChooseComponent(TowerComponent activeComponent,int activeTowerIndex){
 		this.current_type = activeComponent.getType();
@@ -35,10 +36,10 @@ public class ChooseComponent extends PopupWindow {
 	public void draw(Graphics g) {
 		super.draw(g);
 		
-		ComponentList barrel = new ComponentList(70, 80, activeComponent, true );
+		ComponentList selectedItem = new ComponentList(70, 80, activeComponent, true );
 		componentButtons.add(new Rectangle(70,80 , 680, 50));
 		components.add(activeComponent);
-		barrel.draw(g);
+		selectedItem.draw(g);
 		
 		g.setFont(GameData.normal);
 		g.setColor(Color.WHITE);

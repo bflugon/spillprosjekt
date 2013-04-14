@@ -8,5 +8,6 @@ public class Missile extends Ammo{
 		super("Missile",25,1,0,25,25);
 		name = "Missile";
 		id = GameData.missile;
+		GameData.components_list.add(this);
 	}
 }

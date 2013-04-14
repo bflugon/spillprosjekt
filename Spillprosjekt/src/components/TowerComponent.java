@@ -33,7 +33,7 @@ public class TowerComponent {
 		this.price = price;
 		this.textureIndex = textureIndex;
 
-		GameData.components_list.add(this);
+		//GameData.components_list.add(this);
 	}
 	
 	public void drawButton(Graphics g, Rectangle rect){

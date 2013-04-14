@@ -77,7 +77,6 @@ public class GameData {
 
 	
 	
-	
 	public static boolean muted = true;
 	
 	

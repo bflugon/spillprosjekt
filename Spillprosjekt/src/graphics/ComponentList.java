@@ -40,18 +40,11 @@ public class ComponentList extends Rectangle{
 	
 	public void draw(Graphics g){
 		
-		
 		if(contains(Screen.CURSOR)){
 			g.setColor(Colors.transparentPink);
-			if(true){
-				
 				g.fillRect(x + imageX, y, width,height);
-			}
-			
 			
 		}
-		
-		
 		
 		
 		g.setColor(Colors.transparentBlack);

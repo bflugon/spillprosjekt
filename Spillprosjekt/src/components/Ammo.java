@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 
+import backend.GameData;
 import backend.Tilesets;
 
 
@@ -30,6 +31,7 @@ public class Ammo extends TowerComponent {
 		this.textureIndex = textureIndex;
 		this.id = 3;
 		this.texture = Tilesets.ammo_tileset[textureIndex];
+
 		
 	}
 	
@@ -39,6 +41,7 @@ public class Ammo extends TowerComponent {
 		
 		ammoX = x+30;
 		ammoY = y+30;
+		this.rotation = rotation;
 		
 		rotateAmmo(rotation);
 	}
@@ -70,14 +73,14 @@ public class Ammo extends TowerComponent {
 	}
 	
 	public void drawProjectile(Graphics2D g2d, Tower tower){
-	    if(ammoTimeOut < 800){
+	    if(ammoTimeOut < 600){
 	    	
 	    	AffineTransform trans = new AffineTransform();
 	    	trans.rotate(rotation,ammoX,ammoY);
 	    	trans.translate(0,0);
 	    	g2d.setTransform(trans);
 	    	
-	    	g2d.drawImage(texture, (int)(ammoX), (int)(ammoY), (int)20, 20, null);
+	    	g2d.drawImage(texture, (int)(ammoX), (int)(ammoY), (int)40, 40, null);
 	    
 	    	ammoX += speedX;
 	    	ammoY += speedY;

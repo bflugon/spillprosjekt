@@ -18,7 +18,7 @@ public class ComponentList extends PopupWindow{
 	private ArrayList<ComponentListCell> list = new ArrayList<ComponentListCell>();
 	
 	public ComponentList(TowerComponent currComponent){
-		
+
 		int counter = 0;
 		if(currComponent instanceof Barrel){
 			for(TowerComponent tc : GameData.barrels){

@@ -16,6 +16,7 @@ import components.Base;
 import components.BasicAmmo;
 import components.BasicBarrel;
 import components.BasicBase;
+import components.Projectile;
 
 // Maa Extende Rectangle for aa gjore det lettere aa tegne i "draw"
 public class Tower extends Rectangle{
@@ -26,7 +27,8 @@ public class Tower extends Rectangle{
 //	Maa ha kontroll paa hvilken fiende det skyter paa for aa rotere mot maalet
 	private Enemy target;
 	
-	private ArrayList<Ammo> firedAmmo; 
+	private ArrayList<Projectile> firedAmmo;
+	
 	
 //	Multipelen oker basert paa komponentene
 	private double 	damage = 1,
@@ -60,7 +62,7 @@ public class Tower extends Rectangle{
 		ammo = new BasicAmmo();
 		fireFrame = (int)firerate;
 		
-		firedAmmo = new ArrayList<Ammo>();
+		firedAmmo = new ArrayList<Projectile>();
 		
 		updateProperties();
 	}
@@ -123,10 +125,11 @@ public class Tower extends Rectangle{
 	private void shoot(){
 		if(target != null){
 			
-			firedAmmo.add(new Ammo(x, y, ammo.getTextureIndex(), rotation));
+			firedAmmo.add(new Projectile(x, y, ammo.getTextureIndex(), rotation, this.getTarget(),ammo.getDamage()));
+			
 			
 			if(firedAmmo.size() > 10){
-				firedAmmo.remove(0);
+				//firedAmmo.remove(0);
 			}
 			
 			target.setLives(damage);
@@ -223,17 +226,22 @@ public class Tower extends Rectangle{
 	public void draw(Graphics g){
 		g.drawImage(Tilesets.base_tileset[base.getID()], x, y, width, height, null);
 		
+		
 		Graphics2D g2d = (Graphics2D)g;
 		AffineTransform oldtrans = new AffineTransform();
+		
+		
+		for(int i = 0; i<(firedAmmo.size()); i ++){
+			firedAmmo.get(i).drawProjectile(g2d);
+		}
+		
 		
 		barrel.draw(g2d, x, y, rotation);
 
 		if(fireFrame <= 10) barrel.drawShot(g2d, this); 
 	    
 		
-		for(int i = 0; i<(firedAmmo.size()); i ++){
-			firedAmmo.get(i).drawProjectile(g2d,this);
-		}
+
 		
 		
 //	    Reset transfomasjonene (kommenter ut denne for aa se hva som skjer uten naar du plasserer flere taarn)

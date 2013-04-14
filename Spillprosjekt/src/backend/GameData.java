@@ -70,8 +70,7 @@ public class GameData {
 												new BasicBase(),
 												new Doomsday(),
 //												Ammo
-												new BasicAmmo(),
-												new Missile()};
+												new BasicAmmo()};
 	//Barrel(String name, int price ,int textureIndex, double damage, double range, double firerate) 
 	public static Barrel  barrel_1 = new Barrel("Gauss",100,4,0,250,500);
 

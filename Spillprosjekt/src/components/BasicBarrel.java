@@ -1,25 +1,13 @@
 package components;
 
-import graphics.Enemy;
-import graphics.Tower;
-
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.geom.AffineTransform;
-
 import backend.GameData;
-import backend.Tilesets;
 
 public class BasicBarrel extends Barrel {
 	
 	
 	public BasicBarrel() {
 		//Barrel(String name, int price ,int textureIndex, double damage, double range, double firerate) 
-		super("Basic barrel",0,0,0,400,100);
+		super("Basic barrel",0,0,0,400,500);
 		this.id = GameData.basicBarrel;
 		GameData.components_list.add(this);
 	}

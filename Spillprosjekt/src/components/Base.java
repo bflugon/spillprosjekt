@@ -15,7 +15,7 @@ public class Base extends TowerComponent{
 		super(damage, range, firerate, price,name,textureIndex);
 		this.type = "base";
 		this.id = GameData.basicBase;
-		this.texture = Tilesets.base_tileset[id];
+		this.texture = Tilesets.base_tileset[textureIndex];
 	}
 
 	public void drawButton(Graphics g, Rectangle rect){

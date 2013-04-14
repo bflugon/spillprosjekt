@@ -9,7 +9,7 @@ public class BasicBarrel extends Barrel {
 		//Barrel(String name, int price ,int textureIndex, double damage, double range, double firerate) 
 		super("Basic barrel",0,0,0,400,500);
 		this.id = GameData.basicBarrel;
-		GameData.components_list.add(this);
+		//GameData.components_list.add(this);
 	}
 	//Tror ikke vi trenger dette?
 	/*

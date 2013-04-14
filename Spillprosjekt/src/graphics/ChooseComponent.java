@@ -48,7 +48,7 @@ public class ChooseComponent extends PopupWindow {
 		g.drawString("Compatible " + current_type + "s",70,159);
 		int teller = 0;
 		for (TowerComponent towercomp : GameData.components_list) {
-			if(towercomp.getType().equals(current_type) && !towercomp.equals(activeComponent) ){
+			if(towercomp.getType().equals(current_type) && !towercomp.getName().equals(activeComponent.getName()) ){
 				
 				int y = 70 * teller + 160;
 				

@@ -1,5 +1,6 @@
 package backend;
 
+import graphics.Enemy;
 import graphics.Tower;
 
 import java.awt.Font;
@@ -11,6 +12,7 @@ import components.BasicAmmo;
 import components.BasicBarrel;
 import components.BasicBase;
 import components.Doomsday;
+import components.Inventory;
 import components.Littlefinger;
 import components.Missile;
 import components.MissileLauncher;
@@ -63,6 +65,10 @@ public class GameData {
 //	onskede taarnet i copy-metoden
 	public static ArrayList<Tower> modelTowers = new ArrayList<Tower>();
 	
+	public static Enemy[] enemies;
+	
+	public static Inventory invetar = new Inventory();
+	
 	public static TowerComponent[] components = {new BasicBarrel(),
 												new Littlefinger(),
 												new MissileLauncher(),
@@ -70,6 +76,7 @@ public class GameData {
 												new BasicBase(),
 												new Doomsday(),
 //												Ammo
+												new Missile(),
 												new BasicAmmo()};
 	//Barrel(String name, int price ,int textureIndex, double damage, double range, double firerate) 
 	public static Barrel  barrel_1 = new Barrel("Gauss",100,4,0,250,500);

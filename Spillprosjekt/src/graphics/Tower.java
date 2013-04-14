@@ -125,14 +125,14 @@ public class Tower extends Rectangle{
 	private void shoot(){
 		if(target != null){
 			
-			firedAmmo.add(new Projectile(x, y, ammo.getTextureIndex(), rotation, this.getTarget(),ammo.getDamage()));
+			firedAmmo.add(new Projectile(x, y, ammo.getTextureIndex(), rotation, this.getTarget(),this.getDamage(),this.board, ammo.getAmmoType()));
 			
 			
 			if(firedAmmo.size() > 10){
-				//firedAmmo.remove(0);
+				firedAmmo.remove(0);
 			}
 			
-			target.setLives(damage);
+			
 			Sound.playSound("shot.wav");
 			if(!target.inGame()) target = null;
 			fireFrame = 0;
@@ -144,7 +144,7 @@ public class Tower extends Rectangle{
 //	Fra Oyvind: Ikke nå lenger :)
 	public void copyTower(Tower tower){	
 		Barrel newBarrel = new Barrel(barrel.getName(), barrel.getPrice(),barrel.getTextureIndex(), barrel.getDamage(), barrel.getRange(), barrel.getFirerate());
-		Ammo newAmmo = new Ammo(ammo.getName(), ammo.getPrice(),ammo.getTextureIndex(), ammo.getDamage(), ammo.getRange(), ammo.getFirerate());
+		Ammo newAmmo = new Ammo(ammo.getName(),ammo.getAmmoType(), ammo.getPrice(),ammo.getTextureIndex(), ammo.getDamage(), ammo.getRange(), ammo.getFirerate());
 		Base newBase = new Base(base.getName(), base.getPrice(),base.getTextureIndex(), base.getDamage(), base.getRange(), base.getFirerate());
 		
 		tower.setBarrel(newBarrel);
@@ -226,21 +226,18 @@ public class Tower extends Rectangle{
 	public void draw(Graphics g){
 		g.drawImage(Tilesets.base_tileset[base.getID()], x, y, width, height, null);
 		
-		
 		Graphics2D g2d = (Graphics2D)g;
 		AffineTransform oldtrans = new AffineTransform();
 		
-		
-		for(int i = 0; i<(firedAmmo.size()); i ++){
+ 		for(int i = 0; i<(firedAmmo.size()); i ++){
 			firedAmmo.get(i).drawProjectile(g2d);
 		}
-		
 		
 		barrel.draw(g2d, x, y, rotation);
 
 		if(fireFrame <= 10) barrel.drawShot(g2d, this); 
 	    
-		
+
 
 		
 		

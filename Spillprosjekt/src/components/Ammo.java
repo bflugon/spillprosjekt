@@ -23,7 +23,7 @@ public class Ammo extends TowerComponent {
 	
 	protected String ammoType; 
 
-	public Ammo(String name, int price ,int textureIndex, double damage, double range, double firerate) {
+	public Ammo(String name,String ammoType, int price ,int textureIndex, double damage, double range, double firerate) {
 		super(damage, range, firerate, price,name,textureIndex);
 		this.type = "ammo";
 		

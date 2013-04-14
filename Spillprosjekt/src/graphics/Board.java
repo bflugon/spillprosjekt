@@ -3,13 +3,12 @@ package graphics;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.io.File;
-import java.lang.annotation.Target;
 import java.util.ArrayList;
 
 import backend.Colors;
 import backend.GameData;
-import backend.Pathfinder;
 import backend.MapLoader;
+import backend.Pathfinder;
 import backend.Tilesets;
 
 public class Board {
@@ -53,8 +52,10 @@ public class Board {
 		enemyLives = 3;
 //		Fyller arrayet med fiender
 		enemies = new Enemy[80];
+		GameData.enemies = new Enemy[80];
 		for(int i = 0; i<enemies.length; i++){
 			enemies[i] = new Enemy(this);
+			GameData.enemies[i] = new Enemy(this);
 		}
 		
 		towerButtons = new ArrayList<Rectangle>();

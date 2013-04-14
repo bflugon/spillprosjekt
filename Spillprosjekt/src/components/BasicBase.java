@@ -12,6 +12,6 @@ public class BasicBase extends Base {
 		//(String name, int price ,int textureIndex, double damage, double range, double firerate)
 		super("Basic Base", 25,0,0,75,25);
 		this.id = GameData.basicBase;
-		GameData.components_list.add(this);
+		//GameData.components_list.add(this);
 	}
 }

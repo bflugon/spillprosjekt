@@ -33,6 +33,8 @@ public class ComponentMenu {
 							ammoCell,
 							baseCell;
 	
+	private TowerFrame towerFrame;
+	
 	public ComponentMenu(){
 		
 		modelTowers = GameData.modelTowers;
@@ -48,14 +50,16 @@ public class ComponentMenu {
 		
 		activeTower = modelTowers.get(activeTowerIndex);
 		
-		barrelCell = new ComponentCell(activeTower.getBarrel(), activeTower.getBarrel(), 20, 200, 680, 80);
-		ammoCell = new ComponentCell(activeTower.getAmmo(), activeTower.getAmmo(), 20, 290, 680, 80);
-		baseCell = new ComponentCell(activeTower.getBase(), activeTower.getBase(), 20, 380, 680, 80);
+		barrelCell = new ComponentCell(activeTower.getBarrel(), activeTower.getBarrel(), 20, 290, 680, 80);
+		ammoCell = new ComponentCell(activeTower.getAmmo(), activeTower.getAmmo(), 20, 380, 680, 80);
+		baseCell = new ComponentCell(activeTower.getBase(), activeTower.getBase(), 20, 470, 680, 80);
 
-		componentList = new ComponentList(activeTower.getBarrel(), this);
+		towerFrame = new TowerFrame(this);
 	}
 
 	public void draw(Graphics g) {
+		
+		towerFrame.draw(g);
 		
 		barrelCell.draw(g);
 		ammoCell.draw(g);
@@ -129,9 +133,11 @@ public class ComponentMenu {
 	public void closeList() {
 		componentList = null;
 		
-		barrelCell = new ComponentCell(activeTower.getBarrel(), activeTower.getBarrel(), 20, 200, 680, 80);
-		ammoCell = new ComponentCell(activeTower.getAmmo(), activeTower.getAmmo(), 20, 290, 680, 80);
-		baseCell = new ComponentCell(activeTower.getBase(), activeTower.getBase(), 20, 380, 680, 80);
+		barrelCell = new ComponentCell(activeTower.getBarrel(), activeTower.getBarrel(), 20, 290, 680, 80);
+		ammoCell = new ComponentCell(activeTower.getAmmo(), activeTower.getAmmo(), 20, 380, 680, 80);
+		baseCell = new ComponentCell(activeTower.getBase(), activeTower.getBase(), 20, 470, 680, 80);
+		
+		activeTower.updateProperties();
 	}
 
 	public void clickComponent() {

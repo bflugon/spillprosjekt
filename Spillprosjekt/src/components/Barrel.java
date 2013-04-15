@@ -54,7 +54,7 @@ public class Barrel extends TowerComponent{
 	}
 	
 	public void drawLargeImage(Graphics g, Rectangle rect){
-		g.drawImage(texture, (int)rect.getX()+30, (int)rect.getY()+10, 120, 120, null);
+		g.drawImage(texture, (int)rect.getX()+50, (int)rect.getY(), rect.width, rect.height, null);
 	}
 	
 	public void drawShot(Graphics2D g2d, Tower tower){

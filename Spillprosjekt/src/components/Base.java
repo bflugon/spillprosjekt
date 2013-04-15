@@ -23,7 +23,7 @@ public class Base extends TowerComponent{
 	}
 	
 	public void drawLargeImage(Graphics g, Rectangle rect){
-		g.drawImage(texture, rect.x, rect.y+10, 120, 120, null);
+		g.drawImage(texture, rect.x, rect.y, rect.width, rect.height, null);
 	}
 	
 	public void draw(Graphics g, Rectangle rect){

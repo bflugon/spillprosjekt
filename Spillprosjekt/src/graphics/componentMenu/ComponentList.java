@@ -33,10 +33,12 @@ public class ComponentList extends PopupWindow{
 			}
 		} else if(currComponent instanceof Ammo){
 			for(TowerComponent tc : GameData.ammo){
+				if(tc != currComponent)
 				list.add(new ComponentListCell(tc, currComponent, x, y+80*counter++, width, 80));
 			}
 		} else if(currComponent instanceof Base){
 			for(TowerComponent tc : GameData.bases){
+				if(tc != currComponent)
 				list.add(new ComponentListCell(tc, currComponent, x, y+80*counter++, width, 80));
 			}
 		}
@@ -61,8 +63,12 @@ public class ComponentList extends PopupWindow{
 				else if(currComponent instanceof Ammo)tower.setAmmo((Ammo)cell.getComponent());
 				else if(currComponent instanceof Base) tower.setBase((Base)cell.getComponent());
 				
+				menu.closeList();
+				break;
 			}
 		}
-		menu.closeList();
+		if(!contains(Screen.CURSOR)){
+			menu.closeList();
+		}
 	}
 }

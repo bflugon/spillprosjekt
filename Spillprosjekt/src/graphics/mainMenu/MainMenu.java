@@ -17,9 +17,7 @@ public class MainMenu extends Rectangle {
 	private Screen screen;
 	private Rectangle[] buttons;
 	
-	private BoardButton[] boards;
-	
-	private int selectedBoard = 0;
+	private BoardList boardList = null;
 	
 	private boolean inCredits = false;
 	
@@ -36,13 +34,6 @@ public class MainMenu extends Rectangle {
 		for(int i = 0; i < buttons.length; i++){
 			buttons[i] = new Rectangle(40,370+75*i, 250,60);
 		}
-		
-		String[] files = new File("./resources/maps").list();
-		boards = new BoardButton[files.length];
-
-		for(int i = 0; i < boards.length; i++){
-			boards[i] = new BoardButton(40 + 130*i,225, 120, 120, new File("resources/maps/"+files[i]));
-		}
 	}
 	
 	public void draw(Graphics g){
@@ -57,31 +48,22 @@ public class MainMenu extends Rectangle {
 			g.drawString(buttonText[i], buttons[i].x+30, buttons[i].y+40);
 		}
 		
-		for(int i = 0; i < boards.length; i++){
-			if(selectedBoard == i) boards[i].draw(g, true);
-			else boards[i].draw(g, false);
-		}
-		
 		if(inCredits)credits.draw(g);
+		if(boardList != null)boardList.draw(g);
 	}
 
 	public void clickButton() {
-		if(buttons[0].contains(Screen.CURSOR) && !inCredits) screen.newBoard(selectedBoard);
-		else if(buttons[1].contains(Screen.CURSOR) && !inCredits) inCredits = true;
-		else if(buttons[2].contains(Screen.CURSOR) && !inCredits) System.exit(0);
-		else inCredits = false;
-		
-		for(int i = 0; i < boards.length; i++){
-			if(boards[i].contains(Screen.CURSOR)) selectedBoard = i;
+		if(boardList == null){
+			if(buttons[0].contains(Screen.CURSOR) && !inCredits) boardList = new BoardList(screen);
+			else if(buttons[1].contains(Screen.CURSOR) && !inCredits) inCredits = true;
+			else if(buttons[2].contains(Screen.CURSOR) && !inCredits) System.exit(0);
+			else inCredits = false;
+		} else {
+			boardList.clickedButton();
 		}
 	}
-	
-	public int getSelectedBoard() {
-		return selectedBoard;
+
+	public BoardList getBoardList() {
+		return boardList;
 	}
-	
-	public void setSelectedBoard(int i) {
-		selectedBoard = i;
-	}
-	
 }

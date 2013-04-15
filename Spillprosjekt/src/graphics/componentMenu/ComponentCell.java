@@ -54,7 +54,7 @@ public class ComponentCell extends Rectangle{
 		g.drawString(component.getName(), x+100, y+50);
 		
 //		Draw properties
-		g.setFont(GameData.list_stats);
+		g.setFont(GameData.small);
 		
 		g.setColor(Color.WHITE);
 		g.drawString("Damage:", x+300, y+25);

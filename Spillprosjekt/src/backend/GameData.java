@@ -56,7 +56,7 @@ public class GameData {
 						largeHeader = new Font("Arial", Font.PLAIN, 60),
 						normal = new Font("Arial", Font.PLAIN, 20),
 						normalLarge = new Font("Arial", Font.PLAIN, 40),
-						list_stats = new Font("Arial", Font.PLAIN, 15);
+						small = new Font("Arial", Font.PLAIN, 15);
 	
 //	Denne listen inneholder taarnene man har komponert selv. Nye taarn vil kopiere det 
 //	onskede taarnet i copy-metoden

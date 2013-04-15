@@ -1,6 +1,7 @@
 package graphics.mainMenu;
 
 import graphics.Block;
+import graphics.Screen;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -39,9 +40,9 @@ public class BoardButton extends Rectangle {
 		} catch (Exception e) {e.getStackTrace();}
 	}
 	
-	public void draw(Graphics g, boolean selected){
+	public void draw(Graphics g){
 		
-		if(selected)g.setColor(Colors.pink);
+		if(contains(Screen.CURSOR)) g.setColor(Colors.pink);
 		else g.setColor(Colors.transparentBlack);
 		
 		g.fillRect(x, y, width, height);

@@ -39,7 +39,7 @@ public class BigSound implements Runnable {
 	   line.open(); 
 	   
 	   playThread = new Thread (this); 
-	   playing = false; 
+	   playing = true; 
 	   
 	   notYetEOF = true;        
 	   playThread.start();
@@ -47,7 +47,6 @@ public class BigSound implements Runnable {
 	public void run() {
 		int readPoint = 0;
 		int bytesRead = 0;
-
 		try {
 			while (notYetEOF) {
 				if(GameData.muted)stop();
@@ -97,7 +96,7 @@ public class BigSound implements Runnable {
 	} // run
 
 	public void start() {
-		playing = false;
+		playing = true;
 		if (! playThread.isAlive())
 			playThread.start();
 		line.start();

@@ -6,6 +6,8 @@ import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 
+import javax.swing.plaf.SliderUI;
+
 import sound.Sound;
 import backend.Colors;
 import backend.GameData;
@@ -37,7 +39,7 @@ public class Tower extends Rectangle{
 	
 	private boolean	radar,
 					splashDamage,
-					glue;
+					slow;
 	
 	private String name;
 		
@@ -177,7 +179,7 @@ public class Tower extends Rectangle{
 	}
 	private void getAmmoBonuses(){
 		splashDamage = ammo.getSplashDamage();
-		glue = ammo.getSlow();
+		slow = ammo.getSlow();
 		damage += ammo.getDamage();
 	}
 	private void getBaseBonuses(){
@@ -289,5 +291,17 @@ public class Tower extends Rectangle{
 	
 	public void removeFiredAmmo(Projectile proj){
 		this.firedAmmo.remove(proj);
+	}
+
+	public boolean getSlow() {
+		return slow;
+	}
+
+	public boolean getRadar() {
+		return radar;
+	}
+
+	public boolean getSplashDamage() {
+		return splashDamage;
 	}
 }

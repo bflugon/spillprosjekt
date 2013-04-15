@@ -19,7 +19,7 @@ public class ComponentListCell extends ComponentCell{
 		
 		g.setColor(Color.WHITE);
 		g.setFont(GameData.header);
-		g.drawString(component.getPrice() + " $", x+500, y+50);
+		g.drawString(component.getPrice() + " $", x+590, y+60);
 		
 //		Draw border
 		g.setColor(Color.DARK_GRAY);

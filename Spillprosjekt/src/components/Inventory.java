@@ -10,14 +10,14 @@ public class Inventory {
 	
 	public Inventory(){
 		
-		createAmmo( "kim jong un", "Missile",  25 , 1,  1,  60, 20);
 		createAmmo("Basic ammo","Bullet",0,0,1,25,550);
+		createAmmo( "kim jong un", "Missile",  25 , 1,  1,  60, 20);
 		
+		createBarrel("Basic barrel",25, 0,  50,  50,  50);
 		createBarrel("Anhilator",120, 4,  100,  200,  500);
 		createBarrel("Hyper laser",200, 3,  1,  50,  40);
 		createBarrel("Big mama",120, 2,  75,  200,  300);
 		createBarrel("Phase barrel",250, 1,  200,  200,  200);
-		createBarrel("Basic barrel",25, 0,  50,  50,  50);
 		
 		createBase("Basic Base",100, 0,  30,  30,  0);
 		createBase("Doomsday",200, 1,  75,  75,  75);

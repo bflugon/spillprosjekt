@@ -33,8 +33,14 @@ public class ComponentList extends PopupWindow{
 			}
 		} else if(currComponent instanceof Ammo){
 			for(TowerComponent tc : GameData.ammo){
-				if(tc != currComponent)
-				list.add(new ComponentListCell(tc, currComponent, x, y+80*counter++, width, 80));
+				if(tc != currComponent){
+					Ammo ammo = (Ammo) tc;
+					String[] ammoTypes = menu.getActiveTower().getBarrel().getAmmoTypes();
+					for(String type : ammoTypes){
+						if(ammo.getAmmoType() == type)
+							list.add(new ComponentListCell(tc, currComponent, x, y+80*counter++, width, 80));
+					}
+				}
 			}
 		} else if(currComponent instanceof Base){
 			for(TowerComponent tc : GameData.bases){

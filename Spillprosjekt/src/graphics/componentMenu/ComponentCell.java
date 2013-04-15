@@ -19,7 +19,7 @@ import components.TowerComponent;
 public class ComponentCell extends Rectangle{
 	
 	protected TowerComponent component;
-	private int padding = 10;
+	private int padding = 15;
 	private TowerComponent currComponent;
 	private Image[] textures;
 	
@@ -35,13 +35,7 @@ public class ComponentCell extends Rectangle{
 	}
 	
 	public void draw(Graphics g){
-		if(component instanceof Barrel) drawBarrel(g);
-		else if(component instanceof Base) drawBarrel(g);
-		else drawBarrel(g);
-	}
-	
-	public void drawBarrel(Graphics g){
-
+		
 		if(contains(Screen.CURSOR)) g.setColor(Colors.transparentPink);
 		else g.setColor(Colors.transparentBlack);
 
@@ -57,20 +51,50 @@ public class ComponentCell extends Rectangle{
 		g.setFont(GameData.small);
 		
 		g.setColor(Color.WHITE);
-		g.drawString("Damage:", x+300, y+25);
+		g.drawString("Damage:", x+300, y+15);
 		g.setColor(compare(currComponent.getDamage(), component.getDamage()));
-		g.drawString(String.valueOf(component.getDamage()), x + 400, y + 25);
+		g.drawString(String.valueOf(component.getDamage()), x + 420, y + 15);
 		
 		
 		g.setColor(Color.WHITE);
-		g.drawString("Range:", x+300, y+45);
+		g.drawString("Range:", x+300, y+35);
 		g.setColor(compare(currComponent.getRange(), component.getRange()));
-		g.drawString(String.valueOf(component.getRange()), x+400, y+45);
+		g.drawString(String.valueOf(component.getRange()), x+420, y+35);
 		
 		g.setColor(Color.WHITE);
-		g.drawString("Firerate:", x+300, y+65);
+		g.drawString("Firerate:", x+300, y+55);
 		g.setColor(compare(currComponent.getFirerate(), component.getFirerate()));
-		g.drawString(String.valueOf(component.getFirerate()), x+400, y+65);
+		g.drawString(String.valueOf(component.getFirerate()), x+420, y+55);
+		
+//		Draw extra 
+		if(component instanceof Barrel) drawBarrel(g);
+		else if(component instanceof Base) drawBase(g);
+		else drawAmmo(g);
+	}
+	
+	public void drawBarrel(Graphics g){
+		String s = "";
+		String[] allowedAmmo = ((Barrel)component).getAmmoTypes();
+		
+		for(String ammo: allowedAmmo){
+			s += ammo + " ";
+		}
+		
+		g.setColor(Color.WHITE);
+		g.drawString("Allowed Ammo:", x+300, y+75);
+		g.drawString(s, x+420, y+75);
+	}
+	
+	public void drawAmmo(Graphics g){
+		g.setColor(Color.WHITE);
+		g.drawString("Ammo Type:", x+300, y+75);
+		g.drawString(((Ammo)component).getAmmoType(), x+420, y+75);
+	}
+	
+	public void drawBase(Graphics g){
+		g.setColor(Color.WHITE);
+		g.drawString("Base Type:", x+300, y+75);
+		g.drawString(((Base)component).getType(), x+420, y+75);
 	}
 	
 	public TowerComponent getComponent(){

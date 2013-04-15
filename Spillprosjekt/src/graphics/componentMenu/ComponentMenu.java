@@ -7,6 +7,8 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import components.Barrel;
+
 import backend.Colors;
 import backend.GameData;
 import backend.Tilesets;
@@ -145,5 +147,9 @@ public class ComponentMenu {
 		if(barrelCell.contains(Screen.CURSOR)) componentList = new ComponentList(activeTower.getBarrel(), this);
 		else if(ammoCell.contains(Screen.CURSOR)) componentList = new ComponentList(activeTower.getAmmo(), this);
 		else if(baseCell.contains(Screen.CURSOR)) componentList = new ComponentList(activeTower.getBase(), this);
+	}
+
+	public Tower getActiveTower() {
+		return activeTower;
 	}
 }

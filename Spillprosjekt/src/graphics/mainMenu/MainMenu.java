@@ -21,7 +21,7 @@ public class MainMenu extends Rectangle {
 	
 	private boolean inCredits = false;
 	
-	private String[] buttonText = {"Start Game","Credits", "Exit"};
+	private String[] buttonText = {"Start Game","Map Editor", "Credits", "Exit"};
 			
 	public MainMenu(Screen screen){
 		this.screen = screen;
@@ -29,10 +29,10 @@ public class MainMenu extends Rectangle {
 		
 		credits = new Credits();
 		
-		buttons = new Rectangle[3];
+		buttons = new Rectangle[4];
 		
 		for(int i = 0; i < buttons.length; i++){
-			buttons[i] = new Rectangle(40,370+75*i, 250,60);
+			buttons[i] = new Rectangle(40,295+75*i, 250,60);
 		}
 	}
 	
@@ -55,8 +55,9 @@ public class MainMenu extends Rectangle {
 	public void clickButton() {
 		if(boardList == null){
 			if(buttons[0].contains(Screen.CURSOR) && !inCredits) boardList = new BoardList(screen);
-			else if(buttons[1].contains(Screen.CURSOR) && !inCredits) inCredits = true;
-			else if(buttons[2].contains(Screen.CURSOR) && !inCredits) System.exit(0);
+			else if(buttons[1].contains(Screen.CURSOR) && !inCredits) return;
+			else if(buttons[2].contains(Screen.CURSOR) && !inCredits) inCredits = true;
+			else if(buttons[3].contains(Screen.CURSOR) && !inCredits) System.exit(0);
 			else inCredits = false;
 		} else {
 			boardList.clickedButton();

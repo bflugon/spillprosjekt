@@ -13,6 +13,8 @@ import backend.Tilesets;
 
 public class Board {
 	
+	private int money = 0;
+	
 	private int activeTower,
 				enemyLives;
 	private final int 	worldHeight = 9,
@@ -253,5 +255,13 @@ public class Board {
 
 	public boolean goToStore() {
 		return goToStore.contains(Screen.CURSOR);
+	}
+
+	public int getMoney() {
+		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
 	}
 }

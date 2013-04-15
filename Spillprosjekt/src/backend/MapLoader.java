@@ -27,6 +27,8 @@ public class MapLoader {
 						}
 					}
 				}
+				int id = loadScanner.nextInt();
+				board.setMoney(id);
 			
 				loadScanner.close();
 			}
@@ -47,6 +49,8 @@ public class MapLoader {
 	        		out.write(grid[i][j].getBlockID() + " ");
 	        	}
 	        }
+	        out.write("\n");
+	        out.write(board.getMoney());
 	        out.close();
 	    } catch (IOException e) {
 	    }

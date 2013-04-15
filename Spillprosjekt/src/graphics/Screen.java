@@ -81,7 +81,6 @@ public class Screen extends JPanel implements Runnable {
 	}
 	
 	public void goToBoard(){		
-		menu.updateTower();
 		board.updateButtons();
 		
 		inStore = false;

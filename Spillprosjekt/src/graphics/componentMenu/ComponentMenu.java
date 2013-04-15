@@ -92,17 +92,18 @@ public class ComponentMenu {
 	public void changeActiveTower() {
 		for(int i = 0; i < towerButtons.size(); i++){
 			if(towerButtons.get(i).contains(Screen.CURSOR)){
-				updateTower();
 				activeTower = modelTowers.get(i);
 				activeTowerIndex = i;
+				
+				barrelCell = new ComponentCell(activeTower.getBarrel(), activeTower.getBarrel(), 20, 290, 680, 80);
+				ammoCell = new ComponentCell(activeTower.getAmmo(), activeTower.getAmmo(), 20, 380, 680, 80);
+				baseCell = new ComponentCell(activeTower.getBase(), activeTower.getBase(), 20, 470, 680, 80);
+				
+				break;
 			}
 		}
 	}
 	
-	public void updateTower(){
-		//activeTower.updateComponents((Barrel)compMenus[0].getCurrentComponent(),(Base)compMenus[2].getCurrentComponent());
-	}
-
 	public boolean boardClicked() {
 		return goToBoard.contains(Screen.CURSOR);
 	}

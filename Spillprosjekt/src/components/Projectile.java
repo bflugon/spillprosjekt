@@ -49,7 +49,7 @@ public class Projectile extends Rectangle{
 		double barrelX = x;
 		double barrelY = y;
 		rotation = Math.atan(((barrelY-target.getCenterY()) / (barrelX-target.getCenterX()) ));
-		if(target.getX() <= barrelX) rotation += Math.PI;
+		if(target.getCenterX() <= barrelX) rotation += Math.PI;
 	}
 	
 	public void physics(){

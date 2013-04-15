@@ -49,7 +49,7 @@ public class Board {
 		mute = new Rectangle(540,570,80,80);
 		
 		activeTower = 0;
-		enemyLives = 3;
+		enemyLives = 300;
 //		Fyller arrayet med fiender
 		enemies = new Enemy[80];
 		GameData.enemies = new Enemy[80];
@@ -205,6 +205,7 @@ public class Board {
 		g.drawImage(Tilesets.button_tileset[GameData.goToShop], goToStore.x, goToStore.y, goToStore.width, goToStore.height, null);
 
 		g.fillRect(mute.x, mute.y, mute.width, mute.height);
+		g.drawImage(Tilesets.button_tileset[GameData.mute], mute.x, mute.y, mute.width, mute.height, null);
 
 	}
 

@@ -84,37 +84,25 @@ public class Tower extends Rectangle{
 		double distX = 1000;
 		double distY = 1000;
 		
-		if(target != null){
-			distX = target.getX()-x;
-			distY = target.getY()-y;
-			
-			if(Math.sqrt(distY*distY+distX*distX) <= range){
-				if(!target.inGame()) target = null;
-			} else {
-				target = null;
-			}
-		} else {
-			for(int i = 0; i < enemies.length; i++){
-				Enemy enemy = enemies[i];
-				distX = enemy.getX()-x;
-				distY = enemy.getY()-y;
+		for(int i = 0; i < enemies.length; i++){
+			Enemy enemy = enemies[i];
+			distX = enemy.getX()-x;
+			distY = enemy.getY()-y;
 				
-				if(Math.sqrt(distY*distY+distX*distX) <= range && enemy.inGame()){
-					if(target == null) {
-						target = enemy;
-					} else if(enemy.getDistanceTraveled() > target.getDistanceTraveled()){
-						target = enemy;
-					}
+			if(Math.sqrt(distY*distY+distX*distX) <= range && enemy.inGame()){
+				if(target == null) {
+					target = enemy;
+				} else if(enemy.getDistanceTraveled() > target.getDistanceTraveled()){
+					target = enemy;
 				}
 			}
-		}
-		
-
+		}		
 	}
 	
 	
 	private void rotate(){
 		if(target == null)return;
+		
 		double barrelX = x+30;
 		double barrelY = y+30;
 		rotation = Math.atan(((barrelY-target.getY()-30) / (barrelX-target.getX()-30) ));
@@ -127,14 +115,12 @@ public class Tower extends Rectangle{
 			
 			firedAmmo.add(new Projectile(this, x, y, ammo.getTextureIndex(), rotation, this.getTarget(),this.getDamage(),this.board, ammo.getAmmoType()));
 			
-			
 			if(firedAmmo.size() > 10){
 				firedAmmo.remove(0);
 			}
 			
-			
 			Sound.playSound("shot.wav");
-			if(!target.inGame()) target = null;
+			target = null;
 			fireFrame = 0;
 		}
 	}
@@ -196,6 +182,7 @@ public class Tower extends Rectangle{
 		if(fireFrame >= firerate) {
 			findTarget();
 			shoot();
+			findTarget();
 		} else {
 			fireFrame++;
 		}

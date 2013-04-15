@@ -33,7 +33,8 @@ public class GameData {
 	public static final int nextWave = 0,
 							goToShop = 1,
 							goToBoard = 2,
-							newTower = 3;
+							newTower = 3,
+							mute = 4;
 	
 	public static final int basicAmmo = 0,
 							missile = 1;

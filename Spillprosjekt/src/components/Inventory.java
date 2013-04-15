@@ -10,18 +10,22 @@ public class Inventory {
 	
 	public Inventory(){
 		
+		//double damage, double range, double firerate
+		
 		createAmmo("Basic ammo","Bullet",0,0,1,25,550);
 
 		createAmmo( "kim jong un", "Missile",  25 , 1,  1,  60, 20);
+		createAmmo("Propan","Flamme",100,2,200,25,10);
 
-		createAmmo("Hindenburd","Flamme",100,2,200,25,200);
-
-		String[] ammotyper = {"Bullet"};
-		createBarrel("Basic barrel",25, 0,  50,  50,  50, ammotyper);
-		createBarrel("Anhilator",120, 4,  100,  200,  500,ammotyper);
-		createBarrel("Hyper laser",200, 3,  1,  50,  40,ammotyper);
-		createBarrel("Big mama",120, 2,  75,  200,  300,ammotyper);
-		createBarrel("Phase barrel",250, 1,  200,  200,  200,ammotyper);
+		String[] bullet = {"Bullet"};
+		createBarrel("Basic barrel",25, 3,  50,  50,  50, bullet);
+		createBarrel("Anhilator",120, 0,  100,  200,  500,bullet);
+		createBarrel("Hyper laser",200, 1,  1,  50,  40,bullet);
+		createBarrel("Phase barrel",250, 2,  200,  200,  200,bullet);
+		
+		String[] flamme = {"Flamme"};
+		createBarrel("Cremator",25, 4,  250,  25,  25, flamme);
+		createBarrel("Hindenburner",500, 5,  50,  50,  15, flamme);
 		
 		createBase("Basic Base",100, 0,  30,  30,  0);
 		createBase("Doomsday",200, 1,  75,  75,  75);

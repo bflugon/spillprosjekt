@@ -42,8 +42,8 @@ public class Tilesets extends Component{
 			base_tileset[i] = createImage(new FilteredImageSource(base_tileset[i].getSource(), new CropImageFilter(0, 60*i, 60, 60)));
 		}
 		
-		barrel_tileset = new Image[5];
-		for(int i = 0; i < block_tileset.length; i++){
+		barrel_tileset = new Image[20];
+		for(int i = 0; i < barrel_tileset.length; i++){
 			barrel_tileset[i] = new ImageIcon("resources/textures/barrel_tileset.png").getImage();
 			barrel_tileset[i] = createImage(new FilteredImageSource(barrel_tileset[i].getSource(), new CropImageFilter(0, 60*i, 60, 60)));
 		}

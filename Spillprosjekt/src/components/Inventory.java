@@ -14,7 +14,7 @@ public class Inventory {
 
 		createAmmo( "kim jong un", "Missile",  25 , 1,  1,  60, 20);
 
-		createAmmo("Hindenburd","Flamme",100,2,1,25,200);
+		createAmmo("Hindenburd","Flamme",100,2,20,25,200);
 
 		
 		createBarrel("Basic barrel",25, 0,  50,  50,  50);

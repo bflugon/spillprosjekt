@@ -47,7 +47,7 @@ public class PersistentProjectile extends Projectile{
 		if(sX<range){
 			
 			sX +=8;
-			sY +=3;
+			sY +=5;
 		}
 		
 		

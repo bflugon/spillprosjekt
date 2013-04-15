@@ -146,6 +146,7 @@ public class Board {
 				if(!enemies[i].inGame()) {
 					enemies[i].spawnEnemy(enemyLives, 4, getStart());
 					enemiesSpawned++;
+					enemyLives += 100;
 					break;
 				}
 			}

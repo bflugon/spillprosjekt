@@ -74,7 +74,6 @@ public class Enemy extends Rectangle{
 			inGame = false;
 			mobWalk = 0;
 			Sound.playSound("explosion.wav");
-			GameData.money += value;
 		}
 	}
 	

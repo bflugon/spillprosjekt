@@ -216,7 +216,8 @@ public class Tower extends Rectangle{
 
 //	Tar imot et grafikkobjekt og tegner taarnet
 	public void draw(Graphics g){
-		g.drawImage(Tilesets.base_tileset[base.getTextureIndex()], x, y, width, height, null);
+		
+		base.draw(g, new Rectangle(x,y,width,height));
 		
 		Graphics2D g2d = (Graphics2D)g;
 		AffineTransform oldtrans = new AffineTransform();

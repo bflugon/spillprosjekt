@@ -27,7 +27,7 @@ public class Base extends TowerComponent{
 	}
 	
 	public void draw(Graphics g, Rectangle rect){
-		drawButton(g, rect);
+		g.drawImage(texture, rect.x, rect.y, 60, 60, null);
 	}
 	
 }

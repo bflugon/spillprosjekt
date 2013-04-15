@@ -1,5 +1,6 @@
 package graphics;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.io.File;
@@ -13,7 +14,8 @@ import backend.Tilesets;
 
 public class Board {
 	
-	private int money = 0;
+	private int money = 0,
+				lives = 20;
 	
 	private int activeTower,
 				enemyLives;
@@ -31,6 +33,7 @@ public class Board {
 	private Rectangle nextWave;
 	private Rectangle goToStore;
 	private Rectangle mute;
+	private Rectangle save;
 	
 	private ArrayList<Rectangle> towerButtons;
 	private ArrayList<Tower> towers;
@@ -48,11 +51,13 @@ public class Board {
 		
 		nextWave = new Rectangle(720,570,80,80);
 		goToStore = new Rectangle(630,570,80,80);
-		mute = new Rectangle(540,570,80,80);
+		mute = new Rectangle(585,570,35,35);
+		save = new Rectangle(585,615,35,35);
 		
 		activeTower = 0;
 		enemyLives = 300;
 //		Fyller arrayet med fiender
+		
 		enemies = new Enemy[80];
 		GameData.enemies = new Enemy[80];
 		for(int i = 0; i<enemies.length; i++){
@@ -200,15 +205,26 @@ public class Board {
 		}
 		if(mouseOver!=null)mouseOver.drawRange(g);
 		
-//		Tegn knapper for meny og neste bolge
+//		Tegn knapper
 		g.setColor(Colors.transparentBlack);
+		
 		g.fillRect(nextWave.x, nextWave.y, nextWave.width, nextWave.height);
 		g.drawImage(Tilesets.button_tileset[GameData.nextWave], nextWave.x, nextWave.y, nextWave.width, nextWave.height, null);
+		
 		g.fillRect(goToStore.x, goToStore.y, goToStore.width, goToStore.height);
 		g.drawImage(Tilesets.button_tileset[GameData.goToShop], goToStore.x, goToStore.y, goToStore.width, goToStore.height, null);
 
 		g.fillRect(mute.x, mute.y, mute.width, mute.height);
 		g.drawImage(Tilesets.button_tileset[GameData.mute], mute.x, mute.y, mute.width, mute.height, null);
+		
+		g.fillRect(save.x, save.y, save.width, save.height);
+		g.drawImage(Tilesets.button_tileset[GameData.save], save.x, save.y, save.width, save.height, null);
+		
+//		Tegn penger og liv
+		g.setFont(GameData.normal);
+		g.setColor(Color.WHITE);
+		g.drawString("Money: "+money, 470, 602);
+		g.drawString("Lives: "+lives, 470, 632);
 
 	}
 

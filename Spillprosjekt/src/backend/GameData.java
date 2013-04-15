@@ -34,7 +34,8 @@ public class GameData {
 							goToShop = 1,
 							goToBoard = 2,
 							newTower = 3,
-							mute = 4;
+							mute = 4,
+							save = 5;
 	
 	public static final int basicAmmo = 0,
 							missile = 1;

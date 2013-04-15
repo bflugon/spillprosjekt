@@ -69,7 +69,7 @@ public class PersistentProjectile extends Projectile{
     	trans.translate(15,0);
     	g2d.setTransform(trans);
     	
-    	g2d.drawImage(texture, (int)(x), (int)(y)-sY/2, (int)sX, sY, null);
+    	g2d.drawImage(texture, (int)(x) +27, (int)(y)-sY/2, (int)sX, sY, null);
 }
 
 }

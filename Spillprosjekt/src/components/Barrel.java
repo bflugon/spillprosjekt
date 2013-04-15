@@ -19,13 +19,14 @@ public class Barrel extends TowerComponent{
 	protected String[] allowed_ammo = {"Missile", "Tack", "Bullet","Flamme"};
 	
 	
-	public Barrel(String name, int price ,int textureIndex, double damage, double range, double firerate) {
+	public Barrel(String name, int price ,int textureIndex, double damage, double range, double firerate, String[] allowed_ammo) {
 		super(damage, range, firerate, price,name,textureIndex);
 		this.name = name;
 		this.price = price;
 		this.type = "barrel";
 		this.id = GameData.basicBarrel;
 		this.texture = Tilesets.barrel_tileset[textureIndex];
+		this.allowed_ammo = allowed_ammo;
 	}
 	
 	public String[] getAmmoTypes(){

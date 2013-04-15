@@ -71,7 +71,6 @@ public class GameData {
 	public static boolean muted = true;
 	
 	
-	
 	public static String[] songs = {"backgroundMusic1.wav","backgroundMusic.wav"};
 	public static int songNum = new Random().nextInt(2);
 }

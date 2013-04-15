@@ -27,8 +27,6 @@ public class PersistentProjectile extends Projectile{
 	}
 	
 	public void rotate(){
-		target = tower.getTarget();
-		
 		if(target == null)return;
 		double barrelX = x;
 		double barrelY = y;
@@ -39,9 +37,15 @@ public class PersistentProjectile extends Projectile{
 	
 	
 	public void physics(){
+		target = tower.getTarget();
 		if(target != null && ammoType.equals("Beam")){
     		rotate();
     	} 
+		
+		ammoTimeOut ++;
+    	if(ammoTimeOut > fireRate || target == null){
+    		tower.removeFiredAmmo(this);
+    	}
 		
 		rotate();
 		if(target.inGame()){
@@ -55,18 +59,7 @@ public class PersistentProjectile extends Projectile{
 			}
 		}
 
-		
-		
-		
-		
-		x += Math.cos(rotation) * speed;
-    	y += Math.sin(rotation) * speed;
     	checkHit();
-    	
-    	ammoTimeOut ++;
-    	if(ammoTimeOut > fireRate || !target.inGame()){
-    		tower.removeFiredAmmo(this);
-    	}
 	}
 
 	public void drawProjectile(Graphics2D g2d){

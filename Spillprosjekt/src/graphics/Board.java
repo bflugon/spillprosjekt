@@ -138,15 +138,15 @@ public class Board {
 		return blockSize;
 	}
 	
-	private int enemiesSpawned = 20, spawnFrame = 0, spawnRate = 400;
+	private int enemiesSpawned = 0, spawnFrame = 0, spawnRate = 400;
 	private void spawnTimer() {
-		if(enemiesSpawned == 20) return;
+		if(enemiesSpawned == 5) return;
 		if(spawnFrame >= spawnRate) {
 			for(int i = 0; i < enemies.length;i++) {
 				if(!enemies[i].inGame()) {
 					enemies[i].spawnEnemy(enemyLives, 4, getStart());
 					enemiesSpawned++;
-					enemyLives += 100;
+					enemyLives += 1000;
 					break;
 				}
 			}

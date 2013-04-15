@@ -18,10 +18,10 @@ public class Inventory {
 		createAmmo("Propan","Flamme",100,2,200,25,75);
 
 		String[] bullet = {"Bullet"};
-		createBarrel("Basic barrel",25, 3,  50,  50,  50, bullet);
-		createBarrel("Anhilator",120, 0,  100,  200,  500,bullet);
-		createBarrel("Hyper laser",200, 1,  1,  50,  40,bullet);
-		createBarrel("Phase barrel",250, 2,  200,  200,  200,bullet);
+		createBarrel("Basic barrel",25, 3,  50,  100,  200, bullet);
+		createBarrel("Anhilator",120, 0,  100,  200,  600,bullet);
+		createBarrel("Hyper laser",200, 1,  1,  70,  40,bullet);
+		createBarrel("Phase barrel",250, 2,  200,  350,  200,bullet);
 		
 		String[] flamme = {"Flamme"};
 		createBarrel("Cremator",25, 4,  250,  25,  50, flamme);

@@ -46,7 +46,7 @@ public class PersistentProjectile extends Projectile{
     	} 
 		
 		ammoTimeOut ++;
-    	if(ammoTimeOut > fireRate || target == null){
+    	if(ammoTimeOut > fireRate || target == null || !target.inGame()){
     		tower.removeFiredAmmo(this);
     	}
 		

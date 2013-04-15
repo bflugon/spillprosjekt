@@ -63,7 +63,7 @@ public class ComponentCell extends Rectangle{
 		
 		g.setColor(Color.WHITE);
 		g.drawString("Firerate:", x+300, y+55);
-		g.setColor(compare(currComponent.getFirerate(), component.getFirerate()));
+		g.setColor(compare(component.getFirerate(),currComponent.getFirerate()));
 		g.drawString(String.valueOf(component.getFirerate()), x+420, y+55);
 		
 //		Draw extra 

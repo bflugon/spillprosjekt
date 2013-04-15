@@ -5,6 +5,7 @@ import graphics.Enemy;
 import graphics.Tower;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 
 public class PersistentProjectile extends Projectile{
@@ -76,10 +77,18 @@ public class PersistentProjectile extends Projectile{
 }
 	
 	public void checkHit(){
-		setBounds((int)x, (int)y, sX, sY);
 		for(Enemy enemy : board.getEnemies()){
-			if(this.intersects(enemy) && enemy.inGame()){
-				enemy.setLives(damage);
+			double enemyRotation = Math.atan(((y-enemy.getCenterY()) / (x-enemy.getCenterX()) ));
+			
+			if(target.getCenterX() <= x) enemyRotation += Math.PI;
+
+			if(Math.abs(rotation-enemyRotation) < 0.3){
+				double distX = enemy.getX()-x;
+				double distY = enemy.getY()-y;
+					
+				if(Math.sqrt(distY*distY+distX*distX) <= range && enemy.inGame()){
+					enemy.setLives(damage);
+				}
 			}
 			
 		}

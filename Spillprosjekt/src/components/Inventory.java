@@ -25,7 +25,7 @@ public class Inventory {
 		
 		String[] flamme = {"Flamme"};
 		createBarrel("Cremator",25, 4,  250,  25,  50, flamme);
-		createBarrel("Hindenburner",500, 5,  50,  50,  45, flamme);
+		createBarrel("Hindenburner",500, 5,  50,  50,  100, flamme);
 		
 		createBase("Concrete",50, 2,  0,  30,  0);
 		createBase("Green Goblin",100, 3,  20,  75,  20);
@@ -36,6 +36,7 @@ public class Inventory {
 		createBase("Doomsday",150, 4,  55,  100,  100);
 		createBase("Phantom",150, 5,  55,  100,  100);
 		createBase("Flamers friend",150, 6,  25,  30,  10);
+//		createBase("Basic Base",100, 0,  30,  100,  0);
 		
 	}
 	

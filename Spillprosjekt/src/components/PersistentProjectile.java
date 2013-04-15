@@ -45,9 +45,13 @@ public class PersistentProjectile extends Projectile{
 		rotate();
 		if(sX<range){
 			
-			sX +=8;
-			sY +=5;
+			sX +=4;
+			sY +=4;
+		} else{
+			sX -=5;
+			sY -=8;
 		}
+		
 		
 		
 		
@@ -70,5 +74,22 @@ public class PersistentProjectile extends Projectile{
     	
     	g2d.drawImage(texture, (int)(x) +27, (int)(y)-sY/2, (int)sX, sY, null);
 }
+	
+	public void checkHit(){
+		setBounds((int)x, (int)y, sX, sY);
+		for(Enemy enemy : board.getEnemies()){
+			System.out.println("HIT");
+			if(this.intersects(enemy) && enemy.inGame()){
+				enemy.setLives(damage);
+			}
+			
+		}
+		
+
+	}
+	
+	
+	
+	
 
 }

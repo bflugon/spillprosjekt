@@ -15,7 +15,7 @@ public class Inventory {
 		createAmmo("Basic ammo","Bullet",0,0,1,25,550);
 
 		createAmmo( "kim jong un", "Missile",  25 , 1,  1,  60, 20);
-		createAmmo("Propan","Flamme",100,2,200,25,10);
+		createAmmo("Propan","Flamme",100,2,200,25,75);
 
 		String[] bullet = {"Bullet"};
 		createBarrel("Basic barrel",25, 3,  50,  50,  50, bullet);
@@ -24,8 +24,8 @@ public class Inventory {
 		createBarrel("Phase barrel",250, 2,  200,  200,  200,bullet);
 		
 		String[] flamme = {"Flamme"};
-		createBarrel("Cremator",25, 4,  250,  25,  25, flamme);
-		createBarrel("Hindenburner",500, 5,  50,  50,  15, flamme);
+		createBarrel("Cremator",25, 4,  250,  25,  50, flamme);
+		createBarrel("Hindenburner",500, 5,  50,  50,  45, flamme);
 		
 		createBase("Basic Base",100, 0,  30,  30,  0);
 		createBase("Doomsday",200, 1,  75,  75,  75);

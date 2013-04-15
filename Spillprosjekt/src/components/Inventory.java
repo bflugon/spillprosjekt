@@ -11,11 +11,11 @@ public class Inventory {
 	public Inventory(){
 		
 		createAmmo("Basic ammo","Bullet",0,0,1,25,550);
-<<<<<<< HEAD
+
 		createAmmo( "kim jong un", "Missile",  25 , 1,  1,  60, 20);
-=======
+
 		createAmmo("Hindenburd","Flamme",100,2,1,25,200);
->>>>>>> Ny klasse for prosjektiler som ikke beveger seg, flammer osv, ny flammeammo
+
 		
 		createBarrel("Basic barrel",25, 0,  50,  50,  50);
 		createBarrel("Anhilator",120, 4,  100,  200,  500);

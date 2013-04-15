@@ -16,7 +16,7 @@ import backend.Tilesets;
 public class Barrel extends TowerComponent{
 
 	//protected Image barrelTexture;
-	protected String[] allowed_ammo = {"Missile", "Tack", "Bullet"};
+	protected String[] allowed_ammo = {"Missile", "Tack", "Bullet","Flamme"};
 	
 	
 	public Barrel(String name, int price ,int textureIndex, double damage, double range, double firerate) {

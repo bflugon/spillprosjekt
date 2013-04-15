@@ -27,8 +27,15 @@ public class Inventory {
 		createBarrel("Cremator",25, 4,  250,  25,  50, flamme);
 		createBarrel("Hindenburner",500, 5,  50,  50,  45, flamme);
 		
-		createBase("Basic Base",100, 0,  30,  30,  0);
-		createBase("Doomsday",200, 1,  75,  75,  75);
+		createBase("Concrete",50, 2,  0,  30,  0);
+		createBase("Green Goblin",100, 3,  20,  75,  20);
+		
+		createBase("Presicion Base",250, 0,  55,  150,  200);
+		createBase("Phaser Baser",150, 1,  55,  100,  100);
+		
+		createBase("Doomsday",150, 4,  55,  100,  100);
+		createBase("Phantom",150, 5,  55,  100,  100);
+		createBase("Flamers friend",150, 6,  25,  30,  10);
 		
 	}
 	

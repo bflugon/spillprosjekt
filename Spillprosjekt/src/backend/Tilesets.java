@@ -30,13 +30,13 @@ public class Tilesets extends Component{
 			enemy_tileset[i] = createImage(new FilteredImageSource(enemy_tileset[i].getSource(), new CropImageFilter(0, 60*i, 60, 60)));
 		}
 		
-		block_tileset = new Image[5];
+		block_tileset = new Image[20];
 		for(int i = 0; i < block_tileset.length; i++){
 			block_tileset[i] = new ImageIcon("resources/textures/block_tileset.png").getImage();
 			block_tileset[i] = createImage(new FilteredImageSource(block_tileset[i].getSource(), new CropImageFilter(0, 60*i, 60, 60)));
 		}
 		
-		base_tileset = new Image[5];
+		base_tileset = new Image[20];
 		for(int i = 0; i < block_tileset.length; i++){
 			base_tileset[i] = new ImageIcon("resources/textures/base_tileset.png").getImage();
 			base_tileset[i] = createImage(new FilteredImageSource(base_tileset[i].getSource(), new CropImageFilter(0, 60*i, 60, 60)));

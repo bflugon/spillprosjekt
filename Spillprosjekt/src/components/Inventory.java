@@ -14,26 +14,26 @@ public class Inventory {
 		
 		createAmmo("Basic ammo","Bullet",0,0,1,25,550);
 		createAmmo( "kim jong un", "Missile",  25 , 1,  1,  60, 20);
-		createAmmo( "S.M.A.R.T MISSILE", "Missile",  250 , 4,  150,  250, 200);
+		createAmmo( "S.M.A.R.T", "Missile",  250 , 4,  150,  250, 200);
 		createAmmo("Propan","Flamme",100,2,200,25,75);
 		createAmmo("Tesla","Lightning",100,5,200,25,75);
 		createAmmo("Hig Caliber","Bullet",1000,3,200,25,150);
 
-		String[] bullet = {"Bullet"};
+		String bullet = "Bullet";
 		createBarrel("Basic barrel",25, 3,  50,  100,  200, bullet);
 		createBarrel("Anhilator",120, 0,  100,  200,  600,bullet);
 		createBarrel("Hyper laser",200, 1,  1,  70,  40,bullet);
 		createBarrel("Phase barrel",250, 2,  200,  350,  200,bullet);
 		
 		
-		String[] flamme = {"Flamme"};
+		String flamme = "Flamme";
 		createBarrel("Cremator",25, 4,  250,  25,  50, flamme);
 		createBarrel("Hindenburner",500, 5,  50,  50,  100, flamme);
 		
-		String[] tesla = {"Lightning"};
+		String tesla = "Lightning";
 		createBarrel("Tesla Coil",750, 6,  500,  100,  75,tesla);
 		
-		String[] missile = {"Missile"};
+		String missile = "Missile";
 		createBarrel("NASAMS",750, 7,  500,  250,  75,missile);
 		
 		createBase("Concrete",50, 2,  0,  30,  0);
@@ -55,7 +55,7 @@ public class Inventory {
 	}
 	
 	
-	private void createBarrel(String name, int price ,int textureIndex, double damage, double range, double firerate, String[] allowedAmmo){
+	private void createBarrel(String name, int price ,int textureIndex, double damage, double range, double firerate, String allowedAmmo){
 		Barrel new_barrel = new Barrel( name,  price , textureIndex,  damage,  range,  firerate,allowedAmmo);
 		GameData.barrels.add(new_barrel);
 	}

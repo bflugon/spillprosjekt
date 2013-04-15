@@ -11,10 +11,10 @@ import backend.Tilesets;
 public class Barrel extends TowerComponent{
 
 	//protected Image barrelTexture;
-	protected String[] allowed_ammo = {"Missile", "Tack", "Bullet","Flamme"};
+	protected String allowed_ammo;
 	
 	
-	public Barrel(String name, int price ,int textureIndex, double damage, double range, double firerate, String[] allowed_ammo) {
+	public Barrel(String name, int price ,int textureIndex, double damage, double range, double firerate, String allowed_ammo) {
 		super(damage, range, firerate, price,name,textureIndex);
 		this.name = name;
 		this.price = price;
@@ -24,7 +24,7 @@ public class Barrel extends TowerComponent{
 		this.allowed_ammo = allowed_ammo;
 	}
 	
-	public String[] getAmmoTypes(){
+	public String getAmmoType(){
 		return allowed_ammo;
 	}
 	

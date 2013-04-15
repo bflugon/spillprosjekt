@@ -122,7 +122,7 @@ public class Tower extends Rectangle{
 
 //	Gir taarnet som mates inn i metoden samme egenskaper som taarnet
 	public void copyTower(Tower tower){	
-		Barrel newBarrel = new Barrel(barrel.getName(), barrel.getPrice(),barrel.getTextureIndex(), barrel.getDamage(), barrel.getRange(), barrel.getFirerate(), barrel.getAmmoTypes());
+		Barrel newBarrel = new Barrel(barrel.getName(), barrel.getPrice(),barrel.getTextureIndex(), barrel.getDamage(), barrel.getRange(), barrel.getFirerate(), barrel.getAmmoType());
 		Ammo newAmmo = new Ammo(ammo.getName(),ammo.getAmmoType(), ammo.getPrice(),ammo.getTextureIndex(), ammo.getDamage(), ammo.getRange(), ammo.getFirerate());
 		Base newBase = new Base(base.getName(), base.getPrice(),base.getTextureIndex(), base.getDamage(), base.getRange(), base.getFirerate());
 		

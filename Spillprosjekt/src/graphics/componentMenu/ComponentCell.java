@@ -73,16 +73,11 @@ public class ComponentCell extends Rectangle{
 	}
 	
 	public void drawBarrel(Graphics g){
-		String s = "";
-		String[] allowedAmmo = ((Barrel)component).getAmmoTypes();
-		
-		for(String ammo: allowedAmmo){
-			s += ammo + " ";
-		}
+		String allowedAmmo = ((Barrel)component).getAmmoType();
 		
 		g.setColor(Color.WHITE);
 		g.drawString("Allowed Ammo:", x+300, y+75);
-		g.drawString(s, x+420, y+75);
+		g.drawString(allowedAmmo, x+420, y+75);
 	}
 	
 	public void drawAmmo(Graphics g){

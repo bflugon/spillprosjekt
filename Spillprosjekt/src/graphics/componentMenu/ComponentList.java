@@ -36,10 +36,9 @@ public class ComponentList extends PopupWindow{
 			for(TowerComponent tc : GameData.ammo){
 				if(tc != currComponent){
 					Ammo ammo = (Ammo) tc;
-					String[] ammoTypes = menu.getActiveTower().getBarrel().getAmmoTypes();
-					for(String type : ammoTypes){
-						if(ammo.getAmmoType() == type)
-							list.add(new ComponentListCell(tc, currComponent, x, y+80*counter++, width, 80));
+					String ammoType = menu.getActiveTower().getBarrel().getAmmoType();
+					if(ammo.getAmmoType() == ammoType){
+						list.add(new ComponentListCell(tc, currComponent, x, y+80*counter++, width, 80));
 					}
 				}
 			}
@@ -71,11 +70,11 @@ public class ComponentList extends PopupWindow{
 					tower.setBarrel(barrel);
 					
 //					Lag en bedre måte
-					if(barrel.getAmmoTypes()[0] == "Bullet") tower.setAmmo(GameData.ammo.get(0));
-					else if(barrel.getAmmoTypes()[0] == "Missile") tower.setAmmo(GameData.ammo.get(1));
-					else if(barrel.getAmmoTypes()[0] == "Flamme") tower.setAmmo(GameData.ammo.get(3));
-					else if(barrel.getAmmoTypes()[0] == "Lightning") tower.setAmmo(GameData.ammo.get(4));
-					System.out.println(barrel.getAmmoTypes()[0]);
+					if(barrel.getAmmoType() == "Bullet") tower.setAmmo(GameData.ammo.get(0));
+					else if(barrel.getAmmoType() == "Missile") tower.setAmmo(GameData.ammo.get(1));
+					else if(barrel.getAmmoType() == "Flamme") tower.setAmmo(GameData.ammo.get(3));
+					else if(barrel.getAmmoType() == "Lightning") tower.setAmmo(GameData.ammo.get(4));
+					System.out.println(barrel.getAmmoType());
 				}
 				else if(currComponent instanceof Ammo)tower.setAmmo((Ammo)cell.getComponent());
 				else if(currComponent instanceof Base) tower.setBase((Base)cell.getComponent());

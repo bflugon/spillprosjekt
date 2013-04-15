@@ -68,7 +68,7 @@ public class GameData {
 	public static Inventory invetar = new Inventory();
 
 	
-	public static boolean muted = true;
+	public static boolean muted = false;
 	
 	
 	

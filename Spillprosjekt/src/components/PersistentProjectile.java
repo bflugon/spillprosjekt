@@ -78,7 +78,6 @@ public class PersistentProjectile extends Projectile{
 	public void checkHit(){
 		setBounds((int)x, (int)y, sX, sY);
 		for(Enemy enemy : board.getEnemies()){
-			System.out.println("HIT");
 			if(this.intersects(enemy) && enemy.inGame()){
 				enemy.setLives(damage);
 			}

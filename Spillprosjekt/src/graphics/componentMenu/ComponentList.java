@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import components.Ammo;
 import components.Barrel;
 import components.Base;
+import components.Inventory;
 import components.TowerComponent;
 
 import backend.GameData;
@@ -24,7 +25,7 @@ public class ComponentList extends PopupWindow{
 	private TowerComponent currComponent;
 	
 	public ComponentList(TowerComponent currComponent, ComponentMenu menu){
-
+		
 		int counter = 0;
 		if(currComponent instanceof Barrel){
 			for(TowerComponent tc : GameData.barrels){
@@ -65,7 +66,17 @@ public class ComponentList extends PopupWindow{
 			if(cell.contains(Screen.CURSOR)){
 				Tower tower = GameData.modelTowers.get(menu.getActiveTowerIndex());
 				
-				if(currComponent instanceof Barrel)tower.setBarrel((Barrel)cell.getComponent());
+				if(currComponent instanceof Barrel){
+					Barrel barrel = (Barrel) cell.getComponent();
+					tower.setBarrel(barrel);
+					
+//					Lag en bedre måte
+					if(barrel.getAmmoTypes()[0] == "Bullet") tower.setAmmo(GameData.ammo.get(0));
+					else if(barrel.getAmmoTypes()[0] == "Missile") tower.setAmmo(GameData.ammo.get(1));
+					else if(barrel.getAmmoTypes()[0] == "Flamme") tower.setAmmo(GameData.ammo.get(3));
+					else if(barrel.getAmmoTypes()[0] == "Lightning") tower.setAmmo(GameData.ammo.get(4));
+					System.out.println(barrel.getAmmoTypes()[0]);
+				}
 				else if(currComponent instanceof Ammo)tower.setAmmo((Ammo)cell.getComponent());
 				else if(currComponent instanceof Base) tower.setBase((Base)cell.getComponent());
 				

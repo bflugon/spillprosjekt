@@ -8,11 +8,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-public class MenuMouseListener implements MouseListener, MouseMotionListener {
+public class ComponentMenuMouseListener implements MouseListener, MouseMotionListener {
 	private Screen screen;
 	private ComponentMenu menu;
 	
-	public MenuMouseListener(Screen screen) {
+	public ComponentMenuMouseListener(Screen screen) {
 		this.screen = screen;
 		menu = screen.getStore();
 	}
@@ -24,11 +24,19 @@ public class MenuMouseListener implements MouseListener, MouseMotionListener {
 	public void mouseReleased(MouseEvent e) {
 		if(!screen.inStore()) return;
 		
+		
+//		Trykker paa listen hvis den er aapen
+		if(menu.getList() != null){
+			menu.getList().clicked();
+		}
+		else {
+			menu.clickComponent();
 			menu.changeActiveTower();
 			menu.addTower();
 		
-		if(menu.goToBoard()){
-			screen.goToBoard();
+			if(menu.goToBoard()){
+				screen.goToBoard();
+			}
 		}
 	}
 

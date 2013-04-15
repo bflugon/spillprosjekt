@@ -138,8 +138,6 @@ public class Tower extends Rectangle{
 	}
 
 //	Gir taarnet som mates inn i metoden samme egenskaper som taarnet
-//Fra Simen: Er noe galt med denne
-//	Fra Oyvind: Ikke nŒ lenger :)
 	public void copyTower(Tower tower){	
 		Barrel newBarrel = new Barrel(barrel.getName(), barrel.getPrice(),barrel.getTextureIndex(), barrel.getDamage(), barrel.getRange(), barrel.getFirerate());
 		Ammo newAmmo = new Ammo(ammo.getName(),ammo.getAmmoType(), ammo.getPrice(),ammo.getTextureIndex(), ammo.getDamage(), ammo.getRange(), ammo.getFirerate());
@@ -162,7 +160,7 @@ public class Tower extends Rectangle{
 		this.barrel = barrel;
 	}
 
-	//	Oppdaterer egenskapene avhenging av komponenetene
+//	Oppdaterer egenskapene avhenging av komponenetene
 	public void updateProperties(){
 		damage = 0;
 		range = 0;
@@ -194,8 +192,8 @@ public class Tower extends Rectangle{
 	public void physics(){
 		rotate();
 		if(fireFrame >= firerate) {
-			shoot();
 			findTarget();
+			shoot();
 		} else {
 			fireFrame++;
 		}

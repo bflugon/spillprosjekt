@@ -52,7 +52,7 @@ public class ComponentMenu {
 		ammoCell = new ComponentCell(activeTower.getAmmo(), activeTower.getAmmo(), 20, 290, 680, 80);
 		baseCell = new ComponentCell(activeTower.getBase(), activeTower.getBase(), 20, 380, 680, 80);
 
-//		componentList = new ComponentList(activeTower.getBarrel());
+		componentList = new ComponentList(activeTower.getBarrel(), this);
 	}
 
 	public void draw(Graphics g) {
@@ -116,5 +116,27 @@ public class ComponentMenu {
 
 	public boolean goToBoard() {
 		return goToBoard.contains(Screen.CURSOR);
+	}
+	
+	public ComponentList getList(){
+		return componentList;
+	}
+	
+	public int getActiveTowerIndex(){
+		return activeTowerIndex;
+	}
+
+	public void closeList() {
+		componentList = null;
+		
+		barrelCell = new ComponentCell(activeTower.getBarrel(), activeTower.getBarrel(), 20, 200, 680, 80);
+		ammoCell = new ComponentCell(activeTower.getAmmo(), activeTower.getAmmo(), 20, 290, 680, 80);
+		baseCell = new ComponentCell(activeTower.getBase(), activeTower.getBase(), 20, 380, 680, 80);
+	}
+
+	public void clickComponent() {
+		if(barrelCell.contains(Screen.CURSOR)) componentList = new ComponentList(activeTower.getBarrel(), this);
+		else if(ammoCell.contains(Screen.CURSOR)) componentList = new ComponentList(activeTower.getAmmo(), this);
+		else if(baseCell.contains(Screen.CURSOR)) componentList = new ComponentList(activeTower.getBase(), this);
 	}
 }

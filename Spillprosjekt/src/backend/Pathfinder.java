@@ -100,6 +100,7 @@ public class Pathfinder {
 							block.setF(current.getF() + block.getG());
 							block.setPrev(current);
 							openSet.add(block);
+							
 						}
 					}
 				}

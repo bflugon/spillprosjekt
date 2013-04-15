@@ -24,7 +24,7 @@ public class EditorMouseListener implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		Screen.CURSOR = new Point(e.getX(), e.getY()-25);		
+//		Screen.CURSOR = new Point(e.getX(), e.getY()-25);		
 	}
 
 	@Override

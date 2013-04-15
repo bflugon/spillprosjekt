@@ -4,7 +4,7 @@ import graphics.componentMenu.ComponentMenu;
 import graphics.mainMenu.MainMenu;
 import gui.BoardMouseListener;
 import gui.MainMenuMouseListener;
-import gui.MenuMouseListener;
+import gui.ComponentMenuMouseListener;
 
 import java.awt.Graphics;
 import java.awt.Point;
@@ -35,7 +35,7 @@ public class Screen extends JPanel implements Runnable {
 	private JFrame frame;
 	
 	private BoardMouseListener boardMouseListener;
-	private MenuMouseListener menuMouseListener;
+	private ComponentMenuMouseListener menuMouseListener;
 	private MainMenuMouseListener mainMenuMouseListener;
 
 	private int gameSpeed = 4;
@@ -53,7 +53,7 @@ public class Screen extends JPanel implements Runnable {
 		mainMenu = new MainMenu(this);
 		
 		boardMouseListener = new BoardMouseListener(this);
-		menuMouseListener = new MenuMouseListener(this);
+		menuMouseListener = new ComponentMenuMouseListener(this);
 		mainMenuMouseListener = new MainMenuMouseListener(this);
 		
 		addMouseListener(boardMouseListener);

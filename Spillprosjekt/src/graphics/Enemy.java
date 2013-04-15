@@ -90,6 +90,10 @@ public class Enemy extends Rectangle{
 	public boolean inGame(){
 		return inGame;
 	}
+	
+	public double getLives(){
+		return lives;
+	}
 
 //	Avstanden de har reist blir lagret for aa kunne skyte paa den fienden som ligger forst
 	public int getDistanceTraveled() {

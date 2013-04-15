@@ -5,7 +5,6 @@ import graphics.Enemy;
 import graphics.Tower;
 
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 
 public class PersistentProjectile extends Projectile{
@@ -23,6 +22,10 @@ public class PersistentProjectile extends Projectile{
 		this.speed = 0;
 		this.fireRate = tower.getFireRate();
 		this.damage = ammo.getDamage()/fireRate;
+		
+		if(ammo.getAmmoType().equals("Lightning")){
+			this.x -= 27;
+		}
 		
 	}
 	
@@ -69,7 +72,7 @@ public class PersistentProjectile extends Projectile{
     	trans.translate(15,0);
     	g2d.setTransform(trans);
     	
-    	g2d.drawImage(texture, (int)(x) +27, (int)(y)-sY/2, (int)sX, sY, null);
+    	g2d.drawImage(texture, (int)(x)+5, (int)(y)-sY/2, (int)sX, sY, null);
 }
 	
 	public void checkHit(){
@@ -84,6 +87,9 @@ public class PersistentProjectile extends Projectile{
 					
 				if(Math.sqrt(distY*distY+distX*distX) <= range && enemy.inGame()){
 					enemy.setLives(damage);
+					if(ammoType.equals("Lightning") && enemy.getLives() < 2) {
+						tower.removeFiredAmmo(this);
+					}
 				}
 			}
 			

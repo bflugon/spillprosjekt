@@ -1,12 +1,7 @@
 package components;
 
-import graphics.Enemy;
-import graphics.Tower;
-
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 
@@ -38,6 +33,7 @@ public class Barrel extends TowerComponent{
 		
 		double barrelX = tx+30;
 		double barrelY = ty+30;
+		
 
 //		Roter lop rundt midten av taarnet
 	    trans.rotate(rotation,barrelX,barrelY);

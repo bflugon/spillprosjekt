@@ -13,9 +13,9 @@ public class Inventory {
 		//double damage, double range, double firerate
 		
 		createAmmo("Basic ammo","Bullet",0,0,1,25,550);
-
 		createAmmo( "kim jong un", "Missile",  25 , 1,  1,  60, 20);
 		createAmmo("Propan","Flamme",100,2,200,25,75);
+		createAmmo("Tesla","Lightning",100,5,200,25,75);
 
 		String[] bullet = {"Bullet"};
 		createBarrel("Basic barrel",25, 3,  50,  100,  200, bullet);
@@ -23,9 +23,13 @@ public class Inventory {
 		createBarrel("Hyper laser",200, 1,  1,  70,  40,bullet);
 		createBarrel("Phase barrel",250, 2,  200,  350,  200,bullet);
 		
+		
 		String[] flamme = {"Flamme"};
 		createBarrel("Cremator",25, 4,  250,  25,  50, flamme);
 		createBarrel("Hindenburner",500, 5,  50,  50,  100, flamme);
+		
+		String[] tesla = {"Lightning"};
+		createBarrel("Tesla Coil",750, 6,  500,  100,  75,tesla);
 		
 		createBase("Concrete",50, 2,  0,  30,  0);
 		createBase("Green Goblin",100, 3,  20,  75,  20);

@@ -68,7 +68,7 @@ public class Tilesets extends Component{
 			barrelMenu_tileset[i] = createImage(new FilteredImageSource(barrelMenu_tileset[i].getSource(), new CropImageFilter(0, 200*i, 400, 200)));
 		}
 		
-		ammo_tileset = new Image[5];
+		ammo_tileset = new Image[20];
 		for(int i = 0; i < ammo_tileset.length; i++){
 			ammo_tileset[i] = new ImageIcon("resources/textures/ammo_tileset.png").getImage();
 			ammo_tileset[i] = createImage(new FilteredImageSource(ammo_tileset[i].getSource(), new CropImageFilter(0, 60*i, 60, 60)));

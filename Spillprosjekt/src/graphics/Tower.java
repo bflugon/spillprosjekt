@@ -100,7 +100,7 @@ public class Tower extends Rectangle{
 	
 	
 	private void rotate(){
-		if(target == null)return;
+		if(target == null || ammo.getAmmoType().equals("Lightning"))return;
 		
 		double barrelX = x+30;
 		double barrelY = y+30;
@@ -144,7 +144,7 @@ public class Tower extends Rectangle{
 	}
 	
 	public void addFiredAmmo(){
-		if(ammo.getAmmoType().equals("Flamme") || ammo.getAmmoType().equals("Beam")){
+		if(ammo.getAmmoType().equals("Flamme") || ammo.getAmmoType().equals("Beam") || ammo.getAmmoType().equals("Lightning") ){
 			firedAmmo.add(new PersistentProjectile(this, x, y,  rotation, this.getTarget(),this.board, this.getAmmo()));
 		}
 		

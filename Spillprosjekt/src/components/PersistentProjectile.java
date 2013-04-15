@@ -44,14 +44,17 @@ public class PersistentProjectile extends Projectile{
     	} 
 		
 		rotate();
-		if(sX<range){
-			
-			sX +=4;
-			sY +=4;
-		} else{
-			sX -=5;
-			sY -=8;
+		if(target.inGame()){
+			if(sX<range){
+				
+				sX +=4;
+				sY +=4;
+			} else{
+				sX -=5;
+				sY -=8;
+			}
 		}
+
 		
 		
 		
@@ -61,7 +64,7 @@ public class PersistentProjectile extends Projectile{
     	checkHit();
     	
     	ammoTimeOut ++;
-    	if(ammoTimeOut > fireRate){
+    	if(ammoTimeOut > fireRate || !target.inGame()){
     		tower.removeFiredAmmo(this);
     	}
 	}

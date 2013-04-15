@@ -39,7 +39,7 @@ public class Projectile extends Rectangle{
 		this.rotation = rotation;
 		//rotate();
 		
-		this.damage = ammo.getDamage();
+		this.damage = tower.getDamage();
 		this.speed = 1;
 		this.target = target;
 	}

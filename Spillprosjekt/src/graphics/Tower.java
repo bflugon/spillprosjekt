@@ -189,6 +189,7 @@ public class Tower extends Rectangle{
 		rotate();
 		if(fireFrame >= firerate) {
 			findTarget();
+			rotate();
 			shoot();
 			findTarget();
 		} else {
@@ -209,12 +210,6 @@ public class Tower extends Rectangle{
 		return range;
 	}
 
-	public void updateComponents(Barrel barrel, Base base) {
-		this.barrel = barrel;
-		this.base = base;
-		updateProperties();
-	}
-
 	public Barrel getBarrel() {
 		return barrel;
 	}
@@ -232,8 +227,6 @@ public class Tower extends Rectangle{
 		
 		barrel.draw(g2d, x, y, rotation);
 
-		if(fireFrame <= 10) barrel.drawShot(g2d, this); 
-		
 //	    Reset transfomasjonene (kommenter ut denne for aa se hva som skjer uten naar du plasserer flere taarn)
 	    g2d.setTransform(oldtrans);
 	    
@@ -266,10 +259,6 @@ public class Tower extends Rectangle{
 	
 	public Ammo getAmmo(){
 		return this.ammo;
-	}
-	
-	public void setName(String name){
-		this.name = name;
 	}
 	
 	public String getName(){

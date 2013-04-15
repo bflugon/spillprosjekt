@@ -23,7 +23,6 @@ public class PersistentProjectile extends Projectile{
 		this.fireRate = tower.getFireRate();
 		this.damage = ammo.getDamage()/fireRate;
 		
-		
 	}
 	
 	public void rotate(){

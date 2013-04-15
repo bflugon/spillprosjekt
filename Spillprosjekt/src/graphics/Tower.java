@@ -6,8 +6,6 @@ import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 
-import javax.swing.plaf.SliderUI;
-
 import sound.Sound;
 import backend.Colors;
 import backend.GameData;
@@ -16,6 +14,7 @@ import backend.Tilesets;
 import components.Ammo;
 import components.Barrel;
 import components.Base;
+import components.PersistentProjectile;
 import components.Projectile;
 
 // Maa Extende Rectangle for aa gjore det lettere aa tegne i "draw"
@@ -113,11 +112,7 @@ public class Tower extends Rectangle{
 	private void shoot(){
 		if(target != null){
 			
-			firedAmmo.add(new Projectile(this, x, y, ammo.getTextureIndex(), rotation, this.getTarget(),this.getDamage(),this.board, ammo.getAmmoType()));
-			
-			if(firedAmmo.size() > 10){
-				firedAmmo.remove(0);
-			}
+			addFiredAmmo();
 			
 			Sound.playSound("shot.wav");
 			target = null;
@@ -147,6 +142,19 @@ public class Tower extends Rectangle{
 	public void setBarrel(Barrel barrel) {
 		this.barrel = barrel;
 	}
+	
+	public void addFiredAmmo(){
+		if(ammo.getAmmoType().equals("Flamme") || ammo.getAmmoType().equals("Beam")){
+			firedAmmo.add(new PersistentProjectile(this, x, y,  rotation, this.getTarget(),this.board, this.getAmmo()));
+		}
+		
+		if(ammo.getAmmoType().equals("Bullet") || ammo.getAmmoType().equals("Missile")){
+			firedAmmo.add(new Projectile(this, x, y,  rotation, this.getTarget(),this.board, this.getAmmo()));
+		}
+		
+		
+	}
+	
 
 //	Oppdaterer egenskapene avhenging av komponenetene
 	public void updateProperties(){

@@ -23,15 +23,15 @@ public class Projectile extends Rectangle{
 	
 	protected String ammoType;
 	
-	private Tower tower;
+	protected Tower tower;
 	
-	public Projectile(Tower tower, double x, double y, int textureIndex, double rotation, Enemy target, double damage, Board board, String ammoType){
-		this.texture = Tilesets.ammo_tileset[textureIndex];
+	public Projectile(Tower tower, double x, double y, double rotation, Enemy target , Board board,  Ammo ammo){
+		this.texture = Tilesets.ammo_tileset[ammo.getTextureIndex()];
 		this.board = board;
 		
 		this.tower = tower;
 		
-		this.ammoType = ammoType;
+		this.ammoType = ammo.getAmmoType();
 		
 		this.x = x+30;
 		this.y = y+30;
@@ -39,12 +39,12 @@ public class Projectile extends Rectangle{
 		this.rotation = rotation;
 		//rotate();
 		
-		this.damage = damage;
+		this.damage = ammo.getDamage();
 		this.speed = 1;
 		this.target = target;
 	}
 	
-	private void rotate(){
+	public void rotate(){
 		if(target == null)return;
 		double barrelX = x;
 		double barrelY = y;
@@ -77,7 +77,7 @@ public class Projectile extends Rectangle{
 	    	g2d.drawImage(texture, (int)(x) -10, (int)(y)-10, (int)20, 20, null);
 	}
 	
-	private void checkHit(){
+	public void checkHit(){
 		setBounds((int)x, (int)y, 20, 20);
 		for(Enemy enemy : board.getEnemies()){
 			if(this.intersects(enemy) && enemy.inGame()){

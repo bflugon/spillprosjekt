@@ -91,6 +91,14 @@ public class Enemy extends Rectangle{
 		return inGame;
 	}
 	
+	public void slowDownEnemy(){
+		if(slowed) return;
+		System.out.println("SLOWED");
+		walkSpeed /= 2; 
+		slowed = true;
+		
+	}
+	
 	public double getLives(){
 		return lives;
 	}

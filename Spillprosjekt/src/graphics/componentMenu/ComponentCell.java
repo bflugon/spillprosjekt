@@ -83,7 +83,16 @@ public class ComponentCell extends Rectangle{
 	public void drawAmmo(Graphics g){
 		g.setColor(Color.WHITE);
 		g.drawString("Ammo Type:", x+300, y+75);
-		g.drawString(((Ammo)component).getAmmoType(), x+420, y+75);
+		
+		
+		if(((Ammo)component).getAbility() != null){
+			g.setColor(Color.WHITE);
+			g.drawString(((Ammo)component).getAmmoType() + ((Ammo)component).abilityToString(), x+420, y+75);
+		}
+		else{
+			g.drawString(((Ammo)component).getAmmoType(), x+420, y+75);
+		}
+		
 	}
 	
 	public void drawBase(Graphics g){

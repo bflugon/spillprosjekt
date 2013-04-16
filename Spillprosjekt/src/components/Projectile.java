@@ -21,7 +21,7 @@ public class Projectile extends Rectangle{
 	protected Enemy target;
 	protected Board board;
 	
-	protected String ammoType;
+	protected String ammoType,ammoAbility;
 	
 	protected Tower tower;
 	
@@ -32,6 +32,10 @@ public class Projectile extends Rectangle{
 		this.tower = tower;
 		
 		this.ammoType = ammo.getAmmoType();
+		this.ammoAbility = ammo.getAbility();
+		
+
+		
 		
 		this.x = x+30;
 		this.y = y+30;
@@ -58,6 +62,8 @@ public class Projectile extends Rectangle{
     	}
 		x += Math.cos(rotation) * speed;
     	y += Math.sin(rotation) * speed;
+    	
+    	
     	checkHit();
     	
     	ammoTimeOut ++;
@@ -81,13 +87,25 @@ public class Projectile extends Rectangle{
 		setBounds((int)x, (int)y, 20, 20);
 		for(Enemy enemy : board.getEnemies()){
 			if(this.intersects(enemy) && enemy.inGame()){
-				ammoTimeOut = 100000;
+				
+				if(ammoAbility.equals("glue")){
+					System.out.println("SLOWING");
+					enemy.slowDownEnemy();
+					
+				}
+				
 				enemy.setLives(damage);
+				
+				tower.removeFiredAmmo(this);
+				System.out.println("Working");
+
 			}
 			
 		}
 		
 
 	}
+	
+
 
 }

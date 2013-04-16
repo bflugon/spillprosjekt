@@ -172,6 +172,8 @@ public class Tower extends Rectangle{
 		range += barrel.getRange();
 	}
 	private void getAmmoBonuses(){
+		range += ammo.getRange();
+		firerate += ammo.getFirerate();
 		splashDamage = ammo.getSplashDamage();
 		slow = ammo.getSlow();
 		damage += ammo.getDamage();

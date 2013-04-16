@@ -101,6 +101,12 @@ public class Board {
 						newTower.updateProperties();
 						towers.add(newTower);	
 						block.setOpen(false);
+						String id = "";
+						id += String.valueOf(GameData.barrels.indexOf(newTower.getBarrel()));
+						id += String.valueOf(GameData.ammo.indexOf(newTower.getAmmo()));
+						id += String.valueOf(GameData.bases.indexOf(newTower.getBase()));
+						int blockID = Integer.parseInt(id);
+						block.setBlockID(blockID);
 					}
 				}
 			}

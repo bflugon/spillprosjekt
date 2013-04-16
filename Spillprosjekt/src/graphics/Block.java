@@ -55,8 +55,9 @@ public class Block extends Rectangle{
 //	Endre id-en og oppdater teksturen
 	public void setBlockID(int blockID){
 		this.blockID = blockID;
+		if (blockID < 100) {
 		texture = Tilesets.block_tileset[blockID];
-	}
+	}}
 
 	public void setF(int f) {
 		this.f = f;

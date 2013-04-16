@@ -46,7 +46,12 @@ public class MapLoader {
 	        		out.write("\n");
 	        	}
 	        	for (int j = 0; j < grid[i].length; j++) {	
-	        		out.write(grid[i][j].getBlockID() + " ");
+	        		if (grid[i][j].getBlockID() < 10) {
+	        		out.write(" " + grid[i][j].getBlockID() + "  ");
+	        		}
+	        		else {
+	        			out.write(grid[i][j].getBlockID() + " ");
+	        		}
 	        	}
 	        }
 	        out.write("\n");

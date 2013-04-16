@@ -13,6 +13,8 @@ public class Inventory {
 		//double damage, double range, double firerate
 		
 		createAmmo("Basic ammo","Bullet",0,0,1,25,550);
+		createAmmo("Sticky SLime","Slime",123,7,7,25,200,"glue");
+		
 		createAmmo( "kim jong un", "Missile",  25 , 1,  1,  60, 20);
 		createAmmo( "S.M.A.R.T", "Missile",  250 , 4,  150,  250, 200);
 		createAmmo( "SlowPoke", "Missile",  750 , 6,  0,  250, 200, "glue");
@@ -30,6 +32,9 @@ public class Inventory {
 		String flamme = "Flamme";
 		createBarrel("Cremator",25, 4,  250,  25,  50, flamme);
 		createBarrel("Hindenburner",500, 5,  50,  50,  100, flamme);
+		
+		String slimer = "Slime";
+		createBarrel("Slimer",250, 8,  200,  350,  200,slimer);
 		
 		String tesla = "Lightning";
 		createBarrel("Tesla Coil",750, 6,  500,  100,  75,tesla);
@@ -57,8 +62,7 @@ public class Inventory {
 	}
 	
 	private void createAmmo(String name,String ammoType, int price ,int textureIndex, double damage, double range, double firerate, String ability){
-		Ammo new_ammo = new Ammo( name, ammoType,  price , textureIndex,  damage,  range, firerate);
-		new_ammo.setAbility(ability);
+		Ammo new_ammo = new Ammo( name, ammoType,  price , textureIndex,  damage,  range, firerate,ability);
 		GameData.ammo.add(new_ammo);
 		
 	}

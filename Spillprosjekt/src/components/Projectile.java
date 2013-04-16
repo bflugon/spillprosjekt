@@ -34,8 +34,6 @@ public class Projectile extends Rectangle{
 		this.ammoType = ammo.getAmmoType();
 		this.ammoAbility = ammo.getAbility();
 		
-
-		
 		
 		this.x = x+30;
 		this.y = y+30;
@@ -88,16 +86,9 @@ public class Projectile extends Rectangle{
 		for(Enemy enemy : board.getEnemies()){
 			if(this.intersects(enemy) && enemy.inGame()){
 				
-				if(ammoAbility.equals("glue")){
-					System.out.println("SLOWING");
-					enemy.slowDownEnemy();
-					
-				}
-				
+				if(ammoAbility.equals("glue")) enemy.slowDownEnemy();
 				enemy.setLives(damage);
-				
 				tower.removeFiredAmmo(this);
-				System.out.println("Working");
 
 			}
 			

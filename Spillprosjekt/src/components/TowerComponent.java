@@ -11,7 +11,6 @@ public class TowerComponent {
 	protected Image texture;
 	
 	protected String 	name,
-						ammoAbility,
 						type;
 	
 	private double 	damage,
@@ -41,25 +40,7 @@ public class TowerComponent {
 		g.drawImage(texture, rect.x, rect.y+10, 60, 60, null);
 	}
 	
-	public void setAbility(String ability){
-		this.ammoAbility = ability;
-	}
-	
-	public String getAbility(){
-		return ammoAbility;
-	}
-	
-	public String abilityToString(){
-		
-		if(ammoAbility.equals("glue")){
-			return " + Slows down enemies";
-		}
-		
-		
-		
-		return "";
-		
-	}
+
 	
 	public void setSplash(){
 		splashDamage = true;

@@ -1,5 +1,6 @@
 package graphics;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -94,7 +95,7 @@ public class Enemy extends Rectangle{
 	public void slowDownEnemy(){
 		if(slowed) return;
 		System.out.println("SLOWED");
-		walkSpeed /= 2; 
+		walkSpeed *= 2; 
 		slowed = true;
 		
 	}
@@ -129,7 +130,7 @@ public class Enemy extends Rectangle{
 //		g2d.setTransform(trans);
 		
 		g2d.drawImage(Tilesets.enemy_tileset[GameData.spaceInvader], x, y, width, height, null);
-
+		g2d.setColor(Color.GREEN);
 //		g2d.setTransform(old);
 	}
 	

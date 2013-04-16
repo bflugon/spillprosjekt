@@ -21,7 +21,7 @@ public class Ammo extends TowerComponent {
 	private double ammoX,ammoY,speedX, speedY;
 	protected Enemy enemy;
 	
-	protected String ammoType; 
+	protected String ammoType,ammoAbility; 
 
 	public Ammo(String name,String ammoType, int price ,int textureIndex, double damage, double range, double firerate) {
 		super(damage, range, firerate, price,name,textureIndex);
@@ -35,6 +35,31 @@ public class Ammo extends TowerComponent {
 		
 	}
 	
+	
+	
+	
+	
+	
+	public Ammo(String name,String ammoType, int price ,int textureIndex, double damage, double range, double firerate, String ability) {
+		super(damage, range, firerate, price,name,textureIndex);
+		this.type = "ammo";
+		this.ammoAbility = ability;
+		
+		this.ammoType = ammoType;
+		this.textureIndex = textureIndex;
+		this.id = 3;
+		this.texture = Tilesets.ammo_tileset[textureIndex];
+
+		
+	}
+	
+	
+	
+	
+	
+	
+	/*
+	
 	public Ammo(int x, int y, int textureIndex, double rotation){
 		super(0, 0, 0, 0, "", textureIndex);
 		this.texture = Tilesets.ammo_tileset[textureIndex];
@@ -45,6 +70,31 @@ public class Ammo extends TowerComponent {
 		
 		rotateAmmo(rotation);
 	}
+	
+	
+	*/
+	
+	public void setAbility(String ability){
+		this.ammoAbility = ability;
+	}
+	
+	public String getAbility(){
+		return ammoAbility;
+	}
+	
+	public String abilityToString(){
+		
+		if(ammoAbility.equals("glue")){
+			return " + Slows down enemies";
+		}
+		
+		
+		
+		return "";
+		
+	}
+	
+	
 	
 	public void drawButton(Graphics g, Rectangle rect){
 		g.drawImage(texture, rect.x, rect.y+10, 60, 60, null);

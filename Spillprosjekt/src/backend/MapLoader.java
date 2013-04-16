@@ -46,7 +46,8 @@ public class MapLoader {
 		} catch(Exception e) {}
 	}
 	
-	public void save(int mapNum, Board board) {
+	public void save(Board board) {
+		int mapNum = new File("./resources/maps").list().length;
 		File file = new File("resources/maps/"+mapNum+".map");
 		Block[][] grid = board.getGrid();
 		file.delete();

@@ -127,10 +127,6 @@ public class Screen extends JPanel implements Runnable {
 		menu.changeActiveTower();
 	}
 
-	public void addTower() {
-		menu.addTower();
-	}
-
 	public Board getBoard() {
 		return board;
 	}

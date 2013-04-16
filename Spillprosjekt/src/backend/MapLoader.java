@@ -2,6 +2,7 @@ package backend;
 
 import graphics.Block;
 import graphics.Board;
+import graphics.Tower;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -18,7 +19,17 @@ public class MapLoader {
 				for (int y = 0; y < grid.length; y++) {
 					for (int x = 0; x < grid[0].length; x++) {
 						int id = loadScanner.nextInt();
-						grid[y][x].setBlockID(id);
+						if (id > 99) {
+							String towerID = String.valueOf(id);
+							Tower newTower = new Tower(grid[y][x], board);
+							newTower.setBarrel(GameData.barrels.get(Character.getNumericValue(towerID.charAt(0))));
+							newTower.setAmmo(GameData.ammo.get(Character.getNumericValue(towerID.charAt(1))));
+							newTower.setBase(GameData.bases.get(Character.getNumericValue(towerID.charAt(2))));
+							grid[y][x].setBlockID(GameData.foundation);
+						}
+						else {
+							grid[y][x].setBlockID(id);
+						}
 						if (id == GameData.start) {
 							board.setStart(grid[y][x]);
 						}

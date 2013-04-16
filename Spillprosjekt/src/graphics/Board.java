@@ -102,9 +102,9 @@ public class Board {
 						towers.add(newTower);	
 						block.setOpen(false);
 						String id = "";
-						id += String.valueOf(GameData.barrels.indexOf(newTower.getBarrel()));
-						id += String.valueOf(GameData.ammo.indexOf(newTower.getAmmo()));
-						id += String.valueOf(GameData.bases.indexOf(newTower.getBase()));
+						id += String.valueOf(GameData.barrels.indexOf(newTower.getBarrel())+1);
+						id += String.valueOf(GameData.ammo.indexOf(newTower.getAmmo())+1);
+						id += String.valueOf(GameData.bases.indexOf(newTower.getBase())+1);
 						int blockID = Integer.parseInt(id);
 						block.setBlockID(blockID);
 					}

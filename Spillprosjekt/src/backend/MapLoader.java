@@ -22,9 +22,9 @@ public class MapLoader {
 						if (id > 99) {
 							String towerID = String.valueOf(id);
 							Tower newTower = new Tower(grid[y][x], board);
-							newTower.setBarrel(GameData.barrels.get(Character.getNumericValue(towerID.charAt(0))));
-							newTower.setAmmo(GameData.ammo.get(Character.getNumericValue(towerID.charAt(1))));
-							newTower.setBase(GameData.bases.get(Character.getNumericValue(towerID.charAt(2))));
+							newTower.setBarrel(GameData.barrels.get(Character.getNumericValue(towerID.charAt(0))-1));
+							newTower.setAmmo(GameData.ammo.get(Character.getNumericValue(towerID.charAt(1))-1));
+							newTower.setBase(GameData.bases.get(Character.getNumericValue(towerID.charAt(2))-1));
 							grid[y][x].setBlockID(GameData.foundation);
 						}
 						else {

@@ -85,7 +85,7 @@ public class Projectile extends Rectangle{
 		setBounds((int)x, (int)y, 20, 20);
 		for(Enemy enemy : board.getEnemies()){
 			if(this.intersects(enemy) && enemy.inGame()){
-				if(ammoAbility.equals("glue")) enemy.slowDownEnemy();
+				if(ammoAbility != null && ammoAbility.equals("glue")) enemy.slowDownEnemy();
 				enemy.setLives(damage);
 				tower.removeFiredAmmo(this);
 

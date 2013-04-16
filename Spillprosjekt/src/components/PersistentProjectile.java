@@ -52,15 +52,14 @@ public class PersistentProjectile extends Projectile{
     	}
 		
 		rotate();
-		if(target.inGame()){
-			if(sX<range){
+		
+		if(sX<range){
 				
-				sX +=4;
-				sY +=4;
-			} else{
-				sX -=5;
-				sY -=8;
-			}
+			sX +=4;
+			sY +=4;
+		} else{
+			sX -=5;
+			sY -=8;
 		}
 
     	checkHit();

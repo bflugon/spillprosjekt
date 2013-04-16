@@ -73,19 +73,18 @@ public class Projectile extends Rectangle{
 	
 	public void drawProjectile(Graphics2D g2d){
 	    	
-	    	AffineTransform trans = new AffineTransform();
-	    	trans.rotate(rotation,x,y);
-	    	trans.translate(15,0);
-	    	g2d.setTransform(trans);
-	    	
-	    	g2d.drawImage(texture, (int)(x) -10, (int)(y)-10, (int)20, 20, null);
+    	AffineTransform trans = new AffineTransform();
+    	trans.rotate(rotation,x,y);
+    	trans.translate(15,0);
+    	g2d.setTransform(trans);
+    	
+    	g2d.drawImage(texture, (int)(x) -10, (int)(y)-10, (int)20, 20, null);
 	}
 	
 	public void checkHit(){
 		setBounds((int)x, (int)y, 20, 20);
 		for(Enemy enemy : board.getEnemies()){
 			if(this.intersects(enemy) && enemy.inGame()){
-				
 				if(ammoAbility.equals("glue")) enemy.slowDownEnemy();
 				enemy.setLives(damage);
 				tower.removeFiredAmmo(this);

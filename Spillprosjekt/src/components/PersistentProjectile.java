@@ -23,18 +23,19 @@ public class PersistentProjectile extends Projectile{
 		this.fireRate = tower.getFireRate();
 		this.damage = ammo.getDamage()/fireRate;
 		
-		if(ammo.getAmmoType().equals("Lightning")){
-			this.x -= 27;
-		}
+//		Vet ikke hvorfor denne var her? kanskje noe gammelt?
+//		Det var den som gjorde at lynet ikke kom fra tårnet
+		
+//		if(ammo.getAmmoType().equals("Lightning")){
+//			this.x -= 27;
+//		}
 		
 	}
 	
 	public void rotate(){
 		if(target == null)return;
-		double barrelX = x;
-		double barrelY = y;
-		rotation = Math.atan(((barrelY-target.getCenterY()) / (barrelX-target.getCenterX()) ));
-		if(target.getCenterX() <= barrelX) rotation += Math.PI;
+		rotation = Math.atan(((y-target.getCenterY()) / (x-target.getCenterX()) ));
+		if(target.getCenterX() <= x) rotation += Math.PI;
 	}
 	
 	

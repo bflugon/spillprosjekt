@@ -56,11 +56,11 @@ public class Lightning extends Projectile{
 		public void drawProjectile(Graphics2D g2d){
 	    	
 	    	AffineTransform trans = new AffineTransform();
-	    	trans.rotate(rotation,x,y);
-	    	trans.translate(15,0);
+	    	trans.rotate(rotation,x+300,y+30);
+	    	trans.translate(3000,30);
 	    	g2d.setTransform(trans);
 	    	
-	    	g2d.drawImage(texture, (int)(x) +27, (int)(y)-sY/2, (int)sX, sY, null);
+	    	g2d.drawImage(texture, (int)(x)+300, (int)(y)-sY/2, (int)sX, sY, null);
 	}
 		
 		public void checkHit(){

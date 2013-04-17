@@ -68,13 +68,12 @@ public class ComponentList extends PopupWindow{
 				if(currComponent instanceof Barrel){
 					Barrel barrel = (Barrel) cell.getComponent();
 					tower.setBarrel(barrel);
+
+//					Bytter til tilsvarende ammo
+					for(Ammo ammo : GameData.ammo){
+						if(ammo.getName().equals("Basic "+barrel.getAmmoType())) tower.setAmmo(ammo);
+					}
 					
-//					Lag en bedre måte
-					if(barrel.getAmmoType() == "Bullet") tower.setAmmo(GameData.ammo.get(0));
-					else if(barrel.getAmmoType() == "Missile") tower.setAmmo(GameData.ammo.get(1));
-					else if(barrel.getAmmoType() == "Flamme") tower.setAmmo(GameData.ammo.get(3));
-					else if(barrel.getAmmoType() == "Lightning") tower.setAmmo(GameData.ammo.get(4));
-					System.out.println(barrel.getAmmoType());
 				}
 				else if(currComponent instanceof Ammo)tower.setAmmo((Ammo)cell.getComponent());
 				else if(currComponent instanceof Base) tower.setBase((Base)cell.getComponent());

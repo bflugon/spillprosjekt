@@ -12,21 +12,21 @@ public class Inventory {
 		
 		//double damage, double range, double firerate
 		
-		createAmmo("Basic ammo","Bullet",0,0,1,25,550);
-		createAmmo("Sticky SLime","Slime",123,7,7,25,200,"glue");
+		createAmmo("Basic Bullet","Bullet",0,0,1,25,550);
+		createAmmo("Basic Slime","Slime",123,7,7,25,200,"glue");
 		
-		createAmmo( "kim jong un", "Missile",  25 , 1,  1,  60, 20);
+		createAmmo( "Basic Missile", "Missile",  25 , 1,  1,  60, 20);
 		createAmmo( "S.M.A.R.T", "Missile",  250 , 4,  150,  250, 200);
 		createAmmo( "SlowPoke", "Missile",  750 , 6,  0,  250, 200, "glue");
-		createAmmo("Propan","Flamme",100,2,200,25,75);
-		createAmmo("Tesla","Lightning",100,5,200,25,75);
+		createAmmo("Basic Flamme","Flamme",100,2,200,25,75);
+		createAmmo("Basic Lightning","Lightning",100,5,200,25,75);
 		createAmmo("High Caliber","Bullet",1000,3,200,25,150);
 
 		String bullet = "Bullet";
-		createBarrel("Basic barrel",25, 3,  50,  100,  200, bullet);
+		createBarrel("Basic Barrel",25, 3,  50,  100,  200, bullet);
 		createBarrel("Anhilator",120, 0,  100,  200,  600,bullet);
-		createBarrel("Hyper laser",200, 1,  1,  70,  40,bullet);
-		createBarrel("Phase barrel",250, 2,  200,  350,  200,bullet);
+		createBarrel("Hyper Laser",200, 1,  1,  70,  40,bullet);
+		createBarrel("Phase Barrel",250, 2,  200,  350,  200,bullet);
 		
 		
 		String flamme = "Flamme";

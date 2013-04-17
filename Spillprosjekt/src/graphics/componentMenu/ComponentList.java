@@ -49,7 +49,7 @@ public class ComponentList extends PopupWindow{
 	}
 	
  	public void updateList(int lowest){
- 		if(lowest < 0)return;
+ 		if(lowest < 0 || lowest >= GameData.barrels.size())return;
  		
  		firstIndex = lowest;
 		list = new ArrayList<ComponentListCell>();
@@ -64,7 +64,6 @@ public class ComponentList extends PopupWindow{
 				TowerComponent barrel = GameData.barrels.get(counter);
 				list.add(new ComponentListCell(barrel, currComponent, x, y+80*(counter-firstIndex), width, 80));
 				counter++;
-				System.out.println((7-(lastIndex-counter)));
 			}
 		} else if(currComponent instanceof Ammo){
 			while(counter < lastIndex){
@@ -90,8 +89,8 @@ public class ComponentList extends PopupWindow{
 			cell.draw(g);
 		}
 		
-		g.fillRect(next.x, next.y, next.width, next.height);
-		g.fillRect(previous.x, previous.y, previous.width, previous.height);
+		g.drawImage(Tilesets.button_tileset[GameData.next], next.x, next.y, next.width, next.height, null);
+		g.drawImage(Tilesets.button_tileset[GameData.previous], previous.x, previous.y, previous.width, previous.height, null);
 	}
 
 	public void clicked() {

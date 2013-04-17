@@ -35,7 +35,9 @@ public class GameData {
 							goToBoard = 2,
 							newTower = 3,
 							mute = 4,
-							save = 5;
+							save = 5,
+							next = 6,
+							previous = 7;
 	
 	public static final int basicAmmo = 0,
 							missile = 1;
@@ -74,4 +76,5 @@ public class GameData {
 	
 	public static String[] songs = {"backgroundMusic1.wav","backgroundMusic.wav"};
 	public static int songNum = new Random().nextInt(2);
+
 }

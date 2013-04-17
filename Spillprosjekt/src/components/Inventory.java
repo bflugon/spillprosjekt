@@ -24,6 +24,7 @@ public class Inventory {
 
 		String bullet = "Bullet";
 		createBarrel("Basic Barrel",25, 3,  50,  100,  200, bullet);
+		createBarrel("Basic Barrel",25, 3,  50,  100,  200, bullet);
 		createBarrel("Anhilator",120, 0,  100,  200,  600,bullet);
 		createBarrel("Hyper Laser",200, 1,  1,  70,  40,bullet);
 		createBarrel("Phase Barrel",250, 2,  200,  350,  200,bullet);

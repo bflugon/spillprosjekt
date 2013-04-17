@@ -5,6 +5,7 @@ import graphics.Screen;
 import graphics.Tower;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -19,38 +20,68 @@ import backend.Tilesets;
 
 public class ComponentList extends PopupWindow{
 
-	private ArrayList<ComponentListCell> list = new ArrayList<ComponentListCell>();
+	private ArrayList<ComponentListCell> list;
 	
 	private ComponentMenu menu;
 	private TowerComponent currComponent;
 	
+	private Rectangle 	next, 
+						previous;
+	
+	private int firstIndex = 0;
+	
 	public ComponentList(TowerComponent currComponent, ComponentMenu menu){
+		this.currComponent = currComponent;
+		this.menu = menu;
 		
-		int counter = 0;
+		previous = new Rectangle(20,290,40,80);
+		next = new Rectangle(760,290,40,80);
+		
+		updateList(0);
+	}
+	
+	private void nextPage(){
+		updateList(firstIndex+7);
+	}
+	
+	private void previousPage(){
+		updateList(firstIndex-7);
+	}
+	
+ 	public void updateList(int lowest){
+ 		if(lowest < 0)return;
+ 		
+ 		firstIndex = lowest;
+		list = new ArrayList<ComponentListCell>();
+		
+		int lastIndex = lowest + 7;
+		if(lastIndex >= GameData.barrels.size()) lastIndex = GameData.barrels.size()-1;
+		
+		int counter = firstIndex;
+
 		if(currComponent instanceof Barrel){
-			for(TowerComponent tc : GameData.barrels){
-				if(tc != currComponent)
-				list.add(new ComponentListCell(tc, currComponent, x, y+80*counter++, width, 80));
+			while(counter < lastIndex){
+				TowerComponent barrel = GameData.barrels.get(counter);
+				list.add(new ComponentListCell(barrel, currComponent, x, y+80*(counter-firstIndex), width, 80));
+				counter++;
+				System.out.println((7-(lastIndex-counter)));
 			}
 		} else if(currComponent instanceof Ammo){
-			for(TowerComponent tc : GameData.ammo){
-				if(tc != currComponent){
-					Ammo ammo = (Ammo) tc;
-					String ammoType = menu.getActiveTower().getBarrel().getAmmoType();
-					if(ammo.getAmmoType() == ammoType){
-						list.add(new ComponentListCell(tc, currComponent, x, y+80*counter++, width, 80));
-					}
+			while(counter < lastIndex){
+				Ammo ammo = (Ammo) GameData.ammo.get(counter);
+				String ammoType = menu.getActiveTower().getBarrel().getAmmoType();
+				if(ammo.getAmmoType() == ammoType){
+					list.add(new ComponentListCell(ammo, currComponent, x, y+80*(counter-firstIndex), width, 80));
+					counter++;
 				}
 			}
 		} else if(currComponent instanceof Base){
-			for(TowerComponent tc : GameData.bases){
-				if(tc != currComponent)
-				list.add(new ComponentListCell(tc, currComponent, x, y+80*counter++, width, 80));
+			while(counter < lastIndex){
+				TowerComponent base = GameData.bases.get(counter);
+				list.add(new ComponentListCell(base, currComponent, x, y+80*(counter-firstIndex), width, 80));
+				counter++;
 			}
 		}
-		
-		this.currComponent = currComponent;
-		this.menu = menu;
 	}
 	
 	public void draw(Graphics g){
@@ -58,6 +89,9 @@ public class ComponentList extends PopupWindow{
 		for(ComponentListCell cell : list){
 			cell.draw(g);
 		}
+		
+		g.fillRect(next.x, next.y, next.width, next.height);
+		g.fillRect(previous.x, previous.y, previous.width, previous.height);
 	}
 
 	public void clicked() {
@@ -82,8 +116,9 @@ public class ComponentList extends PopupWindow{
 				break;
 			}
 		}
-		if(!contains(Screen.CURSOR)){
-			menu.closeList();
-		}
+		
+		if(next.contains(Screen.CURSOR)) nextPage();
+		else if(previous.contains(Screen.CURSOR)) previousPage();
+		else if(!contains(Screen.CURSOR)) menu.closeList();
 	}
 }

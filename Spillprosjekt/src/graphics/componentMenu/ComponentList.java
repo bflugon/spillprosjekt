@@ -41,44 +41,65 @@ public class ComponentList extends PopupWindow{
 	}
 	
 	private void nextPage(){
-		updateList(firstIndex+7);
+		updateList(7);
 	}
 	
 	private void previousPage(){
-		updateList(firstIndex-7);
+		updateList(-7);
 	}
 	
- 	public void updateList(int lowest){
- 		if(lowest < 0 || lowest >= GameData.barrels.size())return;
- 		
- 		firstIndex = lowest;
+ 	public void updateList(int change){
 		list = new ArrayList<ComponentListCell>();
 		
-		int lastIndex = lowest + 7;
-		if(lastIndex >= GameData.barrels.size()) lastIndex = GameData.barrels.size()-1;
-		
+		int posMultiplier = 0;
 		int counter = firstIndex;
-
+		
+		
 		if(currComponent instanceof Barrel){
-			while(counter < lastIndex){
+			if(firstIndex +change < GameData.barrels.size()) firstIndex +=  change;
+			if(firstIndex < 0) firstIndex = 0;
+			counter = firstIndex;
+
+			while(posMultiplier < 7){		
 				TowerComponent barrel = GameData.barrels.get(counter);
-				list.add(new ComponentListCell(barrel, currComponent, x, y+80*(counter-firstIndex), width, 80));
+				if(barrel != currComponent){
+					list.add(new ComponentListCell(barrel, currComponent, x, y+80*posMultiplier, width, 80));
+					posMultiplier++;
+				}
 				counter++;
+				if(counter == GameData.barrels.size() || firstIndex+posMultiplier >= GameData.barrels.size()) break;
 			}
 		} else if(currComponent instanceof Ammo){
-			while(counter < lastIndex){
+			if(firstIndex +change < GameData.ammo.size()) firstIndex +=  change;
+			if(firstIndex < 0) firstIndex = 0;
+			counter = firstIndex;
+			
+			while(posMultiplier < 7){
 				Ammo ammo = (Ammo) GameData.ammo.get(counter);
+				
 				String ammoType = menu.getActiveTower().getBarrel().getAmmoType();
-				if(ammo.getAmmoType() == ammoType){
-					list.add(new ComponentListCell(ammo, currComponent, x, y+80*(counter-firstIndex), width, 80));
-					counter++;
+				if(ammo.getAmmoType() == ammoType && ammo != currComponent){
+					list.add(new ComponentListCell(ammo, currComponent, x, y+80*posMultiplier, width, 80));
+					posMultiplier++;
 				}
+				counter++;
+
+				if(posMultiplier == 7 || firstIndex+posMultiplier == GameData.ammo.size() || counter == GameData.ammo.size()) break;
 			}
 		} else if(currComponent instanceof Base){
-			while(counter < lastIndex){
+			if(firstIndex +change < GameData.bases.size()) firstIndex +=  change;
+			if(firstIndex < 0) firstIndex = 0;
+			counter = firstIndex;
+			
+			while(posMultiplier < 7){
 				TowerComponent base = GameData.bases.get(counter);
-				list.add(new ComponentListCell(base, currComponent, x, y+80*(counter-firstIndex), width, 80));
+				if(base != currComponent){
+					list.add(new ComponentListCell(base, currComponent, x, y+80*posMultiplier, width, 80));
+					posMultiplier++;
+				}
 				counter++;
+
+				if(posMultiplier == 7 || counter == GameData.bases.size() || firstIndex+posMultiplier == GameData.bases.size()) break;
 			}
 		}
 	}

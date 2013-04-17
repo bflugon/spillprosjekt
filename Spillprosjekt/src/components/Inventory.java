@@ -18,7 +18,8 @@ public class Inventory {
 		createAmmo( "Basic Missile", "Missile",  25 , 1,  1,  60, 20);
 		createAmmo( "S.M.A.R.T", "Missile",  250 , 4,  150,  250, 200);
 		createAmmo( "SlowPoke", "Missile",  750 , 6,  0,  250, 200, "glue");
-		createAmmo("Basic Flamme","Flamme",100,2,200,25,75);
+		createAmmo("Basic Flame","Flame",100,2,200,25,75);
+		createAmmo("Icy Flame","Flame",100,2,200,25,75, "glue");
 		createAmmo("Basic Lightning","Lightning",100,5,200,25,75);
 		createAmmo("High Caliber","Bullet",1000,3,200,25,150);
 
@@ -29,9 +30,9 @@ public class Inventory {
 		createBarrel("Phase Barrel",250, 2,  200,  350,  200,bullet);
 		
 		
-		String flamme = "Flamme";
-		createBarrel("Cremator",25, 4,  250,  25,  50, flamme);
-		createBarrel("Hindenburner",500, 5,  50,  50,  100, flamme);
+		String flame = "Flame";
+		createBarrel("Cremator",25, 4,  250,  25,  50, flame);
+		createBarrel("Hindenburner",500, 5,  50,  50,  100, flame);
 		
 		String slimer = "Slime";
 		createBarrel("Slimer",250, 8,  200,  350,  200,slimer);

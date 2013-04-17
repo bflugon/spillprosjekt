@@ -83,15 +83,11 @@ public class Ammo extends TowerComponent {
 	}
 	
 	public String abilityToString(){
-		
 		if(ammoAbility.equals("glue")){
-			return " + Slows down enemies";
+			return " (Slows down enemies)";
 		}
 		
-		
-		
 		return "";
-		
 	}
 	
 	

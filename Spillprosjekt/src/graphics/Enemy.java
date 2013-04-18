@@ -25,7 +25,8 @@ public class Enemy extends Rectangle{
 				direction = downward,
 				distanceTraveled = 0,
 				walkSpeed,
-				value;
+				value,
+				enemyID;
 	
 	private double lives;
 	
@@ -41,8 +42,9 @@ public class Enemy extends Rectangle{
 	}
 	
 //	Spawner fiende naar timeren kaller metoden fra board
-	public void spawnEnemy(int lives, int walkSpeed, Block currentBlock) {
+	public void spawnEnemy(int lives, int walkSpeed, int enemyID, Block currentBlock) {
 		this.lives = lives;
+		this.enemyID = enemyID;
 		value = (int) 1;
 		
 		setCurrentBlock(currentBlock);
@@ -111,7 +113,7 @@ public class Enemy extends Rectangle{
 	}
 	
 	public void draw(Graphics g) {
-		g.drawImage(Tilesets.enemy_tileset[GameData.spaceInvader], x, y, width, height, null);
+		g.drawImage(Tilesets.enemy_tileset[enemyID], x, y, width, height, null);
 		
 		if(slowed) {
 			g.setColor(new Color(10,190,80,150));

@@ -11,6 +11,7 @@ import backend.GameData;
 import backend.MapLoader;
 import backend.Pathfinder;
 import backend.Tilesets;
+import backend.WaveControl;
 
 public class Board {
 	
@@ -18,7 +19,14 @@ public class Board {
 				lives = 20;
 	
 	private int activeTower,
-				enemyLives;
+				enemyLives,
+				waveNumber = -1,
+				spawnRate,
+				enemiesSpawned = 0,
+				spawnFrame = 0,
+				enemyIndex,
+				enemySpeed,
+				numOfEnemies = 0;
 	private final int 	worldHeight = 9,
 						worldWidth = 13,
 						blockSize = 60;
@@ -55,7 +63,6 @@ public class Board {
 		save = new Rectangle(585,615,35,35);
 		
 		activeTower = 0;
-		enemyLives = 300;
 //		Fyller arrayet med fiender
 		enemies = new Enemy[80];
 		GameData.enemies = new Enemy[80];
@@ -148,15 +155,13 @@ public class Board {
 		return blockSize;
 	}
 	
-	private int enemiesSpawned = 20, spawnFrame = 0, spawnRate = 400;
 	private void spawnTimer() {
-		if(enemiesSpawned == 20) return;
+		if(numOfEnemies == enemiesSpawned) return;
 		if(spawnFrame >= spawnRate) {
 			for(int i = 0; i < enemies.length;i++) {
 				if(!enemies[i].inGame()) {
-					enemies[i].spawnEnemy(enemyLives, 4, getStart());
+					enemies[i].spawnEnemy(enemyLives, enemySpeed, enemyIndex, getStart());
 					enemiesSpawned++;
-					enemyLives += 100;
 					break;
 				}
 			}
@@ -234,8 +239,16 @@ public class Board {
 	}
 
 	public void nextWave(){
-		if(nextWave.contains(Screen.CURSOR) && enemiesSpawned == 20){
-			enemyLives++;
+		if(nextWave.contains(Screen.CURSOR) && enemiesSpawned == numOfEnemies){
+			waveNumber++;
+			waveNumber %= WaveControl.enemyIndex.length;
+			enemyIndex = WaveControl.enemyIndex[waveNumber];
+			
+			enemyLives = WaveControl.enemyLives[enemyIndex];
+			enemySpeed = WaveControl.enemySpeed[enemyIndex];
+			spawnRate = WaveControl.spawnSpeed[enemyIndex];
+			
+			numOfEnemies = WaveControl.numOfEnemies[waveNumber];
 			enemiesSpawned = 0;
 		}
 	}

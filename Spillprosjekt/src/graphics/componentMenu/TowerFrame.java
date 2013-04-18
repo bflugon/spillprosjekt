@@ -30,11 +30,11 @@ public class TowerFrame extends Rectangle {
 		g.setColor(Color.WHITE);
 		g.setFont(GameData.header);
 		
-		g.drawString("Damage: "+tower.getDamage(), x+height+50, y+40);
-		g.drawString("Range: "+tower.getRange(), x+height+50, y+80);
-		g.drawString("Firerate: "+tower.getFireRate(), x+height+50, y+120);
-		g.drawString("Splash Damage: "+tower.getSplashDamage(), x+height+50, y+160);
-		g.drawString("Slow: "+tower.getSlow(), x+height+50, y+200);
-		g.drawString("Radar: "+tower.getRadar(), x+height+50, y+240);
+		g.drawString("Damage: "+tower.getDamage(), x+height+80, y+60);
+		g.drawString("Range: "+tower.getRange(), x+height+80, y+140);
+		g.drawString("Firerate: "+tower.getFireRate(), x+height+80, y+220);
+//		g.drawString("Splash Damage: "+tower.getSplashDamage(), x+height+50, y+160);
+//		g.drawString("Slow: "+tower.getSlow(), x+height+50, y+200);
+//		g.drawString("Radar: "+tower.getRadar(), x+height+50, y+240);
 	}
 }

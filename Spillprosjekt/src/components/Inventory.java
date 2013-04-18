@@ -19,29 +19,29 @@ public class Inventory {
 		createAmmo( "S.M.A.R.T", "Missile",  250 , 4,  150,  250, 200);
 		createAmmo( "SlowPoke", "Missile",  750 , 6,  0,  250, 200, "glue");
 		createAmmo("Basic Flame","Flame",100,2,200,25,75);
-		createAmmo("Icy Flame","Flame",100,2,200,25,75, "glue");
+		createAmmo("Icy Flame","Flame",100,8,200,25,75, "glue");
 		createAmmo("Basic Lightning","Lightning",100,5,200,25,75);
 		createAmmo("High Caliber","Bullet",1000,3,200,25,150);
 
 		String bullet = "Bullet";
-		createBarrel("Basic Barrel",25, 3,  50,  100,  200, bullet);
-		createBarrel("Anhilator",120, 0,  100,  200,  600,bullet);
-		createBarrel("Hyper Laser",200, 1,  1,  70,  40,bullet);
-		createBarrel("Phase Barrel",250, 2,  200,  350,  200,bullet);
+		createBarrel("Basic Barrel",25, 3,  50,  100,  200, bullet, "shot2.wav");
+		createBarrel("Anhilator",120, 0,  100,  200,  600,bullet, "shot.wav");
+		createBarrel("Hyper Laser",200, 1,  1,  70,  40,bullet, "shot2.wav");
+		createBarrel("Phase Barrel",250, 2,  200,  350,  200,bullet, "shot.wav");
 		
 		
 		String flame = "Flame";
-		createBarrel("Cremator",25, 4,  250,  25,  50, flame);
-		createBarrel("Hindenburner",500, 5,  50,  50,  100, flame);
+		createBarrel("Cremator",25, 4,  250,  25,  50, flame, "flame.wav");
+		createBarrel("Hindenburner",500, 5,  50,  50,  100, flame, "flame.wav");
 		
 		String slimer = "Slime";
-		createBarrel("Slimer",250, 8,  200,  350,  200,slimer);
+		createBarrel("Slimer",250, 8,  200,  350,  200,slimer, "glue.wav");
 		
 		String tesla = "Lightning";
-		createBarrel("Tesla Coil",750, 6,  500,  100,  75,tesla);
+		createBarrel("Tesla Coil",750, 6,  500,  100,  75,tesla, "shot.wav");
 		
 		String missile = "Missile";
-		createBarrel("NASAMS",750, 7,  10,  250,  250,missile);
+		createBarrel("NASAMS",750, 7,  10,  250,  250,missile, "missile.wav");
 		
 		createBase("Concrete",50, 2,  0,  0,  0);
 		createBase("Green Goblin",100, 3,  20,  75,  20);
@@ -69,8 +69,8 @@ public class Inventory {
 	}
 	
 	
-	private void createBarrel(String name, int price ,int textureIndex, double damage, double range, double firerate, String allowedAmmo){
-		Barrel new_barrel = new Barrel( name,  price , textureIndex,  damage,  range,  firerate,allowedAmmo);
+	private void createBarrel(String name, int price ,int textureIndex, double damage, double range, double firerate, String allowedAmmo, String soundName){
+		Barrel new_barrel = new Barrel( name,  price , textureIndex,  damage,  range,  firerate,allowedAmmo, soundName);
 		GameData.barrels.add(new_barrel);
 	}
 	

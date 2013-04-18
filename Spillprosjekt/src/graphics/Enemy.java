@@ -47,6 +47,8 @@ public class Enemy extends Rectangle{
 		
 		setCurrentBlock(currentBlock);
 	
+		slowed = false;
+		
 		this.walkSpeed = walkSpeed;
 		distanceTraveled = 0;
 		
@@ -94,7 +96,6 @@ public class Enemy extends Rectangle{
 	
 	public void slowDownEnemy(){
 		if(slowed) return;
-		System.out.println("SLOWED");
 		walkSpeed *= 2; 
 		slowed = true;
 		
@@ -110,28 +111,12 @@ public class Enemy extends Rectangle{
 	}
 	
 	public void draw(Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
+		g.drawImage(Tilesets.enemy_tileset[GameData.spaceInvader], x, y, width, height, null);
 		
-//		AffineTransform old = new AffineTransform();
-//		AffineTransform trans = new AffineTransform();
-//
-//		switch (direction){
-//		case upward:
-//			trans.rotate(-3.14/2, x+30, y+30);
-//			break;
-//		case left:
-//			trans.rotate(3.14, x+30, y+30);
-//			break;
-//		case downward:
-//			trans.rotate(3.14/2, x+30, y+30);
-//			break;
-//		}
-//		
-//		g2d.setTransform(trans);
-		
-		g2d.drawImage(Tilesets.enemy_tileset[GameData.spaceInvader], x, y, width, height, null);
-		g2d.setColor(Color.GREEN);
-//		g2d.setTransform(old);
+		if(slowed) {
+			g.setColor(new Color(10,190,80,150));
+			g.fillRect(x, y, width, height);
+		}
 	}
 	
 	public int walkFrame = 0;

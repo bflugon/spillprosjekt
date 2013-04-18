@@ -12,9 +12,9 @@ public class Barrel extends TowerComponent{
 
 	//protected Image barrelTexture;
 	protected String allowed_ammo;
+	protected String soundName;
 	
-	
-	public Barrel(String name, int price ,int textureIndex, double damage, double range, double firerate, String allowed_ammo) {
+	public Barrel(String name, int price ,int textureIndex, double damage, double range, double firerate, String allowed_ammo, String soundName) {
 		super(damage, range, firerate, price,name,textureIndex);
 		this.name = name;
 		this.price = price;
@@ -22,10 +22,15 @@ public class Barrel extends TowerComponent{
 		this.id = GameData.basicBarrel;
 		this.texture = Tilesets.barrel_tileset[textureIndex];
 		this.allowed_ammo = allowed_ammo;
+		this.soundName = soundName;
 	}
 	
 	public String getAmmoType(){
 		return allowed_ammo;
+	}
+	
+	public String getSoundName(){
+		return soundName;
 	}
 	
 	public void draw(Graphics2D g2d, int tx, int ty, double rotation){

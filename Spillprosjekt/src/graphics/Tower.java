@@ -73,7 +73,7 @@ public class Tower extends Rectangle{
 		ammo = GameData.ammo.get(0);
 		base = GameData.bases.get(0);
 		updateProperties();
-		this.name ="Mongo bollefjes";
+		this.name = "Selected Tower";
 	}
 	
 	
@@ -101,6 +101,7 @@ public class Tower extends Rectangle{
 	
 	private void rotate(){
 		if(target == null || ammo.getAmmoType().equals("Lightning"))return;
+		if(!target.inGame()) return;
 		
 		double barrelX = x+30;
 		double barrelY = y+30;
@@ -113,8 +114,7 @@ public class Tower extends Rectangle{
 		if(target != null){
 			
 			addFiredAmmo();
-			
-			Sound.playSound("shot.wav");
+			Sound.playSound(barrel.getSoundName());
 			target = null;
 			fireFrame = 0;
 		}
@@ -122,7 +122,7 @@ public class Tower extends Rectangle{
 
 //	Gir taarnet som mates inn i metoden samme egenskaper som taarnet
 	public void copyTower(Tower tower){	
-		Barrel newBarrel = new Barrel(barrel.getName(), barrel.getPrice(),barrel.getTextureIndex(), barrel.getDamage(), barrel.getRange(), barrel.getFirerate(), barrel.getAmmoType());
+		Barrel newBarrel = new Barrel(barrel.getName(), barrel.getPrice(),barrel.getTextureIndex(), barrel.getDamage(), barrel.getRange(), barrel.getFirerate(), barrel.getAmmoType(), barrel.getSoundName());
 		Ammo newAmmo = new Ammo(ammo.getName(),ammo.getAmmoType(), ammo.getPrice(),ammo.getTextureIndex(), ammo.getDamage(), ammo.getRange(), ammo.getFirerate(),ammo.getAbility());
 		Base newBase = new Base(base.getName(), base.getPrice(),base.getTextureIndex(), base.getDamage(), base.getRange(), base.getFirerate());
 		
@@ -144,11 +144,11 @@ public class Tower extends Rectangle{
 	}
 	
 	public void addFiredAmmo(){
-		if(ammo.getAmmoType().equals("Flamme") || ammo.getAmmoType().equals("Beam") || ammo.getAmmoType().equals("Lightning") ){
+		if(ammo.getAmmoType().equals("Flame") || ammo.getAmmoType().equals("Beam") || ammo.getAmmoType().equals("Lightning") ){
 			firedAmmo.add(new PersistentProjectile(this, x, y,  rotation, this.getTarget(),this.board, this.getAmmo()));
 		}
 		
-		if(ammo.getAmmoType().equals("Bullet") || ammo.getAmmoType().equals("Missile")){
+		else if(ammo.getAmmoType().equals("Bullet") || ammo.getAmmoType().equals("Missile")){
 			firedAmmo.add(new Projectile(this, x, y,  rotation, this.getTarget(),this.board, this.getAmmo()));
 		}
 		else{
@@ -249,9 +249,9 @@ public class Tower extends Rectangle{
 	}
 	
 	public void drawRange(Graphics g){
-		g.setColor(Colors.transparentBlack);
+//		g.setColor(Colors.transparentBlack);
 //		Tegner rekkevidden rundt midten av taarnet
-		g.fillOval((int)(x+30-range), (int)(y+30-range), (int)range*2, (int)range*2);
+		g.drawImage(Tilesets.range, (int)(x+30-range), (int)(y+30-range), (int)range*2, (int)range*2,null);
 		
 	}
 

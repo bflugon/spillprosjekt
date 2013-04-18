@@ -18,11 +18,13 @@ public class Tilesets extends Component{
 							barrelMenu_tileset,
 							baseMenu_tileset;
 	
-	public static Image openingImage;
+	public static Image openingImage,
+						range;
 	
 	public Tilesets(){
 		
 		openingImage = new ImageIcon("resources/textures/openingImage.png").getImage();
+		range = new ImageIcon("resources/textures/range.png").getImage();
 		
 		enemy_tileset = new Image[5];
 		for(int i = 0; i < enemy_tileset.length; i++){

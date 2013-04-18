@@ -87,6 +87,8 @@ public class PersistentProjectile extends Projectile{
 					
 				if(Math.sqrt(distY*distY+distX*distX) <= range && enemy.inGame()){
 					enemy.setLives(damage);
+					if(ammoAbility != null && ammoAbility.equals("glue")) enemy.slowDownEnemy();
+
 					if(ammoType.equals("Lightning") && enemy.getLives() < 2) {
 						tower.removeFiredAmmo(this);
 					}

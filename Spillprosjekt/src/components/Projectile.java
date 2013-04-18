@@ -66,7 +66,7 @@ public class Projectile extends Rectangle{
     	checkHit();
     	
     	ammoTimeOut ++;
-    	if(ammoTimeOut > 1000 || !target.inGame()){
+    	if(ammoTimeOut > 1000){
     		tower.removeFiredAmmo(this);
     	}
 	}
@@ -91,20 +91,17 @@ public class Projectile extends Rectangle{
 				enemy.setLives(damage);
 				
 //				add splash damage to missiles
-//				Funker ikke ennaa
 				if(ammoType == "Missile"){
-					for(int i = 0; i < GameData.enemies.length; i++){
+					setBounds((int)x-30, (int)y-30, 80, 80);
+					for(int i = 0; i < board.getEnemies().length; i++){
 						Enemy enemyNearby = board.getEnemies()[i];
-
-						double distX = enemyNearby.getX()-target.getX();
-						double distY = enemyNearby.getY()-target.getY();
-						if(Math.sqrt(distY*distY+distX*distX) <= 60 && enemy.inGame()){
-							enemyNearby.setLives(damage*0.4);
+						if(enemyNearby.intersects(this) && enemy.inGame()){
+							enemy.setLives(damage/2);
 						}
 					}
 				}
 				tower.removeFiredAmmo(this);
-
+				break;
 			}
 			
 		}

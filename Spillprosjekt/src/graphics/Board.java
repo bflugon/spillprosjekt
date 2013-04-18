@@ -57,7 +57,6 @@ public class Board {
 		activeTower = 0;
 		enemyLives = 300;
 //		Fyller arrayet med fiender
-		
 		enemies = new Enemy[80];
 		GameData.enemies = new Enemy[80];
 		for(int i = 0; i<enemies.length; i++){

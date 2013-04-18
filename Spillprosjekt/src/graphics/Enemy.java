@@ -163,6 +163,7 @@ public class Enemy extends Rectangle{
 					default:
 						break;
 					}
+
 					distanceTraveled++;
 					currentBlock = board.getGrid()[yc][xc];
 					try{
@@ -188,5 +189,4 @@ public class Enemy extends Rectangle{
 		}
 		
 	}
-	
 }

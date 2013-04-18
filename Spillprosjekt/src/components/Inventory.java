@@ -28,7 +28,7 @@ public class Inventory {
 		createBarrel("Anhilator",120, 0,  100,  200,  600,bullet, "shot.wav");
 		createBarrel("Hyper Laser",200, 1,  1,  70,  40,bullet, "shot2.wav");
 		createBarrel("Phase Barrel",250, 2,  200,  350,  200,bullet, "shot.wav");
-		
+
 		
 		String flame = "Flame";
 		createBarrel("Cremator",25, 4,  250,  25,  50, flame, "flame.wav");
@@ -40,8 +40,11 @@ public class Inventory {
 		String tesla = "Lightning";
 		createBarrel("Tesla Coil",750, 6,  500,  100,  75,tesla, "shot.wav");
 		
+
 		String missile = "Missile";
 		createBarrel("NASAMS",750, 7,  10,  250,  250,missile, "missile.wav");
+
+
 		
 		createBase("Concrete",50, 2,  0,  0,  0);
 		createBase("Green Goblin",100, 3,  20,  75,  20);

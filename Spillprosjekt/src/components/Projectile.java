@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 
+import backend.GameData;
 import backend.Tilesets;
 
 public class Projectile extends Rectangle{
@@ -87,6 +88,20 @@ public class Projectile extends Rectangle{
 			if(this.intersects(enemy) && enemy.inGame()){
 				if(ammoAbility != null && ammoAbility.equals("glue")) enemy.slowDownEnemy();
 				enemy.setLives(damage);
+				
+//				add splash damage to missiles
+//				Funker ikke ennaa
+				if(ammoType == "Missile"){
+					for(int i = 0; i < GameData.enemies.length; i++){
+						Enemy enemyNearby = board.getEnemies()[i];
+
+						double distX = enemyNearby.getX()-target.getX();
+						double distY = enemyNearby.getY()-target.getY();
+						if(Math.sqrt(distY*distY+distX*distX) <= 60 && enemy.inGame()){
+							enemyNearby.setLives(damage*0.4);
+						}
+					}
+				}
 				tower.removeFiredAmmo(this);
 
 			}

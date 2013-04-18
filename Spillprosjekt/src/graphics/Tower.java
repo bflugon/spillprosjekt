@@ -249,7 +249,6 @@ public class Tower extends Rectangle{
 	}
 	
 	public void drawRange(Graphics g){
-//		g.setColor(Colors.transparentBlack);
 //		Tegner rekkevidden rundt midten av taarnet
 		g.drawImage(Tilesets.range, (int)(x+30-range), (int)(y+30-range), (int)range*2, (int)range*2,null);
 		

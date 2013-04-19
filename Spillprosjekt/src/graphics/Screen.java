@@ -49,6 +49,9 @@ public class Screen extends JPanel implements Runnable {
 
 		setSize(frame.getSize());
 		
+//		Laster inn meny-penger og rank fra tidligere;
+		FileManager.loadGameData();
+		
 		menu = new ComponentMenu();
 		board = new Board(this);
 		mainMenu = new MainMenu(this);
@@ -69,8 +72,6 @@ public class Screen extends JPanel implements Runnable {
 		inGame = false;
 		inStore = false;
 				
-//		Laster inn meny-penger og rank fra tidligere;
-		FileManager.loadGame();
 		
 		try {
 			new BigSound(new File("resources/sounds/"+GameData.songs[GameData.songNum])).start();
@@ -102,7 +103,7 @@ public class Screen extends JPanel implements Runnable {
 	public void goToMainMenu(){
 		inGame = false;
 		inStore = false;
-		FileManager.saveGame();
+		FileManager.saveGameData();
 	}
 	
 	private void physics(){

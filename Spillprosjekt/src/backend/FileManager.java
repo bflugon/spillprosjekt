@@ -2,13 +2,14 @@ package backend;
 
 import graphics.Block;
 import graphics.Board;
+import graphics.Enemy;
 import graphics.Tower;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileManager {
@@ -74,25 +75,29 @@ public class FileManager {
 	    }
 	}
 	
-	public static void saveGame(){
+	public static void saveGameData(){
 		File file = new File("resources/saves/save.txt");
 		
 	    try {
 	        BufferedWriter out = new BufferedWriter(new FileWriter(file));
 
-	        out.write("Rank: "+GameData.rank);
+	        out.write(""+GameData.rank);
+	        out.write("\n"+GameData.money);
+	        out.write("\n"+GameData.totEnemiesKilled);
+	        out.write("\n"+GameData.score);
+	        
+	        out.write("\n\nRank: "+GameData.rank);
 	        out.write("\nMoney: "+GameData.money);
 	        out.write("\nEnemies killed: "+GameData.totEnemiesKilled);
 	        out.write("\nScore: "+GameData.score);
+	        
 	        out.close();
-	        System.out.println(""+GameData.rank);
-	        System.out.println("\n"+GameData.money);
-	        System.out.println("\n"+GameData.totEnemiesKilled);
-	        System.out.println("\n"+GameData.score);
-	        System.out.println("Game Saved!");
 	    } catch (IOException e) {}
+	    
+	    saveModelTowers();
 	}
-	public static void loadGame(){
+	
+	public static void loadGameData(){
 		File file = new File("resources/saves/save.txt");
 		
 	    try {
@@ -105,5 +110,44 @@ public class FileManager {
 
 	    	System.out.println("Game Loaded!");
 	    } catch (IOException e) {}
+	    
+	    loadModelTowers();
+	}
+
+	public static void saveModelTowers(){
+		ArrayList<Tower> towers = GameData.modelTowers;
+		
+		File file = new File("resources/saves/towersSave.txt");
+		try{
+			BufferedWriter out = new BufferedWriter(new FileWriter(file));
+		
+			for(Tower tower: towers){
+				out.write(tower.getBarrel().getID()+" ");
+				out.write(tower.getAmmo().getID()+" ");
+				out.write(tower.getBase().getID()+"\n");
+			}
+			out.close();
+			System.out.println("Towers Saved");
+		}catch (Exception e) {}
+	}
+	
+	public static void loadModelTowers(){
+		File file = new File("resources/saves/towersSave.txt");
+		try{
+			Scanner loadScanner = new Scanner(file);
+			
+			GameData.modelTowers = new ArrayList<Tower>();
+			
+			int counter = 0;
+			while(loadScanner.hasNext()){
+				Tower tower = new Tower();
+				tower.setBarrel(GameData.barrels.get(loadScanner.nextInt()));
+				tower.setAmmo(GameData.ammo.get(loadScanner.nextInt()));
+				tower.setBase(GameData.bases.get(loadScanner.nextInt()));
+				GameData.modelTowers.add(tower);
+			}
+
+			System.out.println("Towers Loaded!");
+		}catch (Exception e) {}
 	}
 }

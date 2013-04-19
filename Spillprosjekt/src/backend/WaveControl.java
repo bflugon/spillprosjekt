@@ -23,7 +23,7 @@ public class WaveControl {
 	private String[][] waveArray =	{
 									{"0:10:10:4:400"},
 									{"1:10:10:3:250"},
-									{"0:15:10:4:350","1:10:10:3:200"}
+									{"0:15:10:4:100","1:10:10:3:200"}
 									};	
 	
 	private Screen screen;

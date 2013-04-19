@@ -39,8 +39,10 @@ public class ComponentMenu {
 	
 	public ComponentMenu(){
 		
-		modelTowers = GameData.modelTowers;
-		modelTowers.add(new Tower());
+		modelTowers = GameData.modelTowers;			
+		if(modelTowers.size() == 0){
+			modelTowers.add(new Tower());
+		}
 		
 		towerButtons = new ArrayList<Rectangle>();
 		for(int i = 0; i < modelTowers.size(); i++){
@@ -92,7 +94,7 @@ public class ComponentMenu {
 	}
 
 	public void changeActiveTower() {
-		for(int i = 0; i < towerButtons.size(); i++){
+		for(int i = 0; i < modelTowers.size(); i++){
 			if(towerButtons.get(i).contains(Screen.CURSOR)){
 				activeTower = modelTowers.get(i);
 				activeTowerIndex = i;

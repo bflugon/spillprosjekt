@@ -17,6 +17,7 @@ import sound.BigSound;
 import sound.Sound;
 
 import backend.Colors;
+import backend.FileManager;
 import backend.GameData;
 import backend.Tilesets;
 
@@ -67,10 +68,10 @@ public class Screen extends JPanel implements Runnable {
 		
 		inGame = false;
 		inStore = false;
-		
-		//La til denne for å gå rett til menyen
-		//goToStore();
 				
+//		Laster inn meny-penger og rank fra tidligere;
+		FileManager.loadGame();
+		
 		try {
 			new BigSound(new File("resources/sounds/"+GameData.songs[GameData.songNum])).start();
 		} catch (Exception e) {

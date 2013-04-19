@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import backend.Colors;
 import backend.GameData;
-import backend.MapLoader;
+import backend.FileManager;
 import backend.Pathfinder;
 import backend.Tilesets;
 import backend.WaveControl;
@@ -43,7 +43,7 @@ public class Board {
 	
 	//Alle skuddene blir lagt til her når de skutt
 	
-	private MapLoader loader = new MapLoader();
+	private FileManager loader = new FileManager();
 
 	public Board(){
 //		Lager listen som inneholder taarnene
@@ -81,7 +81,7 @@ public class Board {
 			}
 		}
 		
-		loader.loadSave(new File("resources/maps/"+mapNum+".map"), this);
+		loader.loadBoard(new File("resources/maps/"+mapNum+".map"), this);
 		
 //		Finner korsteste vei on request
 		pathfinder = new Pathfinder(this);

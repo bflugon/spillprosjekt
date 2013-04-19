@@ -4,14 +4,15 @@ import graphics.Block;
 import graphics.Board;
 import graphics.Tower;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class MapLoader {
-	public void loadSave(File loadPath, Board board) {
+public class FileManager {
+	public void loadBoard(File loadPath, Board board) {
 		try {
 			Scanner loadScanner = new Scanner(loadPath);
 			Block[][] grid = board.getGrid();
@@ -46,7 +47,7 @@ public class MapLoader {
 		} catch(Exception e) {}
 	}
 	
-	public void save(Board board) {
+	public void saveBoard(Board board) {
 		int mapNum = new File("./resources/maps").list().length;
 		File file = new File("resources/maps/"+mapNum+".map");
 		Block[][] grid = board.getGrid();
@@ -71,5 +72,32 @@ public class MapLoader {
 	        out.close();
 	    } catch (IOException e) {
 	    }
+	}
+	
+	public static void saveGame(){
+		File file = new File("resources/saves/save.txt");
+		
+	    try {
+	        BufferedWriter out = new BufferedWriter(new FileWriter(file));
+
+	        out.write(""+GameData.rank);
+	        out.write("\n");
+	        out.write(""+GameData.money);
+	        out.close();
+
+	        System.out.println("Game Saved!");
+	    } catch (IOException e) {}
+	}
+	public static void loadGame(){
+		File file = new File("resources/saves/save.txt");
+		
+	    try {
+	    	Scanner loadScanner = new Scanner(file);
+
+	    	GameData.rank = loadScanner.nextInt();
+	    	GameData.money = loadScanner.nextInt();
+	    	System.out.println(GameData.rank);
+	        System.out.println("Game Loaded!");
+	    } catch (IOException e) {}
 	}
 }

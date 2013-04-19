@@ -15,7 +15,8 @@ import components.TowerComponent;
 
 public class GameData {
 	
-	public static int 	money = 0,
+	public static int 	rank = 0,
+						money = 0,
 						score = 0,
 						totEnemiesKilled = 0,
 						lives = 50;

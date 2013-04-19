@@ -8,6 +8,7 @@ import java.awt.Rectangle;
 import java.io.File;
 
 import backend.Colors;
+import backend.FileManager;
 import backend.GameData;
 import backend.Tilesets;
 
@@ -21,7 +22,7 @@ public class MainMenu extends Rectangle {
 	
 	private boolean inCredits = false;
 	
-	private String[] buttonText = {"Start Game","Map Editor", "Credits", "Exit"};
+	private String[] buttonText = {"Start Game","Save", "Credits", "Exit"};
 			
 	public MainMenu(Screen screen){
 		this.screen = screen;
@@ -55,7 +56,7 @@ public class MainMenu extends Rectangle {
 	public void clickButton() {
 		if(boardList == null){
 			if(buttons[0].contains(Screen.CURSOR) && !inCredits) boardList = new BoardList(screen);
-			else if(buttons[1].contains(Screen.CURSOR) && !inCredits) return;
+			else if(buttons[1].contains(Screen.CURSOR) && !inCredits) FileManager.saveGame();
 			else if(buttons[2].contains(Screen.CURSOR) && !inCredits) inCredits = true;
 			else if(buttons[3].contains(Screen.CURSOR) && !inCredits) System.exit(0);
 			else inCredits = false;

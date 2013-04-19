@@ -50,7 +50,7 @@ public class Screen extends JPanel implements Runnable {
 		setSize(frame.getSize());
 		
 		menu = new ComponentMenu();
-		board = new Board();
+		board = new Board(this);
 		mainMenu = new MainMenu(this);
 		
 		boardMouseListener = new BoardMouseListener(this);

@@ -23,7 +23,7 @@ public class Board {
 						worldWidth = 13,
 						blockSize = 60;
 	
-	private WaveControl waveControl = new WaveControl();
+	private WaveControl waveControl;
 	private Pathfinder pathfinder;
 
 	private Block[][] grid;
@@ -44,7 +44,9 @@ public class Board {
 	
 	private FileManager loader = new FileManager();
 
-	public Board(){
+	public Board(Screen screen){
+		
+		waveControl = new WaveControl(screen);
 //		Lager listen som inneholder taarnene
 		towers = new ArrayList<Tower>();
 		

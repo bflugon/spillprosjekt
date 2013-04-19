@@ -31,7 +31,6 @@ public class Board {
 					goal;
 	
 	private Rectangle nextWave;
-	private Rectangle goToStore;
 	private Rectangle mute;
 	private Rectangle save;
 	
@@ -50,9 +49,8 @@ public class Board {
 		towers = new ArrayList<Tower>();
 		
 		nextWave = new Rectangle(720,570,80,80);
-		goToStore = new Rectangle(630,570,80,80);
-		mute = new Rectangle(585,570,35,35);
-		save = new Rectangle(585,615,35,35);
+		mute = new Rectangle(675,570,35,35);
+		save = new Rectangle(675,615,35,35);
 		
 		activeTower = 0;
 //		Fyller arrayet med fiender
@@ -205,9 +203,6 @@ public class Board {
 		g.fillRect(nextWave.x, nextWave.y, nextWave.width, nextWave.height);
 		g.drawImage(Tilesets.button_tileset[GameData.nextWave], nextWave.x, nextWave.y, nextWave.width, nextWave.height, null);
 		
-		g.fillRect(goToStore.x, goToStore.y, goToStore.width, goToStore.height);
-		g.drawImage(Tilesets.button_tileset[GameData.goToShop], goToStore.x, goToStore.y, goToStore.width, goToStore.height, null);
-
 		g.fillRect(mute.x, mute.y, mute.width, mute.height);
 		g.drawImage(Tilesets.button_tileset[GameData.mute], mute.x, mute.y, mute.width, mute.height, null);
 		
@@ -217,8 +212,8 @@ public class Board {
 //		Tegn penger og liv
 		g.setFont(GameData.normal);
 		g.setColor(Color.WHITE);
-		g.drawString("Money: "+money, 470, 602);
-		g.drawString("Lives: "+lives, 470, 632);
+		g.drawString("Money: "+money, 550, 602);
+		g.drawString("Lives: "+lives, 550, 632);
 
 		for(Block[] row: grid){
 			for(Block block: row){
@@ -254,10 +249,6 @@ public class Board {
 		}
 	}
 	
-	public boolean menuClicked() {
-		return goToStore.contains(Screen.CURSOR);
-	}
-
 	public void mute(){
 		if(mute.contains(Screen.CURSOR)){
 			if(GameData.muted)GameData.muted = false;
@@ -271,10 +262,6 @@ public class Board {
 
 	public void setGoal(Block goal) {
 		this.goal = goal;
-	}
-
-	public boolean goToStore() {
-		return goToStore.contains(Screen.CURSOR);
 	}
 
 	public int getMoney() {

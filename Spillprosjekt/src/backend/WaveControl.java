@@ -2,6 +2,7 @@ package backend;
 
 import graphics.Board;
 import graphics.Enemy;
+import graphics.Screen;
 
 public class WaveControl {
 	
@@ -24,6 +25,12 @@ public class WaveControl {
 									{"1:10:10:3:250"},
 									{"0:15:10:4:350","1:10:10:3:200"}
 									};	
+	
+	private Screen screen;
+	
+	public WaveControl(Screen screen){
+		this.screen = screen;
+	}
 	
 	public void spawnTimer(Board board) {
 //		
@@ -55,12 +62,18 @@ public class WaveControl {
 	
 	private void updateWave(){
 		
-		if(wavePart >= waveArray[waveNumber%waveArray.length].length){
+		if(waveNumber == waveArray.length){
+			GameData.rank++;
+			GameData.money += 300;
+			screen.goToMainMenu();
+		}
+		
+		if(wavePart >= waveArray[waveNumber].length){
 			return;
 		}
 		enemiesSpawned = 0;
 		
-		String info = waveArray[waveNumber%waveArray.length][wavePart];
+		String info = waveArray[waveNumber][wavePart];
 		
 		int start = 0,
 			end = info.indexOf(':');;

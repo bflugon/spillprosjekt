@@ -76,6 +76,7 @@ public class Enemy extends Rectangle{
 		GameData.money += (int)damage;
 
 		if (lives <= 0) {
+			GameData.totEnemiesKilled++;
 			inGame = false;
 			mobWalk = 0;
 			Sound.playSound("explosion.wav");

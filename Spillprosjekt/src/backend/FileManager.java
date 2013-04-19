@@ -81,8 +81,9 @@ public class FileManager {
 	        BufferedWriter out = new BufferedWriter(new FileWriter(file));
 
 	        out.write(""+GameData.rank);
-	        out.write("\n");
-	        out.write(""+GameData.money);
+	        out.write("\n"+GameData.money);
+	        out.write("\n"+GameData.totEnemiesKilled);
+	        out.write("\n"+GameData.score);
 	        out.close();
 
 	        System.out.println("Game Saved!");
@@ -96,8 +97,10 @@ public class FileManager {
 
 	    	GameData.rank = loadScanner.nextInt();
 	    	GameData.money = loadScanner.nextInt();
-	    	System.out.println(GameData.rank);
-	        System.out.println("Game Loaded!");
+	    	GameData.totEnemiesKilled = loadScanner.nextInt();
+	    	GameData.score = loadScanner.nextInt();
+
+	    	System.out.println("Game Loaded!");
 	    } catch (IOException e) {}
 	}
 }

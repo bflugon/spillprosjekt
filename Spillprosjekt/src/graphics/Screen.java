@@ -91,13 +91,18 @@ public class Screen extends JPanel implements Runnable {
 	public void newBoard(int mapNum){		
 		board.createBoard(mapNum);
 		
-		inStore = false;
-		inGame = true;
+		goToStore();
 	}
 	
 	public void goToStore(){		
 		inGame = false;
 		inStore = true;
+	}
+	
+	public void goToMainMenu(){
+		inGame = false;
+		inStore = false;
+		FileManager.saveGame();
 	}
 	
 	private void physics(){

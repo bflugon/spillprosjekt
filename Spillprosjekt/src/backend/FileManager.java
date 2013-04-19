@@ -117,6 +117,16 @@ public class FileManager {
 	    loadModelTowers();
 	}
 
+	public static void newGame(){
+		File file = new File("resources/saves/towersSave.txt");
+		file.delete();
+		
+		file = new File("resources/saves/save.txt");
+		file.delete();
+		
+		loadGameData();
+	}
+	
 	public static void saveModelTowers(){
 		ArrayList<Tower> towers = GameData.modelTowers;
 		
@@ -125,24 +135,25 @@ public class FileManager {
 			BufferedWriter out = new BufferedWriter(new FileWriter(file));
 		
 			for(Tower tower: towers){
+				if(towers.get(0) != tower){
+					out.write("\n");
+				}
 				out.write(tower.getBarrel().getName()+"\n");
 				out.write(tower.getAmmo().getName()+"\n");
-				out.write(tower.getBase().getName()+"\n");
+				out.write(tower.getBase().getName());
 			}
 			out.close();
-			System.out.println("Towers Saved");
 		}catch (Exception e) {}
 	}
 	
 	public static void loadModelTowers(){
 		File file = new File("resources/saves/towersSave.txt");
+		GameData.modelTowers = new ArrayList<Tower>();
 		try{
 			Scanner loadScanner = new Scanner(file);
 			
-			GameData.modelTowers = new ArrayList<Tower>();
 			
-//			int counter = 0;
-			while(loadScanner.hasNext()){
+			while(loadScanner.hasNext() && GameData.modelTowers.size() < 7){
 				Tower tower = new Tower();
 				String barrelName = loadScanner.nextLine();
 				String ammoName = loadScanner.nextLine();
@@ -168,8 +179,6 @@ public class FileManager {
 				
 				GameData.modelTowers.add(tower);
 			}
-
-			System.out.println("Towers Loaded!");
 		}catch (Exception e) {}
 	}
 }

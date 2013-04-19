@@ -38,6 +38,10 @@ public class BoardList extends PopupWindow {
 				menu.closeList();
 			}
 		}
+		
+		if(!contains(Screen.CURSOR)){
+			menu.closeList();
+		}
 	}
 	
 }

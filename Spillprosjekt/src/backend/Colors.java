@@ -11,5 +11,6 @@ public class Colors {
 						transparentPink = new Color(255,0,100,100),
 						abilityBlue = new Color(128,225,255,150),
 						popupTransparentBlack = new Color(0, 0, 0, 200),
-						popupBackground = new Color(40, 40, 40);
+						popupBackground = new Color(40, 40, 40),
+						transparentWhite = new Color(255, 255, 255, 50);
 }

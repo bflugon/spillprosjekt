@@ -22,7 +22,7 @@ public class MainMenu extends Rectangle {
 	
 	private boolean inCredits = false;
 	
-	private String[] buttonText = {"Start Game","Map Editor", "Credits", "Exit"};
+	private String[] buttonText = {"Start Game","New Game", "Credits", "Exit"};
 			
 	public MainMenu(Screen screen){
 		this.screen = screen;
@@ -43,7 +43,8 @@ public class MainMenu extends Rectangle {
 
 		g.setFont(GameData.header);
 		for(int i = 0; i < buttons.length; i++) {
-			g.setColor(Colors.button);
+			if(buttons[i].contains(Screen.CURSOR))g.setColor(Colors.transparentPink);
+			else g.setColor(Colors.transparentBlack);
 			g.fillRect(buttons[i].x, buttons[i].y, buttons[i].width, buttons[i].height);
 			g.setColor(Colors.pink);
 			g.drawString(buttonText[i], buttons[i].x+30, buttons[i].y+40);
@@ -56,7 +57,7 @@ public class MainMenu extends Rectangle {
 	public void clickButton() {
 		if(boardList == null){
 			if(buttons[0].contains(Screen.CURSOR) && !inCredits) boardList = new BoardList(this);
-			else if(buttons[1].contains(Screen.CURSOR) && !inCredits) FileManager.saveModelTowers();
+			else if(buttons[1].contains(Screen.CURSOR) && !inCredits) screen.newGame();
 			else if(buttons[2].contains(Screen.CURSOR) && !inCredits) inCredits = true;
 			else if(buttons[3].contains(Screen.CURSOR) && !inCredits) System.exit(0);
 			else inCredits = false;

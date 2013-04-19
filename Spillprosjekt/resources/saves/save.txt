@@ -1,9 +1,9 @@
-6
-1800
-265
+5
+1500
+214
 0
 
-Rank: 6
-Money: 1800
-Enemies killed: 265
+Rank: 5
+Money: 1500
+Enemies killed: 214
 Score: 0

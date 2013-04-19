@@ -43,13 +43,14 @@ public class ComponentMenu {
 		if(modelTowers.size() == 0){
 			modelTowers.add(new Tower());
 		}
-		
+			
 		towerButtons = new ArrayList<Rectangle>();
 		for(int i = 0; i < modelTowers.size(); i++){
 			towerButtons.add(new Rectangle(720, 20+90*i, 80, 80));
 		}
-		
-		newTower = new Rectangle(720, 20+90*towerButtons.size(), 80, 80);
+		if(towerButtons.size() < 6){
+			newTower = new Rectangle(720, 20+90*towerButtons.size(), 80, 80);
+		}
 		goToBoard = new Rectangle(720,560,80,80);
 		
 		activeTower = modelTowers.get(activeTowerIndex);
@@ -72,20 +73,27 @@ public class ComponentMenu {
 		/*************************
 		 *** Taarn og knapper ****
 		 *************************/
-		g.setColor(Colors.transparentBlack);
 		for(int i = 0; i < towerButtons.size(); i++){
+			if(towerButtons.get(i).contains(Screen.CURSOR))g.setColor(Colors.transparentPink);
+			else g.setColor(Colors.transparentBlack);
 			Rectangle towerButton = towerButtons.get(i);
 			g.fillRect(towerButton.x, towerButton.y, towerButton.width, towerButton.height);
 			GameData.modelTowers.get(i).drawButton(g, towerButton);
 		}
 		
-		g.fillRect(goToBoard.x, goToBoard.y, goToBoard.width, goToBoard.height);
-		g.drawImage(Tilesets.button_tileset[GameData.goToBoard], goToBoard.x, goToBoard.y, goToBoard.width, goToBoard.height, null);
-		
 		if(newTower != null){
+			if(newTower.contains(Screen.CURSOR))g.setColor(Colors.transparentPink);
+			else g.setColor(Colors.transparentBlack);
+			
 			g.fillRect(newTower.x, newTower.y, newTower.width, newTower.height);
 			g.drawImage(Tilesets.button_tileset[GameData.newTower], newTower.x, newTower.y, newTower.width, newTower.height, null);
 		}
+
+		if(goToBoard.contains(Screen.CURSOR))g.setColor(Colors.transparentPink);
+		else g.setColor(Colors.transparentBlack);
+		g.fillRect(goToBoard.x, goToBoard.y, goToBoard.width, goToBoard.height);
+		g.drawImage(Tilesets.button_tileset[GameData.goToBoard], goToBoard.x, goToBoard.y, goToBoard.width, goToBoard.height, null);
+		
 
 		
 //		Liste, hvis det trengs
@@ -115,11 +123,10 @@ public class ComponentMenu {
 	public void addTower(){
 		if(newTower == null)return;
 		if(!newTower.contains(Screen.CURSOR)) return;
-
 		GameData.modelTowers.add(new Tower());
 		towerButtons.add(new Rectangle(720, 20+90*towerButtons.size(), 80, 80));
 		
-		if(GameData.modelTowers.size() == 5) newTower = null;
+		if(GameData.modelTowers.size() > 5) newTower = null;
 		else newTower = new Rectangle(720, 20+90*towerButtons.size(), 80, 80);
 	}
 

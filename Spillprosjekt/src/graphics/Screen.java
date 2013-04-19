@@ -110,6 +110,31 @@ public class Screen extends JPanel implements Runnable {
 		if(inGame)board.physics();
 	}
 	
+	public void newGame(){
+		FileManager.newGame();
+		
+		removeMouseListener(boardMouseListener);
+		removeMouseListener(menuMouseListener);
+		removeMouseListener(mainMenuMouseListener);
+		removeMouseMotionListener(mainMenuMouseListener);
+		removeMouseMotionListener(boardMouseListener);
+		removeMouseMotionListener(menuMouseListener);
+		
+		board = new Board(this);
+		menu = new ComponentMenu();
+		
+		boardMouseListener = new BoardMouseListener(this);
+		menuMouseListener = new ComponentMenuMouseListener(this);
+		mainMenuMouseListener = new MainMenuMouseListener(this);
+		
+		addMouseListener(boardMouseListener);
+		addMouseListener(menuMouseListener);
+		addMouseListener(mainMenuMouseListener);
+		addMouseMotionListener(mainMenuMouseListener);
+		addMouseMotionListener(boardMouseListener);
+		addMouseMotionListener(menuMouseListener);
+	}
+	
 	protected void paintComponent(Graphics g) {
 		g.setColor(Colors.background);
 		g.fillRect(0, 0, getWidth(), getHeight());

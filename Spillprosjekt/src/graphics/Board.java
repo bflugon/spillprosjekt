@@ -73,7 +73,7 @@ public class Board {
 	public void createBoard(int mapNum){
 //		Lager brettet
 		grid = new Block[worldHeight][worldWidth];
-		
+		towers = new ArrayList<Tower>();
 //		Legger til blokker i arrayet
 		for(int y = 0; y < grid.length; y++){
 			for(int x = 0; x < grid[0].length; x++){
@@ -176,7 +176,7 @@ public class Board {
 		}
 		
 //		Tegner knappene
-		for(int i = 0; i < towerButtons.size(); i++){
+		for(int i = 0; i < GameData.modelTowers.size(); i++){
 			
 			if(i == activeTower)g.setColor(Colors.pink);
 			else if(towerButtons.get(i).contains(Screen.CURSOR))g.setColor(Colors.transparentPink);
@@ -202,9 +202,15 @@ public class Board {
 //		Tegn knapper
 		g.setColor(Colors.transparentBlack);
 		
+		
 		g.fillRect(nextWave.x, nextWave.y, nextWave.width, nextWave.height);
 		g.drawImage(Tilesets.button_tileset[GameData.nextWave], nextWave.x, nextWave.y, nextWave.width, nextWave.height, null);
+		if(!WaveControl.canContinue){
+			g.setColor(Colors.transparentWhite);
+			g.fillRect(nextWave.x, nextWave.y, nextWave.width, nextWave.height);
+		}
 		
+		g.setColor(Colors.transparentBlack);
 		g.fillRect(mute.x, mute.y, mute.width, mute.height);
 		g.drawImage(Tilesets.button_tileset[GameData.mute], mute.x, mute.y, mute.width, mute.height, null);
 		
@@ -214,8 +220,8 @@ public class Board {
 //		Tegn penger og liv
 		g.setFont(GameData.normal);
 		g.setColor(Color.WHITE);
-		g.drawString("Money: "+money, 550, 602);
-		g.drawString("Lives: "+lives, 550, 632);
+		g.drawString("$ "+money, 560, 602);
+		g.drawString("Lives: "+lives, 560, 632);
 
 		for(Block[] row: grid){
 			for(Block block: row){

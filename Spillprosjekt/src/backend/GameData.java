@@ -11,7 +11,6 @@ import components.Ammo;
 import components.Barrel;
 import components.Base;
 import components.Inventory;
-import components.TowerComponent;
 
 public class GameData {
 	

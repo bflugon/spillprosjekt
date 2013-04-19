@@ -17,7 +17,7 @@ public class WaveControl {
 				enemySpeed,
 				numOfEnemies = 0;
 	
-	
+	public static boolean canContinue = true;
 	
 //									Index:Antall:Lives:Speed:Spawnrate
 	private String[][] waveArray =	{
@@ -55,9 +55,12 @@ public class WaveControl {
 	}
 	
 	public void nextWave(){
-		wavePart = 0;
-		waveNumber++;
-		updateWave();
+		if(canContinue){
+			canContinue = false;
+			wavePart = 0;
+			waveNumber++;
+			updateWave();
+		}
 	}
 	
 	private void updateWave(){
@@ -65,11 +68,14 @@ public class WaveControl {
 		if(waveNumber == waveArray.length){
 			GameData.rank++;
 			GameData.money += 300;
+			waveNumber = 0;
+			wavePart = 0;
 			screen.goToMainMenu();
 			return;
 		}
 		
 		if(wavePart >= waveArray[waveNumber].length){
+			canContinue =true;
 			return;
 		}
 		enemiesSpawned = 0;

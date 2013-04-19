@@ -89,6 +89,7 @@ public class Projectile extends Rectangle{
 				
 				if(ammoAbility != null && ammoAbility.equals("glue")) enemy.slowDownEnemy();
 				enemy.setLives(damage);
+
 				
 //				add splash damage to missiles
 				if(ammoType == "Missile"){
@@ -100,6 +101,8 @@ public class Projectile extends Rectangle{
 						}
 					}
 				}
+				
+				
 				tower.removeFiredAmmo(this);
 				break;
 			}

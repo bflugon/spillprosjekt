@@ -18,6 +18,7 @@ public class GameData {
 	public static int 	rank = 0,
 						money = 0,
 						score = 0,
+						rank = 0,
 						totEnemiesKilled = 0,
 						lives = 50;
 	

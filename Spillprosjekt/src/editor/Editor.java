@@ -5,8 +5,7 @@ import graphics.Board;
 
 public class Editor {
 	int id = -1;
-	Board board = new Board();
-	//last board fra et default board
+//	Board board = new Board();
 	
 	public static void main() {
 		//tegne brettet

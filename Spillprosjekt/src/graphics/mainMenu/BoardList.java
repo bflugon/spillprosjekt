@@ -10,9 +10,10 @@ public class BoardList extends PopupWindow {
 
 	private BoardButton[] boards;
 	private Screen screen;
-	public BoardList(Screen screen){
-		
-		this.screen = screen;
+	private MainMenu menu;
+	public BoardList(MainMenu menu){
+		this.menu = menu;
+		this.screen = menu.getScreen();
 		
 		String[] files = new File("./resources/maps").list();
 		boards = new BoardButton[files.length];
@@ -34,6 +35,7 @@ public class BoardList extends PopupWindow {
 		for(int i = 0; i < boards.length; i++){
 			if(boards[i].contains(Screen.CURSOR)) {
 				screen.newBoard(i);
+				menu.closeList();
 			}
 		}
 	}

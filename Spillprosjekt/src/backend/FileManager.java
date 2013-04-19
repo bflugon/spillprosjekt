@@ -80,12 +80,15 @@ public class FileManager {
 	    try {
 	        BufferedWriter out = new BufferedWriter(new FileWriter(file));
 
-	        out.write(""+GameData.rank);
-	        out.write("\n"+GameData.money);
-	        out.write("\n"+GameData.totEnemiesKilled);
-	        out.write("\n"+GameData.score);
+	        out.write("Rank: "+GameData.rank);
+	        out.write("\nMoney: "+GameData.money);
+	        out.write("\nEnemies killed: "+GameData.totEnemiesKilled);
+	        out.write("\nScore: "+GameData.score);
 	        out.close();
-
+	        System.out.println(""+GameData.rank);
+	        System.out.println("\n"+GameData.money);
+	        System.out.println("\n"+GameData.totEnemiesKilled);
+	        System.out.println("\n"+GameData.score);
 	        System.out.println("Game Saved!");
 	    } catch (IOException e) {}
 	}

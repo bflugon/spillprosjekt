@@ -66,6 +66,7 @@ public class WaveControl {
 			GameData.rank++;
 			GameData.money += 300;
 			screen.goToMainMenu();
+			return;
 		}
 		
 		if(wavePart >= waveArray[waveNumber].length){

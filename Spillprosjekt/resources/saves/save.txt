@@ -1,4 +1,4 @@
-0
-0
-0
-0
+Rank: 2
+Money: 600
+Enemies killed: 78
+Score: 0

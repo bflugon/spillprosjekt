@@ -73,7 +73,6 @@ public class Enemy extends Rectangle{
 //	reduserer livene naar den blir skutt
 	public void setLives(double damage) {
 		lives -= damage;
-		GameData.money += (int)damage;
 
 		if (lives <= 0) {
 			GameData.totEnemiesKilled++;

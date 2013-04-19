@@ -55,7 +55,7 @@ public class MainMenu extends Rectangle {
 
 	public void clickButton() {
 		if(boardList == null){
-			if(buttons[0].contains(Screen.CURSOR) && !inCredits) boardList = new BoardList(screen);
+			if(buttons[0].contains(Screen.CURSOR) && !inCredits) boardList = new BoardList(this);
 			else if(buttons[1].contains(Screen.CURSOR) && !inCredits) return;
 			else if(buttons[2].contains(Screen.CURSOR) && !inCredits) inCredits = true;
 			else if(buttons[3].contains(Screen.CURSOR) && !inCredits) System.exit(0);
@@ -64,8 +64,16 @@ public class MainMenu extends Rectangle {
 			boardList.clickedButton();
 		}
 	}
+	
+	public Screen getScreen(){
+		return screen;
+	}
 
 	public BoardList getBoardList() {
 		return boardList;
+	}
+	
+	public void closeList(){
+		boardList = null;
 	}
 }

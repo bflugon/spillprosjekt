@@ -73,6 +73,7 @@ public class Tower extends Rectangle{
 		ammo = GameData.ammo.get(0);
 		base = GameData.bases.get(0);
 		updateProperties();
+		firedAmmo =new ArrayList<Projectile>();
 		this.name = "Selected Tower";
 	}
 	
@@ -101,7 +102,10 @@ public class Tower extends Rectangle{
 	
 	private void rotate(){
 		if(target == null || ammo.getAmmoType().equals("Lightning"))return;
-		if(!target.inGame()) return;
+		if(!target.inGame()) {
+			target = null;
+			return;
+		}
 		
 		double barrelX = x+30;
 		double barrelY = y+30;
@@ -191,12 +195,11 @@ public class Tower extends Rectangle{
 //	Alt av timere ol skal kjores fra denne (vil kalles av gameloopen)
 	private int fireFrame = (int) firerate;
 	public void physics(){
+		findTarget();
 		rotate();
 		if(fireFrame >= firerate) {
-			findTarget();
 			rotate();
 			shoot();
-			findTarget();
 		} else {
 			fireFrame++;
 		}

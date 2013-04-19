@@ -16,22 +16,14 @@ import backend.WaveControl;
 public class Board {
 	
 	private int money = 0,
-				lives = 20;
+				lives = 20,
+				activeTower;
 	
-	private int activeTower,
-				enemyLives,
-				waveNumber = -1,
-				spawnRate,
-				enemiesSpawned = 0,
-				spawnFrame = 0,
-				enemyIndex,
-				enemySpeed,
-				numOfEnemies = 0;
 	private final int 	worldHeight = 9,
 						worldWidth = 13,
 						blockSize = 60;
 	
-	
+	private WaveControl waveControl = new WaveControl();
 	private Pathfinder pathfinder;
 
 	private Block[][] grid;
@@ -141,6 +133,10 @@ public class Board {
 		}
 	}
 	
+	public void nextWave(){
+		if(nextWave.contains(Screen.CURSOR)) waveControl.nextWave();
+	}
+	
 	public Block[][] getGrid(){
 		return grid;
 	}
@@ -155,28 +151,12 @@ public class Board {
 		return blockSize;
 	}
 	
-	private void spawnTimer() {
-		if(numOfEnemies == enemiesSpawned) return;
-		if(spawnFrame >= spawnRate) {
-			for(int i = 0; i < enemies.length;i++) {
-				if(!enemies[i].inGame()) {
-					enemies[i].spawnEnemy(enemyLives, enemySpeed, enemyIndex, getStart());
-					enemiesSpawned++;
-					break;
-				}
-			}
-			spawnFrame = 0;
-		} else {
-			spawnFrame ++;
-		}
-	}
-	
 	public Enemy[] getEnemies(){
 		return enemies;
 	}
 	
 	public void physics() {
-		spawnTimer();
+		waveControl.spawnTimer(this);
 		
 		for(Enemy enemy: enemies){
 			if(enemy.inGame()) enemy.physics();
@@ -197,7 +177,11 @@ public class Board {
 		
 //		Tegner knappene
 		for(int i = 0; i < towerButtons.size(); i++){
-			g.setColor(Colors.transparentBlack);
+			
+			if(i == activeTower)g.setColor(Colors.pink);
+			else if(towerButtons.get(i).contains(Screen.CURSOR))g.setColor(Colors.transparentPink);
+			else g.setColor(Colors.transparentBlack);
+			
 			g.fillRect(towerButtons.get(i).x, towerButtons.get(i).y, towerButtons.get(i).width, towerButtons.get(i).height);
 			GameData.modelTowers.get(i).drawButton(g, towerButtons.get(i));
 		}
@@ -236,22 +220,23 @@ public class Board {
 		g.drawString("Money: "+money, 470, 602);
 		g.drawString("Lives: "+lives, 470, 632);
 
+		for(Block[] row: grid){
+			for(Block block: row){
+				if(block.contains(Screen.CURSOR)){
+					if(block.getBlockID() == 1){
+						GameData.modelTowers.get(activeTower).setBounds((int)block.getX(), (int)block.getY(), (int)block.getWidth(), (int)block.getHeight());
+						GameData.modelTowers.get(activeTower).draw(g);
+						GameData.modelTowers.get(activeTower).drawRange(g);
+					} else if(block.getBlockID() == 0){
+						g.setColor(Colors.popupBackground);
+						g.drawRect((int)block.getX(), (int)block.getY(), (int)block.getWidth(), (int)block.getHeight());
+					}
+				}
+			}
+		}
+		
 	}
 
-	public void nextWave(){
-		if(nextWave.contains(Screen.CURSOR) && enemiesSpawned == numOfEnemies){
-			waveNumber++;
-			waveNumber %= WaveControl.enemyIndex.length;
-			enemyIndex = WaveControl.enemyIndex[waveNumber];
-			
-			enemyLives = WaveControl.enemyLives[enemyIndex];
-			enemySpeed = WaveControl.enemySpeed[enemyIndex];
-			spawnRate = WaveControl.spawnSpeed[enemyIndex];
-			
-			numOfEnemies = WaveControl.numOfEnemies[waveNumber];
-			enemiesSpawned = 0;
-		}
-	}
 	
 	public void changeActiveTower() {
 		for(int i = 0; i < towerButtons.size(); i++){

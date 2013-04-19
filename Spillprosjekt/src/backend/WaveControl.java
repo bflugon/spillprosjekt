@@ -1,14 +1,87 @@
 package backend;
 
-import java.util.ArrayList;
+import graphics.Board;
+import graphics.Enemy;
 
 public class WaveControl {
 	
-	public static int[] numOfEnemies = {15,15,20,20};
-	public static int[] spawnSpeed = {400,400,300,300};
-	public static int[] enemyIndex = {0,1,0,1};
+	private int waveNumber = -1,
+				wavePart = 0;
 	
-	public static int[] enemySpeed = {4,2};
+	private int enemyHealth,
+				spawnRate,
+				enemiesSpawned = 0,
+				spawnFrame = 0,
+				enemyIndex,
+				enemySpeed,
+				numOfEnemies = 0;
 	
-	public static int[] enemyLives = {300,150};
+	
+	
+//									Index:Antall:Lives:Speed:Spawnrate
+	private String[][] waveArray =	{
+									{"0:10:10:4:400"},
+									{"1:10:10:3:250"},
+									{"0:15:10:4:350","1:10:10:3:200"}
+									};	
+	
+	public void spawnTimer(Board board) {
+//		
+		if(numOfEnemies == enemiesSpawned) {
+			updateWave();
+			if(numOfEnemies == enemiesSpawned)return;
+		}
+		Enemy[] enemies =  board.getEnemies();
+		
+		if(spawnFrame >= spawnRate) {
+			for(int i = 0; i < enemies.length;i++) {
+				if(!enemies[i].inGame()) {
+					enemies[i].spawnEnemy(enemyHealth, enemySpeed, enemyIndex, board.getStart());
+					enemiesSpawned++;
+					break;
+				}
+			}
+			spawnFrame = 0;
+		} else {
+			spawnFrame ++;
+		}
+	}
+	
+	public void nextWave(){
+		wavePart = 0;
+		waveNumber++;
+		updateWave();
+	}
+	
+	private void updateWave(){
+		
+		if(wavePart >= waveArray[waveNumber%waveArray.length].length){
+			return;
+		}
+		enemiesSpawned = 0;
+		
+		String info = waveArray[waveNumber%waveArray.length][wavePart];
+		
+		int start = 0,
+			end = info.indexOf(':');;
+		
+		enemyIndex = Integer.parseInt(info.substring(start, end));
+		
+		start = end+1;
+		end = info.indexOf(':', start);
+		numOfEnemies = Integer.parseInt(info.substring(start, end));
+		
+		start = end+1;
+		end = info.indexOf(':', start);
+		enemyHealth = Integer.parseInt(info.substring(start, end));
+		
+		start = end+1;
+		end = info.indexOf(':', start);
+		enemySpeed = Integer.parseInt(info.substring(start, end));
+		
+		start = end+1;
+		spawnRate = Integer.parseInt(info.substring(start));
+		
+		wavePart++;
+	}
 }

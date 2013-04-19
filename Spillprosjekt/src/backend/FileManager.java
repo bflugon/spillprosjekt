@@ -44,7 +44,7 @@ public class FileManager {
 					}
 				}
 				int id = loadScanner.nextInt();
-				board.setMoney(id);
+				board.addMoney(id);
 			
 				loadScanner.close();
 			}
@@ -88,11 +88,13 @@ public class FileManager {
 	        out.write("\n"+GameData.money);
 	        out.write("\n"+GameData.totEnemiesKilled);
 	        out.write("\n"+GameData.score);
+	        out.write("\n"+GameData.rankUpLimit);
 	        
 	        out.write("\n\nRank: "+GameData.rank);
 	        out.write("\nMoney: "+GameData.money);
 	        out.write("\nEnemies killed: "+GameData.totEnemiesKilled);
 	        out.write("\nScore: "+GameData.score);
+	        out.write("\nRank-up limit: "+GameData.rankUpLimit);
 	        
 	        out.close();
 	    } catch (IOException e) {}
@@ -110,6 +112,7 @@ public class FileManager {
 	    	GameData.money = loadScanner.nextInt();
 	    	GameData.totEnemiesKilled = loadScanner.nextInt();
 	    	GameData.score = loadScanner.nextInt();
+	    	GameData.rankUpLimit = loadScanner.nextInt();
 
 	    	System.out.println("Game Loaded!");
 	    } catch (IOException e) {}
@@ -176,7 +179,7 @@ public class FileManager {
 						tower.setBase(base);
 					}
 				}
-				
+				tower.updateProperties();
 				GameData.modelTowers.add(tower);
 			}
 		}catch (Exception e) {}

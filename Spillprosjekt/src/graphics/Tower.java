@@ -84,6 +84,8 @@ public class Tower extends Rectangle{
 		double distX = 1000;
 		double distY = 1000;
 		
+//		target = null;
+		
 		for(int i = 0; i < enemies.length; i++){
 			Enemy enemy = enemies[i];
 			distX = enemy.getX()-x;
@@ -162,12 +164,13 @@ public class Tower extends Rectangle{
 		
 	}
 	
-
+	
 //	Oppdaterer egenskapene avhenging av komponenetene
 	public void updateProperties(){
 		damage = 0;
 		range = 0;
 		firerate = 0;
+		price = 0;
 		
 		getBarrelBonuses();
 		getAmmoBonuses();
@@ -177,6 +180,8 @@ public class Tower extends Rectangle{
 		damage += barrel.getDamage();
 		firerate += barrel.getFirerate();
 		range += barrel.getRange();
+		
+		price += barrel.getPrice()/2;
 	}
 	private void getAmmoBonuses(){
 		range += ammo.getRange();
@@ -184,12 +189,16 @@ public class Tower extends Rectangle{
 		splashDamage = ammo.getSplashDamage();
 		slow = ammo.getSlow();
 		damage += ammo.getDamage();
+		
+		price += ammo.getPrice()/2;
 	}
 	private void getBaseBonuses(){
 		damage += base.getDamage();
 		range += base.getRange();
 		firerate += base.getFirerate();
 		radar = base.getRadar();
+		
+		price += base.getPrice()/2;
 	}
 
 //	Alt av timere ol skal kjores fra denne (vil kalles av gameloopen)

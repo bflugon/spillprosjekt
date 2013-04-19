@@ -42,8 +42,6 @@ public class Board {
 	
 	//Alle skuddene blir lagt til her nŒr de skutt
 	
-	private FileManager loader = new FileManager();
-
 	public Board(Screen screen){
 		
 		waveControl = new WaveControl(screen);
@@ -81,7 +79,7 @@ public class Board {
 			}
 		}
 		
-		loader.loadBoard(new File("resources/maps/"+mapNum+".map"), this);
+		FileManager.loadBoard(new File("resources/maps/"+mapNum+".map"), this);
 		
 //		Finner korsteste vei on request
 		pathfinder = new Pathfinder(this);
@@ -97,14 +95,11 @@ public class Board {
 						Tower newTower = new Tower(block, this);
 						GameData.modelTowers.get(activeTower).copyTower(newTower);
 						newTower.updateProperties();
+						if(newTower.getPrice() > money) return;
 						towers.add(newTower);	
 						block.setOpen(false);
-						String id = "";
-						id += String.valueOf(GameData.barrels.indexOf(newTower.getBarrel())+1);
-						id += String.valueOf(GameData.ammo.indexOf(newTower.getAmmo())+1);
-						id += String.valueOf(GameData.bases.indexOf(newTower.getBase())+1);
-						int blockID = Integer.parseInt(id);
-						block.setBlockID(blockID);
+						
+						addMoney(-(int)newTower.getPrice());
 					}
 				}
 			}
@@ -114,18 +109,20 @@ public class Board {
 //		Sjekker om musen er over en blokk
 		for(Block[] row: grid){
 			for(Block block: row){
+				if(block.getBlockID() != GameData.grass)continue;
 				if(block.contains(Screen.CURSOR)){
-					
 //					Pass paa at ingen fiende staar pŒ blokken
 					for(Enemy enemy : enemies){
 						if(enemy.inGame() && block.intersects(enemy)) return;
 					}
 					
-					if(block.getBlockID() == GameData.grass){
+					if(money >= 50){
 						block.setBlockID(GameData.foundation);
+						addMoney(-50);
 						if(!pathfinder.findPath()) {
 							block.setBlockID(GameData.grass);
 							pathfinder.findPath();
+							addMoney(50);
 						}
 					}
 				}
@@ -165,6 +162,12 @@ public class Board {
 		for(Tower tower: towers){
 			tower.physics();
 		}
+		
+		if(GameData.score >= GameData.rankUpLimit){
+			GameData.rank++;
+			GameData.score = 0;
+			GameData.rankUpLimit *= 1.3;
+		}
 	}
 	
 	public void draw(Graphics g) {
@@ -184,6 +187,9 @@ public class Board {
 			
 			g.fillRect(towerButtons.get(i).x, towerButtons.get(i).y, towerButtons.get(i).width, towerButtons.get(i).height);
 			GameData.modelTowers.get(i).drawButton(g, towerButtons.get(i));
+
+			g.setColor(Color.WHITE);
+			g.drawString(""+GameData.modelTowers.get(i).getPrice(), towerButtons.get(i).x+5, towerButtons.get(i).y+15);
 		}
 		
 //		Draw enemies
@@ -231,15 +237,20 @@ public class Board {
 						GameData.modelTowers.get(activeTower).draw(g);
 						GameData.modelTowers.get(activeTower).drawRange(g);
 					} else if(block.getBlockID() == 0){
-						g.setColor(Colors.popupBackground);
-						g.drawRect((int)block.getX(), (int)block.getY(), (int)block.getWidth(), (int)block.getHeight());
+						g.drawImage(Tilesets.block_tileset[1],(int)block.getX(), (int)block.getY(), (int)block.getWidth(), (int)block.getHeight(), null);
 					}
 				}
 			}
 		}
 		
+//		Draw score bar
+		g.setColor(Colors.transparentBlack);
+		g.fillRect(0, 0, 820, 10);
+		g.setColor(Colors.pink);
+		g.fillRect(0, 0, (int)((820.0/GameData.rankUpLimit)*GameData.score), 10);
+//		System.out.println(820.0/GameData.rankUpLimit + " " +GameData.score);
+		
 	}
-
 	
 	public void changeActiveTower() {
 		for(int i = 0; i < towerButtons.size(); i++){
@@ -276,7 +287,7 @@ public class Board {
 		return money;
 	}
 
-	public void setMoney(int money) {
-		this.money = money;
+	public void addMoney(int money) {
+		this.money += money;
 	}
 }

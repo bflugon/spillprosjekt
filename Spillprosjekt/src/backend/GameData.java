@@ -17,6 +17,7 @@ public class GameData {
 	public static int 	rank = 0,
 						money = 0,
 						score = 0,
+						rankUpLimit = 1000,
 						totEnemiesKilled = 0,
 						lives = 50;
 	

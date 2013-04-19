@@ -12,7 +12,7 @@ public class Inventory {
 		
 		//double damage, double range, double firerate
 		
-		createAmmo("Basic Bullet","Bullet",0,0,1,25,550);
+		createAmmo("Basic Bullet","Bullet",0,0,0,25,200);
 		createAmmo("Basic Slime","Slime",123,7,7,25,200,"glue");
 		
 		createAmmo( "Basic Missile", "Missile",  25 , 1,  1,  60, 20);
@@ -24,7 +24,7 @@ public class Inventory {
 		createAmmo("High Caliber","Bullet",1000,3,200,25,150);
 
 		String bullet = "Bullet";
-		createBarrel("Basic Barrel",25, 12,  50,  100,  200, bullet, "shot2.wav");
+		createBarrel("Basic Barrel",25, 12,  10,  100,  400, bullet, "shot2.wav");
 		createBarrel("Dragvolly",25, 3,  20,  50,  100, bullet, "shot2.wav");
 		createBarrel("Anhilator",120, 0,  100,  200,  600,bullet, "shot.wav");
 		createBarrel("Hyper Laser",200, 1,  1,  70,  40,bullet, "shot2.wav");

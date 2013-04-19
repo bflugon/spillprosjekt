@@ -1,9 +1,11 @@
-5
-1500
-214
-0
+1
+300
+140
+700
+1300
 
-Rank: 5
-Money: 1500
-Enemies killed: 214
-Score: 0
+Rank: 1
+Money: 300
+Enemies killed: 140
+Score: 700
+Rank-up limit: 1300

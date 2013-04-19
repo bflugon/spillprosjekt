@@ -73,8 +73,9 @@ public class Enemy extends Rectangle{
 //	reduserer livene naar den blir skutt
 	public void setLives(double damage) {
 		lives -= damage;
-
+		GameData.score += damage;
 		if (lives <= 0) {
+			board.addMoney(enemyID+1);
 			GameData.totEnemiesKilled++;
 			inGame = false;
 			mobWalk = 0;

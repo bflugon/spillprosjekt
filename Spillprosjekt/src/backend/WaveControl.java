@@ -21,9 +21,10 @@ public class WaveControl {
 	
 //									Index:Antall:Lives:Speed:Spawnrate
 	private String[][] waveArray =	{
-									{"0:10:10:4:400"},
-									{"1:10:10:3:250"},
-									{"0:15:10:4:100","1:10:10:3:200"}
+									{"0:30:10:4:300"},
+									{"1:30:10:3:200"},
+									{"0:30:10:4:200","1:20:10:3:150"},
+									{"1:30:15:3:150"}
 									};	
 	
 	private Screen screen;
@@ -66,7 +67,6 @@ public class WaveControl {
 	private void updateWave(){
 		
 		if(waveNumber == waveArray.length){
-			GameData.rank++;
 			GameData.money += 300;
 			waveNumber = 0;
 			wavePart = 0;

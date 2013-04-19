@@ -2,7 +2,6 @@ package backend;
 
 import graphics.Block;
 import graphics.Board;
-import graphics.Enemy;
 import graphics.Tower;
 
 import java.io.BufferedWriter;
@@ -12,8 +11,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import components.Ammo;
+import components.Barrel;
+import components.Base;
+
 public class FileManager {
-	public void loadBoard(File loadPath, Board board) {
+	public static void loadBoard(File loadPath, Board board) {
 		try {
 			Scanner loadScanner = new Scanner(loadPath);
 			Block[][] grid = board.getGrid();
@@ -48,7 +51,7 @@ public class FileManager {
 		} catch(Exception e) {}
 	}
 	
-	public void saveBoard(Board board) {
+	public static void saveBoard(Board board) {
 		int mapNum = new File("./resources/maps").list().length;
 		File file = new File("resources/maps/"+mapNum+".map");
 		Block[][] grid = board.getGrid();
@@ -122,9 +125,9 @@ public class FileManager {
 			BufferedWriter out = new BufferedWriter(new FileWriter(file));
 		
 			for(Tower tower: towers){
-				out.write(tower.getBarrel().getID()+" ");
-				out.write(tower.getAmmo().getID()+" ");
-				out.write(tower.getBase().getID()+"\n");
+				out.write(tower.getBarrel().getName()+"\n");
+				out.write(tower.getAmmo().getName()+"\n");
+				out.write(tower.getBase().getName()+"\n");
 			}
 			out.close();
 			System.out.println("Towers Saved");
@@ -138,12 +141,31 @@ public class FileManager {
 			
 			GameData.modelTowers = new ArrayList<Tower>();
 			
-			int counter = 0;
+//			int counter = 0;
 			while(loadScanner.hasNext()){
 				Tower tower = new Tower();
-				tower.setBarrel(GameData.barrels.get(loadScanner.nextInt()));
-				tower.setAmmo(GameData.ammo.get(loadScanner.nextInt()));
-				tower.setBase(GameData.bases.get(loadScanner.nextInt()));
+				String barrelName = loadScanner.nextLine();
+				String ammoName = loadScanner.nextLine();
+				String baseName = loadScanner.nextLine();
+				
+				for(Barrel barrel : GameData.barrels){
+					if(barrel.getName().equals(barrelName)){
+						tower.setBarrel(barrel);
+					}
+				}
+				
+				for(Ammo ammo : GameData.ammo){
+					if(ammo.getName().equals(ammoName)){
+						tower.setAmmo(ammo);
+					}
+				}
+				
+				for(Base base : GameData.bases){
+					if(base.getName().equals(baseName)){
+						tower.setBase(base);
+					}
+				}
+				
 				GameData.modelTowers.add(tower);
 			}
 

@@ -15,6 +15,7 @@ public class Tilesets extends Component{
 							button_tileset,
 							ammo_tileset,
 							ammoMenu_tileset,
+							menu_barrel_tileset,
 							barrelMenu_tileset,
 							baseMenu_tileset;
 	
@@ -48,6 +49,12 @@ public class Tilesets extends Component{
 		for(int i = 0; i < barrel_tileset.length; i++){
 			barrel_tileset[i] = new ImageIcon("resources/textures/barrel_tileset.png").getImage();
 			barrel_tileset[i] = createImage(new FilteredImageSource(barrel_tileset[i].getSource(), new CropImageFilter(0, 60*i, 60, 60)));
+		}
+		
+		menu_barrel_tileset = new Image[20];
+		for(int i = 0; i < menu_barrel_tileset.length; i++){
+			menu_barrel_tileset[i] = new ImageIcon("resources/textures/menu_barrel_tileset.png").getImage();
+			menu_barrel_tileset[i] = createImage(new FilteredImageSource(menu_barrel_tileset[i].getSource(), new CropImageFilter(0, 60*i, 60, 60)));
 		}
 		
 		button_tileset = new Image[10];

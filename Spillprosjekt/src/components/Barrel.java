@@ -52,10 +52,10 @@ public class Barrel extends TowerComponent{
 	    g2d.drawImage(texture, tx, ty, 60, 60, null);
 	}
 	public void drawButton(Graphics g, Rectangle rect){
-		g.drawImage(texture, (int)rect.getX()+15, (int)rect.getY()+10, 60, 60, null);
+		g.drawImage(Tilesets.menu_barrel_tileset[textureIndex], (int)rect.getX()+10, (int)rect.getY()+5, 60, 60, null);
 	}
 	
 	public void drawLargeImage(Graphics g, Rectangle rect){
-		g.drawImage(texture, (int)rect.getX()+50, (int)rect.getY(), rect.width, rect.height, null);
+		g.drawImage(Tilesets.menu_barrel_tileset[textureIndex], (int)rect.getX()+50, (int)rect.getY() - 30, rect.width, rect.height, null);
 	}
 }

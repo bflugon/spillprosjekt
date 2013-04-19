@@ -27,7 +27,7 @@ public class ComponentCell extends Rectangle{
 		this.component = component;
 		this.currComponent = currComponent;
 		
-		if(currComponent instanceof Barrel) textures = Tilesets.barrel_tileset;
+		if(currComponent instanceof Barrel) textures = Tilesets.menu_barrel_tileset;
 		else if(currComponent instanceof Ammo) textures = Tilesets.ammo_tileset;
 		else if(currComponent instanceof Base) textures = Tilesets.base_tileset;
 			

@@ -18,12 +18,10 @@ public class BoardList extends PopupWindow {
 		this.screen = menu.getScreen();
 		
 		String[] files = new File("./resources/maps").list();
-		
-		boards = new BoardButton[GameData.rank+8];
+		boards = new BoardButton[files.length];
 
 		for(int i = 0; i < boards.length; i++){
-			boards[i] = new BoardButton(x+20 + 130*(i%5),y+20 + (130*(int)(i/5)), 120, 120, new File("resources/maps/"+i+".map"));
-			if(i/2 == GameData.rank+8) break;
+			boards[i] = new BoardButton(i,x+20 + 130*(i%5),y+20 + (130*(int)(i/5)), 120, 120, new File("resources/maps/"+i+".map"));
 		}
 	}
 	
@@ -38,8 +36,10 @@ public class BoardList extends PopupWindow {
 	public void clickedButton(){
 		for(int i = 0; i < boards.length; i++){
 			if(boards[i].contains(Screen.CURSOR)) {
-				screen.newBoard(i);
-				menu.closeList();
+				if(GameData.rank >= i/2){
+					screen.newBoard(i);
+					menu.closeList();
+				}
 			}
 		}
 		

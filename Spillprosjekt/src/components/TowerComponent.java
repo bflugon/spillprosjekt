@@ -19,7 +19,8 @@ public class TowerComponent {
 	
 	protected int 	id,
 					textureIndex,
-					price;
+					price,
+					rankLimit;
 	
 	private boolean splashDamage,
 					slow, 
@@ -93,5 +94,9 @@ public class TowerComponent {
 	
 	public String getType(){
 		return type;
+	}
+	
+	public int getRankLimit() {
+		return rankLimit;
 	}
 }

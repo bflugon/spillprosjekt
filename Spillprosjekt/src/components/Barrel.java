@@ -14,7 +14,7 @@ public class Barrel extends TowerComponent{
 	protected String allowed_ammo;
 	protected String soundName;
 	
-	public Barrel(String name, int price ,int textureIndex, double damage, double range, double firerate, String allowed_ammo, String soundName) {
+	public Barrel(String name, int price ,int textureIndex, double damage, double range, double firerate, String allowed_ammo, String soundName, int rankLimit) {
 		super(damage, range, firerate, price,name,textureIndex);
 		this.name = name;
 		this.price = price;
@@ -23,6 +23,7 @@ public class Barrel extends TowerComponent{
 		this.texture = Tilesets.barrel_tileset[textureIndex];
 		this.allowed_ammo = allowed_ammo;
 		this.soundName = soundName;
+		this.rankLimit = rankLimit;
 	}
 	
 	public String getAmmoType(){

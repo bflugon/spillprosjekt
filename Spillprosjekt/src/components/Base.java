@@ -11,11 +11,12 @@ public class Base extends TowerComponent{
 	
 	//protected Image texture;
 	
-	public Base(String name, int price ,int textureIndex, double damage, double range, double firerate) {
+	public Base(String name, int price ,int textureIndex, double damage, double range, double firerate, int rankLimit) {
 		super(damage, range, firerate, price,name,textureIndex);
 		this.type = "base";
 		this.id = GameData.basicBase;
 		this.texture = Tilesets.base_tileset[textureIndex];
+		this.rankLimit = rankLimit;
 	}
 
 	public void drawButton(Graphics g, Rectangle rect){

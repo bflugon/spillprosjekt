@@ -60,14 +60,16 @@ public class ComponentList extends PopupWindow{
 			if(firstIndex < 0) firstIndex = 0;
 			counter = firstIndex;
 
-			while(posMultiplier < 7){		
+			while(posMultiplier < 7 && counter < GameData.barrels.size()){	
 				TowerComponent barrel = GameData.barrels.get(counter);
-				if(barrel != currComponent){
-					list.add(new ComponentListCell(barrel, currComponent, x, y+80*posMultiplier, width, 80));
-					posMultiplier++;
+				if(barrel.getRankLimit() <= GameData.rank){
+					if(barrel != currComponent){
+						list.add(new ComponentListCell(barrel, currComponent, x, y+80*posMultiplier, width, 80));
+						posMultiplier++;
+					}
+					if(counter == GameData.barrels.size() || firstIndex+posMultiplier >= GameData.barrels.size()) break;
 				}
 				counter++;
-				if(counter == GameData.barrels.size() || firstIndex+posMultiplier >= GameData.barrels.size()) break;
 			}
 		} else if(currComponent instanceof Ammo){
 			if(firstIndex + (change+change/7) < GameData.ammo.size()) firstIndex +=  (change+change/7);
@@ -76,11 +78,12 @@ public class ComponentList extends PopupWindow{
 			
 			while(posMultiplier < 7){
 				Ammo ammo = (Ammo) GameData.ammo.get(counter);
-				
-				String ammoType = menu.getActiveTower().getBarrel().getAmmoType();
-				if(ammo.getAmmoType() == ammoType && ammo != currComponent){
-					list.add(new ComponentListCell(ammo, currComponent, x, y+80*posMultiplier, width, 80));
-					posMultiplier++;
+				if(ammo.getRankLimit() <= GameData.rank){
+					String ammoType = menu.getActiveTower().getBarrel().getAmmoType();
+					if(ammo.getAmmoType() == ammoType && ammo != currComponent){
+						list.add(new ComponentListCell(ammo, currComponent, x, y+80*posMultiplier, width, 80));
+						posMultiplier++;
+					}
 				}
 				counter++;
 
@@ -93,9 +96,11 @@ public class ComponentList extends PopupWindow{
 			
 			while(posMultiplier < 7){
 				TowerComponent base = GameData.bases.get(counter);
-				if(base != currComponent){
-					list.add(new ComponentListCell(base, currComponent, x, y+80*posMultiplier, width, 80));
-					posMultiplier++;
+				if(base.getRankLimit() <= GameData.rank){
+					if(base != currComponent){
+						list.add(new ComponentListCell(base, currComponent, x, y+80*posMultiplier, width, 80));
+						posMultiplier++;
+					}
 				}
 				counter++;
 

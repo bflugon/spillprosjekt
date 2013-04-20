@@ -168,7 +168,7 @@ public class Board {
 		if(GameData.score >= GameData.rankUpLimit){
 			GameData.rank++;
 			GameData.score = 0;
-			GameData.rankUpLimit *= 1.3;
+			GameData.rankUpLimit *= 1.6;
 			Sound.playSound("rankup.wav");
 		}
 	}

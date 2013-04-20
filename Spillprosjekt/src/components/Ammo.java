@@ -23,7 +23,7 @@ public class Ammo extends TowerComponent {
 	
 	protected String ammoType,ammoAbility; 
 
-	public Ammo(String name,String ammoType, int price ,int textureIndex, double damage, double range, double firerate) {
+	public Ammo(String name,String ammoType, int price ,int textureIndex, double damage, double range, double firerate, int rankLimit) {
 		super(damage, range, firerate, price,name,textureIndex);
 		this.type = "ammo";
 		
@@ -31,7 +31,7 @@ public class Ammo extends TowerComponent {
 		this.textureIndex = textureIndex;
 		this.id = 3;
 		this.texture = Tilesets.ammo_tileset[textureIndex];
-
+		this.rankLimit = rankLimit;
 		
 	}
 	
@@ -40,7 +40,7 @@ public class Ammo extends TowerComponent {
 	
 	
 	
-	public Ammo(String name,String ammoType, int price ,int textureIndex, double damage, double range, double firerate, String ability) {
+	public Ammo(String name,String ammoType, int price ,int textureIndex, double damage, double range, double firerate, String ability, int rankLimit) {
 		super(damage, range, firerate, price,name,textureIndex);
 		this.type = "ammo";
 		this.ammoAbility = ability;
@@ -50,7 +50,7 @@ public class Ammo extends TowerComponent {
 		this.id = 3;
 		this.texture = Tilesets.ammo_tileset[textureIndex];
 
-		
+		this.rankLimit = rankLimit;
 	}
 	
 	

@@ -38,6 +38,12 @@ public class WaveControl {
 	
 	private Screen screen;
 	
+	@SuppressWarnings("unused")
+	private void spawnWave(int wave) {
+		int a = wave*5;
+		int b = wave / 3;		
+	}
+	
 	public WaveControl(Screen screen){
 		this.screen = screen;
 	}

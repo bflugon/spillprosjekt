@@ -56,7 +56,7 @@ public class ComponentList extends PopupWindow{
 		
 		
 		if(currComponent instanceof Barrel){
-			if(firstIndex +change < GameData.barrels.size()) firstIndex +=  change;
+			if(firstIndex + (change+change/7) < GameData.barrels.size()) firstIndex +=  (change+change/7);
 			if(firstIndex < 0) firstIndex = 0;
 			counter = firstIndex;
 
@@ -70,7 +70,7 @@ public class ComponentList extends PopupWindow{
 				if(counter == GameData.barrels.size() || firstIndex+posMultiplier >= GameData.barrels.size()) break;
 			}
 		} else if(currComponent instanceof Ammo){
-			if(firstIndex +change < GameData.ammo.size()) firstIndex +=  change;
+			if(firstIndex + (change+change/7) < GameData.ammo.size()) firstIndex +=  (change+change/7);
 			if(firstIndex < 0) firstIndex = 0;
 			counter = firstIndex;
 			
@@ -87,7 +87,7 @@ public class ComponentList extends PopupWindow{
 				if(posMultiplier == 7 || firstIndex+posMultiplier == GameData.ammo.size() || counter == GameData.ammo.size()) break;
 			}
 		} else if(currComponent instanceof Base){
-			if(firstIndex +change < GameData.bases.size()) firstIndex +=  change;
+			if(firstIndex + (change+change/7) < GameData.bases.size()) firstIndex +=  (change+change/7);
 			if(firstIndex < 0) firstIndex = 0;
 			counter = firstIndex;
 			

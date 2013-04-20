@@ -1,11 +1,11 @@
-5
-600
-238
-410
-1112
+9
+900
+676
+1226
+3173
 
-Rank: 5
-Money: 600
-Enemies killed: 238
-Score: 410
-Rank-up limit: 1112
+Rank: 9
+Money: 900
+Enemies killed: 676
+Score: 1226
+Rank-up limit: 3173

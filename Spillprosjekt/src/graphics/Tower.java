@@ -81,10 +81,7 @@ public class Tower extends Rectangle{
 	private void findTarget(){
 		Enemy[] enemies = board.getEnemies();
 		
-		double distX = 1000;
-		double distY = 1000;
-		
-//		target = null;
+		double distX,distY;
 		
 		for(int i = 0; i < enemies.length; i++){
 			Enemy enemy = enemies[i];

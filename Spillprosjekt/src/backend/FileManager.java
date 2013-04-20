@@ -43,8 +43,8 @@ public class FileManager {
 						}
 					}
 				}
-				int id = loadScanner.nextInt();
-				board.addMoney(id);
+				int money = loadScanner.nextInt();
+				board.setMoney(money);
 			
 				loadScanner.close();
 			}
@@ -104,6 +104,9 @@ public class FileManager {
 	
 	public static void loadGameData(){
 		File file = new File("resources/saves/save.txt");
+		GameData.score = 0;
+		GameData.rankUpLimit = 300;
+		GameData.rank = 0;
 		
 	    try {
 	    	Scanner loadScanner = new Scanner(file);

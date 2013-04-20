@@ -23,7 +23,7 @@ public class WaveControl {
 	private String[][] waveArray =	{
 									{"0:30:10:4:300"},
 									{"1:30:10:3:200"},
-									{"0:30:10:4:200","1:20:10:3:150"},
+									{"0:30:10:4:100","1:20:10:3:120"},
 									{"1:30:15:3:150"}
 									};	
 	
@@ -34,11 +34,24 @@ public class WaveControl {
 	}
 	
 	public void spawnTimer(Board board) {
-//		
+		boolean done = true;
+		for(Enemy enemy:board.getEnemies()){
+			if(enemy.inGame()) done = false;
+		}
+
+		
 		if(numOfEnemies == enemiesSpawned) {
 			updateWave();
+			if(waveNumber == waveArray.length-1 && done){
+				GameData.money += 300;
+				waveNumber = 0;
+				wavePart = 0;
+				screen.goToMainMenu();
+				return;
+			}
 			if(numOfEnemies == enemiesSpawned)return;
 		}
+		
 		Enemy[] enemies =  board.getEnemies();
 		
 		if(spawnFrame >= spawnRate) {
@@ -65,19 +78,10 @@ public class WaveControl {
 	}
 	
 	private void updateWave(){
-		
-		if(waveNumber == waveArray.length){
-			GameData.money += 300;
-			waveNumber = 0;
-			wavePart = 0;
-			screen.goToMainMenu();
-			return;
-		}
-		
-		if(wavePart >= waveArray[waveNumber].length){
+		if(wavePart >= waveArray[waveNumber].length && waveNumber != waveArray.length-1){
 			canContinue =true;
-			return;
 		}
+		if(wavePart >= waveArray[waveNumber].length) return;
 		enemiesSpawned = 0;
 		
 		String info = waveArray[waveNumber][wavePart];

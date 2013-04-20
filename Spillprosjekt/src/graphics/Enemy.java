@@ -79,7 +79,7 @@ public class Enemy extends Rectangle{
 			GameData.totEnemiesKilled++;
 			inGame = false;
 			mobWalk = 0;
-			Sound.playSound("explosion.wav");
+			Sound.playSound("die.wav");
 		}
 	}
 	

@@ -6,6 +6,8 @@ import java.awt.Rectangle;
 import java.io.File;
 import java.util.ArrayList;
 
+import sound.Sound;
+
 import backend.Colors;
 import backend.GameData;
 import backend.FileManager;
@@ -167,6 +169,7 @@ public class Board {
 			GameData.rank++;
 			GameData.score = 0;
 			GameData.rankUpLimit *= 1.3;
+			Sound.playSound("rankup.wav");
 		}
 	}
 	
@@ -226,18 +229,19 @@ public class Board {
 //		Tegn penger og liv
 		g.setFont(GameData.normal);
 		g.setColor(Color.WHITE);
-		g.drawString("$ "+money, 560, 602);
-		g.drawString("Lives: "+lives, 560, 632);
+		g.drawString("$ "+money, 560, 590);
+		g.drawString("Lives: "+lives, 560, 615);
+		g.drawString("Rank: "+GameData.rank, 560, 645);
 
 		for(Block[] row: grid){
 			for(Block block: row){
 				if(block.contains(Screen.CURSOR)){
-					if(block.getBlockID() == 1){
+					if(block.getBlockID() == 1 && block.isOpen()){
 						GameData.modelTowers.get(activeTower).setBounds((int)block.getX(), (int)block.getY(), (int)block.getWidth(), (int)block.getHeight());
 						GameData.modelTowers.get(activeTower).draw(g);
 						GameData.modelTowers.get(activeTower).drawRange(g);
 					} else if(block.getBlockID() == 0){
-						g.drawImage(Tilesets.block_tileset[1],(int)block.getX(), (int)block.getY(), (int)block.getWidth(), (int)block.getHeight(), null);
+						g.drawImage(Tilesets.block_tileset[1],(int)block.getX()+5, (int)block.getY()+5, (int)block.getWidth()-10, (int)block.getHeight()-10, null);
 					}
 				}
 			}
@@ -248,7 +252,6 @@ public class Board {
 		g.fillRect(0, 0, 820, 10);
 		g.setColor(Colors.pink);
 		g.fillRect(0, 0, (int)((820.0/GameData.rankUpLimit)*GameData.score), 10);
-//		System.out.println(820.0/GameData.rankUpLimit + " " +GameData.score);
 		
 	}
 	
@@ -289,5 +292,9 @@ public class Board {
 
 	public void addMoney(int money) {
 		this.money += money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
 	}
 }

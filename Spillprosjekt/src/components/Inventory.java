@@ -16,15 +16,20 @@ public class Inventory {
 		createAmmo("Basic Slime","Slime",123,7,7,25,200,"glue",0);
 		
 		createAmmo( "Basic Missile", "Missile",  25 , 1,  1,  60, 20,0);
+		createAmmo("Basic Flame","Flame",100,2,200,25,75,0);
+		createAmmo("Basic Lightning","Lightning",100,5,200,25,75,0);
+		
+		createBarrel("Basic Heavy Barrel",25, 12,  10,  100,  400, "Bullet", "shot2.wav",0);
+		createBarrel("Basic Fast Barrel",25, 13,  5,  75,  150, "Bullet", "shot2.wav",0);
+		createBase("Old base",50, 7,  0,  5,  5,0);
+		
+		
 		createAmmo( "S.M.A.R.T", "Missile",  250 , 4,  150,  250, 200,4);
 		createAmmo( "SlowPoke", "Missile",  750 , 6,  0,  250, 200, "glue",6);
-		createAmmo("Basic Flame","Flame",100,2,200,25,75,0);
 		createAmmo("Icy Flame","Flame",100,8,200,25,75, "glue",5);
-		createAmmo("Basic Lightning","Lightning",100,5,200,25,75,0);
 		createAmmo("High Caliber","Bullet",1000,3,200,25,150,7);
 
 		String bullet = "Bullet";
-		createBarrel("Basic Barrel",25, 12,  10,  100,  400, bullet, "shot2.wav",0);
 		createBarrel("Dragvolly",25, 3,  20,  50,  100, bullet, "shot2.wav",1);
 		createBarrel("Anhilator",120, 0,  100,  200,  600,bullet, "shot.wav",2);
 		createBarrel("Hyper Laser",200, 1,  1,  70,  40,bullet, "shot2.wav",4);
@@ -46,7 +51,6 @@ public class Inventory {
 		createBarrel("NASAMS",750, 7,  10,  250,  250,missile, "missile.wav",7);
 
 
-		createBase("Old base",50, 7,  0,  5,  5,0);
 		createBase("Concrete",50, 2,  0,  0,  0,1);
 		createBase("Green Goblin",100, 3,  20,  75,  20,3);
 		

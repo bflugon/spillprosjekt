@@ -19,8 +19,8 @@ public class Inventory {
 		createAmmo("Basic Flame","Flame",100,2,200,25,75,0);
 		createAmmo("Basic Lightning","Lightning",100,5,200,25,75,0);
 		
-		createBarrel("Basic Heavy Barrel",25, 12,  10,  100,  400, "Bullet", "shot2.wav",0);
-		createBarrel("Basic Fast Barrel",25, 13,  5,  75,  150, "Bullet", "shot2.wav",0);
+		createBarrel("Heavy Barrel",25, 12,  10,  100,  520, "Bullet", "shot2.wav",0);
+		createBarrel("Fast Barrel",25, 13,  5,  75,  25, "Bullet", "shot2.wav",0);
 		createBase("Old base",50, 7,  0,  5,  5,0);
 		
 		

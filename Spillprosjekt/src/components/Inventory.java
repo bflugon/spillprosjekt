@@ -32,18 +32,18 @@ public class Inventory {
 
 		
 		String flame = "Flame";
-		createBarrel("Cremator",25, 4,  250,  25,  80, flame, "flame.wav",4);
-		createBarrel("Hindenburner",500, 5,  50,  50,  100, flame, "flame.wav",6);
+		createBarrel("Cremator",25, 4,  250,  25,  80, flame, "flame.wav",5);
+		createBarrel("Hindenburner",500, 5,  50,  50,  100, flame, "flame.wav",8);
 		
 		String slimer = "Slime";
-		createBarrel("Slimer",250, 8,  200,  350,  200,slimer, "glue.wav",4);
+		createBarrel("Slimer",250, 8,  200,  350,  200,slimer, "glue.wav",5);
 		
 		String tesla = "Lightning";
 		createBarrel("Tesla Coil",750, 6,  500,  100,  75,tesla, "shot.wav",3);
 		
 
 		String missile = "Missile";
-		createBarrel("NASAMS",750, 7,  10,  250,  250,missile, "missile.wav",5);
+		createBarrel("NASAMS",750, 7,  10,  250,  250,missile, "missile.wav",7);
 
 
 		createBase("Old base",50, 7,  0,  5,  5,0);

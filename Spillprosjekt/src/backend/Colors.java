@@ -12,5 +12,7 @@ public class Colors {
 						abilityBlue = new Color(128,225,255,150),
 						popupTransparentBlack = new Color(0, 0, 0, 200),
 						popupBackground = new Color(40, 40, 40),
-						transparentWhite = new Color(255, 255, 255, 50);
+						transparentWhite = new Color(255, 255, 255, 50),
+						green = new Color(30,170,40),
+						red = new Color(170,40,30);
 }

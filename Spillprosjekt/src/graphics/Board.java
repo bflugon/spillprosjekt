@@ -216,12 +216,15 @@ public class Board {
 		g.setColor(Colors.transparentBlack);
 		
 		
-		g.fillRect(nextWave.x, nextWave.y, nextWave.width, nextWave.height);
-		g.drawImage(Tilesets.button_tileset[GameData.nextWave], nextWave.x, nextWave.y, nextWave.width, nextWave.height, null);
 		if(!WaveControl.canContinue){
-			g.setColor(Colors.transparentWhite);
+			g.setColor(Colors.red);
 			g.fillRect(nextWave.x, nextWave.y, nextWave.width, nextWave.height);
+		} else{
+			g.setColor(Colors.green);
+			g.fillRect(nextWave.x, nextWave.y, nextWave.width, nextWave.height);
+			
 		}
+		g.drawImage(Tilesets.button_tileset[GameData.nextWave], nextWave.x, nextWave.y, nextWave.width, nextWave.height, null);
 		
 		g.setColor(Colors.transparentBlack);
 		g.fillRect(mute.x, mute.y, mute.width, mute.height);

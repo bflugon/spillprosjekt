@@ -146,6 +146,7 @@ public class Enemy extends Rectangle{
 			if(mobWalk == board.getBlockSize()) {
 				if(currentBlock.getPrev() == board.getGoal()) {
 					inGame = false;
+					board.decreaseLives(1);
 					GameData.lives -= lives;
 					mobWalk = 0;
 				} else{

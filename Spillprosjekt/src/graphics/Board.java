@@ -39,6 +39,8 @@ public class Board {
 	private ArrayList<Rectangle> towerButtons;
 	private ArrayList<Tower> towers;
 
+	private Screen screen;
+	
 	private Enemy[] enemies;
 	
 	
@@ -49,6 +51,8 @@ public class Board {
 		waveControl = new WaveControl(screen);
 //		Lager listen som inneholder taarnene
 		towers = new ArrayList<Tower>();
+		
+		this.screen = screen;
 		
 		nextWave = new Rectangle(720,570,80,80);
 		mute = new Rectangle(675,570,35,35);
@@ -296,5 +300,10 @@ public class Board {
 
 	public void setMoney(int money) {
 		this.money = money;
+	}
+
+	public void decreaseLives(int damage) {
+		this.lives -= damage;
+		if(this.lives < 1) screen.goToMainMenu();
 	}
 }

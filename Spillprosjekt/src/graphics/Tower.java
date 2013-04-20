@@ -116,7 +116,7 @@ public class Tower extends Rectangle{
 	
 //	Skyter naar timeren i "physics" kaller metoden
 	private void shoot(){
-		if(target != null &&target.inGame()){
+		if(target != null && target.inGame()){
 			addFiredAmmo();
 			Sound.playSound(barrel.getSoundName());
 			target = null;
@@ -289,6 +289,7 @@ public class Tower extends Rectangle{
 	}
 	
 	public void removeFiredAmmo(Projectile proj){
+		System.out.println("Tower.removeFiredAmmo()");
 		this.firedAmmo.remove(proj);
 	}
 

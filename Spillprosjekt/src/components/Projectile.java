@@ -72,7 +72,9 @@ public class Projectile extends Rectangle{
     		tower.removeFiredAmmo(this);
     	}
     	
-    	if(x < 0 || x > 680 || y < 0 || y > 720) tower.removeFiredAmmo(this);
+    	if(x < 0 || x > 820 || y < 0 || y > 680) {
+    		tower.removeFiredAmmo(this);
+    	}
 	}
 
 	
@@ -90,7 +92,6 @@ public class Projectile extends Rectangle{
 		setBounds((int)x, (int)y, 20, 20);
 		for(Enemy enemy : board.getEnemies()){
 			if(this.intersects(enemy) && enemy.inGame()){
-				
 				if(ammoAbility != null && ammoAbility.equals("glue")) enemy.slowDownEnemy();
 				enemy.setLives(damage);
 

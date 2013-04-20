@@ -118,6 +118,7 @@ public class FileManager {
 	    	GameData.rankUpLimit = loadScanner.nextInt();
 
 	    	System.out.println("Game Loaded!");
+	    	loadScanner.close();
 	    } catch (IOException e) {}
 	    
 	    loadModelTowers();
@@ -184,6 +185,7 @@ public class FileManager {
 				}
 				tower.updateProperties();
 				GameData.modelTowers.add(tower);
+				loadScanner.close();
 			}
 		}catch (Exception e) {}
 	}

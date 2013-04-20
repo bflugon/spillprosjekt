@@ -49,21 +49,22 @@ public class ComponentCell extends Rectangle{
 //		Draw properties
 		g.setFont(GameData.small);
 		
+		int offsetX = 400;
 		g.setColor(Color.WHITE);
-		g.drawString("Damage:", x+300, y+15);
+		g.drawString("Damage:", x+offsetX, y+15);
 		g.setColor(compare(currComponent.getDamage(), component.getDamage()));
-		g.drawString(String.valueOf(component.getDamage()), x + 420, y + 15);
+		g.drawString(String.valueOf(component.getDamage()), x + offsetX+120, y + 15);
 		
 		
 		g.setColor(Color.WHITE);
-		g.drawString("Range:", x+300, y+35);
+		g.drawString("Range:", x+offsetX, y+35);
 		g.setColor(compare(currComponent.getRange(), component.getRange()));
-		g.drawString(String.valueOf(component.getRange()), x+420, y+35);
+		g.drawString(String.valueOf(component.getRange()), x+offsetX+120, y+35);
 		
 		g.setColor(Color.WHITE);
-		g.drawString("Firerate:", x+300, y+55);
+		g.drawString("Firerate:", x+offsetX, y+55);
 		g.setColor(compare(component.getFirerate(),currComponent.getFirerate()));
-		g.drawString(String.valueOf(component.getFirerate()), x+420, y+55);
+		g.drawString(String.valueOf(component.getFirerate()), x+offsetX+120, y+55);
 		
 //		Draw extra 
 		if(component instanceof Barrel) drawBarrel(g);
@@ -86,8 +87,8 @@ public class ComponentCell extends Rectangle{
 		String allowedAmmo = ((Barrel)component).getAmmoType();
 		
 		g.setColor(Color.WHITE);
-		g.drawString("Allowed Ammo:", x+300, y+75);
-		g.drawString(allowedAmmo, x+420, y+75);
+		g.drawString("Allowed Ammo:", x+400, y+75);
+		g.drawString(allowedAmmo, x+520, y+75);
 	}
 	
 	public void drawAmmo(Graphics g){

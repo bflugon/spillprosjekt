@@ -48,6 +48,7 @@ public class WaveControl {
 		
 		if(numOfEnemies == enemiesSpawned) {
 			updateWave();
+//			System.out.println(numOfEnemies + " asdasda " + enemiesSpawned);
 			if(waveNumber == waveArray.length-1 && done){
 				GameData.money += 300;
 				waveNumber = 0;
@@ -79,19 +80,19 @@ public class WaveControl {
 			canContinue = false;
 			wavePart = 0;
 			waveNumber++;
-			updateWave();
+//			updateWave();
 		}
 	}
 	
 	private void updateWave(){
-		if(wavePart >= waveArray[waveNumber].length && waveNumber != waveArray.length-1){
-			canContinue =true;
+		if(wavePart >= waveArray[waveNumber].length) {
+			if(waveNumber != waveArray.length-1) canContinue =true;
+			return;
 		}
-		if(wavePart >= waveArray[waveNumber].length) return;
 		enemiesSpawned = 0;
 		
 		String info = waveArray[waveNumber][wavePart];
-		
+		System.out.println(waveNumber + " " + wavePart);
 		int start = 0,
 			end = info.indexOf(':');;
 		
@@ -111,7 +112,7 @@ public class WaveControl {
 		
 		start = end+1;
 		spawnRate = Integer.parseInt(info.substring(start));
-		
+
 		wavePart++;
 	}
 }

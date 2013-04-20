@@ -17,9 +17,11 @@ public class ComponentListCell extends ComponentCell{
 	public void draw(Graphics g){
 		super.draw(g);
 		
-		g.setColor(Color.WHITE);
-		g.setFont(GameData.header);
-		g.drawString(component.getPrice() + " $", x+590, y+50);
+		if(component.getRankLimit() <= GameData.rank){
+			g.setColor(Color.WHITE);
+			g.setFont(GameData.header);
+			g.drawString(component.getPrice() + " $", x+590, y+50);
+		}
 		
 //		Draw border
 		g.setColor(Color.DARK_GRAY);

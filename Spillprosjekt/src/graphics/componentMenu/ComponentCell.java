@@ -35,7 +35,6 @@ public class ComponentCell extends Rectangle{
 	}
 	
 	public void draw(Graphics g){
-		
 		if(contains(Screen.CURSOR)) g.setColor(Colors.transparentPink);
 		else g.setColor(Colors.transparentBlack);
 
@@ -70,6 +69,17 @@ public class ComponentCell extends Rectangle{
 		if(component instanceof Barrel) drawBarrel(g);
 		else if(component instanceof Base) drawBase(g);
 		else drawAmmo(g);
+		
+		if(component.getRankLimit() > GameData.rank){
+			g.setColor(Colors.popupTransparentBlack);
+			
+			g.drawImage(textures[component.getTextureIndex()], x+padding, y+padding, 60, 60, null);
+			g.fillRect(x, y, width, height);
+			
+			g.setFont(GameData.normal);
+			g.setColor(Color.GRAY);
+			g.drawString("Not avalible until rank "+component.getRankLimit(), x+200, y+50);
+		}
 	}
 	
 	public void drawBarrel(Graphics g){

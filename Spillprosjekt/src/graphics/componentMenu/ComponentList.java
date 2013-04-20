@@ -60,14 +60,11 @@ public class ComponentList extends PopupWindow{
 			if(firstIndex < 0) firstIndex = 0;
 			counter = firstIndex;
 
-			while(posMultiplier < 7 && counter < GameData.barrels.size()){	
+			while(posMultiplier < 7 && counter < GameData.barrels.size() && firstIndex+posMultiplier < GameData.barrels.size()){	
 				TowerComponent barrel = GameData.barrels.get(counter);
-				if(barrel.getRankLimit() <= GameData.rank){
-					if(barrel != currComponent){
-						list.add(new ComponentListCell(barrel, currComponent, x, y+80*posMultiplier, width, 80));
-						posMultiplier++;
-					}
-					if(counter == GameData.barrels.size() || firstIndex+posMultiplier >= GameData.barrels.size()) break;
+				if(barrel != currComponent){
+					list.add(new ComponentListCell(barrel, currComponent, x, y+80*posMultiplier, width, 80));
+					posMultiplier++;
 				}
 				counter++;
 			}
@@ -76,7 +73,7 @@ public class ComponentList extends PopupWindow{
 			if(firstIndex < 0) firstIndex = 0;
 			counter = firstIndex;
 			
-			while(posMultiplier < 7){
+			while(posMultiplier < 7 && counter < GameData.ammo.size() && firstIndex+posMultiplier < GameData.ammo.size()){
 				Ammo ammo = (Ammo) GameData.ammo.get(counter);
 				if(ammo.getRankLimit() <= GameData.rank){
 					String ammoType = menu.getActiveTower().getBarrel().getAmmoType();
@@ -86,25 +83,19 @@ public class ComponentList extends PopupWindow{
 					}
 				}
 				counter++;
-
-				if(posMultiplier == 7 || firstIndex+posMultiplier == GameData.ammo.size() || counter == GameData.ammo.size()) break;
 			}
 		} else if(currComponent instanceof Base){
 			if(firstIndex + (change+change/7) < GameData.bases.size()) firstIndex +=  (change+change/7);
 			if(firstIndex < 0) firstIndex = 0;
 			counter = firstIndex;
 			
-			while(posMultiplier < 7){
+			while(posMultiplier < 7 && counter < GameData.bases.size() && firstIndex+posMultiplier < GameData.bases.size()){
 				TowerComponent base = GameData.bases.get(counter);
-				if(base.getRankLimit() <= GameData.rank){
 					if(base != currComponent){
 						list.add(new ComponentListCell(base, currComponent, x, y+80*posMultiplier, width, 80));
 						posMultiplier++;
 					}
-				}
 				counter++;
-
-				if(posMultiplier == 7 || counter == GameData.bases.size() || firstIndex+posMultiplier == GameData.bases.size()) break;
 			}
 		}
 	}
@@ -123,7 +114,7 @@ public class ComponentList extends PopupWindow{
 		for(ComponentListCell cell : list){
 			if(cell.contains(Screen.CURSOR)){
 				Tower tower = GameData.modelTowers.get(menu.getActiveTowerIndex());
-				
+				if(cell.getComponent().getRankLimit() > GameData.rank)return;
 				if(currComponent instanceof Barrel){
 					Barrel barrel = (Barrel) cell.getComponent();
 					tower.setBarrel(barrel);

@@ -179,7 +179,7 @@ public class Tower extends Rectangle{
 		firerate += barrel.getFirerate();
 		range += barrel.getRange();
 		
-		price += barrel.getPrice()/2;
+		price += barrel.getPrice();
 	}
 	private void getAmmoBonuses(){
 		range += ammo.getRange();
@@ -188,7 +188,7 @@ public class Tower extends Rectangle{
 		slow = ammo.getSlow();
 		damage += ammo.getDamage();
 		
-		price += ammo.getPrice()/2;
+		price += ammo.getPrice();
 	}
 	private void getBaseBonuses(){
 		damage += base.getDamage();
@@ -196,7 +196,7 @@ public class Tower extends Rectangle{
 		firerate += base.getFirerate();
 		radar = base.getRadar();
 		
-		price += base.getPrice()/2;
+		price += base.getPrice();
 	}
 
 //	Alt av timere ol skal kjores fra denne (vil kalles av gameloopen)

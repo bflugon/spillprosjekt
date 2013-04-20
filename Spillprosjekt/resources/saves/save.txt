@@ -1,11 +1,11 @@
-9
-900
-676
-1226
-3173
+12
+1500
+1553
+4242
+6969
 
-Rank: 9
-Money: 900
-Enemies killed: 676
-Score: 1226
-Rank-up limit: 3173
+Rank: 12
+Money: 1500
+Enemies killed: 1553
+Score: 4242
+Rank-up limit: 6969

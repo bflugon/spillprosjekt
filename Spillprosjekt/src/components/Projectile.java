@@ -9,6 +9,8 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 
+import sound.Sound;
+
 import backend.GameData;
 import backend.Tilesets;
 
@@ -56,7 +58,7 @@ public class Projectile extends Rectangle{
 	}
 	
 	public void physics(){
-		if(target != null && ammoType.equals("Missile")){
+		if(target.inGame() && target != null && ammoType.equals("Missile")){
     		rotate();
     	}
 		x += Math.cos(rotation) * speed;
@@ -69,6 +71,8 @@ public class Projectile extends Rectangle{
     	if(ammoTimeOut > 1000){
     		tower.removeFiredAmmo(this);
     	}
+    	
+    	if(x < 0 || x > 680 || y < 0 || y > 720) tower.removeFiredAmmo(this);
 	}
 
 	
@@ -93,6 +97,11 @@ public class Projectile extends Rectangle{
 				
 //				add splash damage to missiles
 				if(ammoType == "Missile"){
+
+					if(ammoType.equals("Missile")){
+						Sound.playSound("explosion.wav");
+					}
+					
 					setBounds((int)x-30, (int)y-30, 80, 80);
 					for(int i = 0; i < board.getEnemies().length; i++){
 						Enemy enemyNearby = board.getEnemies()[i];

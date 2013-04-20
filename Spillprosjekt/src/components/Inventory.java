@@ -10,7 +10,7 @@ public class Inventory {
 	
 	public Inventory(){
 		
-		//double damage, double range, double firerate
+		//name, ammotype, cost, index, double damage, double range, double firerate, ability, rank
 		
 		createAmmo("Basic Bullet","Bullet",0,0,0,25,200);
 		createAmmo("Basic Slime","Slime",123,7,7,25,200,"glue");

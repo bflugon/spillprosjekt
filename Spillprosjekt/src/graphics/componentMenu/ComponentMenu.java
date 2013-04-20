@@ -74,7 +74,8 @@ public class ComponentMenu {
 		 *** Taarn og knapper ****
 		 *************************/
 		for(int i = 0; i < towerButtons.size(); i++){
-			if(towerButtons.get(i).contains(Screen.CURSOR))g.setColor(Colors.transparentPink);
+			if(i == activeTowerIndex)g.setColor(Colors.pink);
+			else if(towerButtons.get(i).contains(Screen.CURSOR))g.setColor(Colors.transparentPink);
 			else g.setColor(Colors.transparentBlack);
 			Rectangle towerButton = towerButtons.get(i);
 			g.fillRect(towerButton.x, towerButton.y, towerButton.width, towerButton.height);

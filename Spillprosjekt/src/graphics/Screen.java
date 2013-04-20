@@ -149,8 +149,8 @@ public class Screen extends JPanel implements Runnable {
 		while(true) {
 			try {
 				repaint();
-				Thread.sleep(gameSpeed);
 				physics();
+				Thread.sleep(gameSpeed);
 			} catch (Exception e) {}
 		}
 	}

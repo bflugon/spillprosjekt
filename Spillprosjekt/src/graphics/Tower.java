@@ -83,6 +83,8 @@ public class Tower extends Rectangle{
 		
 		double distX,distY;
 		
+		target = null;
+		
 		for(int i = 0; i < enemies.length; i++){
 			Enemy enemy = enemies[i];
 			distX = enemy.getX()-x;
@@ -114,8 +116,7 @@ public class Tower extends Rectangle{
 	
 //	Skyter naar timeren i "physics" kaller metoden
 	private void shoot(){
-		if(target != null){
-			
+		if(target != null &&target.inGame()){
 			addFiredAmmo();
 			Sound.playSound(barrel.getSoundName());
 			target = null;

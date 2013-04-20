@@ -7,6 +7,8 @@ import graphics.Tower;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
+import sound.Sound;
+
 public class PersistentProjectile extends Projectile{
 	
 	protected double range;
@@ -45,10 +47,9 @@ public class PersistentProjectile extends Projectile{
 		if(target != null && ammoType.equals("Beam")){
     		rotate();
     	} 
-		
+
 		ammoTimeOut ++;
-    	if(ammoTimeOut > fireRate || target == null || !target.inGame()){
-    		System.out.println("PersistentProjectile.physics()");
+    	if(ammoTimeOut > fireRate || !target.inGame()){
     		tower.removeFiredAmmo(this);
     	}
 		
@@ -89,7 +90,7 @@ public class PersistentProjectile extends Projectile{
 				if(Math.sqrt(distY*distY+distX*distX) <= range && enemy.inGame()){
 					enemy.setLives(damage);
 					if(ammoAbility != null && ammoAbility.equals("glue")) enemy.slowDownEnemy();
-
+					
 					if(ammoType.equals("Lightning") && enemy.getLives() < 2) {
 						tower.removeFiredAmmo(this);
 					}

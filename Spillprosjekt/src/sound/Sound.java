@@ -10,7 +10,7 @@ import backend.GameData;
 
 public class Sound {
 	public static void playSound(final String sound){
-		if(GameData.muted) return;
+		if(GameData.gunsMuted) return;
 		
 		new Thread(new Runnable() {
 			

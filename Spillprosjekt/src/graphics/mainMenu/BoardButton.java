@@ -45,7 +45,7 @@ public class BoardButton extends Rectangle {
 	
 	public void draw(Graphics g){
 		
-		if(contains(Screen.CURSOR)) g.setColor(Colors.transparentPink);
+		if(contains(Screen.CURSOR)) g.setColor(Colors.transparentRed);
 		else g.setColor(Colors.transparentBlack);
 		
 		g.fillRect(x, y, width, height);

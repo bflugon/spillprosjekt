@@ -35,7 +35,7 @@ public class ComponentCell extends Rectangle{
 	}
 	
 	public void draw(Graphics g){
-		if(contains(Screen.CURSOR)) g.setColor(Colors.transparentPink);
+		if(contains(Screen.CURSOR)) g.setColor(Colors.transparentRed);
 		else g.setColor(Colors.transparentBlack);
 
 		g.fillRect(x, y, width, height);
@@ -43,7 +43,7 @@ public class ComponentCell extends Rectangle{
 		
 //		Draw name
 		g.setFont(GameData.header);
-		g.setColor(Colors.pink);
+		g.setColor(Colors.red);
 		g.drawString(component.getName(), x+100, y+50);
 		
 //		Draw properties

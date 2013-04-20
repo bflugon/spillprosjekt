@@ -74,8 +74,8 @@ public class ComponentMenu {
 		 *** Taarn og knapper ****
 		 *************************/
 		for(int i = 0; i < towerButtons.size(); i++){
-			if(i == activeTowerIndex)g.setColor(Colors.pink);
-			else if(towerButtons.get(i).contains(Screen.CURSOR))g.setColor(Colors.transparentPink);
+			if(i == activeTowerIndex)g.setColor(Colors.red);
+			else if(towerButtons.get(i).contains(Screen.CURSOR))g.setColor(Colors.transparentRed);
 			else g.setColor(Colors.transparentBlack);
 			Rectangle towerButton = towerButtons.get(i);
 			g.fillRect(towerButton.x, towerButton.y, towerButton.width, towerButton.height);
@@ -83,15 +83,15 @@ public class ComponentMenu {
 		}
 		
 		if(newTower != null){
-			if(newTower.contains(Screen.CURSOR))g.setColor(Colors.transparentPink);
-			else g.setColor(Colors.transparentBlack);
+			if(newTower.contains(Screen.CURSOR))g.setColor(Colors.red);
+			else g.setColor(Colors.transparentRed);
 			
 			g.fillRect(newTower.x, newTower.y, newTower.width, newTower.height);
 			g.drawImage(Tilesets.button_tileset[GameData.newTower], newTower.x, newTower.y, newTower.width, newTower.height, null);
 		}
 
-		if(goToBoard.contains(Screen.CURSOR))g.setColor(Colors.transparentPink);
-		else g.setColor(Colors.transparentBlack);
+		if(goToBoard.contains(Screen.CURSOR))g.setColor(Colors.red);
+		else g.setColor(Colors.transparentRed);
 		g.fillRect(goToBoard.x, goToBoard.y, goToBoard.width, goToBoard.height);
 		g.drawImage(Tilesets.button_tileset[GameData.goToBoard], goToBoard.x, goToBoard.y, goToBoard.width, goToBoard.height, null);
 		

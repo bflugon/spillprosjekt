@@ -15,6 +15,7 @@ import components.Base;
 import components.Inventory;
 import components.TowerComponent;
 
+import backend.Colors;
 import backend.GameData;
 import backend.Tilesets;
 
@@ -105,7 +106,9 @@ public class ComponentList extends PopupWindow{
 		for(ComponentListCell cell : list){
 			cell.draw(g);
 		}
-		
+		g.setColor(Colors.red);
+		g.fillRect(next.x, next.y, next.width, next.height);
+		g.fillRect(previous.x, previous.y, previous.width, previous.height);
 		g.drawImage(Tilesets.button_tileset[GameData.next], next.x, next.y, next.width, next.height, null);
 		g.drawImage(Tilesets.button_tileset[GameData.previous], previous.x, previous.y, previous.width, previous.height, null);
 	}

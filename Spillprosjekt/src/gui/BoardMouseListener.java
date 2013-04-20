@@ -26,7 +26,8 @@ public class BoardMouseListener implements MouseListener, MouseMotionListener {
 		board.addFoundation();
 		board.changeActiveTower();
 		board.nextWave();
-		board.mute();
+		board.muteGuns();
+		board.muteMusic();
 	}
 	
 	public void mouseDragged(MouseEvent e) {}

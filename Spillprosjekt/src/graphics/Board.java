@@ -33,8 +33,8 @@ public class Board {
 					goal;
 	
 	private Rectangle nextWave;
-	private Rectangle mute;
-	private Rectangle save;
+	private Rectangle muteGuns;
+	private Rectangle muteMusic;
 	
 	private ArrayList<Rectangle> towerButtons;
 	private ArrayList<Tower> towers;
@@ -55,18 +55,13 @@ public class Board {
 		this.screen = screen;
 		
 		nextWave = new Rectangle(720,570,80,80);
-		mute = new Rectangle(675,570,35,35);
-		save = new Rectangle(675,615,35,35);
+		muteGuns = new Rectangle(675,570,35,35);
+		muteMusic = new Rectangle(675,615,35,35);
 		
 		activeTower = 0;
 //		Fyller arrayet med fiender
 		enemies = new Enemy[80];
-		GameData.enemies = new Enemy[80];
-		for(int i = 0; i<enemies.length; i++){
-			enemies[i] = new Enemy(this);
-			GameData.enemies[i] = new Enemy(this);
-		}
-		
+
 		towerButtons = new ArrayList<Rectangle>();
 //		Lager like mange knapper som taarn man kan plassere
 		for(int i = 0; i < GameData.modelTowers.size();i++){
@@ -78,6 +73,12 @@ public class Board {
 //		Lager brettet
 		grid = new Block[worldHeight][worldWidth];
 		towers = new ArrayList<Tower>();
+		lives = 20;
+		
+		for(int i = 0; i<enemies.length; i++){
+			enemies[i] = new Enemy(this);
+		}
+		
 //		Legger til blokker i arrayet
 		for(int y = 0; y < grid.length; y++){
 			for(int x = 0; x < grid[0].length; x++){
@@ -188,8 +189,8 @@ public class Board {
 //		Tegner knappene
 		for(int i = 0; i < GameData.modelTowers.size(); i++){
 			
-			if(i == activeTower)g.setColor(Colors.pink);
-			else if(towerButtons.get(i).contains(Screen.CURSOR))g.setColor(Colors.transparentPink);
+			if(i == activeTower)g.setColor(Colors.red);
+			else if(towerButtons.get(i).contains(Screen.CURSOR))g.setColor(Colors.transparentRed);
 			else g.setColor(Colors.transparentBlack);
 			
 			g.fillRect(towerButtons.get(i).x, towerButtons.get(i).y, towerButtons.get(i).width, towerButtons.get(i).height);
@@ -218,20 +219,22 @@ public class Board {
 		
 		if(!WaveControl.canContinue){
 			g.setColor(Colors.red);
-			g.fillRect(nextWave.x, nextWave.y, nextWave.width, nextWave.height);
 		} else{
 			g.setColor(Colors.green);
-			g.fillRect(nextWave.x, nextWave.y, nextWave.width, nextWave.height);
-			
 		}
+		g.fillRect(nextWave.x, nextWave.y, nextWave.width, nextWave.height);
+		
 		g.drawImage(Tilesets.button_tileset[GameData.nextWave], nextWave.x, nextWave.y, nextWave.width, nextWave.height, null);
 		
-		g.setColor(Colors.transparentBlack);
-		g.fillRect(mute.x, mute.y, mute.width, mute.height);
-		g.drawImage(Tilesets.button_tileset[GameData.mute], mute.x, mute.y, mute.width, mute.height, null);
+		if(GameData.gunsMuted)g.setColor(Colors.red);
+		else g.setColor(Colors.green);
+		g.fillRect(muteGuns.x, muteGuns.y, muteGuns.width, muteGuns.height);
+		g.drawImage(Tilesets.button_tileset[GameData.mute], muteGuns.x, muteGuns.y, muteGuns.width, muteGuns.height, null);
 		
-		g.fillRect(save.x, save.y, save.width, save.height);
-		g.drawImage(Tilesets.button_tileset[GameData.save], save.x, save.y, save.width, save.height, null);
+		if(GameData.gunsMuted)g.setColor(Colors.red);
+		else g.setColor(Colors.green);
+		g.fillRect(muteMusic.x, muteMusic.y, muteMusic.width, muteMusic.height);
+		g.drawImage(Tilesets.button_tileset[GameData.save], muteMusic.x, muteMusic.y, muteMusic.width, muteMusic.height, null);
 		
 //		Tegn penger og liv
 		g.setFont(GameData.normal);
@@ -257,7 +260,7 @@ public class Board {
 //		Draw score bar
 		g.setColor(Colors.transparentBlack);
 		g.fillRect(0, 0, 820, 10);
-		g.setColor(Colors.pink);
+		g.setColor(Colors.green);
 		g.fillRect(0, 0, (int)((820.0/GameData.rankUpLimit)*GameData.score), 10);
 		
 	}
@@ -278,10 +281,17 @@ public class Board {
 		}
 	}
 	
-	public void mute(){
-		if(mute.contains(Screen.CURSOR)){
-			if(GameData.muted)GameData.muted = false;
-			else GameData.muted = true;
+	public void muteGuns(){
+		if(muteGuns.contains(Screen.CURSOR)){
+			if(GameData.gunsMuted)GameData.gunsMuted = false;
+			else GameData.gunsMuted = true;
+		}
+	}
+	
+	public void muteMusic(){
+		if(muteMusic.contains(Screen.CURSOR)){
+			if(GameData.musicMuted)GameData.musicMuted = false;
+			else GameData.musicMuted = true;
 		}
 	}
 	

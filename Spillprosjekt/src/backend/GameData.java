@@ -72,10 +72,12 @@ public class GameData {
 	public static Inventory invetar = new Inventory();
 
 	
-	public static boolean muted = true;
+	public static boolean gunsMuted = true;
 	
 	
 	public static String[] songs = {"backgroundMusic1.wav","backgroundMusic.wav"};
 	public static int songNum = new Random().nextInt(2);
+
+	public static boolean musicMuted = true;
 
 }

@@ -2,12 +2,9 @@ package graphics;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.geom.AffineTransform;
 
 import sound.Sound;
-
 import backend.GameData;
 import backend.Tilesets;
 
@@ -21,7 +18,6 @@ public class Enemy extends Rectangle{
 	private int	xc = 0,
 				yc = 0, 
 				mobWalk = 0, 
-				mobSize = 50,
 				direction = downward,
 				distanceTraveled = 0,
 				walkSpeed,
@@ -45,7 +41,7 @@ public class Enemy extends Rectangle{
 	public void spawnEnemy(int lives, int walkSpeed, int enemyID, Block currentBlock) {
 		this.lives = lives;
 		this.enemyID = enemyID;
-		value = (int) 1;
+		value = (int) lives/3;
 		
 		setCurrentBlock(currentBlock);
 	
@@ -74,8 +70,8 @@ public class Enemy extends Rectangle{
 	public void setLives(double damage) {
 		lives -= damage;
 		GameData.score += damage;
-		board.addMoney((int)(damage*0.2));
 		if (lives <= 0) {
+			board.addMoney(value);
 			GameData.totEnemiesKilled++;
 			inGame = false;
 			mobWalk = 0;

@@ -43,10 +43,10 @@ public class MainMenu extends Rectangle {
 
 		g.setFont(GameData.header);
 		for(int i = 0; i < buttons.length; i++) {
-			if(buttons[i].contains(Screen.CURSOR))g.setColor(Colors.transparentPink);
+			if(buttons[i].contains(Screen.CURSOR))g.setColor(Colors.transparentRed);
 			else g.setColor(Colors.transparentBlack);
 			g.fillRect(buttons[i].x, buttons[i].y, buttons[i].width, buttons[i].height);
-			g.setColor(Colors.pink);
+			g.setColor(Colors.red);
 			g.drawString(buttonText[i], buttons[i].x+30, buttons[i].y+40);
 		}
 		

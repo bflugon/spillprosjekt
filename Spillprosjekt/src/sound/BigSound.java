@@ -49,7 +49,7 @@ public class BigSound implements Runnable {
 		int bytesRead = 0;
 		try {
 			while (notYetEOF) {
-				if(GameData.muted)stop();
+				if(GameData.musicMuted)stop();
 				else start();
 				if (playing) {
 					bytesRead = in.read (buffer, 

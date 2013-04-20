@@ -25,8 +25,9 @@ public class Inventory {
 		
 		//Rank 1
 		String bullet = "Bullet";
-		createBarrel("Dragvolly",25, 3,  20,  50,  100, bullet, "shot2.wav",1);
-		createBase("Concrete",50, 2,  0,  0,  0,1);
+		createBarrel("Dragvolly",25, 3,  20,  50,  100, bullet, "shot2.wav",0);
+		createBase("Concrete",50, 2,  0,  0,  0,0);
+		createAmmo("Copper Bullet","Bullet",15,10,0,25,200,0);
 		//Ny kule
 		
 		//Rank 2

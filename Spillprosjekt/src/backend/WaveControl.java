@@ -7,7 +7,7 @@ import graphics.Screen;
 public class WaveControl {
 	
 	private int waveNumber = -1,
-				wavePart = 0;
+				wavePart = -1;
 	
 	private int enemyHealth,
 				spawnRate,
@@ -26,6 +26,9 @@ public class WaveControl {
 									{"0:10:10:4:400","1:1:40:4:800"},
 									{"0:10:10:3:300","1:1:40:5:100","0:1:10:850","0:10:10:4:350","1:2:40:5:700"},
 									{"0:10:10:3:300","1:1:40:5:100","0:1:10:850","0:10:10:4:350","1:2:40:5:700"},
+									{"0:10:10:3:300","1:1:40:5:100","0:1:10:850","0:10:10:3:250","1:2:50:4:700"},
+									{"0:10:10:4:400","1:1:40:4:800"},
+									{"0:30:20:4:100","1:20:20:3:120"},
 									{"0:30:20:4:100","1:20:20:3:120"},
 									{"0:30:20:4:100","1:20:20:3:120"},
 									{"0:30:20:4:100","1:20:20:3:120"},
@@ -48,7 +51,6 @@ public class WaveControl {
 		
 		if(numOfEnemies == enemiesSpawned) {
 			updateWave();
-//			System.out.println(numOfEnemies + " asdasda " + enemiesSpawned);
 			if(waveNumber == waveArray.length-1 && done){
 				GameData.money += 300;
 				waveNumber = 0;
@@ -78,21 +80,21 @@ public class WaveControl {
 	public void nextWave(){
 		if(canContinue){
 			canContinue = false;
-			wavePart = 0;
+			wavePart = -1;
 			waveNumber++;
-//			updateWave();
 		}
 	}
 	
 	private void updateWave(){
+		wavePart++;
 		if(wavePart >= waveArray[waveNumber].length) {
 			if(waveNumber != waveArray.length-1) canContinue =true;
 			return;
 		}
 		enemiesSpawned = 0;
 		
-		String info = waveArray[waveNumber][wavePart];
 		System.out.println(waveNumber + " " + wavePart);
+		String info = waveArray[waveNumber][wavePart];
 		int start = 0,
 			end = info.indexOf(':');;
 		
@@ -113,6 +115,5 @@ public class WaveControl {
 		start = end+1;
 		spawnRate = Integer.parseInt(info.substring(start));
 
-		wavePart++;
 	}
 }

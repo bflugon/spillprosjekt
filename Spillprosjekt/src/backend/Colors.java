@@ -14,5 +14,5 @@ public class Colors {
 						popupBackground = new Color(40, 40, 40),
 						transparentWhite = new Color(255, 255, 255, 50),
 						green = new Color(30,170,40),
-						red = new Color(170,40,30);
+						red = new Color(170,40,30); 
 }

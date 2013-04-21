@@ -14,7 +14,7 @@ import backend.Tilesets;
 
 public class MainMenu extends Rectangle {
 
-	private HowToPlay credits;
+	private HowToPlay howToPlay;
 	private Screen screen;
 	private Rectangle[] buttons;
 	
@@ -22,13 +22,13 @@ public class MainMenu extends Rectangle {
 	
 	private boolean inCredits = false;
 	
-	private String[] buttonText = {"Start Game","New Game", "Credits", "Exit"};
+	private String[] buttonText = {"Start Game","Reset game", "How to play", "Exit"};
 			
 	public MainMenu(Screen screen){
 		this.screen = screen;
 		setBounds(screen.getBounds());
 		
-		credits = new HowToPlay();
+		howToPlay = new HowToPlay();
 		
 		buttons = new Rectangle[4];
 		
@@ -47,13 +47,13 @@ public class MainMenu extends Rectangle {
 			else g.setColor(Colors.transparentBlack);
 			g.fillRect(buttons[i].x, buttons[i].y, buttons[i].width, buttons[i].height);
 			g.setColor(Colors.red);
-			g.drawString(buttonText[i], buttons[i].x+30, buttons[i].y+40);
+			g.drawString(buttonText[i], buttons[i].x+20, buttons[i].y+40);
 		}
 		
 		g.setFont(GameData.largeHeader);
 		g.drawString("<name here>", 40, 120);
 
-		if(inCredits)credits.draw(g);
+		if(inCredits)howToPlay.draw(g);
 		if(boardList != null)boardList.draw(g);
 		
 	}
@@ -64,7 +64,7 @@ public class MainMenu extends Rectangle {
 			else if(buttons[1].contains(Screen.CURSOR) && !inCredits) screen.newGame();
 			else if(buttons[2].contains(Screen.CURSOR) && !inCredits) inCredits = true;
 			else if(buttons[3].contains(Screen.CURSOR) && !inCredits) System.exit(0);
-			else if(!credits.contains(Screen.CURSOR))inCredits = false;
+			else if(!howToPlay.contains(Screen.CURSOR))inCredits = false;
 		} else {
 			boardList.clickedButton();
 		}

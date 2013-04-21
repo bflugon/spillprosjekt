@@ -39,7 +39,7 @@ public class Screen extends JPanel implements Runnable {
 	private ComponentMenuMouseListener menuMouseListener;
 	private MainMenuMouseListener mainMenuMouseListener;
 
-	private int gameSpeed = 4;
+	private int gameSpeed = 3;
 	
 	private boolean inGame,
 					inStore;

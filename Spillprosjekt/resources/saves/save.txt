@@ -1,0 +1,11 @@
+2
+300
+139
+270
+2048
+
+Rank: 2
+Money: 300
+Enemies killed: 139
+Score: 270
+Rank-up limit: 2048

@@ -21,45 +21,33 @@ public class WaveControl {
 	
 //									Index:Antall:Lives:Speed:Spawnrate
 	private String[][] waveArray =	{
-									//{"0:5:10:4:600"},
-									//{"0:10:10:4:500"},
-									//{"0:10:10:4:400","1:1:40:4:800"},
-									//{"0:5:10:4:300","1:1:40:5:500","0:1:10:4:1550","0:10:10:4:350","1:2:40:5:900"},
-									//{"0:7:10:4:300","1:2:40:5:400","0:1:10:1000","0:12:10:4:350","1:3:40:6:900"},
-									//{"0:12:10:4:300","1:2:40:5:400","0:1:10:1000","0:15:10:4:350","1:3:40:5:400"},
+									{"0:5:10:4:600"},
+									{"0:10:10:4:500"},
+									{"0:10:10:4:400","1:1:40:4:800"},
+									{"0:5:10:4:300","1:1:40:5:500","0:1:10:4:1550","0:10:10:4:350","1:2:40:5:900"},
+									{"0:7:10:4:300","1:2:40:5:400","0:1:10:1000","0:12:10:4:350","1:3:40:6:900"},
+									{"0:12:10:4:300","1:2:40:5:400","0:1:10:1000","0:15:10:4:350","1:3:40:5:400"},
 									{"1:3:60:5:1500"},
 									{"0:12:10:4:300","1:4:40:5:400","0:1:10:1500","0:15:10:4:350","1:4:40:5:300","1:3:60:5:1400"},
-
 									};	
 	
 	private Screen screen;
-	
-	@SuppressWarnings("unused")
-	private void spawnWave(int wave) {
-		int a = wave*5;
-		int b = wave / 3;		
-	}
 	
 	public WaveControl(Screen screen){
 		this.screen = screen;
 	}
 	
 	public void spawnTimer(Board board) {
-		boolean done = true;
-		for(Enemy enemy:board.getEnemies()){
-			if(enemy.inGame()) done = false;
-		}
-
 		
 		if(numOfEnemies == enemiesSpawned) {
-			updateWave();
-			if(waveNumber == waveArray.length-1 && done){
+			if(waveNumber == waveArray.length){
 				GameData.money += 300;
-				waveNumber = 0;
+				waveNumber = -1;
 				wavePart = 0;
 				screen.goToMainMenu();
 				return;
 			}
+			updateWave(board);
 			if(numOfEnemies == enemiesSpawned)return;
 		}
 		
@@ -87,15 +75,22 @@ public class WaveControl {
 		}
 	}
 	
-	private void updateWave(){
+	private void updateWave(Board board){
+		
+		boolean done = true;
+		for(Enemy enemy:board.getEnemies()){
+			if(enemy.inGame()) done = false;
+		}
+
+		if(!done)return;
+		
 		wavePart++;
 		if(wavePart >= waveArray[waveNumber].length) {
-			if(waveNumber != waveArray.length-1) canContinue =true;
+			if(waveNumber < waveArray.length) canContinue =true;
 			return;
 		}
 		enemiesSpawned = 0;
 		
-		System.out.println(waveNumber + " " + wavePart);
 		String info = waveArray[waveNumber][wavePart];
 		int start = 0,
 			end = info.indexOf(':');;

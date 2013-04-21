@@ -231,7 +231,7 @@ public class Board {
 		g.fillRect(muteGuns.x, muteGuns.y, muteGuns.width, muteGuns.height);
 		g.drawImage(Tilesets.button_tileset[GameData.mute], muteGuns.x, muteGuns.y, muteGuns.width, muteGuns.height, null);
 		
-		if(GameData.gunsMuted)g.setColor(Colors.red);
+		if(GameData.musicMuted)g.setColor(Colors.red);
 		else g.setColor(Colors.green);
 		g.fillRect(muteMusic.x, muteMusic.y, muteMusic.width, muteMusic.height);
 		g.drawImage(Tilesets.button_tileset[GameData.save], muteMusic.x, muteMusic.y, muteMusic.width, muteMusic.height, null);

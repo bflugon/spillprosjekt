@@ -105,7 +105,7 @@ public class FileManager {
 	public static void loadGameData(){
 		File file = new File("resources/saves/save.txt");
 		GameData.score = 0;
-		GameData.rankUpLimit = 800;
+		GameData.rankUpLimit = 80;
 		GameData.rank = 0;
 		
 	    try {

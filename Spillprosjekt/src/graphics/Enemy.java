@@ -21,7 +21,6 @@ public class Enemy extends Rectangle{
 				direction = downward,
 				distanceTraveled = 0,
 				walkSpeed,
-				value,
 				enemyID;
 	
 	private double lives;
@@ -41,7 +40,6 @@ public class Enemy extends Rectangle{
 	public void spawnEnemy(int lives, int walkSpeed, int enemyID, Block currentBlock) {
 		this.lives = lives;
 		this.enemyID = enemyID;
-		value = (int) lives/4;
 		
 		setCurrentBlock(currentBlock);
 	
@@ -69,12 +67,15 @@ public class Enemy extends Rectangle{
 //	reduserer livene naar den blir skutt
 	public void setLives(double damage) {
 		lives -= damage;
-		GameData.score += damage;
 		if (lives <= 0) {
-			board.addMoney(value);
+			GameData.score += enemyID+1;
+			board.addMoney(enemyID+1);
+			
 			GameData.totEnemiesKilled++;
+			
 			inGame = false;
 			mobWalk = 0;
+			
 			Sound.playSound("die.wav");
 		}
 	}

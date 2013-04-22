@@ -6,7 +6,7 @@ import graphics.Screen;
 
 public class WaveControl {
 	
-	private int waveNumber = -1,
+	private int waveNumber = 0,
 				wavePart = -1;
 	
 	private int enemyHealth,
@@ -23,7 +23,6 @@ public class WaveControl {
 	private String[][] waveArray =	{
 									{"0:5:10:6:800"},
 									{"0:5:10:4:600"},
-
 									{"0:10:10:4:500"},
 									{"0:20:10:4:400"},
 									{"0:30:10:4:400"},
@@ -45,11 +44,6 @@ public class WaveControl {
 									
 									
 									{"0:15:10:4:300","1:2:20:5:500","0:1:10:4:1500","0:10:10:4:350","1:2:40:5:900"},
-									{"1:10:10:4:500"},
-									{"2:10:10:4:400","3:1:40:4:800"},
-				
-									
-									{"0:5:10:4:300","1:1:40:5:500","0:1:10:4:1550","0:10:10:4:350","1:2:40:5:900"},
 									{"0:7:10:4:300","1:2:40:5:400","0:1:10:4:1000","0:12:10:4:350","1:3:40:6:900"},
 									{"0:12:10:4:300","1:2:40:5:400","0:1:10:4:1000","0:15:10:4:350","1:3:40:5:400"},
 									
@@ -67,7 +61,7 @@ public class WaveControl {
 	}
 	
 	public void spawnTimer(Board board) {
-		if(canContinue)return;
+
 		if(numOfEnemies == enemiesSpawned) {
 			
 			if(waveNumber == waveArray.length){
@@ -116,6 +110,7 @@ public class WaveControl {
 		} else {
 			wavePart++;
 		}
+		
 		updateProperties(waveArray[waveNumber][wavePart]);
 	}
 	

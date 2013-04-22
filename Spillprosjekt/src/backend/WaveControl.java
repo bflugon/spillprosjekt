@@ -124,4 +124,8 @@ public class WaveControl {
 		
 		enemiesSpawned = 0;
 	}
+
+	public int getWave() {
+		return waveNumber;
+	}
 }

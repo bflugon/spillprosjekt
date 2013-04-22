@@ -262,6 +262,7 @@ public class Board {
 		g.fillRect(0, 0, 820, 15);
 		g.setColor(Colors.green);
 		g.fillRect(0, 0, (int)((820.0/GameData.rankUpLimit)*GameData.score), 15);
+		g.setColor(Color.WHITE);
 		g.setFont(GameData.small);
 		g.drawString(GameData.score+ " / " +GameData.rankUpLimit, 380, 13);
 		

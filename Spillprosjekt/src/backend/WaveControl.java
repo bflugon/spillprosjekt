@@ -48,7 +48,7 @@ public class WaveControl {
 	}
 	
 	public void spawnTimer(Board board) {
-
+		if(canContinue)return;
 		if(numOfEnemies == enemiesSpawned) {
 			
 			if(waveNumber == waveArray.length){

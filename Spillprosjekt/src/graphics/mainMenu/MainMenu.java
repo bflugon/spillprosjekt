@@ -2,6 +2,7 @@ package graphics.mainMenu;
 
 import graphics.Screen;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -33,7 +34,7 @@ public class MainMenu extends Rectangle {
 		buttons = new Rectangle[4];
 		
 		for(int i = 0; i < buttons.length; i++){
-			buttons[i] = new Rectangle(40,295+75*i, 250,60);
+			buttons[i] = new Rectangle(20,295+75*i, 250,60);
 		}
 	}
 	
@@ -51,10 +52,14 @@ public class MainMenu extends Rectangle {
 		}
 		
 		g.setFont(GameData.largeHeader);
-		g.drawString("<name here>", 40, 120);
+		g.drawString("<name here>", 20, 120);
 
 		if(inCredits)howToPlay.draw(g);
 		if(boardList != null)boardList.draw(g);
+		
+		g.setFont(GameData.small);
+		g.setColor(Color.GRAY);
+		g.drawString("Created by: Simen Selseng, BŒrd Flugon and ¯yvind Grimnes", 20, 650);
 		
 	}
 

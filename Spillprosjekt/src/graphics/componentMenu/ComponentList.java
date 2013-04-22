@@ -76,12 +76,10 @@ public class ComponentList extends PopupWindow{
 			
 			while(posMultiplier < 7 && counter < GameData.ammo.size() && firstIndex+posMultiplier < GameData.ammo.size()){
 				Ammo ammo = (Ammo) GameData.ammo.get(counter);
-				if(ammo.getRankLimit() <= GameData.rank){
-					String ammoType = menu.getActiveTower().getBarrel().getAmmoType();
-					if(ammo.getAmmoType() == ammoType && ammo != currComponent){
-						list.add(new ComponentListCell(ammo, currComponent, x, y+80*posMultiplier, width, 80));
-						posMultiplier++;
-					}
+				String ammoType = menu.getActiveTower().getBarrel().getAmmoType();
+				if(ammo.getAmmoType() == ammoType && ammo != currComponent){
+					list.add(new ComponentListCell(ammo, currComponent, x, y+80*posMultiplier, width, 80));
+					posMultiplier++;
 				}
 				counter++;
 			}

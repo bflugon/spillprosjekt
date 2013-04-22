@@ -211,8 +211,8 @@ public class Tower extends Rectangle{
 			fireFrame++;
 		}
 		
-		for(Projectile proj : firedAmmo){
-			proj.physics();
+		for(int i = 0; i < firedAmmo.size(); i++){
+			firedAmmo.get(i).physics();
 		}
 		
 	}
@@ -289,7 +289,6 @@ public class Tower extends Rectangle{
 	}
 	
 	public void removeFiredAmmo(Projectile proj){
-		System.out.println("Tower.removeFiredAmmo()");
 		this.firedAmmo.remove(proj);
 	}
 

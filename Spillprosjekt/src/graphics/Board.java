@@ -123,13 +123,13 @@ public class Board {
 						if(enemy.inGame() && block.intersects(enemy)) return;
 					}
 					
-					if(money >= 50){
+					if(money >= 15){
 						block.setBlockID(GameData.foundation);
-						addMoney(-50);
+						addMoney(-15);
 						if(!pathfinder.findPath()) {
 							block.setBlockID(GameData.grass);
 							pathfinder.findPath();
-							addMoney(50);
+							addMoney(15);
 						}
 					}
 				}
@@ -259,9 +259,11 @@ public class Board {
 		
 //		Draw score bar
 		g.setColor(Colors.transparentBlack);
-		g.fillRect(0, 0, 820, 10);
+		g.fillRect(0, 0, 820, 15);
 		g.setColor(Colors.green);
-		g.fillRect(0, 0, (int)((820.0/GameData.rankUpLimit)*GameData.score), 10);
+		g.fillRect(0, 0, (int)((820.0/GameData.rankUpLimit)*GameData.score), 15);
+		g.setFont(GameData.small);
+		g.drawString(GameData.score+ " / " +GameData.rankUpLimit, 380, 13);
 		
 	}
 	

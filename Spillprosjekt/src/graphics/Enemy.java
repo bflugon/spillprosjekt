@@ -41,7 +41,7 @@ public class Enemy extends Rectangle{
 	public void spawnEnemy(int lives, int walkSpeed, int enemyID, Block currentBlock) {
 		this.lives = lives;
 		this.enemyID = enemyID;
-		value = (int) lives/3;
+		value = (int) lives/4;
 		
 		setCurrentBlock(currentBlock);
 	

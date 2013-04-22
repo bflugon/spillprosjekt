@@ -6,7 +6,7 @@ import graphics.Screen;
 
 public class WaveControl {
 	
-	private int waveNumber = -1,
+	private int waveNumber = 0,
 				wavePart = -1;
 	
 	private int enemyHealth,
@@ -25,8 +25,8 @@ public class WaveControl {
 									{"0:10:10:4:500"},
 									{"0:10:10:4:400","1:1:40:4:800"},
 									{"0:5:10:4:300","1:1:40:5:500","0:1:10:4:1550","0:10:10:4:350","1:2:40:5:900"},
-									{"0:7:10:4:300","1:2:40:5:400","0:1:10:1000","0:12:10:4:350","1:3:40:6:900"},
-									{"0:12:10:4:300","1:2:40:5:400","0:1:10:1000","0:15:10:4:350","1:3:40:5:400"},
+									{"0:7:10:4:300","1:2:40:5:400","0:1:10:4:1000","0:12:10:4:350","1:3:40:6:900"},
+									{"0:12:10:4:300","1:2:40:5:400","0:1:10:4:1000","0:15:10:4:350","1:3:40:5:400"},
 									{"1:3:60:5:1500"},
 									{"0:12:10:4:300","1:4:40:5:400","0:1:10:1500","0:15:10:4:350","1:4:40:5:300","1:3:60:5:1400"},
 									};	
@@ -38,17 +38,18 @@ public class WaveControl {
 	}
 	
 	public void spawnTimer(Board board) {
-		
+
 		if(numOfEnemies == enemiesSpawned) {
+			
 			if(waveNumber == waveArray.length){
 				GameData.money += 300;
-				waveNumber = -1;
+				waveNumber = 0;
 				wavePart = 0;
 				screen.goToMainMenu();
 				return;
 			}
-			updateWave(board);
-			if(numOfEnemies == enemiesSpawned)return;
+			nextPart();
+			if(numOfEnemies == enemiesSpawned) return;
 		}
 		
 		Enemy[] enemies =  board.getEnemies();
@@ -69,32 +70,31 @@ public class WaveControl {
 	
 	public void nextWave(){
 		if(canContinue){
+			
 			canContinue = false;
-			wavePart = -1;
+			wavePart = 0;
+			enemiesSpawned = 0;
 			waveNumber++;
+			
+			updateProperties(waveArray[waveNumber][wavePart]);
 		}
 	}
 	
-	private void updateWave(Board board){
-		
-		boolean done = true;
-		for(Enemy enemy:board.getEnemies()){
-			if(enemy.inGame()) done = false;
-		}
-
-		if(!done)return;
-		
-		wavePart++;
-		if(wavePart >= waveArray[waveNumber].length) {
-			if(waveNumber < waveArray.length) canContinue =true;
+	private void nextPart(){
+		if(wavePart >= waveArray[waveNumber].length-1) {
+			canContinue =true;
 			return;
+		} else {
+			wavePart++;
 		}
-		enemiesSpawned = 0;
 		
-		String info = waveArray[waveNumber][wavePart];
+		updateProperties(waveArray[waveNumber][wavePart]);
+	}
+	
+	private void updateProperties(String info){
 		int start = 0,
 			end = info.indexOf(':');;
-		
+			
 		enemyIndex = Integer.parseInt(info.substring(start, end));
 		
 		start = end+1;
@@ -111,6 +111,7 @@ public class WaveControl {
 		
 		start = end+1;
 		spawnRate = Integer.parseInt(info.substring(start));
-
+		
+		enemiesSpawned = 0;
 	}
 }

@@ -1,0 +1,11 @@
+2
+0
+240
+54
+204
+
+Rank: 2
+Money: 0
+Enemies killed: 240
+Score: 54
+Rank-up limit: 204

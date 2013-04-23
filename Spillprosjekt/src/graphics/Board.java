@@ -36,6 +36,8 @@ public class Board {
 	private Rectangle muteGuns;
 	private Rectangle muteMusic;
 	
+	private UpgradeMenu upgradeMenu = null;
+	
 	private ArrayList<Rectangle> towerButtons;
 	private ArrayList<Tower> towers;
 
@@ -166,8 +168,8 @@ public class Board {
 			if(enemy.inGame()) enemy.physics();
 		}
 		
-		for(Tower tower: towers){
-			tower.physics();
+		for(int i = 0; i < towers.size(); i++){
+			towers.get(i).physics();
 		}
 		
 		if(GameData.score >= GameData.rankUpLimit){
@@ -267,6 +269,8 @@ public class Board {
 		g.setFont(GameData.small);
 		g.drawString(GameData.score+ " / " +GameData.rankUpLimit, 380, 13);
 		
+		
+		if(upgradeMenu != null)upgradeMenu.draw(g);
 	}
 	
 	public void changeActiveTower() {
@@ -322,5 +326,33 @@ public class Board {
 	public void decreaseLives(int damage) {
 		this.lives -= damage;
 		if(this.lives < 1) screen.goToMainMenu();
+	}
+
+	public void sellTower(Tower tower) {
+		money += tower.getPrice() *0.5 + (tower.getMultiplier()-1)*30;
+		for(Block[] row:grid){
+			for(Block block : row){
+				if(tower.getX() == block.getX() && tower.getY() == block.getY())block.setOpen(true);
+			}
+		}
+		towers.remove(tower);
+	}
+
+	public void closeUpgradeMenu() {
+		upgradeMenu = null;
+	}
+	
+	public UpgradeMenu getUpgradeMenu(){
+		return upgradeMenu;
+	}
+	
+	public void openUpgradeMenu(Tower tower){
+		upgradeMenu = new UpgradeMenu(tower, this);
+	}
+
+	public void selectTower() {
+		for(int i = 0; i < towers.size();i++){
+			if(towers.get(i).contains(Screen.CURSOR))openUpgradeMenu(towers.get(i));
+		}
 	}
 }

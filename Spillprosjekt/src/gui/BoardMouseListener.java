@@ -2,6 +2,7 @@ package gui;
 
 import graphics.Board;
 import graphics.Screen;
+import graphics.UpgradeMenu;
 
 import java.awt.Point;
 import java.awt.event.MouseEvent;
@@ -22,12 +23,19 @@ public class BoardMouseListener implements MouseListener, MouseMotionListener {
 	}
 	public void mouseReleased(MouseEvent e) {
 		if(!screen.inGame())return;
-		board.placeTower();
-		board.addFoundation();
-		board.changeActiveTower();
-		board.nextWave();
-		board.muteGuns();
-		board.muteMusic();
+		
+		UpgradeMenu um = board.getUpgradeMenu();
+		if(um != null)
+			um.clickButton();
+		else{
+			board.selectTower();
+			board.placeTower();
+			board.addFoundation();
+			board.changeActiveTower();
+			board.nextWave();
+			board.muteGuns();
+			board.muteMusic();
+		}
 	}
 	
 	public void mouseDragged(MouseEvent e) {}

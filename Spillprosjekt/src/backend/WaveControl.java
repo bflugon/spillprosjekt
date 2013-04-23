@@ -6,7 +6,7 @@ import graphics.Screen;
 
 public class WaveControl {
 	
-	private int waveNumber = 0,
+	private int waveNumber = -1,
 				wavePart = -1;
 	
 	private int enemyHealth,
@@ -54,7 +54,7 @@ public class WaveControl {
 			{"0:0:10:3:150","1:10:25:4:450","2:0:45:4:400","3:0:70:4:800","4:0:95:4:800","5:31:150:4:600","6:1:300:4:800"},
 			
 			{"0:0:10:3:150","1:10:25:4:450","2:0:45:4:400","3:0:70:4:800","4:0:95:4:800","5:0:150:4:800","6:23:300:4:800","7:4:500:4:800"},
-			{"0:120:10:3:75","1:55:25:4:200","2:45:45:4:350","3:45:70:4:800","4:0:95:4:800","5:0:150:4:800","6:0:300:4:800","7:0:500:4:800"},
+			{"0:1:10:3:75","1:1:25:4:200","2:1:45:4:350","3:1:70:4:600","4:1:95:4:700","5:1:150:4:800","6:1:300:4:800","7:1:500:4:800"},
 			
 			//red				blue      		green			yellow			pink		black			white          zebra				lead
 			{"0:0:10:3:75","1:0:25:4:200","2:0:35:4:350","3:0:60:4:800","4:0:60:4:800","5:0:150:4:800","6:0:300:4:800","7:0:500:4:800","8:4:2000:4:800"}, //29
@@ -68,18 +68,10 @@ public class WaveControl {
 	}
 	
 	public void spawnTimer(Board board) {
-		if(canContinue)return;
+		if(canContinue)nextWave();
 		if(numOfEnemies == enemiesSpawned) {
-			
-			if(waveNumber == waveArray.length){
-				GameData.money += 300;
-				waveNumber = 0;
-				wavePart = 0;
-				screen.goToMainMenu();
-				return;
-			}
 			nextPart();
-			if(numOfEnemies == enemiesSpawned) return;
+			if(numOfEnemies == enemiesSpawned) return;;
 		}
 		
 		Enemy[] enemies =  board.getEnemies();
@@ -87,6 +79,7 @@ public class WaveControl {
 		if(spawnFrame >= spawnRate) {
 			for(int i = 0; i < enemies.length;i++) {
 				if(!enemies[i].inGame()) {
+					System.out.println(wavePart);
 					enemies[i].spawnEnemy(enemyHealth, enemySpeed, enemyIndex, board.getStart());
 					enemiesSpawned++;
 					break;
@@ -105,7 +98,14 @@ public class WaveControl {
 			wavePart = 0;
 			enemiesSpawned = 0;
 			waveNumber++;
-			System.out.println("Runde: " + waveNumber);
+
+			if(waveNumber == waveArray.length){
+				GameData.money += 300;
+				waveNumber = -1;
+				wavePart = -1;
+				screen.goToMainMenu();
+				return;
+			}
 			
 			updateProperties(waveArray[waveNumber][wavePart]);
 		}

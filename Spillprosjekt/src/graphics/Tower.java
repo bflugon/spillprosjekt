@@ -48,11 +48,15 @@ public class Tower extends Rectangle{
 
 	private Board board;
 	
+	private double multiplier;
+	
 //	Taarn som skal plasseres paa kartet trenger bare en possisjon(blokk)
 //	Resten blir oppdatert i en copy-metoden som henter data fra et mal-taarn
 	public Tower(Block block, Board board){		
 		this.block = block;
 		this.board = board;
+		
+		multiplier = 1;
 		
 		setBounds((int) block.getX(),(int) block.getY(),60,60);
 		
@@ -173,6 +177,10 @@ public class Tower extends Rectangle{
 		getBarrelBonuses();
 		getAmmoBonuses();
 		getBaseBonuses();
+		
+		damage *= multiplier;
+		range *= multiplier;
+		fireFrame *= 1-multiplier;
 	}
 	private void getBarrelBonuses(){
 		damage += barrel.getDamage();
@@ -296,11 +304,20 @@ public class Tower extends Rectangle{
 		return slow;
 	}
 
+	public void upgrade(){
+		this.multiplier += 0.2;
+		updateProperties();
+	}
+	
 	public boolean getRadar() {
 		return radar;
 	}
 
 	public boolean getSplashDamage() {
 		return splashDamage;
+	}
+
+	public double getMultiplier() {
+		return multiplier;
 	}
 }

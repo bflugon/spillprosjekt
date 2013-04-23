@@ -16,16 +16,16 @@ public class Inventory {
 		createAmmo("Basic Slime","Slime",123,7,7,25,200,"glue",0);
 		
 		createAmmo( "Basic Missile", "Missile",  25 , 1,  1,  60, 20,0);
-		createAmmo("Basic Flame","Flame",100,2,200,25,75,0);
+		createAmmo("Basic Flame","Flame",200,2,10,25,75,0);
 		createAmmo("Basic Lightning","Lightning",100,5,200,25,75,0);
 		
 		createBarrel("Heavy Barrel",100, 12,  10,  100,  350, "Bullet", "shot2.wav",0);
-		createBarrel("Fast Barrel",100, 13,  5,  75,  25, "Bullet", "shot2.wav",0);
+		createBarrel("Fast Barrel",100, 13,  3,  75,  0, "Bullet", "shot2.wav",0);
 		createBase("Old base",25, 7,  0,  5,  5,0);
 		
 		//Rank 1
 		String bullet = "Bullet";
-		createBarrel("Dragvolly",25, 3,  20,  50,  100, bullet, "shot2.wav",0);
+		createBarrel("Dragvolly",180, 3,  16,  50,  150, bullet, "shot2.wav",0);
 		createBase("Concrete",50, 2,  0,  0,  0,0);
 		createAmmo("Copper Bullet","Bullet",15,10,0,25,200,0);
 		//Ny kule
@@ -33,7 +33,7 @@ public class Inventory {
 		//Rank 2
 		createBase("Green Goblin",100, 3,  20,  75,  20,2);
 		String flame = "Flame";
-		createBarrel("Cremator",25, 4,  140,  55,  80, flame, "flame.wav",2);
+		createBarrel("Cremator",200, 4,  70,  55,  80, flame, "flame.wav",2);
 		
 		//Rank 4
 		createBarrel("Hindenburner",500, 5,  50,  50,  100, flame, "flame.wav",8);

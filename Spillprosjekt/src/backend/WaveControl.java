@@ -92,7 +92,6 @@ public class WaveControl {
 	
 	public void nextWave(){
 		if(canContinue){
-			screen.getBoard().addMoney(15 + 3*waveNumber);
 			canContinue = false;
 			wavePart = 0;
 			enemiesSpawned = 0;

@@ -50,7 +50,6 @@ public class Board {
 	
 	public Board(Screen screen){
 		
-		waveControl = new WaveControl(screen);
 //		Lager listen som inneholder taarnene
 		towers = new ArrayList<Tower>();
 		
@@ -93,6 +92,8 @@ public class Board {
 //		Finner korsteste vei on request
 		pathfinder = new Pathfinder(this);
 		pathfinder.findPath();
+		
+		waveControl = new WaveControl(screen);
 	}
 	
 	public void placeTower(){

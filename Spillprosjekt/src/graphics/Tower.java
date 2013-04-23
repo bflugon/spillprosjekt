@@ -48,7 +48,7 @@ public class Tower extends Rectangle{
 
 	private Board board;
 	
-	private double multiplier;
+	private double multiplier = 1;
 	
 //	Taarn som skal plasseres paa kartet trenger bare en possisjon(blokk)
 //	Resten blir oppdatert i en copy-metoden som henter data fra et mal-taarn

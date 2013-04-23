@@ -12,7 +12,7 @@ public class Inventory {
 		
 		//name, ammotype, cost, index, double damage, double range, double firerate, ability, rank
 		
-		createAmmo("Basic Bullet","Bullet",15,0,0,25,200,0);
+		createAmmo("Basic Bullet","Bullet",15,0,0,25,100,0);
 		createAmmo("Basic Slime","Slime",123,7,7,25,200,"glue",0);
 		
 		createAmmo( "Basic Missile", "Missile",  25 , 1,  1,  60, 20,0);

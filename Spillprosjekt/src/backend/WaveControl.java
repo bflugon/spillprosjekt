@@ -21,17 +21,17 @@ public class WaveControl {
 	
 //									Index:Antall:Lives:Speed:Spawnrate
 	private String[][] waveArray =	{
-			{"0:5:10:6:830"},
-			{"0:20:10:4:400"},
-			{"0:30:10:3:350"},
-			{"0:5:10:3:400","1:3:25:4:400","0:5:10:3:400","0:10:10:3:300"},
-			{"0:20:10:3:400","1:15:25:4:400", "0:10:10:4:400"},//5
-			{"0:5:10:3:400","1:25:25:3:400"},
-			{"0:15:10:3:250","1:10:25:4:470","2:4:40:4:1400","1:5:25:4:470"},
-			{"0:20:10:3:250","1:25:25:4:300","2:5:40:4:350"}, //8
-			{"0:10:10:3:300","1:10:25:4:550","2:14:40:3:450","1:10:25:4:550"},
-			{"2:30:40:3:600"}, // 10
-			{"1:102:25:3:200"},
+			{"00:5:830"},
+			{"00:20:400"},
+			{"00:30:350"},
+			{"00:5:400","1:3:400","0:5:400","0:10:10:3:300"},
+			{"00:20:10:3:400","1:15:25:4:400", "0:10:10:4:400"},//5
+			{"00:5:10:3:400","1:25:25:3:400"},
+			{"00:15:10:3:250","1:10:25:4:470","2:4:40:4:1400","1:5:25:4:470"},
+			{"00:20:10:3:250","1:25:25:4:300","2:5:40:4:350"}, //8
+			{"00:10:10:3:300","1:10:25:4:550","2:14:40:3:450","1:10:25:4:550"},
+			{"02:30:40:3:600"}, // 10
+			{"01:102:25:3:200"},
 			
 			{"0:10:10:3:200","1:10:25:4:400","2:12:40:4:500","3:2:70:4:700"},
 			{"0:0:10:3:100","1:15:25:4:450","2:10:40:4:500","3:5:70:4:600"}, //13
@@ -68,7 +68,7 @@ public class WaveControl {
 	}
 	
 	public void spawnTimer(Board board) {
-		if(canContinue)nextWave();
+		if(canContinue)return;
 		if(numOfEnemies == enemiesSpawned) {
 			nextPart();
 			if(numOfEnemies == enemiesSpawned) return;;
@@ -106,8 +106,9 @@ public class WaveControl {
 				screen.goToMainMenu();
 				return;
 			}
-			
-			updateProperties(waveArray[waveNumber][wavePart]);
+			System.out.println(waveNumber);
+			setProperties();
+//			updateProperties(waveArray[waveNumber][wavePart]);
 		}
 	}
 	
@@ -119,34 +120,56 @@ public class WaveControl {
 			wavePart++;
 		}
 		
-		updateProperties(waveArray[waveNumber][wavePart]);
+		setProperties();
 	}
 	
-	private void updateProperties(String info){
-		int start = 0,
-			end = info.indexOf(':');;
-			
-		enemyIndex = Integer.parseInt(info.substring(start, end));
-		
-		start = end+1;
-		end = info.indexOf(':', start);
-		numOfEnemies = Integer.parseInt(info.substring(start, end));
-		
-		start = end+1;
-		end = info.indexOf(':', start);
-		enemyHealth = Integer.parseInt(info.substring(start, end));
-		
-		start = end+1;
-		end = info.indexOf(':', start);
-		enemySpeed = Integer.parseInt(info.substring(start, end));
-		
-		start = end+1;
-		spawnRate = Integer.parseInt(info.substring(start));
-		
-		enemiesSpawned = 0;
-	}
+//	private void updateProperties(String info){
+//		int start = 0,
+//			end = info.indexOf(':');;
+//			
+//		enemyIndex = Integer.parseInt(info.substring(start, end));
+//		
+//		start = end+1;
+//		end = info.indexOf(':', start);
+//		numOfEnemies = Integer.parseInt(info.substring(start, end));
+//		
+//		start = end+1;
+//		end = info.indexOf(':', start);
+//		enemyHealth = Integer.parseInt(info.substring(start, end));
+//		
+//		start = end+1;
+//		end = info.indexOf(':', start);
+//		enemySpeed = Integer.parseInt(info.substring(start, end));
+//		
+//		start = end+1;
+//		spawnRate = Integer.parseInt(info.substring(start));
+//		
+//		enemiesSpawned = 0;
+//	}
 
 	public int getWave() {
 		return waveNumber;
+	}
+
+	private void setProperties(){
+		String s = waveArray[waveNumber][wavePart];
+		final int index = Integer.valueOf(s.substring(0, 2));
+		
+		switch(index){
+		case 0:
+			enemyHealth = 10;
+			enemySpeed = 3;
+			enemyIndex = 0;
+			break;
+		case 1:
+			enemyHealth = 20;
+			enemySpeed = 4;
+			enemyIndex = 1;
+			break;
+		}
+		
+		int end = s.indexOf(':',3);
+		numOfEnemies = Integer.valueOf(s.substring(3, end));
+		spawnRate = Integer.valueOf(s.substring(end+1));
 	}
 }

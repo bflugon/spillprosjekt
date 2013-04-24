@@ -1,6 +1,3 @@
 Fast Barrel
 Basic Bullet
 Old base
-Dragvolly
-Basic Bullet
-Old base

@@ -98,13 +98,13 @@ public class Projectile extends Rectangle{
 
 				
 //				add splash damage to missiles
-				if(ammoType == "Missile"){
+				if(ammoType.equals("Missile")){
 
-					if(ammoType.equals("Missile")){
-						Sound.playSound("explosion.wav");
-					}
+					Sound.playSound("explosion.wav");
+					setBounds((int)x-60, (int)y-60, 100, 100);
 					
-					setBounds((int)x-30, (int)y-30, 80, 80);
+					Board.hitMarkers.add(new HitMarker((int)x-60, (int)y-60, 1));
+					
 					for(int i = 0; i < board.getEnemies().length; i++){
 						Enemy enemyNearby = board.getEnemies()[i];
 						if(enemyNearby.intersects(this) && enemy.inGame()){
@@ -112,7 +112,7 @@ public class Projectile extends Rectangle{
 						}
 					}
 				}
-				Board.hitMarkers.add(new HitMarker((int)enemy.getX()+15, (int)enemy.getY()+15));
+				else Board.hitMarkers.add(new HitMarker((int)enemy.getX()+15, (int)enemy.getY()+15,0));
 				
 				tower.removeFiredAmmo(this);
 				break;

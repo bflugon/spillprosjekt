@@ -15,8 +15,8 @@ public class Inventory {
 		createAmmo("Basic Bullet","Bullet",15,0,0,25,100,0);
 		createAmmo("Basic Slime","Slime",123,7,7,25,200,"glue",0);
 		
-		createAmmo( "Basic Missile", "Missile",  25 , 1,  1,  60, 20,0);
-		createAmmo("Basic Flame","Flame",200,2,10,25,75,0);
+		createAmmo("Basic Missile", "Missile",  25 , 1,  1,  60, 20,0);
+		createAmmo("Basic Flame","Flame",200,2,20,25,75,0);
 		createAmmo("Basic Lightning","Lightning",100,5,200,25,75,0);
 		
 		createBarrel("Heavy Barrel",100, 12,  10,  100,  350, "Bullet", "shot2.wav",0);
@@ -33,10 +33,10 @@ public class Inventory {
 		//Rank 2
 		createBase("Green Goblin",100, 3,  20,  75,  20,2);
 		String flame = "Flame";
-		createBarrel("Cremator",200, 4,  70,  55,  80, flame, "flame.wav",2);
+		createBarrel("Cremator",200, 4,  40,  55,  80, flame, "flame.wav",2);
 		
 		//Rank 4
-		createBarrel("Hindenburner",500, 5,  50,  50,  100, flame, "flame.wav",4);
+		createBarrel("Hindenburner",500, 5, 80,  50,  100, flame, "flame.wav",4);
 		
 		
 		//Rank 5
@@ -50,7 +50,7 @@ public class Inventory {
 //		-------------------------------Maa plasseres-----------------------------------
 		createAmmo( "S.M.A.R.T", "Missile",  250 , 4,  150,  250, 200,4);
 		createAmmo( "SlowPoke", "Missile",  750 , 6,  0,  250, 200, "glue",4);
-		createAmmo("Icy Flame","Flame",100,8,200,25,75, "glue",4);
+		createAmmo("Icy Flame","Flame",100,8,20,25,75, "glue",4);
 		createAmmo("High Caliber","Bullet",1000,3,200,25,150,4);
 
 

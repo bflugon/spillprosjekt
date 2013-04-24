@@ -23,7 +23,7 @@ public class PersistentProjectile extends Projectile{
 		this.range = tower.getRange();
 		this.speed = 0;
 		this.fireRate = tower.getFireRate();
-		this.damage = ammo.getDamage()/fireRate;
+		this.damage = tower.getDamage()/fireRate;
 	}
 	
 	public void rotate(){
@@ -36,7 +36,7 @@ public class PersistentProjectile extends Projectile{
 	
 	public void physics(){
 		target = tower.getTarget();
-
+System.out.println(damage);
 		ammoTimeOut ++;
     	if(ammoTimeOut > fireRate){
     		tower.removeFiredAmmo(this);

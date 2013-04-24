@@ -20,14 +20,14 @@ public class Inventory {
 		createAmmo("Basic Lightning","Lightning",100,5,200,25,75,0);
 		
 		createBarrel("Heavy Barrel",100, 12,  10,  100,  350, "Bullet", "shot2.wav",0);
-		createBarrel("Fast Barrel",100, 13,  3,  75,  0, "Bullet", "shot2.wav",0);
+		createBarrel("Fast Barrel",100, 13,  3,  75,  0, "Bullet", "fastShot.wav",0);
 		createBase("Old base",25, 7,  0,  5,  5,0);
 		
 		//Rank 1
 		String bullet = "Bullet";
-		createBarrel("Dragvolly",180, 3,  16,  50,  150, bullet, "shot2.wav",0);
-		createBase("Concrete",50, 2,  0,  0,  0,0);
-		createAmmo("Copper Bullet","Bullet",15,10,0,25,200,0);
+		createBarrel("Dragvolly",180, 3,  16,  50,  150, bullet, "shot2.wav",1);
+		createBase("Concrete",50, 2,  0,  0,  0,1);
+		createAmmo("Copper Bullet","Bullet",15,10,0,25,200,1);
 		//Ny kule
 		
 		//Rank 2
@@ -36,22 +36,29 @@ public class Inventory {
 		createBarrel("Cremator",200, 4,  70,  55,  80, flame, "flame.wav",2);
 		
 		//Rank 4
-		createBarrel("Hindenburner",500, 5,  50,  50,  100, flame, "flame.wav",8);
+		createBarrel("Hindenburner",500, 5,  50,  50,  100, flame, "flame.wav",4);
 		
 		
+		//Rank 5
+		
+		
+		//Rank 6
+		
+		//Rank 7
+		
+		
+//		-------------------------------Maa plasseres-----------------------------------
 		createAmmo( "S.M.A.R.T", "Missile",  250 , 4,  150,  250, 200,4);
-		createAmmo( "SlowPoke", "Missile",  750 , 6,  0,  250, 200, "glue",6);
-		createAmmo("Icy Flame","Flame",100,8,200,25,75, "glue",5);
-		createAmmo("High Caliber","Bullet",1000,3,200,25,150,7);
+		createAmmo( "SlowPoke", "Missile",  750 , 6,  0,  250, 200, "glue",4);
+		createAmmo("Icy Flame","Flame",100,8,200,25,75, "glue",4);
+		createAmmo("High Caliber","Bullet",1000,3,200,25,150,4);
 
 
 		createBarrel("Anhilator",120, 0,  100,  200,  600,bullet, "shot.wav",2);
 		createBarrel("Hyper Laser",200, 1,  1,  70,  40,bullet, "shot2.wav",4);
 		createBarrel("Phase Barrel",250, 2,  200,  350,  200,bullet, "shot.wav",5);
 
-		
 
-		
 		String slimer = "Slime";
 		createBarrel("Slimer",250, 8,  200,  350,  200,slimer, "glue.wav",5);
 		
@@ -62,10 +69,6 @@ public class Inventory {
 		String missile = "Missile";
 		createBarrel("NASAMS",750, 7,  10,  250,  250,missile, "missile.wav",7);
 
-
-
-		
-		
 		
 		createBase("Presicion Base",250, 0,  55,  150,  200,5);
 		createBase("Phaser Baser",150, 1,  55,  100,  100,4);
@@ -73,8 +76,8 @@ public class Inventory {
 		createBase("Doomsday",150, 4,  55,  100,  100,7);
 		createBase("Phantom",150, 5,  55,  100,  100,6);
 		createBase("Flamers friend",150, 6,  25,  30,  10,8);
-//		createBase("Basic Base",100, 0,  30,  100,  0);
-		
+//		------------------------------------------------------------------------------
+
 	}
 	
 	private void createAmmo(String name,String ammoType, int price ,int textureIndex, double damage, double range, double firerate, int rankLimit){

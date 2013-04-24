@@ -33,16 +33,16 @@ public class WaveControl {
 			{"02:30:400"}, // 10
 			{"01:102:180"},
 			
-			{"00:60:30","01:10:400","02:12:200","03:2:700"},
-			{"00:10:100","01:15:450","02:10:500","03:5:300"}, //13
+			{"00:60:80","01:10:400","02:12:200","03:2:700"},
+			{"00:10:100","01:15:450","02:10:400","03:5:300"}, //13
 			{"00:33:130","01:10:450","00:33:120","02:23:400","00:33:130","03:4:450"},
 			{"00:24:200","01:15:450","00:25:200","02:10:400","03:9:800"}, //15
 			
-			{"00:20:150","01:0:450","02:12:400","03:5:800","04:3:800"},
-			{"00:0:150","01:0:450","02:20:400","03:8:800","04:4:800"},
-			{"00:20:150","01:0:450","02:12:400","03:0:800","04:10:800"}, //18
-			{"00:20:150","01:0:450","02:80:500","03:0:800","04:0:800"},
-			{"00:0:150","01:10:450","02:4:400","03:5:800","04:7:800"}, // 20
+			{"00:20:150","01:0:450","02:12:400","03:5:800","04:3:500"},
+			{"00:0:150","01:0:450","02:20:400","03:8:800","04:4:500"},
+			{"00:20:150","01:0:450","02:12:400","03:0:800","04:10:400"}, //18
+			{"00:20:150","01:0:450","02:80:500","03:0:800","04:0:300"},
+			{"00:0:150","01:10:450","02:4:400","03:5:800","04:7:300"}, // 20
 			
 			{"00:0:150","01:10:450","02:0:400","03:0:800","04:0:800","05:7:800"},
 			{"00:0:150","01:10:450","02:0:400","03:0:800","04:14:500","05:0:800"}, // 22
@@ -97,8 +97,9 @@ public class WaveControl {
 			enemiesSpawned = 0;
 			waveNumber++;
 
+			screen.getBoard().addMoney(5);
+			
 			if(waveNumber == waveArray.length){
-				GameData.money += 300;
 				waveNumber = -1;
 				wavePart = -1;
 				screen.goToMainMenu();
@@ -109,7 +110,7 @@ public class WaveControl {
 	}
 	
 	private void nextPart(){
-		if(wavePart >= waveArray[waveNumber].length-1 || waveNumber < 0) {
+		if(waveNumber < 0 || wavePart >= waveArray[waveNumber].length-1) {
 			canContinue =true;
 			return;
 		} else {
@@ -141,28 +142,28 @@ public class WaveControl {
 			enemySpeed = 3;
 			break;
 		case 3:
-			enemyHealth = 70;
+			enemyHealth = 80;
 			enemySpeed = 4;
 			break;
 		case 4:
-			enemyHealth = 95;
+			enemyHealth = 170;
 			enemySpeed = 4;
 			break;
 		case 5:
-			enemyHealth = 150;
-			enemySpeed = 4;
-			break;
-		case 6:
 			enemyHealth = 300;
 			enemySpeed = 4;
 			break;
+		case 6:
+			enemyHealth = 450;
+			enemySpeed = 4;
+			break;
 		case 7:
-			enemyHealth = 500;
+			enemyHealth = 1000;
 			enemySpeed = 4;
 			break;
 		case 8:
-			enemyHealth = 2000;
-			enemySpeed = 4;
+			enemyHealth = 5000;
+			enemySpeed = 5;
 			break;
 		}
 		

@@ -14,7 +14,9 @@ public class UpgradeMenu extends Rectangle{
 	private Tower tower;
 	private Board board;
 	
-	private int level;
+	private int level,
+				cost,
+				value;
 	private double multiplier;
 	
 	private Rectangle 	upgradeButton,
@@ -30,6 +32,9 @@ public class UpgradeMenu extends Rectangle{
 		
 		upgradeButton = new Rectangle(x+5,y+5,40,20);
 		sellButton = new Rectangle(x+50,y+5, 40,20);
+		
+		cost = (int)((tower.getPrice()/2)*tower.getMultiplier());
+		value = (int)(tower.getPrice()/2 + (tower.getPrice()/3)*tower.getMultiplier());
 	}
 	
 	public void draw(Graphics g){
@@ -40,13 +45,13 @@ public class UpgradeMenu extends Rectangle{
 		g.fillRect(upgradeButton.x,upgradeButton.y,upgradeButton.width,upgradeButton.height);
 		g.setColor(Color.WHITE);
 		if(tower.getMultiplier() < 1.4){
-			g.drawString("$"+(int)(70*tower.getMultiplier()),upgradeButton.x+3, upgradeButton.y+15);
+			g.drawString("$"+cost,upgradeButton.x+3, upgradeButton.y+15);
 		}else g.drawString("Full", upgradeButton.x+3, upgradeButton.y+15);
 		
 		g.setColor(Colors.red);
 		g.fillRect(sellButton.x,sellButton.y,sellButton.width,sellButton.height);
 		g.setColor(Color.WHITE);
-		g.drawString("$"+(int)(tower.getPrice()/2 + (tower.getMultiplier()-1)*30),sellButton.x+3, sellButton.y+15);
+		g.drawString("$"+value,sellButton.x+3, sellButton.y+15);
 		
 		
 		
@@ -57,14 +62,17 @@ public class UpgradeMenu extends Rectangle{
 	
 	public void clickButton(){
 		if(upgradeButton.contains(Screen.CURSOR)){
-			if(tower.getMultiplier() < 1.4){
+			if(tower.getMultiplier() < 1.4 && cost <= board.getMoney()){
 				tower.upgrade();
-				board.addMoney((int)(-70*tower.getMultiplier()));
+				board.addMoney(-cost);
+				cost = (int)((tower.getPrice()/2)*tower.getMultiplier());
+				value = (int)(tower.getPrice()/2 + (tower.getPrice()/3)*tower.getMultiplier());
 				level++;	
 			}
 		}else if(sellButton.contains(Screen.CURSOR)){
 			board.sellTower(tower);
 			board.closeUpgradeMenu();
+			board.addMoney(value);
 		}else if(!contains(Screen.CURSOR)) board.closeUpgradeMenu();
 	}
 	

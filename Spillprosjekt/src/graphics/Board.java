@@ -130,9 +130,9 @@ public class Board {
 						if(enemy.inGame() && block.intersects(enemy)) return;
 					}
 					
-					if(money >= 15){
+					if(money >= 8){
 						block.setBlockID(GameData.foundation);
-						addMoney(-15);
+						addMoney(-8);
 						if(!pathfinder.findPath()) {
 							block.setBlockID(GameData.grass);
 							pathfinder.findPath();
@@ -248,7 +248,7 @@ public class Board {
 		g.setColor(Color.WHITE);
 		g.drawString("$ "+money, 560, 587);
 		g.drawString("Lives: "+lives, 560, 607);
-		g.drawString("Rank: "+GameData.rank, 560, 627);
+		g.drawString("Rank: "+GameData.rank+1, 560, 627);
 		g.drawString("Wave #"+waveControl.getWave(), 560, 647);;
 
 		for(Block[] row: grid){
@@ -338,7 +338,6 @@ public class Board {
 	}
 
 	public void sellTower(Tower tower) {
-		money += tower.getPrice() *0.5 + (tower.getMultiplier()-1)*30;
 		for(Block[] row:grid){
 			for(Block block : row){
 				if(tower.getX() == block.getX() && tower.getY() == block.getY())block.setOpen(true);

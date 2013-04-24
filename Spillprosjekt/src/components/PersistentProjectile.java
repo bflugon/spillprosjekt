@@ -14,6 +14,8 @@ public class PersistentProjectile extends Projectile{
 	protected double range;
 	protected double fireRate;
 	protected int sX, sY;
+	
+	private boolean hasHit = false;
 
 	public PersistentProjectile(Tower tower, double x, double y,
 			double rotation, Enemy target, Board board, Ammo ammo) {
@@ -85,8 +87,9 @@ System.out.println(damage);
 						if(ammoAbility.equals("glue")) enemy.slowDownEnemy();
 					}
 					
-					if(ammoType.equals("Lightning")) {
-						ammoTimeOut = (int) (fireRate - 30);
+					if(ammoType.equals("Lightning") && !hasHit) {
+						ammoTimeOut = (int) (fireRate-10);
+						hasHit = true;
 					}
 				}
 			}

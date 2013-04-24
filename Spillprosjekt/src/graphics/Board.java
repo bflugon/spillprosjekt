@@ -249,7 +249,7 @@ public class Board {
 		g.drawString("$ "+money, 560, 587);
 		g.drawString("Lives: "+lives, 560, 607);
 		g.drawString("Rank: "+GameData.rank+1, 560, 627);
-		g.drawString("Wave #"+waveControl.getWave(), 560, 647);;
+		g.drawString("Wave #"+(waveControl.getWave()+1), 560, 647);;
 
 		for(Block[] row: grid){
 			for(Block block: row){

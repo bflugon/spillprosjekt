@@ -2,7 +2,10 @@ package backend;
 
 import graphics.Board;
 import graphics.Enemy;
+import graphics.HitMarker;
 import graphics.Screen;
+
+import java.util.ArrayList;
 
 public class WaveControl {
 	
@@ -117,6 +120,7 @@ public class WaveControl {
 			canContinue =true;
 			return;
 		} else {
+			Board.hitMarkers = new ArrayList<HitMarker>();
 			wavePart++;
 		}
 		

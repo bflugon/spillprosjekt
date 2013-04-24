@@ -2,6 +2,7 @@ package components;
 
 import graphics.Board;
 import graphics.Enemy;
+import graphics.HitMarker;
 import graphics.Tower;
 
 import java.awt.Graphics2D;
@@ -111,7 +112,7 @@ public class Projectile extends Rectangle{
 						}
 					}
 				}
-				
+				Board.hitMarkers.add(new HitMarker((int)enemy.getX()+15, (int)enemy.getY()+15));
 				
 				tower.removeFiredAmmo(this);
 				break;

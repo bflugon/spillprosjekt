@@ -1,11 +1,11 @@
-5
+6
 0
-880
-110
-833
+1577
+402
+1332
 
-Rank: 5
+Rank: 6
 Money: 0
-Enemies killed: 880
-Score: 110
-Rank-up limit: 833
+Enemies killed: 1577
+Score: 402
+Rank-up limit: 1332

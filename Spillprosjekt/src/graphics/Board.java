@@ -45,6 +45,7 @@ public class Board {
 	
 	private Enemy[] enemies;
 	
+	public static ArrayList<HitMarker> hitMarkers;
 	
 	//Alle skuddene blir lagt til her nŒr de skutt
 	
@@ -63,6 +64,8 @@ public class Board {
 //		Fyller arrayet med fiender
 		enemies = new Enemy[150];
 
+		hitMarkers = new ArrayList<HitMarker>();
+		
 		towerButtons = new ArrayList<Rectangle>();
 //		Lager like mange knapper som taarn man kan plassere
 		for(int i = 0; i < GameData.modelTowers.size();i++){
@@ -271,6 +274,10 @@ public class Board {
 		g.setFont(GameData.small);
 		g.drawString(GameData.score+ " / " +GameData.rankUpLimit, 380, 13);
 		
+		
+		for(int i = 0; i < hitMarkers.size();i++){
+			hitMarkers.get(i).draw(g);
+		}
 		
 		if(upgradeMenu != null)upgradeMenu.draw(g);
 	}

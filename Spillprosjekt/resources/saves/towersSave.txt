@@ -4,6 +4,3 @@ Old base
 Dragvolly
 Basic Bullet
 Old base
-Cremator
-Basic Flame
-Old base

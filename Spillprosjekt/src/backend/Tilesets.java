@@ -8,6 +8,8 @@ import java.awt.image.FilteredImageSource;
 import javax.swing.ImageIcon;
 
 public class Tilesets extends Component{
+	public static final Image hitMarker = new ImageIcon("resources/textures/hitMarker.png").getImage();
+
 	public static Image[] 	enemy_tileset,
 							block_tileset,
 							base_tileset,

@@ -109,7 +109,7 @@ public class WaveControl {
 	}
 	
 	private void nextPart(){
-		if(wavePart >= waveArray[waveNumber].length-1) {
+		if(wavePart >= waveArray[waveNumber].length-1 || waveNumber < 0) {
 			canContinue =true;
 			return;
 		} else {

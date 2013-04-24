@@ -30,7 +30,7 @@ public class Tilesets extends Component{
 		openingImage = new ImageIcon("resources/textures/openingImage.png").getImage();
 		range = new ImageIcon("resources/textures/range.png").getImage();
 		
-		enemy_tileset = new Image[9];
+		enemy_tileset = new Image[11];
 		for(int i = 0; i < enemy_tileset.length; i++){
 			enemy_tileset[i] = new ImageIcon("resources/textures/enemy_tileset.png").getImage();
 			enemy_tileset[i] = createImage(new FilteredImageSource(enemy_tileset[i].getSource(), new CropImageFilter(0, 60*i, 60, 60)));

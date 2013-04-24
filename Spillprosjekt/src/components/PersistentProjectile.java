@@ -38,7 +38,6 @@ public class PersistentProjectile extends Projectile{
 	
 	public void physics(){
 		target = tower.getTarget();
-System.out.println(damage);
 		ammoTimeOut ++;
     	if(ammoTimeOut > fireRate){
     		tower.removeFiredAmmo(this);

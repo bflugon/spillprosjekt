@@ -1,10 +1,10 @@
-7
+15
 0
 1716
 252
 2131
 
-Rank: 7
+Rank: 15
 Money: 0
 Enemies killed: 1716
 Score: 252

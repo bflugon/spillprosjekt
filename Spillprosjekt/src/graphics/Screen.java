@@ -3,8 +3,8 @@ package graphics;
 import graphics.componentMenu.ComponentMenu;
 import graphics.mainMenu.MainMenu;
 import gui.BoardMouseListener;
-import gui.MainMenuMouseListener;
 import gui.ComponentMenuMouseListener;
+import gui.MainMenuListener;
 
 import java.awt.Graphics;
 import java.awt.Point;
@@ -14,8 +14,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import sound.BigSound;
-import sound.Sound;
-
 import backend.Colors;
 import backend.FileManager;
 import backend.GameData;
@@ -37,7 +35,7 @@ public class Screen extends JPanel implements Runnable {
 	
 	private BoardMouseListener boardMouseListener;
 	private ComponentMenuMouseListener menuMouseListener;
-	private MainMenuMouseListener mainMenuMouseListener;
+	private MainMenuListener mainMenuListener;
 
 	private int gameSpeed = 2;
 	
@@ -58,14 +56,18 @@ public class Screen extends JPanel implements Runnable {
 		
 		boardMouseListener = new BoardMouseListener(this);
 		menuMouseListener = new ComponentMenuMouseListener(this);
-		mainMenuMouseListener = new MainMenuMouseListener(this);
+		mainMenuListener = new MainMenuListener(this);
 		
 		addMouseListener(boardMouseListener);
 		addMouseListener(menuMouseListener);
-		addMouseListener(mainMenuMouseListener);
-		addMouseMotionListener(mainMenuMouseListener);
+		addMouseListener(mainMenuListener);
+		addMouseMotionListener(mainMenuListener);
 		addMouseMotionListener(boardMouseListener);
 		addMouseMotionListener(menuMouseListener);
+		addKeyListener(mainMenuListener);
+		
+		setFocusable(true);
+		requestFocus();
 		
 		CURSOR = new Point(10, 10);
 		
@@ -115,8 +117,8 @@ public class Screen extends JPanel implements Runnable {
 		
 		removeMouseListener(boardMouseListener);
 		removeMouseListener(menuMouseListener);
-		removeMouseListener(mainMenuMouseListener);
-		removeMouseMotionListener(mainMenuMouseListener);
+		removeMouseListener(mainMenuListener);
+		removeMouseMotionListener(mainMenuListener);
 		removeMouseMotionListener(boardMouseListener);
 		removeMouseMotionListener(menuMouseListener);
 		
@@ -125,12 +127,12 @@ public class Screen extends JPanel implements Runnable {
 		
 		boardMouseListener = new BoardMouseListener(this);
 		menuMouseListener = new ComponentMenuMouseListener(this);
-		mainMenuMouseListener = new MainMenuMouseListener(this);
+		mainMenuListener = new MainMenuListener(this);
 		
 		addMouseListener(boardMouseListener);
 		addMouseListener(menuMouseListener);
-		addMouseListener(mainMenuMouseListener);
-		addMouseMotionListener(mainMenuMouseListener);
+		addMouseListener(mainMenuListener);
+		addMouseMotionListener(mainMenuListener);
 		addMouseMotionListener(boardMouseListener);
 		addMouseMotionListener(menuMouseListener);
 	}

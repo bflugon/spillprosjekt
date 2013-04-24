@@ -61,7 +61,7 @@ public class Board {
 		
 		activeTower = 0;
 //		Fyller arrayet med fiender
-		enemies = new Enemy[80];
+		enemies = new Enemy[150];
 
 		towerButtons = new ArrayList<Rectangle>();
 //		Lager like mange knapper som taarn man kan plassere
@@ -94,6 +94,7 @@ public class Board {
 		pathfinder.findPath();
 		
 		waveControl = new WaveControl(screen);
+		upgradeMenu = null;
 	}
 	
 	public void placeTower(){

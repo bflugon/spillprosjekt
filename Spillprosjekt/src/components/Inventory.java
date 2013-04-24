@@ -43,28 +43,26 @@ public class Inventory {
 		//Rank 4
 		createBarrel("Hindenburner",500, 5, 80,  50,  100, "Flame", "flame.wav",4);
 		createAmmo("Icy Flame","Flame",100,8,20,25,75, "glue",4);
-		createBarrel("Hyper Laser",300, 1,  1,  70,  40,bullet, "shot2.wav",4);
 		
 		//Rank 5
-		createBarrel("Hyper Laser",200, 1,  1,  70,  40,bullet, "shot2.wav",5);
-		createBarrel("Phase Barrel",250, 2,  200,  350,  200,bullet, "shot.wav",5);
 		createBase("Phantom",800, 5,  15,  100,  50,5);
 		createBarrel("Tesla Coil",750, 6,  550,  100,  75,"Lightning", "shot.wav",5);
+		createBarrel("NASAMS",750, 7,  10,  250,  250,"Missile", "missile.wav",5);
+		createBarrel("Hyper Laser",600, 1,  1,  70,  40,bullet, "shot2.wav",5);
 
 		
 		//Rank 6
 		createAmmo("Doom Charge","Lightning",500,14,1500,25,75,6);
-		createBarrel("Hyper Laser",600, 1,  1,  70,  40,bullet, "shot2.wav",6);
 		createBarrel("Phase Barrel",800, 2,  100,  350,  300,bullet, "shot.wav",6);
 		createBase("Flamers friend",400, 6,  50,  10,  10,6);
-		createBarrel("NASAMS",750, 7,  10,  250,  250,"Missile", "missile.wav",6);
 		createAmmo( "SlowPoke", "Missile",  550 , 6,  20,  250, 300, "glue",6);
 		
 		//Rank 7
-		createBarrel("Annihilator",1500, 0,  400,  200,  600,bullet, "shot.wav",7);
+		createBarrel("Annihilator",1500, 0,  500,  300,  500,bullet, "shot.wav",7);
 		createBase("Doomsday",600, 4,  20,  30,  150,7);
 		createAmmo( "S.M.A.R.T", "Missile",  500 , 4,  100,  250, 200,7);
-
+		createAmmo("Dragon Fire","Flame",900,13,250,50,75,7);
+		
 	}
 	
 	private void createAmmo(String name,String ammoType, int price ,int textureIndex, double damage, double range, double firerate, int rankLimit){
